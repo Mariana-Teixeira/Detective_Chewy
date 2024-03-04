@@ -26,15 +26,14 @@ public class PlayerMove : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.LeftControl) && canCrouch) 
         {
             _startY = transform.localScale.y;
-            transform.localScale = new Vector3(transform.localScale.x, transform.localScale.y/2, transform.localScale.z);
-            transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y / 2, transform.localPosition.z);
+            //change model to crouched
+            transform.localScale = new Vector3(transform.localScale.x, transform.localScale.y/4, transform.localScale.z);
             speed = 2;
         }
 
         if (Input.GetKeyUp(KeyCode.LeftControl))
         {
             transform.localScale = new Vector3(transform.localScale.x, _startY, transform.localScale.z);
-            transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y * 2, transform.localPosition.z);
             speed = 6;
         }
 
