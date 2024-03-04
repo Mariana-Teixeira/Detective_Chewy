@@ -482,7 +482,6 @@ GameObject:
   - component: {fileID: 549784116}
   - component: {fileID: 549784115}
   - component: {fileID: 549784114}
-  - component: {fileID: 549784117}
   m_Layer: 0
   m_Name: Capsule
   m_TagString: Untagged
@@ -578,27 +577,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 549784112}
   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
---- !u!65 &549784117
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 549784112}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 5, y: 1, z: 6}
-  m_Center: {x: -1, y: 0, z: 0}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -918,6 +896,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   infoField: {fileID: 165787840}
+  textGameObject: {fileID: 1248204298}
 --- !u!1 &1232140990 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4825457273596603753, guid: 70f86841eb55b23419c1fe874401f2fe, type: 3}
@@ -963,6 +942,7 @@ GameObject:
   - component: {fileID: 1246782857}
   - component: {fileID: 1246782856}
   - component: {fileID: 1246782860}
+  - component: {fileID: 1246782861}
   m_Layer: 0
   m_Name: FakeChairNPC
   m_TagString: Untagged
@@ -1069,6 +1049,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ed85136c2772814d869e82fce5aa54d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 1232140990}
+--- !u!65 &1246782861
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1246782855}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 5, y: 1, z: 6}
+  m_Center: {x: -1, y: 0, z: 0}
 --- !u!1 &1248204298
 GameObject:
   m_ObjectHideFlags: 0
@@ -1199,8 +1201,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1551a3baddcc59e4886aec67380f70f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  InteractorSource: {fileID: 1315261123}
-  InteractRange: 100
+  interactorSource: {fileID: 1315261123}
+  interactRange: 100
+  npc1: {fileID: 549784112}
 --- !u!1 &1431503924
 GameObject:
   m_ObjectHideFlags: 0
@@ -1319,7 +1322,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.7882353}
+  m_Color: {r: 0, g: 0, b: 0, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1391,6 +1394,10 @@ PrefabInstance:
     - target: {fileID: 1554725528409576916, guid: 70f86841eb55b23419c1fe874401f2fe, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2116086384609041741, guid: 70f86841eb55b23419c1fe874401f2fe, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 4825457273596603753, guid: 70f86841eb55b23419c1fe874401f2fe, type: 3}
       propertyPath: m_Name

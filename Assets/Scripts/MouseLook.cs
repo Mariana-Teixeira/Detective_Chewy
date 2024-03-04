@@ -24,8 +24,16 @@ public class MouseLook : MonoBehaviour
 
         _xRotation -= mouseY;
         _xRotation = Mathf.Clamp(_xRotation, -90f, 90f);
-
+        
+        //fks my camera rotation
         transform.localRotation = Quaternion.Euler(_xRotation, 0f, 0f);
         body.Rotate(Vector3.up * mouseX);
+    }
+
+    public void UpdateLookAt(Transform pos) 
+    {
+        transform.LookAt(pos);
+        _xRotation = 0f;
+        transform.LookAt(pos);
     }
 }

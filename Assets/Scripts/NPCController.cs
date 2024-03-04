@@ -4,15 +4,24 @@ using UnityEngine;
 
 public class NPCController : MonoBehaviour
 {
-    // Start is called before the first frame update
+    [SerializeField] GameObject player;
+
+    private int _numOfInteractions = 0;
     void Start()
     {
         
     }
 
-    // Update is called once per frame
-    void Update()
+    public void OnTriggerEnter(Collider other)
     {
-        
+        Debug.Log(other + " Interacted with NPC");
+        _numOfInteractions++;
+        AudioQ();
     }
+
+    public void AudioQ() 
+    {
+        //Release one of the AudioQs
+    }
+
 }

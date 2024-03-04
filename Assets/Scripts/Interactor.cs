@@ -9,17 +9,20 @@ interface IInteractable {
 }
 public class Interactor : MonoBehaviour
 {
-    [SerializeField] Transform InteractorSource;
-    [SerializeField] float InteractRange;
+    [SerializeField] Transform interactorSource;
+    [SerializeField] float interactRange;
+    [SerializeField] GameObject npc1;
+
+    MouseLook ml = null;
     void Start()
     {
-        
+        ml = GetComponent<MouseLook>();
     }
 
     void Update()
     {
-        Ray r = new Ray(InteractorSource.position, InteractorSource.forward);
-        if (Physics.Raycast(r, out RaycastHit hitInfo, InteractRange))
+        Ray r = new Ray(interactorSource.position, interactorSource.forward);
+        if (Physics.Raycast(r, out RaycastHit hitInfo, interactRange))
         {
             if (hitInfo.collider.gameObject.TryGetComponent(out IInteractable obj))
             {
@@ -31,20 +34,18 @@ public class Interactor : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.E)) 
         {
-            if (Physics.Raycast(r, out RaycastHit hitInfo1, InteractRange)) 
+            if (Physics.Raycast(r, out RaycastHit hitInfo1, interactRange)) 
             {
                 //Debug.Log(hitInfo.collider.gameObject.name);
                 if (hitInfo1.collider.gameObject.TryGetComponent(out IInteractable obj)) 
                 {
-                    Debug.Log(transform.parent.name);
-                    Debug.Log(transform.parent.transform.localPosition);
-                    Debug.Log(hitInfo1.collider.gameObject.transform.localPosition);
-                    /*
-                    transform.parent.transform.localPosition = new Vector3(hitInfo1.collider.gameObject.transform.position.x, hitInfo1.collider.gameObject.transform.position.y, hitInfo1.collider.gameObject.transform.position.z);
-                    */
-
+                    
+                    transform.parent.transform.position = hitInfo1.collider.gameObject.transform.position;
                     obj.Interact();
                     obj.HideInfo();
+                    ml.UpdateLookAt(npc1.transform);
+
+
 
                 }
             }
