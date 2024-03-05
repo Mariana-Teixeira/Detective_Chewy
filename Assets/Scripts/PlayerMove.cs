@@ -8,6 +8,7 @@ public class PlayerMove : MonoBehaviour
     [SerializeField] CharacterController controller;
     [SerializeField] float speed = 6;
     [SerializeField] bool canCrouch = true;
+    [SerializeField] MouseLook mouseLook;
 
     private float _startY;
     // In case we want gravity
@@ -16,6 +17,7 @@ public class PlayerMove : MonoBehaviour
 
     void Update()
     {
+        if (!mouseLook.IsPlayingCards()) { 
         float x = Input.GetAxis("Horizontal");
         float z = Input.GetAxis("Vertical");
 
@@ -31,12 +33,12 @@ public class PlayerMove : MonoBehaviour
             speed = 2;
         }
 
-        if (Input.GetKeyUp(KeyCode.LeftControl))
+        if (Input.GetKeyUp(KeyCode.LeftControl) && canCrouch)
         {
             transform.localScale = new Vector3(transform.localScale.x, _startY, transform.localScale.z);
             speed = 6;
         }
-
+        }
         // In case we want gravity
         //_velocity.y += gravity * Time.deltaTime;
         //controller.Move(_velocity * Time.deltaTime);

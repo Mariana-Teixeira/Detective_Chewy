@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class MainMenuScript : MonoBehaviour
 {
     [SerializeField] GameObject menuPanel;
+    [SerializeField] MouseLook mouseLook;
     public void PlayGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
@@ -27,6 +28,7 @@ public class MainMenuScript : MonoBehaviour
     {
         menuPanel.SetActive(false);
         Time.timeScale = 1;
+        mouseLook.DisableCursor();
     }
 
     public void BackToMainMenu() 

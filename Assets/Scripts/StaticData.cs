@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class StaticData : MonoBehaviour
 {
-    public static float Volume;
-    public static float Subtitles;
+    public static float Volume = 100;
+    public static float Subtitles = 1;
 
     private void Start()
     {
