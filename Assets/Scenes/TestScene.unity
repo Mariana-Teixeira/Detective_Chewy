@@ -1253,8 +1253,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactorSource: {fileID: 1315261123}
-  interactRange: 100
-  NPCs: []
+  interactRange: 7
+  NPCs:
+  - {fileID: 1246782855}
   menuManager: {fileID: 825705782}
 --- !u!114 &1315261128 stripped
 MonoBehaviour:
