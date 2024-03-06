@@ -7,11 +7,13 @@ public class MainMenuScript : MonoBehaviour
 {
     [SerializeField] GameObject menuPanel;
     [SerializeField] MouseLook mouseLook;
+    [SerializeField] Animator animator;
+
+    public float transitionTime = 1.5f;
     public void PlayGame()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex + 2));
     }
-
     public void QuitGame()
     {
         Debug.Log("Game Quit");
@@ -34,5 +36,14 @@ public class MainMenuScript : MonoBehaviour
     public void BackToMainMenu() 
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+    }
+
+    IEnumerator LoadLevel(int LevelIndex) 
+    {
+        animator.SetTrigger("Start");
+
+        yield return new WaitForSeconds(transitionTime);
+
+        SceneManager.LoadScene(LevelIndex);
     }
 }
