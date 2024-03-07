@@ -8,6 +8,8 @@ using static UnityEditor.PlayerSettings;
 public class MouseLook : MonoBehaviour
 { 
     [SerializeField] float mouseSensitivity = 400;
+    [SerializeField] float speedMoveSit;
+    [SerializeField] float speedRotateSit;
 
     public Transform body;
 
@@ -56,7 +58,6 @@ public class MouseLook : MonoBehaviour
         Debug.Log(pos.position);
 
         float time = 0;
-        float speed =1f;
 
         Vector3 startPosition = transform.parent.transform.position;
         Vector3 endPosition = sitPos.transform.position + new Vector3(0, 1.5f, 0);
@@ -65,7 +66,7 @@ public class MouseLook : MonoBehaviour
         {
             transform.parent.transform.position = Vector3.Lerp(startPosition, endPosition, time / durationOfLerp);
             transform.parent.transform.rotation = Quaternion.Slerp(transform.parent.transform.rotation, lookRotationParent, time/50);
-            time += Time.deltaTime * speed;
+            time += Time.deltaTime * speedMoveSit;
 
             lookRotationParent = Quaternion.LookRotation(pos.position - transform.parent.transform.position);
             lookRotationParent.x = 0;
@@ -79,7 +80,6 @@ public class MouseLook : MonoBehaviour
         transform.parent.transform.rotation = Quaternion.Euler(0, eulerRotation.y, 0);
         //
 
-        speed = 0.5f;
         time = 0;
         Quaternion lookRotation = Quaternion.LookRotation(pos.position - transform.position);
         Vector3 newStartPosition = transform.position;
@@ -88,7 +88,7 @@ public class MouseLook : MonoBehaviour
         {
             transform.position = Vector3.Lerp(newStartPosition, newEndPosition, time / durationOfLerp);
             transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, time);
-            time += Time.deltaTime * speed;
+            time += Time.deltaTime * speedRotateSit;
 
             lookRotation = Quaternion.LookRotation(pos.position - transform.position);
             yield return null;

@@ -1069,7 +1069,7 @@ GameObject:
   - component: {fileID: 855170413}
   - component: {fileID: 855170412}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: PlayerFrontFacingPlaceHolder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2420,6 +2420,14 @@ PrefabInstance:
     - target: {fileID: 4825457273596603753, guid: 70f86841eb55b23419c1fe874401f2fe, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 7868049343171063793, guid: 70f86841eb55b23419c1fe874401f2fe, type: 3}
+      propertyPath: speedMoveSit
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7868049343171063793, guid: 70f86841eb55b23419c1fe874401f2fe, type: 3}
+      propertyPath: speedRotateSit
+      value: 0.6
       objectReference: {fileID: 0}
     - target: {fileID: 7868049343171063793, guid: 70f86841eb55b23419c1fe874401f2fe, type: 3}
       propertyPath: mouseSensitivity
