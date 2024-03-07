@@ -1,6 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Drawing;
+using UnityEditor.PackageManager;
 using UnityEngine;
+using static UnityEditor.PlayerSettings;
 
 public class MouseLook : MonoBehaviour
 { 
@@ -33,16 +36,68 @@ public class MouseLook : MonoBehaviour
          }
     }
 
-    public void UpdateLookAt(Transform pos) 
+    public void UpdateLookAt(Transform pos, float durationOfLerp, GameObject sitPos)
     {
         _playingCards = true;
+        StartCoroutine(LookAtLerp(pos, durationOfLerp, sitPos));
+    }
+
+    private IEnumerator LookAtLerp(Transform pos, float durationOfLerp, GameObject sitPos) 
+    {
+        /*
         transform.parent.transform.LookAt(pos);
-        transform.LookAt(pos);
-        _xRotation = 0f;
         Vector3 eulerRotation = transform.parent.transform.rotation.eulerAngles;
         transform.parent.transform.rotation = Quaternion.Euler(0, eulerRotation.y,0 );
         transform.LookAt(pos);
+        */
+        Quaternion lookRotationParent = Quaternion.LookRotation(pos.position - transform.parent.transform.position);
+        lookRotationParent.x = 0;
+        lookRotationParent.z = 0;
+        Debug.Log(pos.position);
+
+        float time = 0;
+        float speed =1f;
+
+        Vector3 startPosition = transform.parent.transform.position;
+        Vector3 endPosition = sitPos.transform.position + new Vector3(0, 1.5f, 0);
+
+        while (time < durationOfLerp)
+        {
+            transform.parent.transform.position = Vector3.Lerp(startPosition, endPosition, time / durationOfLerp);
+            transform.parent.transform.rotation = Quaternion.Slerp(transform.parent.transform.rotation, lookRotationParent, time/50);
+            time += Time.deltaTime * speed;
+
+            lookRotationParent = Quaternion.LookRotation(pos.position - transform.parent.transform.position);
+            lookRotationParent.x = 0;
+            lookRotationParent.z = 0;
+            yield return null;
+        }
+
+        //fix it on a correct position after Lerp
+        transform.parent.transform.LookAt(pos);
+        Vector3 eulerRotation = transform.parent.transform.rotation.eulerAngles;
+        transform.parent.transform.rotation = Quaternion.Euler(0, eulerRotation.y, 0);
+        //
+
+        speed = 0.5f;
+        time = 0;
+        Quaternion lookRotation = Quaternion.LookRotation(pos.position - transform.position);
+        Vector3 newStartPosition = transform.position;
+        Vector3 newEndPosition = transform.position - new Vector3(0,0.5f,0);
+        while (time < durationOfLerp)
+        {
+            transform.position = Vector3.Lerp(newStartPosition, newEndPosition, time / durationOfLerp);
+            transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, time);
+            time += Time.deltaTime * speed;
+
+            lookRotation = Quaternion.LookRotation(pos.position - transform.position);
+            yield return null;
+        }
+       
+        //transform.parent.transform.position = sitPos.transform.position + new Vector3(0, 1.5f, 0);
+        _xRotation = 0f;
         EnableCursor();
+        yield return null;
     }
 
     public void CancelCardGame() 

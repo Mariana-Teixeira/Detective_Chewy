@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 interface IInteractable {
@@ -20,6 +21,9 @@ public class Interactor : MonoBehaviour
 
     [Header("Managers")]
     [SerializeField] MenuManager menuManager;
+
+    [Header("Vars")]
+    [SerializeField] float durationOfLerp;
 
     MouseLook ml = null;
     void Start()
@@ -51,15 +55,9 @@ public class Interactor : MonoBehaviour
                 //Debug.Log(hitInfo.collider.gameObject.name);
                 if (hitInfo1.collider.gameObject.TryGetComponent(out IInteractable obj)) 
                 {
-                    transform.parent.transform.position = hitInfo1.collider.gameObject.transform.position + new Vector3(0,1.5f,0);
-
-                    transform.position = transform.position - new Vector3 (0, 0.5f, 0);
-
                     obj.Interact();
                     obj.HideInfo();
-                    int npcNum = Int32.Parse(hitInfo1.collider.gameObject.name.Substring(hitInfo1.collider.gameObject.name.Length - 1))-1;
-
-                    ml.UpdateLookAt(NPCs[npcNum].transform);
+                    StartCoroutine(LerpPosition(hitInfo1));
                 }
             }
         }
@@ -76,5 +74,13 @@ public class Interactor : MonoBehaviour
         }
 
         
+    }
+
+    IEnumerator LerpPosition(RaycastHit hitInfo1) 
+    {
+        int npcNum = Int32.Parse(hitInfo1.collider.gameObject.name.Substring(hitInfo1.collider.gameObject.name.Length - 1)) - 1;
+        GameObject chair = hitInfo1.collider.gameObject;
+        ml.UpdateLookAt(NPCs[npcNum].transform, durationOfLerp, chair);
+        yield return null;
     }
 }
