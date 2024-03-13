@@ -24,6 +24,7 @@ public class ChairScript : MonoBehaviour, IInteractable
     }
     void Update()
     {
+        //Turn interactor towards player so its always readable
         if (_infoOn) {
             textGameObject.transform.LookAt(_camera.transform);
             textGameObject.transform.rotation = Quaternion.LookRotation(_camera.transform.forward);

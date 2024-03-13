@@ -33,6 +33,7 @@ public class Interactor : MonoBehaviour
 
     void Update()
     {
+        //Hover effects
         Ray r = new Ray(interactorSource.position, interactorSource.forward);
         if (Physics.Raycast(r, out RaycastHit hitInfo, interactRange))
         {
@@ -47,7 +48,7 @@ public class Interactor : MonoBehaviour
 
         }
 
-
+        //Interact with E if object had Interactable component
         if (Input.GetKeyDown(KeyCode.E)) 
         {
             if (Physics.Raycast(r, out RaycastHit hitInfo1, interactRange)) 
@@ -62,6 +63,8 @@ public class Interactor : MonoBehaviour
             }
         }
 
+        //Escape to exit card game or open main menu outside card game 
+        //Might have to switch it to always open main menu, add X to cardUI for exiting the card game, as main menu is not accesibile from card game this way
         if (Input.GetKeyDown(KeyCode.Escape) && !ml.IsPlayingCards()) 
         {
             menuManager.OpenPauseMEnu();
@@ -69,11 +72,29 @@ public class Interactor : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.Escape) && ml.IsPlayingCards()) 
         {
-            ml.CancelCardGame();
-            transform.position = transform.position + new Vector3(0, 0.5f, 0);
+            ml.CancelCardGame(durationOfLerp);
+            //transform.position = transform.position + new Vector3(0, 0.5f, 0);
         }
 
-        
+        //Change view inside card game to Bird CAM
+        if (Input.GetKeyDown(KeyCode.Alpha1)) 
+        {
+            if (ml.IsPlayingCards() && ml.IsBasicView()) 
+            { 
+                ml.SwitchToBirdCamera();
+            }
+        }
+
+        //Change view inside card game to Basic CAM
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            if(ml.IsPlayingCards() && ml.IsBirdView()) 
+            { 
+            ml.SwitchToBasicCamera();
+            }
+        }
+
+
     }
 
     IEnumerator LerpPosition(RaycastHit hitInfo1) 
