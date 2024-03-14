@@ -17,6 +17,7 @@ public class PlayerMove : MonoBehaviour
 
     void Update()
     {
+        //move player with WSAD / ARROWS
         if (!mouseLook.IsPlayingCards()) { 
         float x = Input.GetAxis("Horizontal");
         float z = Input.GetAxis("Vertical");
@@ -25,6 +26,7 @@ public class PlayerMove : MonoBehaviour
 
         controller.Move(move*speed * Time.deltaTime);
 
+        //In case we want crouching somewhere along the way
         if (Input.GetKeyDown(KeyCode.LeftControl) && canCrouch) 
         {
             _startY = transform.localScale.y;
@@ -38,6 +40,8 @@ public class PlayerMove : MonoBehaviour
             transform.localScale = new Vector3(transform.localScale.x, _startY, transform.localScale.z);
             speed = 6;
         }
+        //
+
         }
         // In case we want gravity
         //_velocity.y += gravity * Time.deltaTime;
