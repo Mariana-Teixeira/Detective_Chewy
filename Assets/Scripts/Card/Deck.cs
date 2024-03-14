@@ -1,24 +1,23 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
+using Random = System.Random;
 
 public class Deck : MonoBehaviour
 {
     private List<CardData> _deck;
-    private List<CardData> _hand;
-    private List<CardData> _discards;
+
+    [SerializeField] Board board;
 
     private void Awake()
     {
         _deck = new List<CardData>();
-        _hand = new List<CardData>();
-        _discards = new List<CardData>();
     }
 
     private void Start()
     {
-        PlayerHand.Draw += OnDraw;
         InitDeck();
     }
 
@@ -34,22 +33,12 @@ public class Deck : MonoBehaviour
                 _deck.Add(card);
             }
         }
+
+        //Randomize position of card in deck
+        Random random = new Random();
+        _deck = _deck.OrderBy(x => random.Next()).ToList();
+        board.InstantiateCards(_deck);
     }
 
-    private CardData[] OnDraw()
-    {
-        CardData[] cards =
-        {
-            _deck[0],
-            _deck[1],
-            _deck[2],
-        };
-
-        return cards;
-    }
-
-    private void DiscardCard(Card card)
-    {
-        throw new NotImplementedException();
-    }
+    
 }

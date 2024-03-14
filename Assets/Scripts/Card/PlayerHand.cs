@@ -14,6 +14,6 @@ public class PlayerHand : MonoBehaviour
     public void DrawCard()
     {
         var cards = Draw.Invoke();
-        _board.InstantiateCards(cards);
+        //_board.InstantiateCards(cards);
     }
 }

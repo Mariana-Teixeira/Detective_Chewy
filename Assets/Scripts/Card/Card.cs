@@ -1,5 +1,7 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.UIElements;
+
 
 public class Card : MonoBehaviour
 {
@@ -25,4 +27,6 @@ public class Card : MonoBehaviour
     {
         _cardText.text = _cardData.ToString();
     }
+
+    
 }
