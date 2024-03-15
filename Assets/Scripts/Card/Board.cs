@@ -6,16 +6,23 @@ using static UnityEditor.PlayerSettings;
 
 public class Board : MonoBehaviour
 {
-    public GameObject cardPrefab;
-    public GameObject deck;
-    public GameObject hand;
-    public GameObject tavern;
-    public GameObject discards;
+    [SerializeField] GameObject cardPrefab;
+    [SerializeField] GameObject deck;
+    [SerializeField] GameObject hand;
+    [SerializeField] GameObject tavern;
+    [SerializeField] GameObject discards;
+
+    [SerializeField] List<GameObject> tables;
 
     private List<Card> _deck;
     private List<Card> _hand;
     private List<Card> _tavern;
     private List<Card> _discards;
+
+    private GameObject _deckPos;
+    private GameObject _handPos;
+    private GameObject _tavernPos;
+    private GameObject _discardsPos;
 
     private void Awake()
     {
@@ -24,6 +31,7 @@ public class Board : MonoBehaviour
         _tavern = new List<Card>();
         _discards = new List<Card>();
     }
+    //CREATE CARDS
     public void InstantiateCards(List<CardData> cards)
     {
         foreach (var card in cards)
@@ -53,10 +61,10 @@ public class Board : MonoBehaviour
             _tavern.Add(_deck.ElementAt(0));
             _deck.RemoveAt(0);
         }
-        UpdatePositions();
+        UpdateFirstPositions();
     }
 
-    public void UpdatePositions()
+    public void UpdateFirstPositions()
     {
         foreach (var card in _deck)
         {
@@ -76,6 +84,8 @@ public class Board : MonoBehaviour
             card.transform.parent = tavern.transform;
             card.transform.transform.localPosition = Vector3.zero;
         }
+        //TEST
+        PlaceCardsInitial(0);
     }
 
     public void UpdatePosition(Card card, Position pos)
@@ -83,6 +93,53 @@ public class Board : MonoBehaviour
         card.CardData.Position = pos;
     }
 
+    //PLACE CARDS ON TABLE NUM
+    public void PlaceCardsInitial(int num)
+    {
+        GameObject table = tables.ElementAt(num);
+        _deckPos = table.transform.GetChild(1).GetChild(0).gameObject;
+        _handPos = table.transform.GetChild(1).GetChild(1).gameObject;
+        _tavernPos = table.transform.GetChild(1).GetChild(2).gameObject;
+        _discardsPos = table.transform.GetChild(1).GetChild(3).gameObject;
+        float moveStep = 0;
+        float moveStepY = 0;
+        int counter = 0;
+        foreach (var card in _deck)
+        {
+            card.transform.position = _deckPos.transform.position;
+        }
+        moveStep = 0.1f;
+        foreach (var card in _hand)
+        {
+            card.transform.position = _handPos.transform.position + new Vector3(moveStepY, 0, moveStep);
+            if (counter == 4) 
+            {
+                moveStepY = +0.2f;
+                moveStep = moveStep + 0.15f;
+            }
+            if (counter < 4)
+            {
+                moveStep = moveStep + 0.15f;
+            }
+            else 
+            {
+                moveStep = moveStep - 0.15f;
+            }
+            counter++;
+        }
+        moveStep = -0.15f;
+        foreach (var card in _tavern)
+        {
+            card.transform.position = _tavernPos.transform.position + new Vector3(0, 0, moveStep);
+            moveStep = moveStep + 0.1f;
+        }
+        foreach(var card in _discards)
+        {
+            card.transform.position = _discardsPos.transform.position;
+        }
+    }
+
+    //DRAWING MECHANICS
     public void DrawCard()  
     {
         _hand.Add(_deck.ElementAt(0));
