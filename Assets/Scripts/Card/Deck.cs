@@ -35,10 +35,17 @@ public class Deck : MonoBehaviour
         }
 
         //Randomize position of card in deck
+        RandomInitOnBoard();
+    }
+
+    public void RandomInitOnBoard()
+    {
         Random random = new Random();
         _deck = _deck.OrderBy(x => random.Next()).ToList();
         board.InstantiateCards(_deck);
     }
+
+
 
     
 }

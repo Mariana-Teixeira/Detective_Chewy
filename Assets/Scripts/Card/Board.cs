@@ -14,6 +14,7 @@ public class Board : MonoBehaviour
 
     [SerializeField] List<GameObject> tables;
 
+    private List<Card> _allCardsList;
     private List<Card> _deck;
     private List<Card> _hand;
     private List<Card> _tavern;
@@ -26,6 +27,7 @@ public class Board : MonoBehaviour
 
     private void Awake()
     {
+        _allCardsList = new List<Card>();
         _deck = new List<Card>();
         _hand = new List<Card>();
         _tavern = new List<Card>();
@@ -40,9 +42,12 @@ public class Board : MonoBehaviour
             cardComponent.CardData = card;
             cardComponent.UpdateUI();
             _deck.Add(cardComponent);
+            _allCardsList.Add(cardComponent);
         }
         CreateHand();
     }
+
+    public void CreateNewVerionOfDeck() { }//TO DO
 
     public void CreateHand()
     {
