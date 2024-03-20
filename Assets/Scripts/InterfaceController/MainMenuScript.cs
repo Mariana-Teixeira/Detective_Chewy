@@ -5,9 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class MainMenuScript : MonoBehaviour
 {
-    [SerializeField] GameObject menuPanel;
-    [SerializeField] MouseLook mouseLook;
-    [SerializeField] Animator animator;
+    [SerializeField] GameObject _menuPanel;
+    [SerializeField] CameraTransition _cameraTransition;
+    [SerializeField] Animator _animator;
 
     public float transitionTime = 1.5f;
     public void PlayGame()
@@ -22,15 +22,15 @@ public class MainMenuScript : MonoBehaviour
 
     public void Pause()
     {
-        menuPanel.SetActive(true);
+        _menuPanel.SetActive(true);
         Time.timeScale = 0;
     }
 
     public void Continue()
     {
-        menuPanel.SetActive(false);
+        _menuPanel.SetActive(false);
         Time.timeScale = 1;
-        mouseLook.DisableCursor();
+        _cameraTransition.DisableCursor();
     }
 
     public void BackToMainMenu() 
@@ -40,7 +40,7 @@ public class MainMenuScript : MonoBehaviour
 
     IEnumerator LoadLevel(int LevelIndex) 
     {
-        animator.SetTrigger("Start");
+        _animator.SetTrigger("Start");
 
         yield return new WaitForSeconds(transitionTime);
 

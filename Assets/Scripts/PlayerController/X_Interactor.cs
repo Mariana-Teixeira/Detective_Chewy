@@ -23,10 +23,10 @@ public class Interactor : MonoBehaviour
     [Header("Vars")]
     [SerializeField] float durationOfLerp;
 
-    MouseLook ml = null;
+    CameraTransition _cameraTransition = null;
     void Start()
     {
-        ml = GetComponent<MouseLook>();
+        _cameraTransition = GetComponent<CameraTransition>();
     }
 
     void Update()
@@ -63,32 +63,32 @@ public class Interactor : MonoBehaviour
 
         //Escape to exit card game or open main menu outside card game 
         //Might have to switch it to always open main menu, add X to cardUI for exiting the card game, as main menu is not accesibile from card game this way
-        if (Input.GetKeyDown(KeyCode.Escape) && !ml.IsPlayingCards()) 
+        if (Input.GetKeyDown(KeyCode.Escape) && !_cameraTransition.IsPlayingCards()) 
         {
             menuManager.OpenPauseMEnu();
-            ml.EnableCursor();
+            _cameraTransition.EnableCursor();
         }
-        if (Input.GetKeyDown(KeyCode.Escape) && ml.IsPlayingCards()) 
+        if (Input.GetKeyDown(KeyCode.Escape) && _cameraTransition.IsPlayingCards()) 
         {
-            ml.CancelCardGame(durationOfLerp);
+            _cameraTransition.CancelCardGame(durationOfLerp);
             //transform.position = transform.position + new Vector3(0, 0.5f, 0);
         }
 
         //Change view inside card game to Bird CAM
         if (Input.GetKeyDown(KeyCode.Alpha1)) 
         {
-            if (ml.IsPlayingCards() && ml.IsBasicView()) 
+            if (_cameraTransition.IsPlayingCards() && _cameraTransition.IsBasicView()) 
             { 
-                ml.SwitchToBirdCamera();
+                _cameraTransition.SwitchToBirdCamera();
             }
         }
 
         //Change view inside card game to Basic CAM
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            if(ml.IsPlayingCards() && ml.IsBirdView()) 
+            if(_cameraTransition.IsPlayingCards() && _cameraTransition.IsBirdView()) 
             { 
-            ml.SwitchToBasicCamera();
+            _cameraTransition.SwitchToBasicCamera();
             }
         }
 
@@ -99,7 +99,7 @@ public class Interactor : MonoBehaviour
     {
         int npcNum = Int32.Parse(hitInfo1.collider.gameObject.name.Substring(hitInfo1.collider.gameObject.name.Length - 1)) - 1;
         GameObject chair = hitInfo1.collider.gameObject;
-        ml.UpdateLookAt(NPCs[npcNum].transform, durationOfLerp, chair);
+        _cameraTransition.UpdateLookAt(NPCs[npcNum].transform, durationOfLerp, chair);
         yield return null;
     }
 }
