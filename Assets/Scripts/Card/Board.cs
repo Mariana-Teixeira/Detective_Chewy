@@ -101,6 +101,8 @@ public class Board : MonoBehaviour
     //PLACE CARDS ON TABLE NUM
     public void PlaceCardsInitial(int num)
     {
+        // works for Z- => Z+ table
+        /*
         GameObject table = tables.ElementAt(num);
         _deckPos = table.transform.GetChild(1).GetChild(0).gameObject;
         _handPos = table.transform.GetChild(1).GetChild(1).gameObject;
@@ -141,7 +143,57 @@ public class Board : MonoBehaviour
         foreach(var card in _discards)
         {
             card.transform.position = _discardsPos.transform.position;
+        }*/
+
+        GameObject table = tables.ElementAt(num);
+        _deckPos = table.transform.GetChild(1).GetChild(0).gameObject;
+        _handPos = table.transform.GetChild(1).GetChild(1).gameObject;
+        _tavernPos = table.transform.GetChild(1).GetChild(2).gameObject;
+        _discardsPos = table.transform.GetChild(1).GetChild(3).gameObject;
+        float moveStep = 0;
+        float moveStepY = 0;
+        int counter = 0;
+        foreach (var card in _deck)
+        {
+            card.transform.position = _deckPos.transform.position;
+            card.transform.Rotate(0,0,90);
         }
+        moveStep = -0.1f;
+        foreach (var card in _hand)
+        {
+            card.transform.position = _handPos.transform.position + new Vector3(moveStep, 0, moveStepY);
+            if (counter == 4)
+            {
+                moveStepY = 0.2f;
+                moveStep = moveStep - 0.15f;
+            }
+            if (counter < 4)
+            {
+                moveStep = moveStep - 0.15f;
+            }
+            else
+            {
+                moveStep = moveStep + 0.15f;
+            }
+            counter++;
+
+            card.transform.Rotate(0, 0, 90);
+        }
+        moveStep = -0.15f;
+        foreach (var card in _tavern)
+        {
+            card.transform.position = _tavernPos.transform.position + new Vector3(moveStep, 0, 0);
+            moveStep = moveStep + 0.1f;
+
+            card.transform.Rotate(0, 0, 90);
+        }
+        foreach (var card in _discards)
+        {
+            card.transform.position = _discardsPos.transform.position;
+
+            card.transform.Rotate(0, 0, 90);
+        }
+
     }
 
     //DRAWING MECHANICS
