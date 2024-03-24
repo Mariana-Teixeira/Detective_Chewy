@@ -47,7 +47,7 @@ public class Board : MonoBehaviour
         CreateHand();
     }
 
-    public void CreateNewVerionOfDeck() { }//TO DO
+    public void CreateNewVerionOfDeck() {  }//TO DO
 
     public void CreateHand()
     {
@@ -145,10 +145,12 @@ public class Board : MonoBehaviour
     }
 
     //DRAWING MECHANICS
-    public void DrawCard()  
+    // ADD LERP FOR MOVING CARDS LATER ON
+    public void DrawCard(Vector3 pos)  
     {
         _hand.Add(_deck.ElementAt(0));
         UpdatePosition(_deck.ElementAt(0), Position.Hand);
+        _deck.ElementAt(0).gameObject.transform.position = pos;
         _deck.RemoveAt(0);
     }
     public void DiscardCard(Card card)
@@ -156,31 +158,52 @@ public class Board : MonoBehaviour
         _discards.Add(card);
         UpdatePosition(card, Position.Discard);
         _hand.Remove(card);
+        DrawCard(card.transform.position);
+        card.gameObject.transform.position = _discardsPos.transform.position;
     }
 
     public void ExchangeTavernCard(Card cardHand, Card cardTavern) 
     {
-        _discards.Add(cardHand);
-        UpdatePosition(cardHand, Position.Discard);
-        _hand.Remove(cardHand);
+        //add from deck to tavern
+        _tavern.Add(_deck.ElementAt(0));
+        UpdatePosition(_deck.ElementAt(0), Position.Tavern);
+        _deck.ElementAt(0).gameObject.transform.position = cardTavern.transform.position;
+        _deck.RemoveAt(0);
+
+        //adds to hand from tavern
         _hand.Add(cardTavern);
         UpdatePosition(cardTavern, Position.Hand);
         _tavern.Remove(cardTavern);
-        _tavern.Add(_deck.ElementAt(0));
-        UpdatePosition(_deck.ElementAt(0), Position.Tavern);
-        _deck.RemoveAt(0);
+        cardTavern.gameObject.transform.position = cardHand.transform.position;
+
+        //discards from hand
+        _discards.Add(cardHand);
+        UpdatePosition(cardHand, Position.Discard);
+        _hand.Remove(cardHand);
+        cardHand.gameObject.transform.position = _discardsPos.transform.position;
     }
 
-    public void CollectPoints(Card[] cards) 
-    { 
+    public void CollectPoints(List<Card> cards) 
+    {
         foreach (Card card in cards) 
         {
             _discards.Add(card);
             UpdatePosition(card, Position.Discard);
             _hand.Remove(card);
+            card.gameObject.transform.position = _discardsPos.transform.position;
         }
-        DrawCard();
-        DrawCard();
-        DrawCard();
+
     }
+
+    public void FinishTurn(List<Vector3> cards)
+    {
+        foreach (Vector3 card in cards)
+        {
+            DrawCard(card);
+        }
+    }
+
+    public Transform GetTavernPos() { return _tavernPos.transform; }
+    public Transform GetDeckPos() { return _deckPos.transform; }
+    public Transform GetDiscardPos() { return _discardsPos.transform; }
 }
