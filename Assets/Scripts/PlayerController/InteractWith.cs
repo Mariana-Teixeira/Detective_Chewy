@@ -36,8 +36,9 @@ public class InteractWith : MonoBehaviour
     void InteractWithChair(RaycastHit hit)
     {
         var table = hit.collider.GetComponent<TableScript>();
-        _cameraLook.LookAtTarget = table.OpponentLookAtTarget;
-        _cameraLook.InitialCardGamePosition = table.InitialCardGameCameraPosition;
+        _cameraLook.LookAtTarget = table.LookAtTarget;
+        _cameraLook.GameCameraPosition = table.GameCameraPosition;
+        _cameraLook.GameBodyPosition = table.GameBodyPosition;
         PlayerStates.ChangeState?.Invoke(GameState.SITTING);
     }
 }

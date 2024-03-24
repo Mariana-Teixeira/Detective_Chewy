@@ -36,9 +36,11 @@ public class PlayerStates : MonoBehaviour
         switch(_currentState)
         {
             case GameState.OVERWORLD:
+                Cursor.lockState = CursorLockMode.Locked;
                 break;
             case GameState.SITTING:
                 _cameraLook.StartCoroutine("SittingAnimation");
+                Cursor.lockState = CursorLockMode.Confined;
                 break;
             default:
                 break;

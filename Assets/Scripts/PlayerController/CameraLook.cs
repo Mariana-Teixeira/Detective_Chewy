@@ -7,15 +7,13 @@ public class CameraLook : MonoBehaviour
 
     [SerializeField] float _mouseSensitivity = 400.0f;
     [SerializeField] float sittingDuration = 5.0f;
-    public Transform InitialCardGamePosition { get; set; }
+    public Transform GameCameraPosition { get; set; }
+    public Transform GameBodyPosition { get; set; }
     public Transform LookAtTarget { get; set; }
 
     void Start()
     {
         _camera = GetComponentInChildren<Camera>();
-
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = true;
     }
 
     public void RotateWithMouse()
@@ -30,13 +28,14 @@ public class CameraLook : MonoBehaviour
     public IEnumerator SittingAnimation()
     {
         var timeElapsed = 0.0f;
-        var lookRotation = Quaternion.LookRotation(LookAtTarget.position - InitialCardGamePosition.position);
+        var lookRotation = Quaternion.LookRotation(LookAtTarget.position - GameCameraPosition.position);
 
         while (timeElapsed < sittingDuration)
         {
             var t = timeElapsed / sittingDuration;
-            transform.position = Vector3.Lerp(transform.position, InitialCardGamePosition.transform.position, t);
-            transform.rotation = Quaternion.Lerp(transform.rotation, lookRotation, t);
+            transform.position = Vector3.Lerp(transform.position, GameBodyPosition.position, t);
+            _camera.transform.position = Vector3.Lerp(_camera.transform.position, GameCameraPosition.transform.position, t);
+            _camera.transform.rotation = Quaternion.Lerp(_camera.transform.rotation, lookRotation, t);
             timeElapsed += Time.deltaTime;
 
             yield return null;
