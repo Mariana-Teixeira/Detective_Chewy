@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices.WindowsRuntime;
 using TMPro;
 using UnityEngine;
 using Random = System.Random;
@@ -29,7 +30,8 @@ public class Deck : MonoBehaviour
             for (int j = 0; j < 13; j++)
             {
                 var value = j + 1;
-                var card = new CardData(suit, value);
+                var score = value >= 10 ? 10 : value;
+                var card = new CardData(suit, value, score);
                 _deck.Add(card);
             }
         }

@@ -20,11 +20,13 @@ public class CardData
     public Suit Suit;
     public Position Position;
     public int Value;
+    public int Score;
 
-    public CardData(Suit suit, int value)
+    public CardData(Suit suit, int value, int score)
     {
         Suit = suit;
         Value = value;
+        Score = score;
     }
 
     public override string ToString()

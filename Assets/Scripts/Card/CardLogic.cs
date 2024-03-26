@@ -18,6 +18,9 @@ public class CardLogic : MonoBehaviour
     [SerializeField] TextMeshProUGUI errorText;
     private int _boardPointsCollected;
     private string _usualText = "POINTS: ";
+
+    private bool _gotSetThisTurn = false;
+    private int lastAddedPoints = 0;
     public int _turnCounter;
 
     private List<Vector3> pointsCardsPositions;
@@ -92,6 +95,8 @@ public class CardLogic : MonoBehaviour
             Debug.Log("TURN: " +_turnCounter);
             nextPhaseBtn.interactable = false;
             errorText.gameObject.SetActive(false);
+            _gotSetThisTurn = false;
+            if (_turnCounter > 5) { GameOver(); }
         }
         UnselectAllCards();
     }
@@ -160,6 +165,7 @@ public class CardLogic : MonoBehaviour
         else if (currentPhase == Phase.Points)
         {
             int collectedPoints = 0;
+            float multiScore = 1;
             List<int>  tmpNumList = new List<int>();
             if (cards.Count == 3)
             {
@@ -184,18 +190,42 @@ public class CardLogic : MonoBehaviour
                     )
                     )
                 {
+                    //Add flag that SET was converted to points this turn, if another is converted, set score to 2x
+                    if (((cards[0].CardData.Value == cards[1].CardData.Value) && (cards[1].CardData.Value == cards[2].CardData.Value))) { multiScore = 1;
+                        if (_gotSetThisTurn == true) { multiScore = 2; }
+                        if (_gotSetThisTurn == false) { _gotSetThisTurn = true; }
+                    }
+                    //Otherwise set score to 1.5f for RUNS
+                    else { multiScore = 1.5f; }
+
+                    //Add points of all cards
                     foreach (Card card in cards) {
-                        collectedPoints = collectedPoints + card.CardData.Value; 
+                        collectedPoints = collectedPoints + card.CardData.Score; 
                         pointsCardsPositions.Add(card.transform.position);
                     }
 
-                    _gameBoard.CollectPoints(cards);
 
+                    _gameBoard.CollectPoints(cards);
                     UnselectAllCards();
                     errorText.gameObject.SetActive(false);
 
-                    _boardPointsCollected = _boardPointsCollected + collectedPoints;
+                    //add points from previous SET if second SET was used during these turn
+                    if (multiScore == 2)
+                    {
+                        _boardPointsCollected = _boardPointsCollected + lastAddedPoints;
+                    }
+                    _boardPointsCollected = _boardPointsCollected + Convert.ToInt32(Math.Floor(collectedPoints*multiScore));
+
+                    lastAddedPoints = Convert.ToInt32(Math.Floor(collectedPoints * multiScore));
+    
                     pointsText.text = _usualText + _boardPointsCollected + " / " + pointsList[0];
+
+                    //GAME WON IF POINTS OVER NEEDED POINTS
+                    // CHANGE 0 DEPENDING ON TABLES
+                    if (_boardPointsCollected >= pointsList[0]) 
+                    {
+                        GameWon();
+                    };
                 }
                 else { 
                     Debug.Log("You can not use those cards for points");
@@ -208,6 +238,16 @@ public class CardLogic : MonoBehaviour
                 errorText.gameObject.SetActive(true);
             } 
         }
+    }
+
+    public void GameWon() 
+    {
+        Debug.Log("GAME WON");
+    }
+
+    public void GameOver() 
+    {
+        Debug.Log("GAME LOST");
     }
 
     public int SelectedCardsLength()
