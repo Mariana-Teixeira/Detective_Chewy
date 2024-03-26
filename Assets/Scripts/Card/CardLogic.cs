@@ -15,6 +15,7 @@ public class CardLogic : MonoBehaviour
     public int[] pointsList;
     [SerializeField] TextMeshProUGUI phaseText;
     [SerializeField] TextMeshProUGUI pointsText;
+    [SerializeField] TextMeshProUGUI errorText;
     private int _boardPointsCollected;
     private string _usualText = "POINTS: ";
     public int _turnCounter;
@@ -42,6 +43,7 @@ public class CardLogic : MonoBehaviour
         confirmBtn.onClick.AddListener(Confirm);
         StartNewBoard();
         phaseText.text = "DISCARD PHASE";
+        nextPhaseBtn.interactable = false;
     }
     public void SelectCard(Card card) 
     {
@@ -59,19 +61,23 @@ public class CardLogic : MonoBehaviour
     public void ChangeToNextPhase() 
     {
         //SKIP PHASE
+        /*
+         * DONT LET PLAYER SKIP DISCARD PHASE
         if (currentPhase == Phase.Discard)
         {
             currentPhase = Phase.Buy;
             phaseText.text = "BUY PHASE";
             OnChangePhase(Phase.Buy);
         }
-        else if (currentPhase == Phase.Buy)
+        */
+        if (currentPhase == Phase.Buy)
         {
             UnSelectTavernCardBuyPhase();
             UnSelectHandCardBuyPhase();
             currentPhase = Phase.Points;
             phaseText.text = "POINTS PHASE";
             OnChangePhase(Phase.Points);
+            errorText.gameObject.SetActive(false);
         }
         else if (currentPhase == Phase.Points)
         {
@@ -84,6 +90,8 @@ public class CardLogic : MonoBehaviour
             }
             _turnCounter++;
             Debug.Log("TURN: " +_turnCounter);
+            nextPhaseBtn.interactable = false;
+            errorText.gameObject.SetActive(false);
         }
         UnselectAllCards();
     }
@@ -101,10 +109,15 @@ public class CardLogic : MonoBehaviour
                 currentPhase = Phase.Buy;
                 phaseText.text = "BUY PHASE";
                 OnChangePhase(Phase.Buy);
-
+                nextPhaseBtn.interactable = true;
                 UnselectAllCards();
+                errorText.gameObject.SetActive(false);
             }
-            else { Debug.Log("Select more cards to confirm or skip"); }
+            else { 
+                Debug.Log("Select more cards to confirm");
+                errorText.text = "Select more cards to confirm";
+                errorText.gameObject.SetActive(true);
+            }
         }
 
         else if (currentPhase == Phase.Buy)
@@ -130,10 +143,19 @@ public class CardLogic : MonoBehaviour
                     OnChangePhase(Phase.Points);
 
                     UnselectAllCards();
+                    errorText.gameObject.SetActive(false);
                 }
-                else { Debug.Log("Cant sell a card that is worth less then the one you are buying"); }
+                else { 
+                    Debug.Log("Cant sell a card that is worth less then the one you are buying"); 
+                    errorText.text = "Cant sell a card that is worth less then the one you are buying";
+                    errorText.gameObject.SetActive(true);
+                }
             }
-            else { Debug.Log("Select more cards to confirm or skip"); }
+            else { 
+                Debug.Log("Select more cards to confirm or skip");
+                errorText.text = "Select more cards to confirm or skip";
+                errorText.gameObject.SetActive(true);
+            }
         }
         else if (currentPhase == Phase.Points)
         {
@@ -170,13 +192,21 @@ public class CardLogic : MonoBehaviour
                     _gameBoard.CollectPoints(cards);
 
                     UnselectAllCards();
+                    errorText.gameObject.SetActive(false);
 
                     _boardPointsCollected = _boardPointsCollected + collectedPoints;
                     pointsText.text = _usualText + _boardPointsCollected + " / " + pointsList[0];
                 }
-                else { Debug.Log("You can not use those cards for points"); }
+                else { 
+                    Debug.Log("You can not use those cards for points");
+                    errorText.text = "You can not use those cards for points";
+                    errorText.gameObject.SetActive(true);
+                }
             }
-            else { Debug.Log("Select more cards to confirm or skip"); } 
+            else { Debug.Log("Select more cards to confirm or skip");
+                errorText.text = "Select more cards to confirm or skip";
+                errorText.gameObject.SetActive(true);
+            } 
         }
     }
 

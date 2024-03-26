@@ -95,14 +95,19 @@ public class Board : MonoBehaviour
 
     public void UpdatePosition(Card card, Position pos)
     {
-        card.CardData.Position = pos;
+        if (pos == Position.Discard) 
+        {
+            card.CardData.Position = pos;
+        }
+        else { 
+            card.CardData.Position = pos;
+        }
     }
 
     //PLACE CARDS ON TABLE NUM
     public void PlaceCardsInitial(int num)
     {
-        // works for Z- => Z+ table
-        /*
+
         GameObject table = tables.ElementAt(num);
         _deckPos = table.transform.GetChild(1).GetChild(0).gameObject;
         _handPos = table.transform.GetChild(1).GetChild(1).gameObject;
@@ -111,6 +116,9 @@ public class Board : MonoBehaviour
         float moveStep = 0;
         float moveStepY = 0;
         int counter = 0;
+
+        // works for Z- => Z+ table
+        if (false) { 
         foreach (var card in _deck)
         {
             card.transform.position = _deckPos.transform.position;
@@ -143,16 +151,9 @@ public class Board : MonoBehaviour
         foreach(var card in _discards)
         {
             card.transform.position = _discardsPos.transform.position;
-        }*/
-
-        GameObject table = tables.ElementAt(num);
-        _deckPos = table.transform.GetChild(1).GetChild(0).gameObject;
-        _handPos = table.transform.GetChild(1).GetChild(1).gameObject;
-        _tavernPos = table.transform.GetChild(1).GetChild(2).gameObject;
-        _discardsPos = table.transform.GetChild(1).GetChild(3).gameObject;
-        float moveStep = 0;
-        float moveStepY = 0;
-        int counter = 0;
+        }
+        }
+        else { 
         foreach (var card in _deck)
         {
             card.transform.position = _deckPos.transform.position;
@@ -186,12 +187,18 @@ public class Board : MonoBehaviour
             moveStep = moveStep + 0.1f;
 
             card.transform.Rotate(0, 0, 90);
+            /*
+            card.transform.Rotate(-35, 0, 0);
+            card.transform.position = card.transform.position + new Vector3(0, 0.03f, 0);
+            */
+
         }
         foreach (var card in _discards)
         {
             card.transform.position = _discardsPos.transform.position;
 
             card.transform.Rotate(0, 0, 90);
+        }
         }
 
     }
@@ -211,7 +218,7 @@ public class Board : MonoBehaviour
         UpdatePosition(card, Position.Discard);
         _hand.Remove(card);
         DrawCard(card.transform.position);
-        card.gameObject.transform.position = _discardsPos.transform.position;
+        card.gameObject.transform.position = _discardsPos.transform.position + new Vector3 (0, (float) 0.001*_discards.Count(),0);
     }
 
     public void ExchangeTavernCard(Card cardHand, Card cardTavern) 
