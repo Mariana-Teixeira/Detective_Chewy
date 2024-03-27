@@ -41,6 +41,8 @@ public class PlayerStates : MonoBehaviour
                 break;
             case GameState.SITTING:
                 StartCoroutine(_cameraLook.ToggleSitting());
+                break;
+            case GameState.PLAYING:
                 _cameraLook.ToggleCursor();
                 break;
             default:

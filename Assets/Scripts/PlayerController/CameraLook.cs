@@ -13,7 +13,7 @@ public class CameraLook : MonoBehaviour
     public Transform CardBodyTransform, CardCameraTransform;
     public Transform LookAtTarget;
 
-    private bool _isSitting = false, _lockingCursor = true;
+    private bool _isSitting, _lockingCursor;
 
     void Start()
     {
@@ -25,12 +25,12 @@ public class CameraLook : MonoBehaviour
     {
         if (_lockingCursor)
         {
-            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.lockState = CursorLockMode.Confined;
             Cursor.visible = true;
         }
         else
         {
-            Cursor.lockState = CursorLockMode.Confined;
+            Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
         }
 
