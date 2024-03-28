@@ -48,7 +48,7 @@ public class Deck : MonoBehaviour
     }
 
 
-    public void RandomOnNewBoard(int table)
+    public void RandomOnNewBoard(TableScript table)
     {
         board.CreateNewVerionOfDeck(table);
     }

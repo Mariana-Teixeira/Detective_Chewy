@@ -51,7 +51,7 @@ public class Board : MonoBehaviour
         CreateHand();
     }
 
-    public void CreateNewVerionOfDeck(int table)
+    public void CreateNewVerionOfDeck(TableScript table)
     {
         _deck.Clear();
         Random random = new Random();
@@ -59,7 +59,12 @@ public class Board : MonoBehaviour
         foreach (Card card in _allCardsList) {
             _deck.Add(card);
         }
-        _activeTable = table;
+        int cnt = 0;
+        foreach (GameObject go in tables) 
+        {
+            if (go == table.gameObject) { _activeTable = cnt; }
+            cnt++;
+        }
         CreateHand();
     }
 

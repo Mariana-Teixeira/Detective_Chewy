@@ -28,6 +28,7 @@ public class CardLogic : MonoBehaviour
     [SerializeField] Canvas cardGameCanvas;
     [SerializeField] Button nextPhaseBtn;
     [SerializeField] Button confirmBtn;
+    [SerializeField] Button exitBtn;
    
 
     [SerializeField] Board _gameBoard;
@@ -44,6 +45,7 @@ public class CardLogic : MonoBehaviour
         currentPhase = Phase.Discard;
         nextPhaseBtn.onClick.AddListener(ChangeToNextPhase);
         confirmBtn.onClick.AddListener(Confirm);
+        exitBtn.onClick.AddListener(ExitCardGame);
         StartNewBoard();
         phaseText.text = "DISCARD PHASE";
         nextPhaseBtn.interactable = false;
@@ -56,6 +58,10 @@ public class CardLogic : MonoBehaviour
     public void UnselectCard(Card card) 
     {
         cards.Remove(card);
+    }
+
+    public void ExitCardGame() {
+        PlayerStates.ChangeState?.Invoke(GameState.SITTING);
     }
 
     public delegate void ChangePhase(Phase phase);

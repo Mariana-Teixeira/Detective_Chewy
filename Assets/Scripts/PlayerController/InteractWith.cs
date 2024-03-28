@@ -6,6 +6,9 @@ public class InteractWith : MonoBehaviour
     CameraLook _cameraLook;
     Ray _lookingAtRay;
 
+
+    [SerializeField] Deck gameDeck;
+
     [SerializeField] float _rayDistance;
     [SerializeField] LayerMask _rayMask;
 
@@ -34,10 +37,11 @@ public class InteractWith : MonoBehaviour
 
     void InteractWithTable(RaycastHit hit)
     {
-        var table = hit.collider.GetComponent<TableScript>();
+        TableScript table = hit.collider.GetComponent<TableScript>();
         _cameraLook.LookAtTarget = table.LookAtTarget;
         _cameraLook.CardCameraTransform = table.CardCameraPosition;
         _cameraLook.CardBodyTransform = table.CardBodyPosition;
+        gameDeck.RandomOnNewBoard(table);
         PlayerStates.ChangeState?.Invoke(GameState.SITTING);
     }
 

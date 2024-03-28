@@ -5,6 +5,7 @@ public enum GameState { NULL, WALKING, SITTING, PLAYING };
 public class PlayerStates : MonoBehaviour
 {
     public static Action<GameState> ChangeState;
+    [SerializeField] GameObject cardGameUI;
     CameraLook _cameraLook;
     PlayerMove _playerMove;
     InteractWith _interactWith;
@@ -38,9 +39,11 @@ public class PlayerStates : MonoBehaviour
         {
             case GameState.WALKING:
                 _cameraLook.ToggleCursor();
+                cardGameUI.SetActive(false);
                 break;
             case GameState.SITTING:
                 StartCoroutine(_cameraLook.ToggleSitting());
+                cardGameUI.SetActive(true);
                 break;
             case GameState.PLAYING:
                 _cameraLook.ToggleCursor();
