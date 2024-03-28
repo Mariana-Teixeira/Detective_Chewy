@@ -2,7 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using Random = System.Random;
 using static UnityEditor.PlayerSettings;
+using UnityEditorInternal;
 
 public class Board : MonoBehaviour
 {
@@ -13,6 +15,7 @@ public class Board : MonoBehaviour
     [SerializeField] GameObject discards;
 
     [SerializeField] List<GameObject> tables;
+    private int _activeTable;
 
     private List<Card> _allCardsList;
     private List<Card> _deck;
@@ -32,6 +35,7 @@ public class Board : MonoBehaviour
         _hand = new List<Card>();
         _tavern = new List<Card>();
         _discards = new List<Card>();
+        _activeTable = 0;
     }
     //CREATE CARDS
     public void InstantiateCards(List<CardData> cards)
@@ -47,7 +51,17 @@ public class Board : MonoBehaviour
         CreateHand();
     }
 
-    public void CreateNewVerionOfDeck() {  }//TO DO
+    public void CreateNewVerionOfDeck(int table)
+    {
+        _deck.Clear();
+        Random random = new Random();
+        _allCardsList = _allCardsList.OrderBy(x => random.Next()).ToList();
+        foreach (Card card in _allCardsList) {
+            _deck.Add(card);
+        }
+        _activeTable = table;
+        CreateHand();
+    }
 
     public void CreateHand()
     {
@@ -90,7 +104,7 @@ public class Board : MonoBehaviour
             card.transform.transform.localPosition = Vector3.zero;
         }
         //TEST
-        PlaceCardsInitial(0);
+        PlaceCardsInitial(_activeTable);
     }
 
     public void UpdatePosition(Card card, Position pos)
@@ -117,6 +131,8 @@ public class Board : MonoBehaviour
         float moveStepY = 0;
         int counter = 0;
 
+
+        //----------------------------------------------------
         // works for Z- => Z+ table
         if (false) { 
         foreach (var card in _deck)
@@ -153,6 +169,7 @@ public class Board : MonoBehaviour
             card.transform.position = _discardsPos.transform.position;
         }
         }
+        //----------------------------------------------------
         else { 
         foreach (var card in _deck)
         {
@@ -265,4 +282,6 @@ public class Board : MonoBehaviour
     public Transform GetTavernPos() { return _tavernPos.transform; }
     public Transform GetDeckPos() { return _deckPos.transform; }
     public Transform GetDiscardPos() { return _discardsPos.transform; }
+
+
 }

@@ -48,6 +48,11 @@ public class Deck : MonoBehaviour
     }
 
 
+    public void RandomOnNewBoard(int table)
+    {
+        board.CreateNewVerionOfDeck(table);
+    }
 
-    
+
+
 }
