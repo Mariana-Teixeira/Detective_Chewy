@@ -13,6 +13,7 @@ public class Board : MonoBehaviour
     [SerializeField] GameObject hand;
     [SerializeField] GameObject tavern;
     [SerializeField] GameObject discards;
+    [SerializeField] GameObject _DeckStartPosition;
 
     [SerializeField] List<GameObject> tables;
     private int _activeTable;
@@ -27,6 +28,8 @@ public class Board : MonoBehaviour
     private GameObject _handPos;
     private GameObject _tavernPos;
     private GameObject _discardsPos;
+
+
 
     private void Awake()
     {
@@ -48,12 +51,26 @@ public class Board : MonoBehaviour
             _deck.Add(cardComponent);
             _allCardsList.Add(cardComponent);
         }
-        CreateHand();
+        _DeckStartPosition.transform.position = _deck.ElementAt(0).gameObject.transform.position;
+        ResetDeck();
+    }
+
+    public void ResetDeck() 
+    {
+        foreach (Card card in _allCardsList) 
+        {
+            card.transform.position = _DeckStartPosition.transform.position;
+            card.transform.rotation = Quaternion.identity;
+            card.transform.Rotate(90, 90, 0);
+        }
     }
 
     public void CreateNewVerionOfDeck(TableScript table)
     {
         _deck.Clear();
+        _hand.Clear();
+        _tavern.Clear();
+        _discards.Clear();
         Random random = new Random();
         _allCardsList = _allCardsList.OrderBy(x => random.Next()).ToList();
         foreach (Card card in _allCardsList) {
@@ -137,9 +154,8 @@ public class Board : MonoBehaviour
         int counter = 0;
 
 
-        //----------------------------------------------------
-        // works for Z- => Z+ table
-        if (false) { 
+         
+        if (num==1) { 
         foreach (var card in _deck)
         {
             card.transform.position = _deckPos.transform.position;

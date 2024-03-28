@@ -62,6 +62,7 @@ public class CardLogic : MonoBehaviour
 
     public void ExitCardGame() {
         PlayerStates.ChangeState?.Invoke(GameState.SITTING);
+        _gameBoard.ResetDeck();
     }
 
     public delegate void ChangePhase(Phase phase);
