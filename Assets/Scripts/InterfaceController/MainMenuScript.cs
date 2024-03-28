@@ -1,12 +1,11 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class MainMenuScript : MonoBehaviour
 {
     [SerializeField] GameObject _menuPanel;
-    [SerializeField] CameraTransition _cameraTransition;
+    //[SerializeField] CameraTransition _cameraTransition;
     [SerializeField] Animator _animator;
 
     public float transitionTime = 1.5f;
@@ -30,7 +29,7 @@ public class MainMenuScript : MonoBehaviour
     {
         _menuPanel.SetActive(false);
         Time.timeScale = 1;
-        _cameraTransition.DisableCursor();
+        //_cameraTransition.DisableCursor();
     }
 
     public void BackToMainMenu() 

@@ -6,7 +6,7 @@ public class InteractWith : MonoBehaviour
     CameraLook _cameraLook;
     Ray _lookingAtRay;
 
-    [SerializeField] float _rayDistance = 5.0f;
+    [SerializeField] float _rayDistance;
     [SerializeField] LayerMask _rayMask;
 
     private void Start()
@@ -26,19 +26,26 @@ public class InteractWith : MonoBehaviour
             {
                 if (hit.collider.CompareTag("CardGame"))
                 {
-                    InteractWithChair(hit);
+                    InteractWithTable(hit);
                 }
-
             }
         }
     }
 
-    void InteractWithChair(RaycastHit hit)
+    void InteractWithTable(RaycastHit hit)
     {
         var table = hit.collider.GetComponent<TableScript>();
         _cameraLook.LookAtTarget = table.LookAtTarget;
-        _cameraLook.GameCameraPosition = table.GameCameraPosition;
-        _cameraLook.GameBodyPosition = table.GameBodyPosition;
+        _cameraLook.CardCameraTransform = table.CardCameraPosition;
+        _cameraLook.CardBodyTransform = table.CardBodyPosition;
         PlayerStates.ChangeState?.Invoke(GameState.SITTING);
+    }
+
+    public void ListenForExitGame()
+    {
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            PlayerStates.ChangeState?.Invoke(GameState.SITTING);
+        }
     }
 }

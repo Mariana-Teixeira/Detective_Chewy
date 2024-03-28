@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public enum GameState { OVERWORLD, SITTING, CARD };
+public enum GameState { NULL, WALKING, SITTING, PLAYING };
 public class PlayerStates : MonoBehaviour
 {
     public static Action<GameState> ChangeState;
@@ -17,6 +17,7 @@ public class PlayerStates : MonoBehaviour
         _interactWith = GetComponent<InteractWith>();
 
         ChangeState += OnChangeState;
+        OnChangeState(GameState.WALKING);
     }
 
     public void OnChangeState(GameState newState)
@@ -35,12 +36,14 @@ public class PlayerStates : MonoBehaviour
     {
         switch(_currentState)
         {
-            case GameState.OVERWORLD:
-                Cursor.lockState = CursorLockMode.Locked;
+            case GameState.WALKING:
+                _cameraLook.ToggleCursor();
                 break;
             case GameState.SITTING:
-                _cameraLook.StartCoroutine("SittingAnimation");
-                Cursor.lockState = CursorLockMode.Confined;
+                StartCoroutine(_cameraLook.ToggleSitting());
+                break;
+            case GameState.PLAYING:
+                _cameraLook.ToggleCursor();
                 break;
             default:
                 break;
@@ -51,12 +54,13 @@ public class PlayerStates : MonoBehaviour
     {
         switch (_currentState)
         {
-            case GameState.OVERWORLD:
+            case GameState.WALKING:
                 _cameraLook.RotateWithMouse();
                 _interactWith.CastInteractionRays();
                 _playerMove.Move();
                 break;
-            case GameState.SITTING:
+            case GameState.PLAYING:
+                _interactWith.ListenForExitGame();
                 break;
             default:
                 break;
@@ -67,10 +71,9 @@ public class PlayerStates : MonoBehaviour
     {
         switch (_currentState)
         {
-            case GameState.OVERWORLD:
+            case GameState.WALKING:
                 break;
             case GameState.SITTING:
-                _cameraLook.StopCoroutine("SittingAnimation");
                 break;
             default:
                 break;

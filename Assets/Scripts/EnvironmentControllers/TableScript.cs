@@ -1,8 +1,8 @@
 using UnityEngine;
 
-public class TableScript : MonoBehaviour
+public class TableScript : InteractableObject
 {
-    public Transform GameBodyPosition;
-    public Transform GameCameraPosition;
+    public Transform CardBodyPosition;
+    public Transform CardCameraPosition;
     public Transform LookAtTarget;
 }
