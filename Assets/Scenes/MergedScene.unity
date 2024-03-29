@@ -24871,8 +24871,8 @@ GameObject:
   - component: {fileID: 903056121}
   - component: {fileID: 903056120}
   - component: {fileID: 903056119}
-  - component: {fileID: 903056124}
   - component: {fileID: 903056125}
+  - component: {fileID: 903056124}
   m_Layer: 6
   m_Name: TableGame1
   m_TagString: CardGame
@@ -26336,6 +26336,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3efea6ecd0a3214da5c4fdc0ab1995a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _playerState: {fileID: 1197166412}
   CardBodyPosition: {fileID: 654821100}
   CardCameraPosition: {fileID: 716580623}
   LookAtTarget: {fileID: 1961857805}
@@ -26346,7 +26347,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 903056117}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
   m_Name: 
@@ -37336,6 +37337,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3efea6ecd0a3214da5c4fdc0ab1995a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _playerState: {fileID: 1197166412}
   CardBodyPosition: {fileID: 101953938}
   CardCameraPosition: {fileID: 2111455581}
   LookAtTarget: {fileID: 1978914776}
@@ -37346,7 +37348,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1141839571}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
   m_Name: 

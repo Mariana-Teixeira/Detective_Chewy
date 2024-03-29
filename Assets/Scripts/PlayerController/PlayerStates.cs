@@ -21,6 +21,11 @@ public class PlayerStates : MonoBehaviour
         OnChangeState(GameState.WALKING);
     }
 
+    public GameState getGameState() 
+    {
+        return _currentState;
+    }
+
     public void OnChangeState(GameState newState)
     {
         ExitState();

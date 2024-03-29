@@ -160,22 +160,22 @@ public class Board : MonoBehaviour
         {
             card.transform.position = _deckPos.transform.position;
         }
-        moveStep = 0.1f;
+        moveStep = 0.2f;
         foreach (var card in _hand)
         {
             card.transform.position = _handPos.transform.position + new Vector3(moveStepY, 0, moveStep);
             if (counter == 4) 
             {
                 moveStepY = +0.2f;
-                moveStep = moveStep + 0.15f;
+                moveStep = moveStep + 0.1f;
             }
             if (counter < 4)
             {
-                moveStep = moveStep + 0.15f;
+                moveStep = moveStep + 0.1f;
             }
             else 
             {
-                moveStep = moveStep - 0.15f;
+                moveStep = moveStep - 0.1f;
             }
             counter++;
         }
@@ -197,22 +197,22 @@ public class Board : MonoBehaviour
             card.transform.position = _deckPos.transform.position;
             card.transform.Rotate(0,0,90);
         }
-        moveStep = -0.1f;
+        moveStep = -0.2f;
         foreach (var card in _hand)
         {
             card.transform.position = _handPos.transform.position + new Vector3(moveStep, 0, moveStepY);
             if (counter == 4)
             {
                 moveStepY = 0.2f;
-                moveStep = moveStep - 0.15f;
+                moveStep = moveStep - 0.1f;
             }
             if (counter < 4)
             {
-                moveStep = moveStep - 0.15f;
+                moveStep = moveStep - 0.1f;
             }
             else
             {
-                moveStep = moveStep + 0.15f;
+                moveStep = moveStep + 0.1f;
             }
             counter++;
 
