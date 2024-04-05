@@ -59,7 +59,9 @@ public class Card : MonoBehaviour
 
     void OnMouseOver()
     {
+        if(_cardData.Position == Position.Hand || _cardData.Position == Position.Tavern){ 
         _outline.enabled = true;
+        }
     }
 
     void OnMouseExit()

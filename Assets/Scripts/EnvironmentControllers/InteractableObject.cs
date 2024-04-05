@@ -9,8 +9,8 @@ public class InteractableObject : MonoBehaviour
     private void Start()
     {
         _outline = GetComponent<Outline>();
-        _outline.enabled = true;
-        _outline.OutlineWidth = 5;
+        _outline.enabled = false;
+        _outline.OutlineWidth = 3;
         _outline.OutlineColor = Color.blue;
     }
 
