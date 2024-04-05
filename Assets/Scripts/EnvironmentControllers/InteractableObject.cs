@@ -6,6 +6,8 @@ public class InteractableObject : MonoBehaviour
     private Outline _outline;
     [SerializeField] PlayerStates _playerState;
 
+    private Camera _camera;
+
     private void Start()
     {
         _outline = GetComponent<Outline>();
@@ -14,12 +16,25 @@ public class InteractableObject : MonoBehaviour
         _outline.OutlineColor = Color.blue;
     }
 
+    private void Awake()
+    {
+        _camera = Camera.main;
+    }
+
 
     void OnMouseOver()
     {
-        if (_playerState.getGameState() == GameState.WALKING) 
+        if (_playerState.getGameState() == GameState.WALKING)
         { 
-        _outline.enabled = true;
+            float dist = Vector3.Distance(_camera.transform.position, transform.position);
+            Debug.Log(dist);
+            if (dist < 1.75)
+            {
+                _outline.enabled = true;
+            }
+            else {
+                _outline.enabled = false;
+            }
         }
     }
 
