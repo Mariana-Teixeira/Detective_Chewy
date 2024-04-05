@@ -32,9 +32,15 @@ public class CardLogic : MonoBehaviour
    
 
     [SerializeField] Board _gameBoard;
+    [SerializeField] CardGameAudioController _cardGameAudioController;
 
     private bool tavernCardSelectedBuyPhase = false;
     private bool handCardSelectedBuyPhase = false;
+
+
+    private bool _audioClue1Activated = false;
+    private bool _audioClue2Activated = false;
+    private bool _audioClue3Activated = false;
 
 
     private void Awake()
@@ -225,12 +231,26 @@ public class CardLogic : MonoBehaviour
 
                     lastAddedPoints = Convert.ToInt32(Math.Floor(collectedPoints * multiScore));
     
-                    pointsText.text = _usualText + _boardPointsCollected + " / " + pointsList[0];
+                    pointsText.text = _usualText + _boardPointsCollected + " / " + pointsList[_gameBoard.GetActiveTable()];
+
+                    //ACTIVATE AUDIO CLUES
+                    // 40%
+                    if (_boardPointsCollected >= (pointsList[_gameBoard.GetActiveTable()] * 0.4f) && !_audioClue1Activated)
+                    {
+                        _cardGameAudioController.ActivateAudioQ(_gameBoard.GetActiveTable(), 0);
+                        _audioClue1Activated = true;
+                    };
+                    // 70%
+                    if (_boardPointsCollected >= (pointsList[_gameBoard.GetActiveTable()] * 0.7f) && !_audioClue2Activated)
+                    {
+                        _cardGameAudioController.ActivateAudioQ(_gameBoard.GetActiveTable(), 1);
+                        _audioClue2Activated = true;
+                    };
 
                     //GAME WON IF POINTS OVER NEEDED POINTS
-                    // CHANGE 0 DEPENDING ON TABLES
-                    if (_boardPointsCollected >= pointsList[0]) 
+                    if (_boardPointsCollected >= pointsList[_gameBoard.GetActiveTable()]) 
                     {
+                        _cardGameAudioController.ActivateAudioQ(_gameBoard.GetActiveTable(), 2);
                         GameWon();
                     };
                 }
@@ -272,6 +292,9 @@ public class CardLogic : MonoBehaviour
     public void StartNewBoard() {
         _boardPointsCollected = 0;
         _turnCounter = 1;
+        _audioClue1Activated = false;
+        _audioClue2Activated = false;
+        _audioClue3Activated = false;
     }
     public void SelectHandCardBuyPhase() { handCardSelectedBuyPhase = true; }
     public void UnSelectHandCardBuyPhase() { handCardSelectedBuyPhase = false; }

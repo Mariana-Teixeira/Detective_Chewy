@@ -27,7 +27,7 @@ public class InteractableObject : MonoBehaviour
         if (_playerState.getGameState() == GameState.WALKING)
         { 
             float dist = Vector3.Distance(_camera.transform.position, transform.position);
-            Debug.Log(dist);
+            //Debug.Log(dist);
             if (dist < 1.75)
             {
                 _outline.enabled = true;

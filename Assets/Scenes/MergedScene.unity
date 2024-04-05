@@ -3361,6 +3361,22 @@ PrefabInstance:
       propertyPath: cardGameCanvas
       value: 
       objectReference: {fileID: 1233430410}
+    - target: {fileID: 4096336531650125810, guid: 4a526635ae604a14aa3a1755f78d5dbf, type: 3}
+      propertyPath: _cardGameAudioController
+      value: 
+      objectReference: {fileID: 620234867}
+    - target: {fileID: 4096336531650125810, guid: 4a526635ae604a14aa3a1755f78d5dbf, type: 3}
+      propertyPath: pointsList.Array.data[0]
+      value: 75
+      objectReference: {fileID: 0}
+    - target: {fileID: 4096336531650125810, guid: 4a526635ae604a14aa3a1755f78d5dbf, type: 3}
+      propertyPath: pointsList.Array.data[1]
+      value: 125
+      objectReference: {fileID: 0}
+    - target: {fileID: 4096336531650125810, guid: 4a526635ae604a14aa3a1755f78d5dbf, type: 3}
+      propertyPath: pointsList.Array.data[2]
+      value: 150
+      objectReference: {fileID: 0}
     - target: {fileID: 4845576717928872556, guid: 4a526635ae604a14aa3a1755f78d5dbf, type: 3}
       propertyPath: m_Name
       value: CardLogic
@@ -16171,6 +16187,50 @@ MonoBehaviour:
   m_SelectedFaces: 
   m_SelectedEdges: []
   m_SelectedVertices: 
+--- !u!1 &620234866
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 620234868}
+  - component: {fileID: 620234867}
+  m_Layer: 0
+  m_Name: CardGameAudioController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &620234867
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 620234866}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2912108b2c4df6645aa9af4f34655732, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &620234868
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 620234866}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -2, y: 0.9, z: 1.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!43 &623031952
 Mesh:
   m_ObjectHideFlags: 0
@@ -73371,6 +73431,44 @@ MonoBehaviour:
   m_SelectedFaces: 
   m_SelectedEdges: []
   m_SelectedVertices: 
+--- !u!1 &1729752398 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2686890238580948232, guid: 4a076a09e2096f140b4008b73dea295f, type: 3}
+  m_PrefabInstance: {fileID: 1923303867}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &1729752401
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1729752398}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.8960228, y: 2.147032, z: 5}
+  m_Center: {x: -0.6980114, y: 0.7341745, z: 2}
+--- !u!114 &1729752402
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1729752398}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 693e2096183f9fb49afc3c6e35959dfa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1731426893
 GameObject:
   m_ObjectHideFlags: 0
@@ -83664,7 +83762,13 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2686890238580948232, guid: 4a076a09e2096f140b4008b73dea295f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1729752402}
+    - targetCorrespondingSourceObject: {fileID: 2686890238580948232, guid: 4a076a09e2096f140b4008b73dea295f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1729752401}
   m_SourcePrefab: {fileID: 100100000, guid: 4a076a09e2096f140b4008b73dea295f, type: 3}
 --- !u!43 &1932166845
 Mesh:
@@ -99360,6 +99464,10 @@ PrefabInstance:
       propertyPath: _speed
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 370760146504807947, guid: 70f86841eb55b23419c1fe874401f2fe, type: 3}
+      propertyPath: m_SkinWidth
+      value: 0.06
+      objectReference: {fileID: 0}
     - target: {fileID: 762800717455549602, guid: 70f86841eb55b23419c1fe874401f2fe, type: 3}
       propertyPath: gameDeck
       value: 
@@ -99476,6 +99584,7 @@ SceneRoots:
   - {fileID: 1417627031}
   - {fileID: 705507995}
   - {fileID: 2430672565796937297}
+  - {fileID: 620234868}
   - {fileID: 138393598}
   - {fileID: 1233430409}
   - {fileID: 1431503927}

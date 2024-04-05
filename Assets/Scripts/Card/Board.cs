@@ -304,5 +304,5 @@ public class Board : MonoBehaviour
     public Transform GetDeckPos() { return _deckPos.transform; }
     public Transform GetDiscardPos() { return _discardsPos.transform; }
 
-
+    public int GetActiveTable() { return _activeTable; }
 }
