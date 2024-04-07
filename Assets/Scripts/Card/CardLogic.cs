@@ -237,7 +237,7 @@ public class CardLogic : MonoBehaviour
                     // 40%
                     if (_boardPointsCollected >= (pointsList[_gameBoard.GetActiveTable()] * 0.4f) && !_audioClue1Activated)
                     {
-                        _cardGameAudioController.ActivateAudioQ(_gameBoard.GetActiveTable(), 0);
+                        _cardGameAudioController.ActivateAudioQ(_gameBoard.GetActiveTable(), 0);    
                         _audioClue1Activated = true;
                     };
                     // 70%

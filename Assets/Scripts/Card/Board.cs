@@ -5,6 +5,7 @@ using UnityEngine;
 using Random = System.Random;
 using static UnityEditor.PlayerSettings;
 using UnityEditorInternal;
+using System.Collections;
 
 public class Board : MonoBehaviour
 {
@@ -55,9 +56,9 @@ public class Board : MonoBehaviour
         ResetDeck();
     }
 
-    public void ResetDeck() 
+    public void ResetDeck()
     {
-        foreach (Card card in _allCardsList) 
+        foreach (Card card in _allCardsList)
         {
             card.transform.position = _DeckStartPosition.transform.position;
             card.transform.rotation = Quaternion.identity;
@@ -77,7 +78,7 @@ public class Board : MonoBehaviour
             _deck.Add(card);
         }
         int cnt = 0;
-        foreach (GameObject go in tables) 
+        foreach (GameObject go in tables)
         {
             if (go == table.gameObject) { _activeTable = cnt; }
             cnt++;
@@ -131,11 +132,11 @@ public class Board : MonoBehaviour
 
     public void UpdatePosition(Card card, Position pos)
     {
-        if (pos == Position.Discard) 
+        if (pos == Position.Discard)
         {
             card.CardData.Position = pos;
         }
-        else { 
+        else {
             card.CardData.Position = pos;
         }
     }
@@ -154,90 +155,128 @@ public class Board : MonoBehaviour
         int counter = 0;
 
 
-         
-        if (num==1) { 
-        foreach (var card in _deck)
-        {
-            card.transform.position = _deckPos.transform.position;
-        }
-        moveStep = 0.2f;
-        foreach (var card in _hand)
-        {
-            card.transform.position = _handPos.transform.position + new Vector3(moveStepY, 0, moveStep);
-            if (counter == 4) 
+
+        if (num == 1) {
+            foreach (var card in _deck)
             {
-                moveStepY = +0.2f;
+                card.transform.position = _deckPos.transform.position;
+            }
+            moveStep = 0.2f;
+            foreach (var card in _hand)
+            {
+                StartCoroutine(Lerp(card.transform, _handPos.transform.position + new Vector3(moveStepY, 0, moveStep)));
+                //card.transform.position = _handPos.transform.position + new Vector3(moveStepY, 0, moveStep);
+                if (counter == 4)
+                {
+                    moveStepY = +0.2f;
+                    moveStep = moveStep + 0.1f;
+                }
+                if (counter < 4)
+                {
+                    moveStep = moveStep + 0.1f;
+                }
+                else
+                {
+                    moveStep = moveStep - 0.1f;
+                }
+                counter++;
+            }
+            moveStep = -0.15f;
+            foreach (var card in _tavern)
+            {
+                StartCoroutine(Lerp(card.transform, _tavernPos.transform.position + new Vector3(0, 0, moveStep)));
+                //card.transform.position = _tavernPos.transform.position + new Vector3(0, 0, moveStep);
                 moveStep = moveStep + 0.1f;
             }
-            if (counter < 4)
+            foreach (var card in _discards)
             {
+                StartCoroutine(Lerp(card.transform, _discardsPos.transform.position));
+                //card.transform.position = _discardsPos.transform.position;
+            }
+        }
+        //----------------------------------------------------
+        else {
+            foreach (var card in _deck)
+            {
+                StartCoroutine(Lerp(card.transform, _deckPos.transform.position));
+                //card.transform.position = _deckPos.transform.position;
+                card.transform.Rotate(0, 0, 90);
+            }
+            moveStep = -0.2f;
+            foreach (var card in _hand)
+            {
+                StartCoroutine(Lerp(card.transform, _handPos.transform.position + new Vector3(moveStep, 0, moveStepY)));
+                //card.transform.position = _handPos.transform.position + new Vector3(moveStep, 0, moveStepY);
+                if (counter == 4)
+                {
+                    moveStepY = 0.2f;
+                    moveStep = moveStep - 0.1f;
+                }
+                if (counter < 4)
+                {
+                    moveStep = moveStep - 0.1f;
+                }
+                else
+                {
+                    moveStep = moveStep + 0.1f;
+                }
+                counter++;
+
+                card.transform.Rotate(0, 0, 90);
+            }
+            moveStep = -0.15f;
+            foreach (var card in _tavern)
+            {
+                StartCoroutine(Lerp(card.transform, _tavernPos.transform.position + new Vector3(moveStep, 0, 0)));
+                //card.transform.position = _tavernPos.transform.position + new Vector3(moveStep, 0, 0);
                 moveStep = moveStep + 0.1f;
+
+                card.transform.Rotate(0, 0, 90);
+                /*
+                card.transform.Rotate(-35, 0, 0);
+                card.transform.position = card.transform.position + new Vector3(0, 0.03f, 0);
+                */
+
+            }
+            foreach (var card in _discards)
+            {
+
+                card.transform.position = _discardsPos.transform.position;
+
+                card.transform.Rotate(0, 0, 90);
+            }
+        }
+
+    }
+
+    //LERP FUNCTION OF CARDS
+    IEnumerator Lerp(Transform card, Vector3 target) 
+    {
+        float timeElapsed = 0;
+        float lerpDuration = 2;
+        float z = 0.1f;
+
+        Vector3 firstTarget = target;
+        target = ((firstTarget + card.position) /2f) + new Vector3(0, z/2f, z);
+
+
+        while (timeElapsed < lerpDuration)
+        {
+            if (timeElapsed < lerpDuration / 2)
+            {
+                card.position = Vector3.Lerp(card.position, target, timeElapsed/ (lerpDuration*2));
             }
             else 
             {
-                moveStep = moveStep - 0.1f;
+                card.position = Vector3.Lerp(card.position, firstTarget, (timeElapsed - 1)/ (lerpDuration * 2));
             }
-            counter++;
-        }
-        moveStep = -0.15f;
-        foreach (var card in _tavern)
-        {
-            card.transform.position = _tavernPos.transform.position + new Vector3(0, 0, moveStep);
-            moveStep = moveStep + 0.1f;
-        }
-        foreach(var card in _discards)
-        {
-            card.transform.position = _discardsPos.transform.position;
-        }
-        }
-        //----------------------------------------------------
-        else { 
-        foreach (var card in _deck)
-        {
-            card.transform.position = _deckPos.transform.position;
-            card.transform.Rotate(0,0,90);
-        }
-        moveStep = -0.2f;
-        foreach (var card in _hand)
-        {
-            card.transform.position = _handPos.transform.position + new Vector3(moveStep, 0, moveStepY);
-            if (counter == 4)
-            {
-                moveStepY = 0.2f;
-                moveStep = moveStep - 0.1f;
-            }
-            if (counter < 4)
-            {
-                moveStep = moveStep - 0.1f;
-            }
-            else
-            {
-                moveStep = moveStep + 0.1f;
-            }
-            counter++;
 
-            card.transform.Rotate(0, 0, 90);
-        }
-        moveStep = -0.15f;
-        foreach (var card in _tavern)
-        {
-            card.transform.position = _tavernPos.transform.position + new Vector3(moveStep, 0, 0);
-            moveStep = moveStep + 0.1f;
+            timeElapsed += Time.deltaTime;
 
-            card.transform.Rotate(0, 0, 90);
-            /*
-            card.transform.Rotate(-35, 0, 0);
-            card.transform.position = card.transform.position + new Vector3(0, 0.03f, 0);
-            */
+            yield return null;
+        }
 
-        }
-        foreach (var card in _discards)
-        {
-            card.transform.position = _discardsPos.transform.position;
-
-            card.transform.Rotate(0, 0, 90);
-        }
-        }
+        card.position = firstTarget;
 
     }
 
@@ -247,7 +286,8 @@ public class Board : MonoBehaviour
     {
         _hand.Add(_deck.ElementAt(0));
         UpdatePosition(_deck.ElementAt(0), Position.Hand);
-        _deck.ElementAt(0).gameObject.transform.position = pos;
+        StartCoroutine(Lerp(_deck.ElementAt(0).gameObject.transform, pos));
+        //_deck.ElementAt(0).gameObject.transform.position = pos;
         _deck.RemoveAt(0);
     }
     public void DiscardCard(Card card)
@@ -256,7 +296,8 @@ public class Board : MonoBehaviour
         UpdatePosition(card, Position.Discard);
         _hand.Remove(card);
         DrawCard(card.transform.position);
-        card.gameObject.transform.position = _discardsPos.transform.position + new Vector3 (0, (float) 0.001*_discards.Count(),0);
+        StartCoroutine(Lerp(card.gameObject.transform, _discardsPos.transform.position + new Vector3(0, (float)0.001 * _discards.Count(), 0)));
+        //card.gameObject.transform.position = _discardsPos.transform.position + new Vector3 (0, (float) 0.001*_discards.Count(),0);
     }
 
     public void ExchangeTavernCard(Card cardHand, Card cardTavern) 
@@ -264,20 +305,25 @@ public class Board : MonoBehaviour
         //add from deck to tavern
         _tavern.Add(_deck.ElementAt(0));
         UpdatePosition(_deck.ElementAt(0), Position.Tavern);
-        _deck.ElementAt(0).gameObject.transform.position = cardTavern.transform.position;
+        //_deck.ElementAt(0).gameObject.transform.position = cardTavern.transform.position;
+        StartCoroutine(Lerp(_deck.ElementAt(0).gameObject.transform, cardTavern.transform.position));
         _deck.RemoveAt(0);
+
 
         //adds to hand from tavern
         _hand.Add(cardTavern);
         UpdatePosition(cardTavern, Position.Hand);
         _tavern.Remove(cardTavern);
-        cardTavern.gameObject.transform.position = cardHand.transform.position;
+        //cardTavern.gameObject.transform.position = cardHand.transform.position;
+        StartCoroutine(Lerp(cardTavern.gameObject.transform, cardHand.transform.position));
+
 
         //discards from hand
         _discards.Add(cardHand);
         UpdatePosition(cardHand, Position.Discard);
         _hand.Remove(cardHand);
-        cardHand.gameObject.transform.position = _discardsPos.transform.position;
+        //cardHand.gameObject.transform.position = _discardsPos.transform.position;
+        StartCoroutine(Lerp(cardHand.gameObject.transform, _discardsPos.transform.position));
     }
 
     public void CollectPoints(List<Card> cards) 
@@ -287,7 +333,8 @@ public class Board : MonoBehaviour
             _discards.Add(card);
             UpdatePosition(card, Position.Discard);
             _hand.Remove(card);
-            card.gameObject.transform.position = _discardsPos.transform.position;
+            StartCoroutine(Lerp(card.gameObject.transform, _discardsPos.transform.position));
+            //card.gameObject.transform.position = _discardsPos.transform.position;
         }
 
     }
