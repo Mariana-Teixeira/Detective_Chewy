@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -21,6 +23,8 @@ public class Card : MonoBehaviour
 
     private bool _selected = false;
 
+    [SerializeField] List<Material> materials;
+    [SerializeField] GameObject mesh;
     public Phase Phase;
 
 
@@ -54,7 +58,16 @@ public class Card : MonoBehaviour
 
     public void UpdateUI()
     {
-        _cardText.text = _cardData.ToString();
+        //_cardText.text = _cardData.ToString();
+        int ind = 0;
+        if (CardData.Suit == Suit.Heart) { ind = 2; }
+        else if (CardData.Suit == Suit.Diamond) { ind = 1; }
+        else if (CardData.Suit == Suit.Spades) { ind = 3; }
+        else { ind = 0;}
+        ind = ind + CardData.Value*4 - 4;
+        mesh.GetComponent<MeshRenderer>().material = materials.ElementAt(ind);
+        float indF = ind / 100000f;
+        mesh.transform.position = new Vector3 (mesh.transform.position.x, mesh.transform.position.y + indF, mesh.transform.position.z );
     }
 
     void OnMouseOver()
