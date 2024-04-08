@@ -69,7 +69,9 @@ public class CardLogic : MonoBehaviour
     public void ExitCardGame() {
         PlayerStates.ChangeState?.Invoke(GameState.SITTING);
         _gameBoard.ResetDeck();
-    }
+        UnselectAllCards();
+        StartNewBoard();
+        }
 
     public delegate void ChangePhase(Phase phase);
     public static event ChangePhase OnChangePhase;
@@ -295,6 +297,7 @@ public class CardLogic : MonoBehaviour
         _audioClue1Activated = false;
         _audioClue2Activated = false;
         _audioClue3Activated = false;
+        pointsText.text = _usualText + _boardPointsCollected + " / " + pointsList[_gameBoard.GetActiveTable()];
     }
     public void SelectHandCardBuyPhase() { handCardSelectedBuyPhase = true; }
     public void UnSelectHandCardBuyPhase() { handCardSelectedBuyPhase = false; }

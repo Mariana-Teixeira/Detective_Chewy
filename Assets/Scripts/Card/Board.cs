@@ -154,8 +154,10 @@ public class Board : MonoBehaviour
         float moveStepY = 0;
         int counter = 0;
 
-
-
+        foreach (Card card in _allCardsList) {
+            card.transform.position = _deckPos.transform.position;
+        }
+        
         if (num == 1) {
             foreach (var card in _deck)
             {
@@ -259,23 +261,34 @@ public class Board : MonoBehaviour
         Vector3 firstTarget = target;
         target = ((firstTarget + card.position) /2f) + new Vector3(0, z/2f, z);
 
-
-        while (timeElapsed < lerpDuration)
+        if (card.gameObject.GetComponent<Card>().CardData.Position == Position.Discard)
         {
-            if (timeElapsed < lerpDuration / 2)
+            while (timeElapsed < lerpDuration)
             {
-                card.position = Vector3.Lerp(card.position, target, timeElapsed/ (lerpDuration*2));
+                card.position = Vector3.Lerp(card.position, firstTarget, timeElapsed / lerpDuration);
+                timeElapsed += Time.deltaTime;
+                yield return null;
             }
-            else 
-            {
-                card.position = Vector3.Lerp(card.position, firstTarget, (timeElapsed - 1)/ (lerpDuration * 2));
-            }
-
-            timeElapsed += Time.deltaTime;
-
-            yield return null;
         }
+        else
+        {
 
+            while (timeElapsed < lerpDuration)
+            {
+                if (timeElapsed < lerpDuration / 2)
+                {
+                    card.position = Vector3.Lerp(card.position, target, timeElapsed / (lerpDuration * 2));
+                }
+                else
+                {
+                    card.position = Vector3.Lerp(card.position, firstTarget, (timeElapsed - 1) / (lerpDuration * 2));
+                }
+
+                timeElapsed += Time.deltaTime;
+
+                yield return null;
+            }
+        }
         card.position = firstTarget;
 
     }
@@ -331,9 +344,9 @@ public class Board : MonoBehaviour
         foreach (Card card in cards) 
         {
             _discards.Add(card);
-            UpdatePosition(card, Position.Discard);
             _hand.Remove(card);
             StartCoroutine(Lerp(card.gameObject.transform, _discardsPos.transform.position));
+            UpdatePosition(card, Position.Discard);
             //card.gameObject.transform.position = _discardsPos.transform.position;
         }
 
