@@ -7,7 +7,7 @@ public class CameraLook : MonoBehaviour
 
     [SerializeField] float _mouseSensitivity = 400.0f;
     [SerializeField] float fovWalking = 60, fovPlaying = 35;
-    [SerializeField] float sittingDuration = 5.0f, zoomingDuration = 2.0f;
+    [SerializeField] float sittingDuration = 2.0f, zoomingDuration = 1.0f; // was 5, 2
 
     private Vector3 GameBodyPosition, GameCameraPosition;
     public Transform CardBodyTransform, CardCameraTransform;

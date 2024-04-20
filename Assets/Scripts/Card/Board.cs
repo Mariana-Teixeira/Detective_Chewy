@@ -158,7 +158,7 @@ public class Board : MonoBehaviour
             card.transform.position = _deckPos.transform.position;
         }
         
-        if (num == 1) {
+        if (num == 1 || num == 2) {
             foreach (var card in _deck)
             {
                 card.transform.position = _deckPos.transform.position;

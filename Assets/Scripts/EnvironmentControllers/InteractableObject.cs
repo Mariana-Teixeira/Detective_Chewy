@@ -8,17 +8,27 @@ public class InteractableObject : MonoBehaviour
 
     private Camera _camera;
 
-
-
-    private void Awake()
+    private void Start()
     {
-        _camera = Camera.main;
         _outline = GetComponent<Outline>();
         _outline.enabled = false;
         _outline.OutlineWidth = 3;
         _outline.OutlineColor = Color.blue;
     }
 
+    private void Awake()
+    {
+        _camera = Camera.main;
+
+    }
+
+    public void setOutline() 
+    {
+        _outline = GetComponent<Outline>();
+        _outline.enabled = false;
+        _outline.OutlineWidth = 3;
+        _outline.OutlineColor = Color.blue;
+    }
 
     void OnMouseOver()
     {
