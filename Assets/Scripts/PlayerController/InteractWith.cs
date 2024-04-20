@@ -20,13 +20,18 @@ public class InteractWith : MonoBehaviour
 
     public void CastInteractionRays()
     {
+        //Ray ray = new Ray(_playerCamera.transform.position, _playerCamera.transform.forward);
+        //Debug.DrawRay(ray.origin, ray.direction * _rayDistance);
+
         if (Input.GetKeyDown(KeyCode.E))
         {
+            Debug.Log("------------------------");
             var centerViewport = new Vector3(Screen.width/2, Screen.height/2, 0);
             _lookingAtRay = _playerCamera.ScreenPointToRay(centerViewport);
 
             if (Physics.Raycast(_lookingAtRay, out RaycastHit hit, _rayDistance, _rayMask))
             {
+                Debug.Log(hit.collider.name);
                 if (hit.collider.CompareTag("CardGame"))
                 {
                     InteractWithTable(hit);
