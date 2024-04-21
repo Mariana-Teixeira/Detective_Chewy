@@ -12,6 +12,8 @@ public class InteractWith : MonoBehaviour
     [SerializeField] float _rayDistance;
     [SerializeField] LayerMask _rayMask;
 
+    private GameObject _lastGameobject;
+
     private void Start()
     {
         _playerCamera = GetComponentInChildren<Camera>();
@@ -25,16 +27,18 @@ public class InteractWith : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.E))
         {
-            Debug.Log("------------------------");
             var centerViewport = new Vector3(Screen.width/2, Screen.height/2, 0);
             _lookingAtRay = _playerCamera.ScreenPointToRay(centerViewport);
 
             if (Physics.Raycast(_lookingAtRay, out RaycastHit hit, _rayDistance, _rayMask))
             {
-                Debug.Log(hit.collider.name);
                 if (hit.collider.CompareTag("CardGame"))
                 {
                     InteractWithTable(hit);
+                }
+                if (hit.collider.CompareTag("InspectableItem"))
+                {
+                    InteractWithObject(hit);
                 }
             }
         }
@@ -49,6 +53,13 @@ public class InteractWith : MonoBehaviour
         gameDeck.RandomOnNewBoard(table);
         PlayerStates.ChangeState?.Invoke(GameState.SITTING);
     }
+    void InteractWithObject(RaycastHit hit)
+    {
+        GameObject item = hit.collider.gameObject;
+        _lastGameobject = item;
+        PlayerStates.ChangeState?.Invoke(GameState.INSPECTING);
+    }
+
 
     public void ListenForExitGame()
     {
@@ -56,5 +67,16 @@ public class InteractWith : MonoBehaviour
         {
             PlayerStates.ChangeState?.Invoke(GameState.SITTING);
         }
+    }
+
+    public void ListenForExitInspect() 
+    {
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            PlayerStates.ChangeState?.Invoke(GameState.WALKING);
+        }
+    }
+    public GameObject getLastInteracted() {
+        return _lastGameobject;
     }
 }

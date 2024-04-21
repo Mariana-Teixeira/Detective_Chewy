@@ -8,6 +8,7 @@ public class CameraLook : MonoBehaviour
     [SerializeField] float _mouseSensitivity = 400.0f;
     [SerializeField] float fovWalking = 60, fovPlaying = 35;
     [SerializeField] float sittingDuration = 2.0f, zoomingDuration = 1.0f; // was 5, 2
+    [SerializeField] InteractWith interactWith;
 
     private Vector3 GameBodyPosition, GameCameraPosition;
     public Transform CardBodyTransform, CardCameraTransform;
@@ -75,6 +76,15 @@ public class CameraLook : MonoBehaviour
             _isSitting = !_isSitting;
             PlayerStates.ChangeState?.Invoke(GameState.PLAYING);
         }
+    }
+    public IEnumerator ToggleInspecting()
+    {
+        yield return StartCoroutine(EnableInspect());
+    }
+
+    private IEnumerator EnableInspect() {
+        PlayerStates.InspectItem?.Invoke(interactWith.getLastInteracted());
+        yield return null;
     }
 
     private IEnumerator SittingAnimation(Quaternion lookAtRotation, Vector3 targetBodyPosition, Vector3 targetCameraPosition)
