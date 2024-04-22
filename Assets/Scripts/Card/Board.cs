@@ -19,6 +19,8 @@ public class Board : MonoBehaviour
     [SerializeField] List<GameObject> tables;
     private int _activeTable;
 
+    private bool[] _cluesFound = new bool[3] {false, false, false};
+
     private List<Card> _allCardsList;
     private List<Card> _deck;
     private List<Card> _hand;
@@ -77,12 +79,15 @@ public class Board : MonoBehaviour
         foreach (Card card in _allCardsList) {
             _deck.Add(card);
         }
+        /*
         int cnt = 0;
+
         foreach (GameObject go in tables)
         {
             if (go == table.gameObject) { _activeTable = cnt; }
             cnt++;
         }
+        */
         CreateHand();
     }
 
@@ -358,6 +363,20 @@ public class Board : MonoBehaviour
         {
             DrawCard(card);
         }
+    }
+
+    public void ClueFound(int i) {
+        _cluesFound[i] = true;
+    }
+
+    public bool CheckIfTablePlayable(int i)
+    {
+        if (i == _activeTable && _cluesFound[i]) { return true; }
+        return false;
+    }
+
+    public void GameWonGoNextTable() {
+        _activeTable = _activeTable + 1;
     }
 
     public Transform GetTavernPos() { return _tavernPos.transform; }

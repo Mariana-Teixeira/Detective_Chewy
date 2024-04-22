@@ -34,15 +34,19 @@ public class PlayerStates : MonoBehaviour
     }
     public void OnInspect(GameObject go) 
     {
-        if (go.name.Contains("knife")) 
+        if (go.name.Contains("_0"))
         {
             inspectItems.ElementAt(0).SetActive(true);
             inspectItemNum = 0;
         }
-        else if (go.name.Contains("bottle"))
+        else if (go.name.Contains("_1"))
         {
             inspectItems.ElementAt(1).SetActive(true);
             inspectItemNum = 1;
+        }
+        else if (go.name.Contains("_2")) { 
+            inspectItems.ElementAt(2).SetActive(true);
+            inspectItemNum = 2;
         }
     }
 

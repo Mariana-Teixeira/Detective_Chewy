@@ -272,11 +272,14 @@ public class CardLogic : MonoBehaviour
     public void GameWon() 
     {
         Debug.Log("GAME WON");
+        _gameBoard.GameWonGoNextTable();
+        ExitCardGame();
     }
 
     public void GameOver() 
     {
         Debug.Log("GAME LOST");
+        ExitCardGame();
     }
 
     public int SelectedCardsLength()
@@ -298,6 +301,8 @@ public class CardLogic : MonoBehaviour
         _audioClue2Activated = false;
         _audioClue3Activated = false;
         pointsText.text = _usualText + _boardPointsCollected + " / " + pointsList[_gameBoard.GetActiveTable()];
+        currentPhase = Phase.Discard;
+        phaseText.text = "DISCARD PHASE";
     }
     public void SelectHandCardBuyPhase() { handCardSelectedBuyPhase = true; }
     public void UnSelectHandCardBuyPhase() { handCardSelectedBuyPhase = false; }

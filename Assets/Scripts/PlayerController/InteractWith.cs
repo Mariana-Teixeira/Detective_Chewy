@@ -46,18 +46,36 @@ public class InteractWith : MonoBehaviour
 
     void InteractWithTable(RaycastHit hit)
     {
-        TableScript table = hit.collider.GetComponent<TableScript>();
-        _cameraLook.LookAtTarget = table.LookAtTarget;
-        _cameraLook.CardCameraTransform = table.CardCameraPosition;
-        _cameraLook.CardBodyTransform = table.CardBodyPosition;
-        gameDeck.RandomOnNewBoard(table);
-        PlayerStates.ChangeState?.Invoke(GameState.SITTING);
+        if (gameDeck.CheckIfTableCanBePlayed(hit.collider.gameObject.name))
+        {
+            TableScript table = hit.collider.GetComponent<TableScript>();
+            _cameraLook.LookAtTarget = table.LookAtTarget;
+            _cameraLook.CardCameraTransform = table.CardCameraPosition;
+            _cameraLook.CardBodyTransform = table.CardBodyPosition;
+            gameDeck.RandomOnNewBoard(table);
+            PlayerStates.ChangeState?.Invoke(GameState.SITTING);
+        }
+        else {
+            Debug.Log("Cant Play That Table Yet. Find clues or try other tables!");
+
+            if (hit.collider.gameObject.name.Contains("2")) {
+                //example of voice if table is not accessibile
+                Debug.Log("Come back when you know what the time is");
+                //find clue that is a broken watch
+
+            }
+        }
     }
     void InteractWithObject(RaycastHit hit)
     {
+
         GameObject item = hit.collider.gameObject;
+
+        gameDeck.ClueFound(item.name);
         _lastGameobject = item;
         PlayerStates.ChangeState?.Invoke(GameState.INSPECTING);
+
+        Debug.Log("Clue found" + item.name);
     }
 
 

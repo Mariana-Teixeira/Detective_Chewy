@@ -53,6 +53,20 @@ public class Deck : MonoBehaviour
         board.CreateNewVerionOfDeck(table);
     }
 
+    public bool CheckIfTableCanBePlayed(string s) 
+    {
+        int s1 = -1;
+        if(s.EndsWith("(0)")){ s1 = 0; }
+        if (s.EndsWith("(1)")) { s1 = 1; }
+        if (s.EndsWith("(2)")) { s1 = 2; }
+        return board.CheckIfTablePlayable(s1);
+    }
+
+    public void ClueFound(string s) {
+        string s1 = s.Substring(s.Length-1);
+        int i = Int32.Parse(s1);
+        board.ClueFound(i);
+    }
 
 
 }
