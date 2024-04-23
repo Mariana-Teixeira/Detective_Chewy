@@ -22,9 +22,6 @@ public class InteractWith : MonoBehaviour
 
     public void CastInteractionRays()
     {
-        //Ray ray = new Ray(_playerCamera.transform.position, _playerCamera.transform.forward);
-        //Debug.DrawRay(ray.origin, ray.direction * _rayDistance);
-
         if (Input.GetKeyDown(KeyCode.E))
         {
             var centerViewport = new Vector3(Screen.width/2, Screen.height/2, 0);
@@ -39,6 +36,10 @@ public class InteractWith : MonoBehaviour
                 if (hit.collider.CompareTag("InspectableItem"))
                 {
                     InteractWithObject(hit);
+                }
+                if (hit.collider.CompareTag("DialogueInvoker"))
+                {
+                    InteractWithDialogue(hit);
                 }
             }
         }
@@ -58,6 +59,14 @@ public class InteractWith : MonoBehaviour
         GameObject item = hit.collider.gameObject;
         _lastGameobject = item;
         PlayerStates.ChangeState?.Invoke(GameState.INSPECTING);
+    }
+
+    void InteractWithDialogue(RaycastHit hit)
+    {
+        DialogueInvoker invoker = hit.collider.gameObject.GetComponent<DialogueInvoker>();
+        invoker.SendDialogueBranch();
+
+        PlayerStates.ChangeState?.Invoke(GameState.TALKING);
     }
 
 

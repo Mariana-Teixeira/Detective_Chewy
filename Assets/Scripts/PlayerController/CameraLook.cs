@@ -14,7 +14,7 @@ public class CameraLook : MonoBehaviour
     public Transform CardBodyTransform, CardCameraTransform;
     public Transform LookAtTarget;
 
-    private bool _isSitting, _lockingCursor;
+    private bool _isSitting;
 
     void Start()
     {
@@ -22,9 +22,9 @@ public class CameraLook : MonoBehaviour
         _camera.fieldOfView = fovWalking;
     }
 
-    public void ToggleCursor()
+    public void ToggleCursor(bool visible)
     {
-        if (_lockingCursor)
+        if (visible)
         {
             Cursor.lockState = CursorLockMode.Confined;
             Cursor.visible = true;
@@ -34,8 +34,6 @@ public class CameraLook : MonoBehaviour
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
         }
-
-        _lockingCursor = !_lockingCursor;
     }
 
     public void RotateWithMouse()
