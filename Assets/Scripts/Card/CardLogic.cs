@@ -1,10 +1,8 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class CardLogic : MonoBehaviour
@@ -30,18 +28,15 @@ public class CardLogic : MonoBehaviour
     [SerializeField] Button confirmBtn;
     [SerializeField] Button exitBtn;
    
-
     [SerializeField] Board _gameBoard;
     [SerializeField] CardGameAudioController _cardGameAudioController;
 
     private bool tavernCardSelectedBuyPhase = false;
     private bool handCardSelectedBuyPhase = false;
 
-
     private bool _audioClue1Activated = false;
     private bool _audioClue2Activated = false;
     private bool _audioClue3Activated = false;
-
 
     private void Awake()
     {

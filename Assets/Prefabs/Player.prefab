@@ -106,6 +106,7 @@ GameObject:
   - component: {fileID: 225874277114178032}
   - component: {fileID: 2584788439079671458}
   - component: {fileID: 762800717455549602}
+  - component: {fileID: 729247306316632876}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -168,6 +169,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42491dbd7a25a324c835d44bafb79833, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cardGameUI: {fileID: 0}
+  inspectUI: {fileID: 0}
+  inspectItems: []
 --- !u!114 &225874277114178032
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -193,7 +197,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55b0153ae4827a34fb961176c17b18a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mouseSensitivity: 400
+  _mouseSensitivity: 400
+  fovWalking: 60
+  fovPlaying: 35
+  sittingDuration: 2
+  zoomingDuration: 1
+  interactWith: {fileID: 0}
+  CardBodyTransform: {fileID: 0}
+  CardCameraTransform: {fileID: 0}
+  LookAtTarget: {fileID: 0}
 --- !u!114 &762800717455549602
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -206,10 +218,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3eb1eea9e76732b43ad3bed498e00e3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RayDistance: 5
-  RayMask:
+  gameDeck: {fileID: 0}
+  _rayDistance: 0
+  _rayMask:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 0
+--- !u!114 &729247306316632876
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4825457273596603753}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2612065256e2a274ba97f7e665c7926e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DialogueCanvas: {fileID: 0}
+  DialogueText: {fileID: 0}
 --- !u!1 &9215290448716206607
 GameObject:
   m_ObjectHideFlags: 0
