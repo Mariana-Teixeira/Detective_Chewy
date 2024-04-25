@@ -10,15 +10,18 @@ public class MenuManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            OpenPauseMenu();
+        }
     }
-
     public void StoreValues() 
     {
         StaticData.Volume = menuSettings.GetVolume();
         StaticData.Subtitles = menuSettings.GetSubtitles();
     }
 
-    public void OpenPauseMEnu() 
+    public void OpenPauseMenu() 
     {
         menuPanel.GetComponent<MainMenuScript>().Pause();
     }

@@ -9,6 +9,8 @@ public class MainMenuScript : MonoBehaviour
     [SerializeField] Animator _animator;
 
     public float transitionTime = 1.5f;
+
+    private int state1 = 0;
     public void PlayGame()
     {
         StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex + 2));
@@ -22,12 +24,24 @@ public class MainMenuScript : MonoBehaviour
     public void Pause()
     {
         _menuPanel.SetActive(true);
+        if (Cursor.lockState == CursorLockMode.Confined)
+        {
+            state1 = 1;
+        }
+        else { state1 = 0; }
+        Cursor.lockState = CursorLockMode.Confined;
+        Cursor.visible = true;
         Time.timeScale = 0;
     }
 
     public void Continue()
     {
         _menuPanel.SetActive(false);
+        if (state1 == 1) { }
+        else {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+        }
         Time.timeScale = 1;
         //_cameraTransition.DisableCursor();
     }
