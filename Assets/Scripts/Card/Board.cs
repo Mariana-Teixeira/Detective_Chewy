@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using Random = System.Random;
-using static UnityEditor.PlayerSettings;
-using UnityEditorInternal;
 using System.Collections;
 
 public class Board : MonoBehaviour
