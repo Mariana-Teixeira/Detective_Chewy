@@ -1,6 +1,4 @@
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class TableScript : InteractableObject
 {
@@ -14,6 +12,4 @@ public class TableScript : InteractableObject
         CardCameraPosition = this.transform.GetChild(2);
         base.setOutline();
     }
-
-
 }

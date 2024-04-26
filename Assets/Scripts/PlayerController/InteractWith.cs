@@ -54,8 +54,7 @@ public class InteractWith : MonoBehaviour
             _cameraLook.CardCameraTransform = table.CardCameraPosition;
             _cameraLook.CardBodyTransform = table.CardBodyPosition;
             gameDeck.RandomOnNewBoard(table);
-            PlayerStates.ChangeState?.Invoke(GameState.SITTING);
-        }
+'p        }
         else {
             Debug.Log("Cant Play That Table Yet. Find clues or try other tables!");
 
