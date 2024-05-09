@@ -248,6 +248,7 @@ public class CardLogic : MonoBehaviour
                     if (_boardPointsCollected >= pointsList[_gameBoard.GetActiveTable()]) 
                     {
                         _cardGameAudioController.ActivateAudioQ(_gameBoard.GetActiveTable(), 2);
+                        _audioClue3Activated = true;
                         GameWon();
                     };
                 }
@@ -268,6 +269,7 @@ public class CardLogic : MonoBehaviour
     {
         Debug.Log("GAME WON");
         _gameBoard.GameWonGoNextTable();
+        QuestManager.CompleteQuest?.Invoke();
         ExitCardGame();
     }
 

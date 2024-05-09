@@ -10,8 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 0}
-  m_Name: example
+  m_Name: Squeaky_WinGame
   m_EditorClassIdentifier: Assembly-CSharp::DialogueBranch
   Nodes:
-  - DialogueText: i'm not sure how this works. we'll see
-    DialogueSound: sound file name?
+  - DialogueText: Oh no! UwU
+    DialogueSound: 0
+  - DialogueText: You won the game.
+    DialogueSound: 0

@@ -37,9 +37,9 @@ public class InteractWith : MonoBehaviour
                 {
                     InteractWithObject(hit);
                 }
-                if (hit.collider.CompareTag("DialogueInvoker"))
+                if (hit.collider.CompareTag("Character"))
                 {
-                    InteractWithDialogue(hit);
+                    InteractWithCharacter(hit);
                 }
             }
         }
@@ -53,16 +53,13 @@ public class InteractWith : MonoBehaviour
             _cameraLook.LookAtTarget = table.LookAtTarget;
             _cameraLook.CardCameraTransform = table.CardCameraPosition;
             _cameraLook.CardBodyTransform = table.CardBodyPosition;
+            PlayerStates.ChangeState?.Invoke(GameState.SITTING);
             gameDeck.RandomOnNewBoard(table);
-'p        }
-        else {
-            Debug.Log("Cant Play That Table Yet. Find clues or try other tables!");
-
-            if (hit.collider.gameObject.name.Contains("2")) {
-                //example of voice if table is not accessibile
-                Debug.Log("Come back when you know what the time is");
-                //find clue that is a broken watch
-
+        }
+        else
+        {
+            if (hit.collider.gameObject.name.Contains("2"))
+            {
             }
         }
     }
@@ -70,22 +67,26 @@ public class InteractWith : MonoBehaviour
     {
 
         GameObject item = hit.collider.gameObject;
-
+        item.GetComponent<ClueScript>().GatherClue();
         gameDeck.ClueFound(item.name);
         _lastGameobject = item;
+
         PlayerStates.ChangeState?.Invoke(GameState.INSPECTING);
 
-        Debug.Log("Clue found" + item.name);
+        Debug.Log("Found Clue: " + item.name);
     }
 
-    void InteractWithDialogue(RaycastHit hit)
+    void InteractWithCharacter(RaycastHit hit)
     {
-        DialogueInvoker invoker = hit.collider.gameObject.GetComponent<DialogueInvoker>();
-        invoker.SendDialogueBranch();
+        CharacterScript character = hit.collider.gameObject.GetComponent<CharacterScript>();
 
-        PlayerStates.ChangeState?.Invoke(GameState.TALKING);
+        // If I can talk to the character, change state.
+        if (character.TalkToCharacter())
+        {
+            PlayerStates.ChangeState?.Invoke(GameState.TALKING);
+        }
+
     }
-
 
     public void ListenForExitGame()
     {
@@ -102,7 +103,8 @@ public class InteractWith : MonoBehaviour
             PlayerStates.ChangeState?.Invoke(GameState.WALKING);
         }
     }
-    public GameObject getLastInteracted() {
+    public GameObject getLastInteracted()
+    {
         return _lastGameobject;
     }
 }

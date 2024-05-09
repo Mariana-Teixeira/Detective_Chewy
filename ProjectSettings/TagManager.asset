@@ -6,7 +6,7 @@ TagManager:
   tags:
   - CardGame
   - InspectableItem
-  - DialogueInvoker
+  - Character
   layers:
   - Default
   - TransparentFX
@@ -15,8 +15,8 @@ TagManager:
   - Water
   - UI
   - Interactable
-  - Characters
-  - Item
+  - 
+  - 
   - 
   - 
   - 

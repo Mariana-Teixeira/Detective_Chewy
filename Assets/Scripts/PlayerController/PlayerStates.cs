@@ -8,9 +8,12 @@ public class PlayerStates : MonoBehaviour
     public static Action PreviousState;
     public static Action<GameState> ChangeState;
     public static Action<GameObject> InspectItem;
+
     [SerializeField] GameObject cardGameUI;
     [SerializeField] GameObject inspectUI;
     [SerializeField] GameObject[] inspectItems;
+
+    [SerializeField] DialogueManager _dialogueManager;
 
     private int inspectItemNum = 0;
     CameraLook _cameraLook;
@@ -18,14 +21,12 @@ public class PlayerStates : MonoBehaviour
     InteractWith _interactWith;
     GameState _previousState;
     GameState _currentState;
-    DialogueManager _dialogueManager;
 
     private void Start()
     {
         _cameraLook = GetComponent<CameraLook>();
         _playerMove = GetComponent<PlayerMove>();
         _interactWith = GetComponent<InteractWith>();
-        _dialogueManager = GetComponent<DialogueManager>();
 
         PreviousState += OnPreviousChange;
         ChangeState += OnChangeState;

@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: Squeaky_FindingClue
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueBranch
+  Nodes:
+  - DialogueText: You found a clue.
+    DialogueSound: 0
+  - DialogueText: That really is a clue.
+    DialogueSound: 0

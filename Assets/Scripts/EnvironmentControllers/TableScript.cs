@@ -1,5 +1,7 @@
 using UnityEngine;
 
+[SelectionBase]
+[RequireComponent(typeof(DialogueInvoker))]
 public class TableScript : InteractableObject
 {
     public Transform CardBodyPosition;

@@ -62,7 +62,8 @@ public class Deck : MonoBehaviour
         return board.CheckIfTablePlayable(s1);
     }
 
-    public void ClueFound(string s) {
+    public void ClueFound(string s)
+    {
         string s1 = s.Substring(s.Length-1);
         int i = Int32.Parse(s1);
         board.ClueFound(i);

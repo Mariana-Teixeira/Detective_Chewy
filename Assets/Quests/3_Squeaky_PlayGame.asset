@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4d0232bb66a24c4194aa7fd8fc8bc46, type: 3}
+  m_Name: 3_Squeaky_PlayGame
+  m_EditorClassIdentifier: 
+  Target: 2
+  ActiveTable: 0
+  ClueArray: 0
+  ClueFound: 1
+  DialogueBranch: {fileID: 11400000, guid: 52b14d1b05cf7604ea94ef72eea798a9, type: 2}
+  QuestDescription: Start a Card Match with Squeaky.

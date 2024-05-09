@@ -1,16 +1,14 @@
 using System;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class DialogueInvoker : MonoBehaviour
 {
-    public static Action<DialogueNode[]> SendDialogue;
-    public List<DialogueBranch> Branch;
-    public int BranchIndex;
+    public static Action<DialogueNode[], bool> SendDialogue;
 
     // Check which dialogue to start.
-    public void SendDialogueBranch()
+    public void SendDialogueBranch(DialogueBranch branch, bool quest)
     {
-        SendDialogue?.Invoke(Branch[BranchIndex].Nodes);
+        if (branch == null) Debug.LogError("Branch is Null");
+        SendDialogue?.Invoke(branch.Nodes, quest);
     }
 }

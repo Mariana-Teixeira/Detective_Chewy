@@ -30,7 +30,20 @@ public class Board : MonoBehaviour
     private GameObject _tavernPos;
     private GameObject _discardsPos;
 
-
+    public int ActiveTable
+    {
+        get
+        {
+            return _activeTable;
+        }
+    }
+    public bool[] CluesFound
+    {
+        get
+        {
+            return _cluesFound;
+        }
+    }
 
     private void Awake()
     {
@@ -363,7 +376,8 @@ public class Board : MonoBehaviour
         }
     }
 
-    public void ClueFound(int i) {
+    public void ClueFound(int i)
+    {
         _cluesFound[i] = true;
     }
 
