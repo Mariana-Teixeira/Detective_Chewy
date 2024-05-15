@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4d0232bb66a24c4194aa7fd8fc8bc46, type: 3}
   m_Name: 4_Squeaky_WinGame
   m_EditorClassIdentifier: 
-  Target: 1
+  Target: 4
   ActiveTable: 0
   ClueArray: 0
   ClueFound: 1

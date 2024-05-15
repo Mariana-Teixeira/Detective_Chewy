@@ -33,7 +33,7 @@ public class InteractWith : MonoBehaviour
                 {
                     InteractWithTable(hit);
                 }
-                if (hit.collider.CompareTag("InspectableItem"))
+                if (hit.collider.CompareTag("Clue"))
                 {
                     InteractWithObject(hit);
                 }
