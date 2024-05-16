@@ -1,16 +1,12 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using TMPro;
 using UnityEngine;
 using Random = System.Random;
 
 public class Deck : MonoBehaviour
 {
-    private List<CardData> _deck;
-
     [SerializeField] Board board;
+    private List<CardData> _deck;
 
     private void Awake()
     {
@@ -50,24 +46,26 @@ public class Deck : MonoBehaviour
 
     public void RandomOnNewBoard(TableScript table)
     {
-        board.CreateNewVerionOfDeck(table);
+        board.CreateNewVersionOfDeck(table);
     }
 
     public bool CheckIfTableCanBePlayed(string s) 
     {
         int s1 = -1;
-        if(s.EndsWith("(0)")){ s1 = 0; }
-        if (s.EndsWith("(1)")) { s1 = 1; }
-        if (s.EndsWith("(2)")) { s1 = 2; }
+
+        if(s.EndsWith("(0)"))
+        {
+            s1 = 0;
+        }
+        else if (s.EndsWith("(1)"))
+        {
+            s1 = 1;
+        }
+        else if (s.EndsWith("(2)"))
+        {
+            s1 = 2;
+        }
+
         return board.CheckIfTablePlayable(s1);
     }
-
-    public void ClueFound(string s)
-    {
-        string s1 = s.Substring(s.Length-1);
-        int i = Int32.Parse(s1);
-        board.ClueFound(i);
-    }
-
-
 }

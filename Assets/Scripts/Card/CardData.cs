@@ -1,5 +1,3 @@
-using UnityEngine;
-
 public enum Suit
 {
     Heart = 0,
@@ -34,11 +32,12 @@ public class CardData
         return $"[{Suit}, {Value}]";
     }
 
-    public void setPosition(Position position)
+    public void SetPosition(Position position)
     {
         this.Position = position;
     }
-    public Position getPosition()
+
+    public Position GetPosition()
     {
         return this.Position;
     }

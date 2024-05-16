@@ -7,17 +7,15 @@ public class DialogueManager : MonoBehaviour
     public TMP_Text DialogueText;
     private DialogueNode[] CurrentBranch;
     private int DialogueIndex;
-    private bool DialogueForQuest;
 
     private void Start()
     {
         DialogueInvoker.SendDialogue += OnSendDialogue;
     }
 
-    public void OnSendDialogue(DialogueNode[] nodes, bool QuestDialogue)
+    public void OnSendDialogue(DialogueNode[] nodes)
     {
         CurrentBranch = nodes;
-        DialogueForQuest = QuestDialogue;
 
         DialogueIndex = 0;
         StartDialogue();
@@ -55,11 +53,6 @@ public class DialogueManager : MonoBehaviour
         DialogueCanvas.enabled = false;
         CurrentBranch = null;
         PlayerStates.PreviousState?.Invoke();
-
-        if (DialogueForQuest)
-        {
-            QuestManager.CompleteQuest?.Invoke();
-        }
     }
 
     public void DisplayText(string text)

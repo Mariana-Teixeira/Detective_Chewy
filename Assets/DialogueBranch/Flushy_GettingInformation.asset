@@ -10,8 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 0}
-  m_Name: Squeaky_Threshold_1
+  m_Name: Flushy_GettingInformation
   m_EditorClassIdentifier: Assembly-CSharp::DialogueBranch
   Nodes:
-  - DialogueText: You reached the first threshold!
+  - DialogueText: you talk to squeaky to get information
+    DialogueSound: 0
+  - DialogueText: he gives you information
+    DialogueSound: 0
+  - DialogueText: you are informed
     DialogueSound: 0

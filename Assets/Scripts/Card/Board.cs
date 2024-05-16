@@ -1,9 +1,8 @@
-using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using Random = System.Random;
-using System.Collections;
 
 public class Board : MonoBehaviour
 {
@@ -79,7 +78,7 @@ public class Board : MonoBehaviour
         }
     }
 
-    public void CreateNewVerionOfDeck(TableScript table)
+    public void CreateNewVersionOfDeck(TableScript table)
     {
         _deck.Clear();
         _hand.Clear();
@@ -87,18 +86,12 @@ public class Board : MonoBehaviour
         _discards.Clear();
         Random random = new Random();
         _allCardsList = _allCardsList.OrderBy(x => random.Next()).ToList();
-        foreach (Card card in _allCardsList) {
+        
+        foreach (Card card in _allCardsList)
+        {
             _deck.Add(card);
         }
-        /*
-        int cnt = 0;
 
-        foreach (GameObject go in tables)
-        {
-            if (go == table.gameObject) { _activeTable = cnt; }
-            cnt++;
-        }
-        */
         CreateHand();
     }
 
@@ -109,6 +102,7 @@ public class Board : MonoBehaviour
             _hand.Add(_deck.ElementAt(0));
             _deck.RemoveAt(0);
         }
+
         CreateTavern();
     }
 
@@ -119,6 +113,7 @@ public class Board : MonoBehaviour
             _tavern.Add(_deck.ElementAt(0));
             _deck.RemoveAt(0);
         }
+
         UpdateFirstPositions();
     }
 
@@ -126,23 +121,25 @@ public class Board : MonoBehaviour
     {
         foreach (var card in _deck)
         {
-            card.CardData.setPosition(Position.Deck);
+            card.CardData.SetPosition(Position.Deck);
             card.transform.parent = deck.transform;
             card.transform.transform.localPosition = Vector3.zero;
         }
+
         foreach (var card in _hand)
         {
-            card.CardData.setPosition(Position.Hand);
+            card.CardData.SetPosition(Position.Hand);
             card.transform.parent = hand.transform;
             card.transform.transform.localPosition = Vector3.zero;
         }
+
         foreach (var card in _tavern)
         {
-            card.CardData.setPosition(Position.Tavern);
+            card.CardData.SetPosition(Position.Tavern);
             card.transform.parent = tavern.transform;
             card.transform.transform.localPosition = Vector3.zero;
         }
-        //TEST
+
         PlaceCardsInitial(_activeTable);
     }
 
@@ -160,7 +157,6 @@ public class Board : MonoBehaviour
     //PLACE CARDS ON TABLE NUM
     public void PlaceCardsInitial(int num)
     {
-
         GameObject table = tables.ElementAt(num);
         _deckPos = table.transform.GetChild(1).GetChild(0).gameObject;
         _handPos = table.transform.GetChild(1).GetChild(1).gameObject;
@@ -170,11 +166,13 @@ public class Board : MonoBehaviour
         float moveStepY = 0;
         int counter = 0;
 
-        foreach (Card card in _allCardsList) {
+        foreach (Card card in _allCardsList)
+        {
             card.transform.position = _deckPos.transform.position;
         }
         
-        if (num == 1 || num == 2) {
+        if (num == 1 || num == 2)
+        {
             foreach (var card in _deck)
             {
                 card.transform.position = _deckPos.transform.position;
@@ -213,7 +211,8 @@ public class Board : MonoBehaviour
             }
         }
         //----------------------------------------------------
-        else {
+        else
+        {
             foreach (var card in _deck)
             {
                 StartCoroutine(Lerp(card.transform, _deckPos.transform.position));
@@ -383,17 +382,37 @@ public class Board : MonoBehaviour
 
     public bool CheckIfTablePlayable(int i)
     {
-        if (i == _activeTable && _cluesFound[i]) { return true; }
+        if (i == _activeTable && _cluesFound[i])
+        {
+            QuestManager.CompleteQuest?.Invoke();
+            return true;
+        }
+
         return false;
     }
 
-    public void GameWonGoNextTable() {
+    public void GameWonGoNextTable()
+    {
         _activeTable = _activeTable + 1;
     }
 
-    public Transform GetTavernPos() { return _tavernPos.transform; }
-    public Transform GetDeckPos() { return _deckPos.transform; }
-    public Transform GetDiscardPos() { return _discardsPos.transform; }
+    public Transform GetTavernPos()
+    {
+        return _tavernPos.transform;
+    }
 
-    public int GetActiveTable() { return _activeTable; }
+    public Transform GetDeckPos()
+    {
+        return _deckPos.transform;
+    }
+
+    public Transform GetDiscardPos()
+    {
+        return _discardsPos.transform;
+    }
+
+    public int GetActiveTable()
+    {
+        return _activeTable;
+    }
 }

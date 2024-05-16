@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 0}
-  m_Name: Squeaky_FindingClue
+  m_Name: Flushy_PlayingGame
   m_EditorClassIdentifier: Assembly-CSharp::DialogueBranch
   Nodes:
-  - DialogueText: You found a clue.
+  - DialogueText: You started a game with me?
     DialogueSound: 0
-  - DialogueText: That really is a clue.
+  - DialogueText: Squeaky? OwO
     DialogueSound: 0

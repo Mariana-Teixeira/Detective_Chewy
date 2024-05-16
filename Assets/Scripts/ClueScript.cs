@@ -1,25 +1,27 @@
+using System;
 using UnityEngine;
 
 [SelectionBase]
-[RequireComponent(typeof(DialogueInvoker))]
 public class ClueScript : InteractableObject
 {
-    public QuestManager QuestManager;
+    public static Action<Quest> EnableClue;
     public Target Target;
-    private DialogueInvoker _invoker;
+    public int ClueID;
+    public Board GameBoard;
+
+    private void Awake()
+    {
+        EnableClue += OnEnableClue;
+    }
 
     private void Start()
     {
-        _invoker = GetComponent<DialogueInvoker>();
-        base.setOutline();
-
-        QuestManager.CompleteQuest += ShouldEnableClue;
+        base.SetCamera();
+        base.SetOutline();
     }
 
-    public void ShouldEnableClue()
+    public void OnEnableClue(Quest Q)
     {
-        var Q = QuestManager.CurrentQuest;
-
         if (Q.Target == this.Target)
         {
             Debug.Log("Quest Requirements Met");
@@ -27,11 +29,11 @@ public class ClueScript : InteractableObject
         }
     }
 
+    // Needs to run dialogue system and inspection system at the same time.
     public void GatherClue()
     {
-        var Q = QuestManager.CurrentQuest;
-
-        // _invoker.SendDialogueBranch(Q.DialogueBranch, true);
+        this.gameObject.SetActive(false);
+        GameBoard.ClueFound(ClueID);
         QuestManager.CompleteQuest?.Invoke();
     }
 }

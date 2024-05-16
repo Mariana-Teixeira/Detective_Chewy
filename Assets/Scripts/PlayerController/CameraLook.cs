@@ -80,8 +80,9 @@ public class CameraLook : MonoBehaviour
         yield return StartCoroutine(EnableInspect());
     }
 
-    private IEnumerator EnableInspect() {
-        PlayerStates.InspectItem?.Invoke(interactWith.getLastInteracted());
+    private IEnumerator EnableInspect()
+    {
+        InspectorCanvasScript.InspectItem?.Invoke(interactWith.GetLastInteracted());
         yield return null;
     }
 

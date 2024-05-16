@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 [SelectionBase]
@@ -10,26 +11,39 @@ public class CharacterScript : InteractableObject
 
     private DialogueInvoker _invoker;
 
-    private void Start()
+    public void Start()
     {
+        base.SetCamera();
+        base.SetOutline();
         _invoker = GetComponent<DialogueInvoker>();
-        base.setOutline();
     }
 
-    // Hard-Coded
-    public bool TalkToCharacter()
+    public void TalkToCharacter()
     {
         var Q = QuestManager.CurrentQuest;
-        if (Q.Target != this.Target) return false;
 
+        if (Q.Target == this.Target)
+        {
+            TalkToCharacterAndCompleteQuest(Q);
+        }
+        else
+        {
+            LoadAlternativeDialogueBranch();
+        }
+    }
+
+    private void TalkToCharacterAndCompleteQuest(Quest Q)
+    {
         if (Board.ActiveTable == Q.ActiveTable && Board.CluesFound[Q.ClueArray] == Q.ClueFound)
         {
             Debug.Log("Quest Requirements Met");
-            _invoker.SendDialogueBranch(Q.DialogueBranch, true);
-            return true;
+            _invoker.SendDialogueBranch(Q.DialogueBranch);
+            QuestManager.CompleteQuest?.Invoke();
         }
+    }
 
-        Debug.LogError("Couldn't find corresponding Quest.");
-        return false;
+    private void LoadAlternativeDialogueBranch()
+    {
+        throw new NotImplementedException();
     }
 }

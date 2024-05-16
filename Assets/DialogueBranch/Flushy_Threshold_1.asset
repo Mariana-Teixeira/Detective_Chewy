@@ -10,10 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 0}
-  m_Name: Squeaky_PlayingGame
+  m_Name: Flushy_Threshold_1
   m_EditorClassIdentifier: Assembly-CSharp::DialogueBranch
   Nodes:
-  - DialogueText: You started a game with me?
-    DialogueSound: 0
-  - DialogueText: Squeaky? OwO
+  - DialogueText: You reached the first threshold!
     DialogueSound: 0

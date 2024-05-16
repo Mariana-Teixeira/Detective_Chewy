@@ -7,50 +7,54 @@ using UnityEngine.UI;
 
 public class CardLogic : MonoBehaviour
 {
-    private List<Card> cards;
-    private Phase currentPhase;
-
-    public int[] pointsList;
-    [SerializeField] TextMeshProUGUI phaseText;
+    #region UI Elements
+    [SerializeField] TextMeshProUGUI _turnPhaseText;
     [SerializeField] TextMeshProUGUI pointsText;
     [SerializeField] TextMeshProUGUI errorText;
+
+    [SerializeField] Canvas cardGameCanvas;
+    [SerializeField] Button _nextPhaseButton;
+    [SerializeField] Button _confirmButton;
+    [SerializeField] Button _exitButton;
+    #endregion
+
+    public static Action<TurnPhase> ChangeTurnPhase;
+    private TurnPhase currentTurnPhase;
+
+    [SerializeField] Board _gameBoard;
+    private List<Card> cards;
+
+    public int[] MatchesScoreObjective;
+    private List<Vector3> pointsCardsPositions;
     private int _boardPointsCollected;
-    private string _usualText = "POINTS: ";
 
     private bool _gotSetThisTurn = false;
     private int lastAddedPoints = 0;
     public int _turnCounter;
 
-    private List<Vector3> pointsCardsPositions;
-
-    [SerializeField] Canvas cardGameCanvas;
-    [SerializeField] Button nextPhaseBtn;
-    [SerializeField] Button confirmBtn;
-    [SerializeField] Button exitBtn;
-   
-    [SerializeField] Board _gameBoard;
-    [SerializeField] CardGameAudioController _cardGameAudioController;
-
     private bool tavernCardSelectedBuyPhase = false;
     private bool handCardSelectedBuyPhase = false;
 
-    private bool _audioClue1Activated = false;
-    private bool _audioClue2Activated = false;
-    private bool _audioClue3Activated = false;
-
     private void Awake()
     {
-        _turnCounter = 1;
+        #region UI Elements
+        _nextPhaseButton.onClick.AddListener(ChangeToNextPhase);
+        _confirmButton.onClick.AddListener(Confirm);
+        _exitButton.onClick.AddListener(ExitCardGame);
+
+        _turnPhaseText.text = "DISCARD PHASE";
+        _nextPhaseButton.interactable = false;
+        #endregion
+
         cards = new List<Card> ();
-        pointsCardsPositions = new List<Vector3> ();
-        currentPhase = Phase.Discard;
-        nextPhaseBtn.onClick.AddListener(ChangeToNextPhase);
-        confirmBtn.onClick.AddListener(Confirm);
-        exitBtn.onClick.AddListener(ExitCardGame);
+        pointsCardsPositions = new List<Vector3>();
+
+        _turnCounter = 1;
+        currentTurnPhase = TurnPhase.Discard;
+
         StartNewBoard();
-        phaseText.text = "DISCARD PHASE";
-        nextPhaseBtn.interactable = false;
     }
+
     public void SelectCard(Card card) 
     {
         cards.Add(card);
@@ -61,70 +65,62 @@ public class CardLogic : MonoBehaviour
         cards.Remove(card);
     }
 
-    public void ExitCardGame() {
+    public void ExitCardGame()
+    {
         PlayerStates.ChangeState?.Invoke(GameState.SITTING);
         _gameBoard.ResetDeck();
         UnselectAllCards();
         StartNewBoard();
-        }
-
-    public delegate void ChangePhase(Phase phase);
-    public static event ChangePhase OnChangePhase;
+    }
 
     public void ChangeToNextPhase() 
     {
-        //SKIP PHASE
-        /*
-         * DONT LET PLAYER SKIP DISCARD PHASE
-        if (currentPhase == Phase.Discard)
-        {
-            currentPhase = Phase.Buy;
-            phaseText.text = "BUY PHASE";
-            OnChangePhase(Phase.Buy);
-        }
-        */
-        if (currentPhase == Phase.Buy)
+        if (currentTurnPhase == TurnPhase.Trade)
         {
             UnSelectTavernCardBuyPhase();
             UnSelectHandCardBuyPhase();
-            currentPhase = Phase.Points;
-            phaseText.text = "POINTS PHASE";
-            OnChangePhase(Phase.Points);
+            currentTurnPhase = TurnPhase.Play;
+            _turnPhaseText.text = "PLAY PHASE";
+            ChangeTurnPhase(TurnPhase.Play);
             errorText.gameObject.SetActive(false);
         }
-        else if (currentPhase == Phase.Points)
+        else if (currentTurnPhase == TurnPhase.Play)
         {
-            currentPhase = Phase.Discard;
-            phaseText.text = "DISCARD PHASE";
-            OnChangePhase(Phase.Discard);
-            if (pointsCardsPositions.Count > 0) { 
+            currentTurnPhase = TurnPhase.Discard;
+            _turnPhaseText.text = "DISCARD PHASE";
+            ChangeTurnPhase(TurnPhase.Discard);
+
+            if (pointsCardsPositions.Count > 0)
+            { 
                 _gameBoard.FinishTurn(pointsCardsPositions);
                 pointsCardsPositions.Clear();
             }
+
             _turnCounter++;
             Debug.Log("TURN: " +_turnCounter);
-            nextPhaseBtn.interactable = false;
+            _nextPhaseButton.interactable = false;
             errorText.gameObject.SetActive(false);
             _gotSetThisTurn = false;
-            if (_turnCounter > 5) { GameOver(); }
+
+            if (_turnCounter > 5)
+            {
+                GameOver();
+            }
         }
         UnselectAllCards();
     }
 
     public void Confirm() 
     {
-        if (currentPhase == Phase.Discard)
+        if (currentTurnPhase == TurnPhase.Discard)
         {
             if (cards.Count == 1)
             {
-                //
-                //DISCARD CARD AND DRAW A NEW ONE IN ITS PLACE
                 _gameBoard.DiscardCard(cards[0]);
-                //
-                currentPhase = Phase.Buy;
-                phaseText.text = "BUY PHASE";
-                OnChangePhase(Phase.Buy);
-                nextPhaseBtn.interactable = true;
+                currentTurnPhase = TurnPhase.Trade;
+                _turnPhaseText.text = "BUY PHASE";
+                ChangeTurnPhase(TurnPhase.Trade);
+                _nextPhaseButton.interactable = true;
                 UnselectAllCards();
                 errorText.gameObject.SetActive(false);
             }
@@ -135,7 +131,7 @@ public class CardLogic : MonoBehaviour
             }
         }
 
-        else if (currentPhase == Phase.Buy)
+        else if (currentTurnPhase == TurnPhase.Trade)
         {
             if (cards.Count == 2)
             {
@@ -143,50 +139,53 @@ public class CardLogic : MonoBehaviour
                     ||
                     (cards[1].CardData.Position == Position.Tavern && cards[1].CardData.Value <= cards[0].CardData.Value))
                 {
-                    //
-                    //DISCARD HAND CARD
-                    //REPLACE HAND CARD WITH TAVERN CARD
-                    //REPLACE TAVERN CARD WITH DECK CARD
-                    //
-                    if (cards[0].CardData.Position == Position.Tavern) { _gameBoard.ExchangeTavernCard(cards[1], cards[0]); }
-                    else { _gameBoard.ExchangeTavernCard(cards[0], cards[1]); }
+                    if (cards[0].CardData.Position == Position.Tavern)
+                    {
+                        _gameBoard.ExchangeTavernCard(cards[1], cards[0]);
+                    }
+                    else
+                    {
+                        _gameBoard.ExchangeTavernCard(cards[0], cards[1]);
+                    }
                     
                     UnSelectTavernCardBuyPhase();
                     UnSelectHandCardBuyPhase();
-                    currentPhase = Phase.Points;
-                    phaseText.text = "POINTS PHASE";
-                    OnChangePhase(Phase.Points);
+                    currentTurnPhase = TurnPhase.Play;
+                    _turnPhaseText.text = "POINTS PHASE";
+                    ChangeTurnPhase(TurnPhase.Play);
 
                     UnselectAllCards();
                     errorText.gameObject.SetActive(false);
                 }
-                else { 
+                else
+                { 
                     Debug.Log("Cant sell a card that is worth less then the one you are buying"); 
                     errorText.text = "Cant sell a card that is worth less then the one you are buying";
                     errorText.gameObject.SetActive(true);
                 }
             }
-            else { 
+            else
+            { 
                 Debug.Log("Select more cards to confirm or skip");
                 errorText.text = "Select more cards to confirm or skip";
                 errorText.gameObject.SetActive(true);
             }
         }
-        else if (currentPhase == Phase.Points)
+        else if (currentTurnPhase == TurnPhase.Play)
         {
             int collectedPoints = 0;
             float multiScore = 1;
             List<int>  tmpNumList = new List<int>();
+
             if (cards.Count == 3)
             {
                 tmpNumList.Add(cards[0].CardData.Value);
                 tmpNumList.Add(cards[1].CardData.Value);
                 tmpNumList.Add(cards[2].CardData.Value);
                 tmpNumList.Sort();
-                //
+
                 //CHECK IF 3 CARDS CAN BE USED FOR POINTS
                 //CALCULATE POINTS AND GIVE THEM TO THE USER
-                //
                 if (((cards[0].CardData.Value == cards[1].CardData.Value) && (cards[1].CardData.Value == cards[2].CardData.Value))
                     ||
                     (((cards[0].CardData.Suit == cards[1].CardData.Suit) && (cards[1].CardData.Suit == cards[2].CardData.Suit))
@@ -195,21 +194,32 @@ public class CardLogic : MonoBehaviour
                     ||
                     ((tmpNumList.ElementAt(0) == tmpNumList.ElementAt(1) - 11) && (tmpNumList.ElementAt(0) == tmpNumList.ElementAt(2) - 12))
                     ||
-                    ((tmpNumList.ElementAt(0) == tmpNumList.ElementAt(1) - 1) &&(tmpNumList.ElementAt(0) == tmpNumList.ElementAt(2) - 12))
-                    )
-                    )
-                    )
+                    ((tmpNumList.ElementAt(0) == tmpNumList.ElementAt(1) - 1) &&(tmpNumList.ElementAt(0) == tmpNumList.ElementAt(2) - 12)))))
                 {
                     //Add flag that SET was converted to points this turn, if another is converted, set score to 2x
-                    if (((cards[0].CardData.Value == cards[1].CardData.Value) && (cards[1].CardData.Value == cards[2].CardData.Value))) { multiScore = 1;
-                        if (_gotSetThisTurn == true) { multiScore = 2; }
-                        if (_gotSetThisTurn == false) { _gotSetThisTurn = true; }
+                    if (((cards[0].CardData.Value == cards[1].CardData.Value) && (cards[1].CardData.Value == cards[2].CardData.Value)))
+                    {
+                        multiScore = 1;
+                        
+                        if (_gotSetThisTurn == true)
+                        {
+                            multiScore = 2;
+                        }
+                        
+                        if (_gotSetThisTurn == false)
+                        {
+                            _gotSetThisTurn = true;
+                        }
                     }
                     //Otherwise set score to 1.5f for RUNS
-                    else { multiScore = 1.5f; }
+                    else
+                    {
+                        multiScore = 1.5f;
+                    }
 
                     //Add points of all cards
-                    foreach (Card card in cards) {
+                    foreach (Card card in cards)
+                    {
                         collectedPoints = collectedPoints + card.CardData.Score; 
                         pointsCardsPositions.Add(card.transform.position);
                     }
@@ -224,41 +234,37 @@ public class CardLogic : MonoBehaviour
                     {
                         _boardPointsCollected = _boardPointsCollected + lastAddedPoints;
                     }
+
                     _boardPointsCollected = _boardPointsCollected + Convert.ToInt32(Math.Floor(collectedPoints*multiScore));
 
                     lastAddedPoints = Convert.ToInt32(Math.Floor(collectedPoints * multiScore));
     
-                    pointsText.text = _usualText + _boardPointsCollected + " / " + pointsList[_gameBoard.GetActiveTable()];
+                    pointsText.text = "POINTS: " + _boardPointsCollected + " / " + MatchesScoreObjective[_gameBoard.GetActiveTable()];
 
                     //ACTIVATE AUDIO CLUES
-                    // 40%
-                    if (_boardPointsCollected >= (pointsList[_gameBoard.GetActiveTable()] * 0.4f) && !_audioClue1Activated)
+                    if (_boardPointsCollected >= (MatchesScoreObjective[_gameBoard.GetActiveTable()] * 0.4f))
                     {
-                        _cardGameAudioController.ActivateAudioQ(_gameBoard.GetActiveTable(), 0);    
-                        _audioClue1Activated = true;
+                        CardGameState.ChangeGamePhase?.Invoke(GamePhase.First_Threshold, _gameBoard.GetActiveTable());
                     };
-                    // 70%
-                    if (_boardPointsCollected >= (pointsList[_gameBoard.GetActiveTable()] * 0.7f) && !_audioClue2Activated)
+                    if (_boardPointsCollected >= (MatchesScoreObjective[_gameBoard.GetActiveTable()] * 0.7f))
                     {
-                        _cardGameAudioController.ActivateAudioQ(_gameBoard.GetActiveTable(), 1);
-                        _audioClue2Activated = true;
+                        CardGameState.ChangeGamePhase?.Invoke(GamePhase.Second_Threshold, _gameBoard.GetActiveTable());
                     };
-
-                    //GAME WON IF POINTS OVER NEEDED POINTS
-                    if (_boardPointsCollected >= pointsList[_gameBoard.GetActiveTable()]) 
+                    if (_boardPointsCollected >= MatchesScoreObjective[_gameBoard.GetActiveTable()])
                     {
-                        _cardGameAudioController.ActivateAudioQ(_gameBoard.GetActiveTable(), 2);
-                        _audioClue3Activated = true;
                         GameWon();
                     };
                 }
-                else { 
+                else
+                { 
                     Debug.Log("You can not use those cards for points");
                     errorText.text = "You can not use those cards for points";
                     errorText.gameObject.SetActive(true);
                 }
             }
-            else { Debug.Log("Select more cards to confirm or skip");
+            else
+            {
+                Debug.Log("Select more cards to confirm or skip");
                 errorText.text = "Select more cards to confirm or skip";
                 errorText.gameObject.SetActive(true);
             } 
@@ -268,14 +274,17 @@ public class CardLogic : MonoBehaviour
     public void GameWon() 
     {
         Debug.Log("GAME WON");
+        CardGameState.ChangeGamePhase?.Invoke(GamePhase.Win, _gameBoard.GetActiveTable());
         _gameBoard.GameWonGoNextTable();
-        QuestManager.CompleteQuest?.Invoke();
+        
         ExitCardGame();
     }
 
     public void GameOver() 
     {
         Debug.Log("GAME LOST");
+        CardGameState.ChangeGamePhase?.Invoke(GamePhase.Lose, _gameBoard.GetActiveTable());
+
         ExitCardGame();
     }
 
@@ -291,22 +300,47 @@ public class CardLogic : MonoBehaviour
             }
     }
 
-    public void StartNewBoard() {
+    public void StartNewBoard()
+    {
         _boardPointsCollected = 0;
         _turnCounter = 1;
-        _audioClue1Activated = false;
-        _audioClue2Activated = false;
-        _audioClue3Activated = false;
-        pointsText.text = _usualText + _boardPointsCollected + " / " + pointsList[_gameBoard.GetActiveTable()];
-        currentPhase = Phase.Discard;
-        phaseText.text = "DISCARD PHASE";
+
+        pointsText.text = "POINTS: " + _boardPointsCollected + " / " + MatchesScoreObjective[_gameBoard.GetActiveTable()];
+
+        CardGameState.ChangeGamePhase?.Invoke(GamePhase.Start, _gameBoard.GetActiveTable());
+        currentTurnPhase = TurnPhase.Discard;
+        _turnPhaseText.text = "DISCARD PHASE";
     }
-    public void SelectHandCardBuyPhase() { handCardSelectedBuyPhase = true; }
-    public void UnSelectHandCardBuyPhase() { handCardSelectedBuyPhase = false; }
-    public void SelectTavernCardBuyPhase() { tavernCardSelectedBuyPhase = true; }
-    public void UnSelectTavernCardBuyPhase() { tavernCardSelectedBuyPhase = false; }
-    public bool IsHandCardSelectedBuyPhase() { return handCardSelectedBuyPhase; }
-    public bool IsTavernCardSelectedBuyPhase() { return tavernCardSelectedBuyPhase; }
+
+    public void SelectHandCardBuyPhase()
+    {
+        handCardSelectedBuyPhase = true;
+    }
+
+    public void UnSelectHandCardBuyPhase()
+    {
+        handCardSelectedBuyPhase = false;
+    }
+
+    public void SelectTavernCardBuyPhase()
+    {
+        tavernCardSelectedBuyPhase = true; 
+    }
+
+    public void UnSelectTavernCardBuyPhase()
+    {
+        tavernCardSelectedBuyPhase = false;
+    }
+
+    public bool IsHandCardSelectedBuyPhase()
+    {
+        return handCardSelectedBuyPhase;
+    }
+
+    public bool IsTavernCardSelectedBuyPhase()
+    {
+        return tavernCardSelectedBuyPhase;
+    }
 
 }
 

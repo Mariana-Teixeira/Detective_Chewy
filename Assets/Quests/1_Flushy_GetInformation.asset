@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e4d0232bb66a24c4194aa7fd8fc8bc46, type: 3}
-  m_Name: 2_Squeaky_FindClues
+  m_Name: 1_Flushy_GetInformation
   m_EditorClassIdentifier: 
-  Target: 3
+  Target: 0
   ActiveTable: 0
   ClueArray: 0
   ClueFound: 0
-  DialogueBranch: {fileID: 11400000, guid: 4a1ce4af92497314fabea59eba17193e, type: 2}
-  QuestDescription: Find a Clue.
+  DialogueBranch: {fileID: 11400000, guid: 1fcb7bb6c778fba44bc9cb3723aeeb7d, type: 2}
+  QuestDescription: Talk to the Bartender.

@@ -35,7 +35,7 @@ public class InteractWith : MonoBehaviour
                 }
                 if (hit.collider.CompareTag("Clue"))
                 {
-                    InteractWithObject(hit);
+                    InteractWithClue(hit);
                 }
                 if (hit.collider.CompareTag("Character"))
                 {
@@ -56,21 +56,12 @@ public class InteractWith : MonoBehaviour
             PlayerStates.ChangeState?.Invoke(GameState.SITTING);
             gameDeck.RandomOnNewBoard(table);
         }
-        else
-        {
-            if (hit.collider.gameObject.name.Contains("2"))
-            {
-            }
-        }
     }
-    void InteractWithObject(RaycastHit hit)
+    void InteractWithClue(RaycastHit hit)
     {
-
         GameObject item = hit.collider.gameObject;
         item.GetComponent<ClueScript>().GatherClue();
-        gameDeck.ClueFound(item.name);
         _lastGameobject = item;
-
         PlayerStates.ChangeState?.Invoke(GameState.INSPECTING);
 
         Debug.Log("Found Clue: " + item.name);
@@ -79,13 +70,8 @@ public class InteractWith : MonoBehaviour
     void InteractWithCharacter(RaycastHit hit)
     {
         CharacterScript character = hit.collider.gameObject.GetComponent<CharacterScript>();
-
-        // If I can talk to the character, change state.
-        if (character.TalkToCharacter())
-        {
-            PlayerStates.ChangeState?.Invoke(GameState.TALKING);
-        }
-
+        character.TalkToCharacter();
+        PlayerStates.ChangeState?.Invoke(GameState.TALKING);
     }
 
     public void ListenForExitGame()
@@ -103,7 +89,7 @@ public class InteractWith : MonoBehaviour
             PlayerStates.ChangeState?.Invoke(GameState.WALKING);
         }
     }
-    public GameObject getLastInteracted()
+    public GameObject GetLastInteracted()
     {
         return _lastGameobject;
     }

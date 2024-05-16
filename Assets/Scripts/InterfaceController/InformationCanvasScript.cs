@@ -1,20 +1,34 @@
+using System;
 using TMPro;
 using UnityEngine;
 
 public class InformationCanvasScript : MonoBehaviour
 {
+    public static Action<bool> ToggleVisibility;
+    public static Action<Quest> UpdateQuestInformation;
+
+    private Canvas informationCanvas;
     public QuestManager QuestManager;
     public TMP_Text QuestText;
 
-    private void Start()
+    private void Awake()
     {
-        ChangeText();
-        QuestManager.CompleteQuest += ChangeText;
+        UpdateQuestInformation += OnUpdateQuestInformation;
+        ToggleVisibility += OnToggleVisibility;
     }
 
-    public void ChangeText()
+    private void Start()
     {
-        var Q = QuestManager.CurrentQuest;
+        informationCanvas = GetComponent<Canvas>();
+    }
+
+    public void OnUpdateQuestInformation(Quest Q)
+    {
         QuestText.text = Q.QuestDescription;
+    }
+
+    public void OnToggleVisibility(bool isVisible)
+    {
+        informationCanvas.enabled = isVisible;
     }
 }

@@ -4,5 +4,4 @@ public enum Target
     Flushy,
     Table_0,
     Clue_0,
-    Game_0
 }

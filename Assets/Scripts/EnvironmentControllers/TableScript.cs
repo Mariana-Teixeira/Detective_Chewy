@@ -8,10 +8,11 @@ public class TableScript : InteractableObject
     [HideInInspector] public Transform CardCameraPosition;
     [HideInInspector] public Transform LookAtTarget;
 
-    private void Start()
+    public void Start()
     {
+        base.SetCamera();
+        base.SetOutline();
         LookAtTarget = this.transform.GetChild(0);
         CardCameraPosition = this.transform.GetChild(2);
-        base.setOutline();
     }
 }

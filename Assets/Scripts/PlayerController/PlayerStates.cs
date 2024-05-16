@@ -1,5 +1,4 @@
 using System;
-using System.Linq;
 using UnityEngine;
 
 public enum GameState { NULL, WALKING, SITTING, PLAYING, INSPECTING, TALKING };
@@ -7,20 +6,20 @@ public class PlayerStates : MonoBehaviour
 {
     public static Action PreviousState;
     public static Action<GameState> ChangeState;
-    public static Action<GameObject> InspectItem;
-
-    [SerializeField] GameObject cardGameUI;
-    [SerializeField] GameObject inspectUI;
-    [SerializeField] GameObject[] inspectItems;
 
     [SerializeField] DialogueManager _dialogueManager;
 
-    private int inspectItemNum = 0;
     CameraLook _cameraLook;
     PlayerMove _playerMove;
     InteractWith _interactWith;
     GameState _previousState;
     GameState _currentState;
+
+    private void Awake()
+    {
+        PreviousState += OnPreviousChange;
+        ChangeState += OnChangeState;
+    }
 
     private void Start()
     {
@@ -28,41 +27,15 @@ public class PlayerStates : MonoBehaviour
         _playerMove = GetComponent<PlayerMove>();
         _interactWith = GetComponent<InteractWith>();
 
-        PreviousState += OnPreviousChange;
-        ChangeState += OnChangeState;
-        InspectItem += OnInspect;
         OnChangeState(GameState.WALKING);
     }
 
-    public GameState getGameState() 
+    public GameState GetGameState() 
     {
         return _currentState;
     }
-    public void OnInspect(GameObject go) 
-    {
-        if (go.name.Contains("_0"))
-        {
-            inspectItems.ElementAt(0).SetActive(true);
-            inspectItemNum = 0;
-        }
-        else if (go.name.Contains("_1"))
-        {
-            inspectItems.ElementAt(1).SetActive(true);
-            inspectItemNum = 1;
-        }
-        else if (go.name.Contains("_2")) { 
-            inspectItems.ElementAt(2).SetActive(true);
-            inspectItemNum = 2;
-        }
-    }
 
-    public void DisableInspectUI() 
-    {
-        inspectItems.ElementAt(inspectItemNum).SetActive(false);
-        inspectUI.SetActive(false);
-    }
-
-    // It's a temporary function, so avoid changing the current ChangeState Action.
+    // It's a temporary function, to avoid changing the current ChangeState Action.
     public void OnPreviousChange()
     {
         // I don't like this variable, but I also don't like this function, so...
@@ -89,23 +62,28 @@ public class PlayerStates : MonoBehaviour
         switch(_currentState)
         {
             case GameState.WALKING:
-                DisableInspectUI();
                 _cameraLook.ToggleCursor(false);
-                cardGameUI.SetActive(false);
+                CardGameCanvasScript.ToggleVisibility?.Invoke(false);
+                InspectorCanvasScript.ToggleVisibility?.Invoke(false);
+                InformationCanvasScript.ToggleVisibility?.Invoke(true);
                 break;
-            case GameState.SITTING:
-                StartCoroutine(_cameraLook.ToggleSitting());
-                cardGameUI.SetActive(true);
+            case GameState.TALKING:
+                InformationCanvasScript.ToggleVisibility?.Invoke(false);
                 break;
             case GameState.INSPECTING:
                 StartCoroutine(_cameraLook.ToggleInspecting());
-                inspectUI.SetActive(true);
                 _cameraLook.ToggleCursor(true);
                 break;
+            case GameState.SITTING:
+                StartCoroutine(_cameraLook.ToggleSitting());
+                InformationCanvasScript.ToggleVisibility?.Invoke(false);
+                break;
             case GameState.PLAYING:
+                CardGameCanvasScript.ToggleVisibility?.Invoke(true);
                 _cameraLook.ToggleCursor(true);
                 break;
             default:
+                Debug.LogError("Player State not found.");
                 break;
         }
     }
@@ -133,6 +111,7 @@ public class PlayerStates : MonoBehaviour
         }
     }
 
+    // Pai Nosso que estais no céu... T-T
     private void ExitState()
     {
         switch (_currentState)
