@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -43,29 +44,8 @@ public class Deck : MonoBehaviour
         board.InstantiateCards(_deck);
     }
 
-
-    public void RandomOnNewBoard(TableScript table)
+    public void OnRandomOnNewBoard()
     {
-        board.CreateNewVersionOfDeck(table);
-    }
-
-    public bool CheckIfTableCanBePlayed(string s) 
-    {
-        int s1 = -1;
-
-        if(s.EndsWith("(0)"))
-        {
-            s1 = 0;
-        }
-        else if (s.EndsWith("(1)"))
-        {
-            s1 = 1;
-        }
-        else if (s.EndsWith("(2)"))
-        {
-            s1 = 2;
-        }
-
-        return board.CheckIfTablePlayable(s1);
+        board.OnCreateNewVersionOfDeck();
     }
 }

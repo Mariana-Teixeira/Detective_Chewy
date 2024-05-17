@@ -6,13 +6,10 @@ public class InteractWith : MonoBehaviour
     CameraLook _cameraLook;
     Ray _lookingAtRay;
 
-
-    [SerializeField] Deck gameDeck;
-
     [SerializeField] float _rayDistance;
     [SerializeField] LayerMask _rayMask;
 
-    private GameObject _lastGameobject;
+    private GameObject _currentInspectingObject;
 
     private void Start()
     {
@@ -47,31 +44,32 @@ public class InteractWith : MonoBehaviour
 
     void InteractWithTable(RaycastHit hit)
     {
-        if (gameDeck.CheckIfTableCanBePlayed(hit.collider.gameObject.name))
+        TableScript table = hit.collider.GetComponent<TableScript>();
+        _cameraLook.LookAtTarget = table.LookAtTarget;
+        _cameraLook.CardCameraTransform = table.CardCameraPosition;
+        _cameraLook.CardBodyTransform = table.CardBodyPosition;
+        
+        if (table.PlayGame())
         {
-            TableScript table = hit.collider.GetComponent<TableScript>();
-            _cameraLook.LookAtTarget = table.LookAtTarget;
-            _cameraLook.CardCameraTransform = table.CardCameraPosition;
-            _cameraLook.CardBodyTransform = table.CardBodyPosition;
             PlayerStates.ChangeState?.Invoke(GameState.SITTING);
-            gameDeck.RandomOnNewBoard(table);
         }
+
     }
     void InteractWithClue(RaycastHit hit)
     {
-        GameObject item = hit.collider.gameObject;
-        item.GetComponent<ClueScript>().GatherClue();
-        _lastGameobject = item;
-        PlayerStates.ChangeState?.Invoke(GameState.INSPECTING);
+        ClueScript item = hit.collider.gameObject.GetComponent<ClueScript>();
+        _currentInspectingObject = item.gameObject;
 
-        Debug.Log("Found Clue: " + item.name);
+        if (item.GatherClue())
+        {
+            PlayerStates.ChangeState?.Invoke(GameState.INSPECTING);
+        }
     }
 
     void InteractWithCharacter(RaycastHit hit)
     {
         CharacterScript character = hit.collider.gameObject.GetComponent<CharacterScript>();
         character.TalkToCharacter();
-        PlayerStates.ChangeState?.Invoke(GameState.TALKING);
     }
 
     public void ListenForExitGame()
@@ -89,8 +87,8 @@ public class InteractWith : MonoBehaviour
             PlayerStates.ChangeState?.Invoke(GameState.WALKING);
         }
     }
-    public GameObject GetLastInteracted()
+    public GameObject InteractedObject()
     {
-        return _lastGameobject;
+        return _currentInspectingObject;
     }
 }

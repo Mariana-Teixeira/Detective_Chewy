@@ -10,10 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 0}
-  m_Name: Flushy_PlayingGame
+  m_Name: Dialogue_Flushy_StartGame
   m_EditorClassIdentifier: Assembly-CSharp::DialogueBranch
   Nodes:
-  - DialogueText: You started a game with me?
-    DialogueSound: 0
-  - DialogueText: Squeaky? OwO
+  - DialogueText: You will be the end of my unlucky strike, Detective.
     DialogueSound: 0

@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 293d5574715f0a241a16010c2138f9fe, type: 3}
+  m_Name: Quest_Flushy_PlayGame
+  m_EditorClassIdentifier: 
+  QuestDescription: Play a Game with Flushy.
+  Game: Flushy_Table
+  StartingGameDialogue: {fileID: 11400000, guid: 33205a008e0bbc94389bca7aabecb8e1, type: 2}
+  FirstThresholdDialogue: {fileID: 11400000, guid: fb55b8de79d570946a7280917e23c12f, type: 2}
+  SecondThresholdDialogue: {fileID: 11400000, guid: 029f87cf382b93b40942735ea4078294, type: 2}
+  WinningGameDialogue: {fileID: 11400000, guid: fb426636abc1fb949a48d0d9736eaf04, type: 2}

@@ -39,9 +39,9 @@ public class PlayerStates : MonoBehaviour
     public void OnPreviousChange()
     {
         // I don't like this variable, but I also don't like this function, so...
-        var ps = _previousState;
+        var previousState = _previousState;
         ExitState();
-        _currentState = ps;
+        _currentState = previousState;
         EnterState();
     }
 
@@ -72,6 +72,7 @@ public class PlayerStates : MonoBehaviour
                 break;
             case GameState.INSPECTING:
                 StartCoroutine(_cameraLook.ToggleInspecting());
+                InspectorCanvasScript.ToggleVisibility?.Invoke(true);
                 _cameraLook.ToggleCursor(true);
                 break;
             case GameState.SITTING:
@@ -79,6 +80,7 @@ public class PlayerStates : MonoBehaviour
                 InformationCanvasScript.ToggleVisibility?.Invoke(false);
                 break;
             case GameState.PLAYING:
+                CardGameState.ChangeGamePhase?.Invoke(GamePhase.Start);
                 CardGameCanvasScript.ToggleVisibility?.Invoke(true);
                 _cameraLook.ToggleCursor(true);
                 break;

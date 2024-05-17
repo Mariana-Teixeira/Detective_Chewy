@@ -10,12 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 0}
-  m_Name: Flushy_GettingInformation
+  m_Name: Dialogue_Chip_CollectClue
   m_EditorClassIdentifier: Assembly-CSharp::DialogueBranch
   Nodes:
-  - DialogueText: you talk to squeaky to get information
-    DialogueSound: 0
-  - DialogueText: he gives you information
-    DialogueSound: 0
-  - DialogueText: you are informed
+  - DialogueText: Hm... I guess Flushy has always been a gambler...
     DialogueSound: 0

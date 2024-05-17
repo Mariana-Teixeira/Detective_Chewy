@@ -9,13 +9,12 @@ public class CardLogic : MonoBehaviour
 {
     #region UI Elements
     [SerializeField] TextMeshProUGUI _turnPhaseText;
-    [SerializeField] TextMeshProUGUI pointsText;
-    [SerializeField] TextMeshProUGUI errorText;
+    [SerializeField] TextMeshProUGUI _pointsText;
+    [SerializeField] TextMeshProUGUI _errorText;
 
     [SerializeField] Canvas cardGameCanvas;
     [SerializeField] Button _nextPhaseButton;
     [SerializeField] Button _confirmButton;
-    [SerializeField] Button _exitButton;
     #endregion
 
     public static Action<TurnPhase> ChangeTurnPhase;
@@ -40,7 +39,6 @@ public class CardLogic : MonoBehaviour
         #region UI Elements
         _nextPhaseButton.onClick.AddListener(ChangeToNextPhase);
         _confirmButton.onClick.AddListener(Confirm);
-        _exitButton.onClick.AddListener(ExitCardGame);
 
         _turnPhaseText.text = "DISCARD PHASE";
         _nextPhaseButton.interactable = false;
@@ -82,7 +80,7 @@ public class CardLogic : MonoBehaviour
             currentTurnPhase = TurnPhase.Play;
             _turnPhaseText.text = "PLAY PHASE";
             ChangeTurnPhase(TurnPhase.Play);
-            errorText.gameObject.SetActive(false);
+            _errorText.gameObject.SetActive(false);
         }
         else if (currentTurnPhase == TurnPhase.Play)
         {
@@ -99,7 +97,7 @@ public class CardLogic : MonoBehaviour
             _turnCounter++;
             Debug.Log("TURN: " +_turnCounter);
             _nextPhaseButton.interactable = false;
-            errorText.gameObject.SetActive(false);
+            _errorText.gameObject.SetActive(false);
             _gotSetThisTurn = false;
 
             if (_turnCounter > 5)
@@ -122,12 +120,12 @@ public class CardLogic : MonoBehaviour
                 ChangeTurnPhase(TurnPhase.Trade);
                 _nextPhaseButton.interactable = true;
                 UnselectAllCards();
-                errorText.gameObject.SetActive(false);
+                _errorText.gameObject.SetActive(false);
             }
             else { 
                 Debug.Log("Select more cards to confirm");
-                errorText.text = "Select more cards to confirm";
-                errorText.gameObject.SetActive(true);
+                _errorText.text = "Select more cards to confirm";
+                _errorText.gameObject.SetActive(true);
             }
         }
 
@@ -155,20 +153,20 @@ public class CardLogic : MonoBehaviour
                     ChangeTurnPhase(TurnPhase.Play);
 
                     UnselectAllCards();
-                    errorText.gameObject.SetActive(false);
+                    _errorText.gameObject.SetActive(false);
                 }
                 else
                 { 
                     Debug.Log("Cant sell a card that is worth less then the one you are buying"); 
-                    errorText.text = "Cant sell a card that is worth less then the one you are buying";
-                    errorText.gameObject.SetActive(true);
+                    _errorText.text = "Cant sell a card that is worth less then the one you are buying";
+                    _errorText.gameObject.SetActive(true);
                 }
             }
             else
             { 
                 Debug.Log("Select more cards to confirm or skip");
-                errorText.text = "Select more cards to confirm or skip";
-                errorText.gameObject.SetActive(true);
+                _errorText.text = "Select more cards to confirm or skip";
+                _errorText.gameObject.SetActive(true);
             }
         }
         else if (currentTurnPhase == TurnPhase.Play)
@@ -227,7 +225,7 @@ public class CardLogic : MonoBehaviour
 
                     _gameBoard.CollectPoints(cards);
                     UnselectAllCards();
-                    errorText.gameObject.SetActive(false);
+                    _errorText.gameObject.SetActive(false);
 
                     //add points from previous SET if second SET was used during these turn
                     if (multiScore == 2)
@@ -239,16 +237,16 @@ public class CardLogic : MonoBehaviour
 
                     lastAddedPoints = Convert.ToInt32(Math.Floor(collectedPoints * multiScore));
     
-                    pointsText.text = "POINTS: " + _boardPointsCollected + " / " + MatchesScoreObjective[_gameBoard.GetActiveTable()];
+                    _pointsText.text = "POINTS: " + _boardPointsCollected + " / " + MatchesScoreObjective[_gameBoard.GetActiveTable()];
 
                     //ACTIVATE AUDIO CLUES
                     if (_boardPointsCollected >= (MatchesScoreObjective[_gameBoard.GetActiveTable()] * 0.4f))
                     {
-                        CardGameState.ChangeGamePhase?.Invoke(GamePhase.First_Threshold, _gameBoard.GetActiveTable());
+                        CardGameState.ChangeGamePhase?.Invoke(GamePhase.First_Threshold);
                     };
                     if (_boardPointsCollected >= (MatchesScoreObjective[_gameBoard.GetActiveTable()] * 0.7f))
                     {
-                        CardGameState.ChangeGamePhase?.Invoke(GamePhase.Second_Threshold, _gameBoard.GetActiveTable());
+                        CardGameState.ChangeGamePhase?.Invoke(GamePhase.Second_Threshold);
                     };
                     if (_boardPointsCollected >= MatchesScoreObjective[_gameBoard.GetActiveTable()])
                     {
@@ -258,15 +256,15 @@ public class CardLogic : MonoBehaviour
                 else
                 { 
                     Debug.Log("You can not use those cards for points");
-                    errorText.text = "You can not use those cards for points";
-                    errorText.gameObject.SetActive(true);
+                    _errorText.text = "You can not use those cards for points";
+                    _errorText.gameObject.SetActive(true);
                 }
             }
             else
             {
                 Debug.Log("Select more cards to confirm or skip");
-                errorText.text = "Select more cards to confirm or skip";
-                errorText.gameObject.SetActive(true);
+                _errorText.text = "Select more cards to confirm or skip";
+                _errorText.gameObject.SetActive(true);
             } 
         }
     }
@@ -274,7 +272,7 @@ public class CardLogic : MonoBehaviour
     public void GameWon() 
     {
         Debug.Log("GAME WON");
-        CardGameState.ChangeGamePhase?.Invoke(GamePhase.Win, _gameBoard.GetActiveTable());
+        CardGameState.ChangeGamePhase?.Invoke(GamePhase.Win);
         _gameBoard.GameWonGoNextTable();
         
         ExitCardGame();
@@ -283,7 +281,6 @@ public class CardLogic : MonoBehaviour
     public void GameOver() 
     {
         Debug.Log("GAME LOST");
-        CardGameState.ChangeGamePhase?.Invoke(GamePhase.Lose, _gameBoard.GetActiveTable());
 
         ExitCardGame();
     }
@@ -305,9 +302,8 @@ public class CardLogic : MonoBehaviour
         _boardPointsCollected = 0;
         _turnCounter = 1;
 
-        pointsText.text = "POINTS: " + _boardPointsCollected + " / " + MatchesScoreObjective[_gameBoard.GetActiveTable()];
+        _pointsText.text = "POINTS: " + _boardPointsCollected + " / " + MatchesScoreObjective[_gameBoard.GetActiveTable()];
 
-        CardGameState.ChangeGamePhase?.Invoke(GamePhase.Start, _gameBoard.GetActiveTable());
         currentTurnPhase = TurnPhase.Discard;
         _turnPhaseText.text = "DISCARD PHASE";
     }

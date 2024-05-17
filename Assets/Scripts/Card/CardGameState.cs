@@ -1,6 +1,5 @@
 using System;
 using UnityEngine;
-using UnityEngine.Scripting;
 
 public enum TurnPhase
 {
@@ -19,36 +18,47 @@ public enum GamePhase
     Lose
 }
 
+// This one has something special... like milk gone bad.
 [RequireComponent(typeof(DialogueInvoker))]
 public class CardGameState : MonoBehaviour
 {
-    private DialogueInvoker _invoker;
-    public DialogueBranch[,] branches;
-    
+    public static Action<GamePhase> ChangeGamePhase;
     private GamePhase currentGamePhase;
-    public static Action<GamePhase, int> ChangeGamePhase;
+
+    public PlayGameQuest Quest;
+
+    private DialogueInvoker _invoker;
+
+    private void Awake()
+    {
+        ChangeGamePhase += EnterState;
+        Board.CreateNewVersionOfDeck = () => Quest = (PlayGameQuest)QuestManager.CurrentQuest?.Invoke("PlayGame");
+    }
 
     private void Start()
     {
-        ChangeGamePhase += EnterState;
+        _invoker = GetComponent<DialogueInvoker>();
     }
 
-    public void EnterState(GamePhase gamephase, int activeTable)
+    public void EnterState(GamePhase gamephase)
     {
         currentGamePhase = gamephase;
 
         switch(currentGamePhase)
         {
             case GamePhase.Start:
+                _invoker.SendDialogueBranch(Quest.StartingGameDialogue);
                 break;
             case GamePhase.First_Threshold:
+                _invoker.SendDialogueBranch(Quest.FirstThresholdDialogue);
                 break;
             case GamePhase.Second_Threshold:
+                _invoker.SendDialogueBranch(Quest.SecondThresholdDialogue);
                 break;
             case GamePhase.Win:
-                QuestManager.CompleteQuest?.Invoke();
+                _invoker.SendDialogueBranch(Quest.WinningGameDialogue);
                 break;
-            case GamePhase.Lose:
+            default:
                 break;
         }
     }

@@ -2,38 +2,44 @@ using System;
 using UnityEngine;
 
 [SelectionBase]
+[RequireComponent(typeof(DialogueInvoker))]
 public class ClueScript : InteractableObject
 {
-    public static Action<Quest> EnableClue;
-    public Target Target;
-    public int ClueID;
-    public Board GameBoard;
-
-    private void Awake()
-    {
-        EnableClue += OnEnableClue;
-    }
+    public string Clue;
+    public DialogueBranch nonQuestDialogue;
+    private DialogueInvoker _invoker;
 
     private void Start()
     {
         base.SetCamera();
         base.SetOutline();
+        _invoker = GetComponent<DialogueInvoker>();
+        Clue = this.gameObject.name;
     }
 
-    public void OnEnableClue(Quest Q)
+    // I don't enjoy it either, let me live. I'm thinking!
+    public bool GatherClue()
     {
-        if (Q.Target == this.Target)
+        try
         {
-            Debug.Log("Quest Requirements Met");
-            this.gameObject.SetActive(true);
-        }
-    }
+            var Q = (CollectThingQuest)QuestManager.CurrentQuest?.Invoke("CollectThing");
 
-    // Needs to run dialogue system and inspection system at the same time.
-    public void GatherClue()
-    {
-        this.gameObject.SetActive(false);
-        GameBoard.ClueFound(ClueID);
-        QuestManager.CompleteQuest?.Invoke();
+            if (Q.Clue == this.Clue)
+            {
+                this.gameObject.SetActive(false);
+                QuestManager.CompleteQuest?.Invoke();
+                return true;
+            }
+            else
+            {
+                _invoker.SendDialogueBranch(nonQuestDialogue);
+            }
+        }
+        catch
+        {
+            _invoker.SendDialogueBranch(nonQuestDialogue);
+        }
+
+        return false;
     }
 }

@@ -10,8 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 0}
-  m_Name: Flushy_Threshold_2
+  m_Name: Dialogue_Flushy_WinningGame
   m_EditorClassIdentifier: Assembly-CSharp::DialogueBranch
   Nodes:
-  - DialogueText: You reached the second threshold.
+  - DialogueText: Her Husband hated her habits... hated that she gambled. I didn't
+      do anything Chewy...
     DialogueSound: 0

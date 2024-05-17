@@ -82,7 +82,7 @@ public class CameraLook : MonoBehaviour
 
     private IEnumerator EnableInspect()
     {
-        InspectorCanvasScript.InspectItem?.Invoke(interactWith.GetLastInteracted());
+        InspectorCanvasScript.InspectItem?.Invoke(interactWith.InteractedObject());
         yield return null;
     }
 

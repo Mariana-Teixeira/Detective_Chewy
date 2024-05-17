@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System;
 using UnityEngine;
 
@@ -5,10 +6,8 @@ using UnityEngine;
 [RequireComponent(typeof(DialogueInvoker))]
 public class CharacterScript : InteractableObject
 {
-    public QuestManager QuestManager;
-    public Board Board;
-    public Target Target;
-
+    public string Character;
+    public DialogueBranch nonQuestDialogue;
     private DialogueInvoker _invoker;
 
     public void Start()
@@ -16,34 +15,29 @@ public class CharacterScript : InteractableObject
         base.SetCamera();
         base.SetOutline();
         _invoker = GetComponent<DialogueInvoker>();
+        Character = this.gameObject.name;
     }
 
+    // IDK how to feel about this code.
     public void TalkToCharacter()
     {
-        var Q = QuestManager.CurrentQuest;
-
-        if (Q.Target == this.Target)
+        try
         {
-            TalkToCharacterAndCompleteQuest(Q);
-        }
-        else
-        {
-            LoadAlternativeDialogueBranch();
-        }
-    }
+            var Q = (TalkToQuest)QuestManager.CurrentQuest?.Invoke("TalkTo");
 
-    private void TalkToCharacterAndCompleteQuest(Quest Q)
-    {
-        if (Board.ActiveTable == Q.ActiveTable && Board.CluesFound[Q.ClueArray] == Q.ClueFound)
-        {
-            Debug.Log("Quest Requirements Met");
-            _invoker.SendDialogueBranch(Q.DialogueBranch);
-            QuestManager.CompleteQuest?.Invoke();
+            if (Q.Character == this.Character)
+            {
+                _invoker.SendDialogueBranch(Q.Dialogue);
+                QuestManager.CompleteQuest?.Invoke();
+            }
+            else
+            {
+                _invoker.SendDialogueBranch(nonQuestDialogue);
+            }
         }
-    }
-
-    private void LoadAlternativeDialogueBranch()
-    {
-        throw new NotImplementedException();
+        catch
+        {
+            _invoker.SendDialogueBranch(nonQuestDialogue);
+        }
     }
 }

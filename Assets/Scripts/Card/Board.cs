@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,6 +7,8 @@ using Random = System.Random;
 
 public class Board : MonoBehaviour
 {
+    public static Action CreateNewVersionOfDeck;
+
     [SerializeField] GameObject cardPrefab;
     [SerializeField] GameObject deck;
     [SerializeField] GameObject hand;
@@ -15,8 +18,6 @@ public class Board : MonoBehaviour
 
     [SerializeField] List<GameObject> tables;
     private int _activeTable;
-
-    private bool[] _cluesFound = new bool[3] {false, false, false};
 
     private List<Card> _allCardsList;
     private List<Card> _deck;
@@ -36,13 +37,6 @@ public class Board : MonoBehaviour
             return _activeTable;
         }
     }
-    public bool[] CluesFound
-    {
-        get
-        {
-            return _cluesFound;
-        }
-    }
 
     private void Awake()
     {
@@ -53,6 +47,13 @@ public class Board : MonoBehaviour
         _discards = new List<Card>();
         _activeTable = 0;
     }
+
+    // I haven't figured out why this doesn't work when placed on Awaken! Maybe never will~ uuhh~
+    private void Start()
+    {
+        CreateNewVersionOfDeck += OnCreateNewVersionOfDeck;
+    }
+
     //CREATE CARDS
     public void InstantiateCards(List<CardData> cards)
     {
@@ -78,7 +79,7 @@ public class Board : MonoBehaviour
         }
     }
 
-    public void CreateNewVersionOfDeck(TableScript table)
+    public void OnCreateNewVersionOfDeck()
     {
         _deck.Clear();
         _hand.Clear();
@@ -93,6 +94,9 @@ public class Board : MonoBehaviour
         }
 
         CreateHand();
+        CreateTavern();
+        UpdateFirstPositions();
+        PlaceCardsInitial(_activeTable);
     }
 
     public void CreateHand()
@@ -102,8 +106,6 @@ public class Board : MonoBehaviour
             _hand.Add(_deck.ElementAt(0));
             _deck.RemoveAt(0);
         }
-
-        CreateTavern();
     }
 
     public void CreateTavern()
@@ -113,8 +115,6 @@ public class Board : MonoBehaviour
             _tavern.Add(_deck.ElementAt(0));
             _deck.RemoveAt(0);
         }
-
-        UpdateFirstPositions();
     }
 
     public void UpdateFirstPositions()
@@ -139,8 +139,6 @@ public class Board : MonoBehaviour
             card.transform.parent = tavern.transform;
             card.transform.transform.localPosition = Vector3.zero;
         }
-
-        PlaceCardsInitial(_activeTable);
     }
 
     public void UpdatePosition(Card card, Position pos)
@@ -373,22 +371,6 @@ public class Board : MonoBehaviour
         {
             DrawCard(card);
         }
-    }
-
-    public void ClueFound(int i)
-    {
-        _cluesFound[i] = true;
-    }
-
-    public bool CheckIfTablePlayable(int i)
-    {
-        if (i == _activeTable && _cluesFound[i])
-        {
-            QuestManager.CompleteQuest?.Invoke();
-            return true;
-        }
-
-        return false;
     }
 
     public void GameWonGoNextTable()
