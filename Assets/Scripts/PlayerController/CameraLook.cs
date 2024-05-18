@@ -75,16 +75,6 @@ public class CameraLook : MonoBehaviour
             PlayerStates.ChangeState?.Invoke(GameState.PLAYING);
         }
     }
-    public IEnumerator ToggleInspecting()
-    {
-        yield return StartCoroutine(EnableInspect());
-    }
-
-    private IEnumerator EnableInspect()
-    {
-        InspectorCanvasScript.InspectItem?.Invoke(interactWith.InteractedObject());
-        yield return null;
-    }
 
     private IEnumerator SittingAnimation(Quaternion lookAtRotation, Vector3 targetBodyPosition, Vector3 targetCameraPosition)
     {

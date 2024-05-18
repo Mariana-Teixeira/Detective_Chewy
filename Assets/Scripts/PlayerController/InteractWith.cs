@@ -19,7 +19,7 @@ public class InteractWith : MonoBehaviour
 
     public void CastInteractionRays()
     {
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetMouseButtonDown(0))
         {
             var centerViewport = new Vector3(Screen.width/2, Screen.height/2, 0);
             _lookingAtRay = _playerCamera.ScreenPointToRay(centerViewport);
@@ -59,11 +59,7 @@ public class InteractWith : MonoBehaviour
     {
         ClueScript item = hit.collider.gameObject.GetComponent<ClueScript>();
         _currentInspectingObject = item.gameObject;
-
-        if (item.GatherClue())
-        {
-            PlayerStates.ChangeState?.Invoke(GameState.INSPECTING);
-        }
+        item.GatherClue();
     }
 
     void InteractWithCharacter(RaycastHit hit)

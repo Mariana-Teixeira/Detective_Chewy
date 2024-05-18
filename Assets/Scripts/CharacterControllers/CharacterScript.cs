@@ -28,7 +28,7 @@ public class CharacterScript : InteractableObject
             if (Q.Character == this.Character)
             {
                 _invoker.SendDialogueBranch(Q.Dialogue);
-                QuestManager.CompleteQuest?.Invoke();
+                // QuestManager.CompleteQuest?.Invoke();
             }
             else
             {

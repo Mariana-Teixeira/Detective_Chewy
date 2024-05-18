@@ -1,11 +1,12 @@
+using System;
 using TMPro;
 using UnityEngine;
 
 public class DialogueManager : MonoBehaviour
 {
-    public Canvas DialogueCanvas;
     public TMP_Text DialogueText;
     private DialogueNode[] CurrentBranch;
+    private DialogueNode CurrentNode;
     private int DialogueIndex;
 
     private void Start()
@@ -17,14 +18,21 @@ public class DialogueManager : MonoBehaviour
     {
         CurrentBranch = nodes;
 
-        DialogueIndex = 0;
-        StartDialogue();
+        DialogueIndex = -1;
         IterateDialogue();
     }
 
     public void ListenForNextDialogue()
     {
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetMouseButtonDown(0))
+        {
+            IterateDialogue();
+        }
+    }
+
+    public void ListenForClueSelect(string evidence)
+    {
+        if (evidence == CurrentNode.Evidence)
         {
             IterateDialogue();
         }
@@ -32,36 +40,34 @@ public class DialogueManager : MonoBehaviour
 
     public void IterateDialogue()
     {
+        DialogueIndex++;
+
         if (DialogueIndex >= CurrentBranch.Length)
         {
             EndDialogue();
+            return;
+        }
+
+        CurrentNode = CurrentBranch[DialogueIndex];
+        CheckForNewTalkingState();
+        DialogueCanvasScript.UpdateCanvas?.Invoke(CurrentNode.DialogueText);
+    }
+
+    private void CheckForNewTalkingState()
+    {
+        if (CurrentNode.Evidence != string.Empty)
+        {
+            PlayerStates.ChangeState?.Invoke(GameState.DEBATING);
         }
         else
         {
-            DisplayText(CurrentBranch[DialogueIndex].DialogueText);
-            DialogueIndex++;
+            PlayerStates.ChangeState?.Invoke(GameState.TALKING);
         }
-    }
-
-    public void StartDialogue()
-    {
-        DialogueCanvas.enabled = true;
     }
 
     public void EndDialogue()
     {
-        DialogueCanvas.enabled = false;
         CurrentBranch = null;
         PlayerStates.PreviousState?.Invoke();
-    }
-
-    public void DisplayText(string text)
-    {
-        DialogueText.text = text;
-    }
-
-    public void PlaySound()
-    {
-
     }
 }

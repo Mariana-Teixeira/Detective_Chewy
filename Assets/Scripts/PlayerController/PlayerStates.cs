@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public enum GameState { NULL, WALKING, SITTING, PLAYING, INSPECTING, TALKING };
+public enum GameState { NULL, WALKING, SITTING, PLAYING, DEBATING, TALKING };
 public class PlayerStates : MonoBehaviour
 {
     public static Action PreviousState;
@@ -47,6 +47,8 @@ public class PlayerStates : MonoBehaviour
 
     public void OnChangeState(GameState newState)
     {
+        if (_currentState == newState) return;
+
         ExitState();
         _currentState = newState;
         EnterState();
@@ -63,26 +65,25 @@ public class PlayerStates : MonoBehaviour
         {
             case GameState.WALKING:
                 _cameraLook.ToggleCursor(false);
-                CardGameCanvasScript.ToggleVisibility?.Invoke(false);
-                InspectorCanvasScript.ToggleVisibility?.Invoke(false);
                 InformationCanvasScript.ToggleVisibility?.Invoke(true);
+                DialogueCanvasScript.ToggleVisibility?.Invoke(false);
                 break;
             case GameState.TALKING:
-                InformationCanvasScript.ToggleVisibility?.Invoke(false);
+                DialogueCanvasScript.ToggleVisibility?.Invoke(true);
                 break;
-            case GameState.INSPECTING:
-                StartCoroutine(_cameraLook.ToggleInspecting());
-                InspectorCanvasScript.ToggleVisibility?.Invoke(true);
+            case GameState.DEBATING:
                 _cameraLook.ToggleCursor(true);
+                ClueSlotsCanvasScript.ToggleVisibility?.Invoke(true);
                 break;
             case GameState.SITTING:
                 StartCoroutine(_cameraLook.ToggleSitting());
                 InformationCanvasScript.ToggleVisibility?.Invoke(false);
                 break;
             case GameState.PLAYING:
-                CardGameState.ChangeGamePhase?.Invoke(GamePhase.Start);
-                CardGameCanvasScript.ToggleVisibility?.Invoke(true);
                 _cameraLook.ToggleCursor(true);
+                // CardGameState.ChangeGamePhase?.Invoke(GamePhase.Start);
+                CardGameCanvasScript.ToggleVisibility?.Invoke(true);
+                DialogueCanvasScript.ToggleVisibility?.Invoke(false);
                 break;
             default:
                 Debug.LogError("Player State not found.");
@@ -102,9 +103,6 @@ public class PlayerStates : MonoBehaviour
             case GameState.PLAYING:
                 _interactWith.ListenForExitGame();
                 break;
-            case GameState.INSPECTING:
-                _interactWith.ListenForExitInspect();
-                break;
             case GameState.TALKING:
                 _dialogueManager.ListenForNextDialogue();
                 break;
@@ -113,25 +111,22 @@ public class PlayerStates : MonoBehaviour
         }
     }
 
-    // Pai Nosso que estais no céu... T-T
+    // Debating shouldn't become previous state, as to not confuse the dialogue state.
     private void ExitState()
     {
         switch (_currentState)
         {
             case GameState.WALKING:
+                InformationCanvasScript.ToggleVisibility?.Invoke(false);
                 _previousState = GameState.WALKING;
                 break;
-            case GameState.SITTING:
-                _previousState = GameState.SITTING;
-                break;  
-            case GameState.INSPECTING:
-                _previousState = GameState.INSPECTING;
+            case GameState.DEBATING:
+                _cameraLook.ToggleCursor(false);
+                ClueSlotsCanvasScript.ToggleVisibility?.Invoke(false);
                 break;
             case GameState.PLAYING:
+                CardGameCanvasScript.ToggleVisibility?.Invoke(false);
                 _previousState = GameState.PLAYING;
-                break;
-            case GameState.TALKING:
-                _previousState = GameState.TALKING;
                 break;
             default:
                 break;

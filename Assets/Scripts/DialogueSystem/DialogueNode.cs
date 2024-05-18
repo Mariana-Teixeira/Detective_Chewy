@@ -12,10 +12,11 @@ public struct DialogueNode
 {
     [TextArea(2, 10)]
     public string DialogueText;
-    public SoundLibrary DialogueSound;
+    public SoundLibraryEnum DialogueSound;
+    public string Evidence;
 }
 
-public enum SoundLibrary
+public enum SoundLibraryEnum
 {
     NULL
 }

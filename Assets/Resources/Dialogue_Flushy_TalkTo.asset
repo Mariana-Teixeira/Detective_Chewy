@@ -13,7 +13,13 @@ MonoBehaviour:
   m_Name: Dialogue_Flushy_TalkTo
   m_EditorClassIdentifier: Assembly-CSharp::DialogueBranch
   Nodes:
-  - DialogueText: Hello there, Detective. Are you in for a little game?
+  - DialogueText: Are you calling me a gambler, Detective? Without <color=green>evidence</color>,
+      no less...
     DialogueSound: 0
-  - DialogueText: I'm always up for a game...
+    Evidence: PokerChip
+  - DialogueText: It hardly matters, I don't know any Madame Cheesy.
     DialogueSound: 0
+    Evidence: Painting
+  - DialogueText: I won't reveal anything else without a proper match!
+    DialogueSound: 0
+    Evidence: 
