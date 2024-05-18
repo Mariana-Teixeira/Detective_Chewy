@@ -32,7 +32,7 @@ public class TableScript : InteractableObject
 
             if (Q.Game == this.Game)
             {
-                Board.CreateNewVersionOfDeck?.Invoke();
+                CardGameState.UpdateQuest?.Invoke(Q);
                 return true;
             }
             else

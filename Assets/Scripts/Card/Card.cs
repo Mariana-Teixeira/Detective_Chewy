@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
@@ -15,6 +16,13 @@ public class Card : MonoBehaviour
     [SerializeField] List<Material> materials;
     [SerializeField] GameObject mesh;
     public TurnPhase Phase;
+
+    public static Action<bool> ToggleInteraction;
+    bool _canInteract;
+    public void OnToggleInteraction(bool isInteractable)
+    {
+        _canInteract = isInteractable;
+    }
 
 
     public CardData CardData
@@ -37,6 +45,7 @@ public class Card : MonoBehaviour
     private void Start()
     {
         CardLogic.ChangeTurnPhase += OnChangePhase;
+        ToggleInteraction += OnToggleInteraction;
     }
 
     public void OnChangePhase(TurnPhase phase)
@@ -73,6 +82,8 @@ public class Card : MonoBehaviour
 
     void OnMouseOver()
     {
+        if(!_canInteract) return;
+
         if(_cardData.Position == Position.Hand || _cardData.Position == Position.Tavern)
         { 
             _outline.enabled = true;
@@ -81,6 +92,8 @@ public class Card : MonoBehaviour
 
     void OnMouseExit()
     {
+        if (!_canInteract) return;
+
         if (!_selected)
         {
             _outline.enabled = false;
@@ -89,6 +102,8 @@ public class Card : MonoBehaviour
 
     private void OnMouseDown()
     {
+        if (!_canInteract) return;
+
         if (Phase == TurnPhase.Discard)
         {
             if ((_cardLogic.SelectedCardsLength() < 1) && this.CardData.Position == Position.Hand)

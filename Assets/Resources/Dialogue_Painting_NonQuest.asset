@@ -12,4 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 0}
   m_Name: Dialogue_Painting_NonQuest
   m_EditorClassIdentifier: Assembly-CSharp::DialogueBranch
-  Nodes: []
+  Nodes:
+  - DialogueText: A painting depicting... two rats?
+    DialogueSound: 0
+    Evidence: 

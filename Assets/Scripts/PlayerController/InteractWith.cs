@@ -67,11 +67,11 @@ public class InteractWith : MonoBehaviour
         character.TalkToCharacter();
     }
 
-    public void ListenForExitGame()
+    public void ListenForTutorial()
     {
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetMouseButtonDown(0))
         {
-            PlayerStates.ChangeState?.Invoke(GameState.SITTING);
+            TutorialCanvasScript.ClickToNext?.Invoke();
         }
     }
 }

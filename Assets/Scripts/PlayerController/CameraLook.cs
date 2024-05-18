@@ -15,6 +15,7 @@ public class CameraLook : MonoBehaviour
     public Transform LookAtTarget;
 
     private bool _isSitting;
+    private bool _seenTutorial;
 
     void Start()
     {
@@ -72,7 +73,8 @@ public class CameraLook : MonoBehaviour
 
             // Change State
             _isSitting = !_isSitting;
-            PlayerStates.ChangeState?.Invoke(GameState.PLAYING);
+            if (_seenTutorial) PlayerStates.ChangeState?.Invoke(GameState.PLAYING);
+            else { PlayerStates.ChangeState?.Invoke(GameState.TUTORIAL); _seenTutorial = !_seenTutorial; }
         }
     }
 

@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public enum GameState { NULL, WALKING, SITTING, PLAYING, DEBATING, TALKING };
+public enum GameState { NULL, WALKING, SITTING, TUTORIAL, PLAYING, DEBATING, TALKING };
 public class PlayerStates : MonoBehaviour
 {
     public static Action PreviousState;
@@ -14,6 +14,8 @@ public class PlayerStates : MonoBehaviour
     InteractWith _interactWith;
     GameState _previousState;
     GameState _currentState;
+    // This is a confusing variable, but I need it, at least for now.
+    bool _currentlyPlaying = false;
 
     private void Awake()
     {
@@ -78,12 +80,18 @@ public class PlayerStates : MonoBehaviour
             case GameState.SITTING:
                 StartCoroutine(_cameraLook.ToggleSitting());
                 InformationCanvasScript.ToggleVisibility?.Invoke(false);
+                _currentlyPlaying = false;
+                break;
+            case GameState.TUTORIAL:
+                TutorialCanvasScript.ToggleVisibility?.Invoke(true);
                 break;
             case GameState.PLAYING:
                 _cameraLook.ToggleCursor(true);
-                // CardGameState.ChangeGamePhase?.Invoke(GamePhase.Start);
+                Card.ToggleInteraction?.Invoke(true);
                 CardGameCanvasScript.ToggleVisibility?.Invoke(true);
                 DialogueCanvasScript.ToggleVisibility?.Invoke(false);
+                // Useful when I'm technically entering this state from dialogue.
+                if (!_currentlyPlaying) { CardGameState.ChangeGamePhase?.Invoke(GamePhase.Start); _currentlyPlaying = true; }
                 break;
             default:
                 Debug.LogError("Player State not found.");
@@ -100,8 +108,8 @@ public class PlayerStates : MonoBehaviour
                 _interactWith.CastInteractionRays();
                 _playerMove.Move();
                 break;
-            case GameState.PLAYING:
-                _interactWith.ListenForExitGame();
+            case GameState.TUTORIAL:
+                _interactWith.ListenForTutorial();
                 break;
             case GameState.TALKING:
                 _dialogueManager.ListenForNextDialogue();
@@ -120,12 +128,16 @@ public class PlayerStates : MonoBehaviour
                 InformationCanvasScript.ToggleVisibility?.Invoke(false);
                 _previousState = GameState.WALKING;
                 break;
+            case GameState.TUTORIAL:
+                TutorialCanvasScript.ToggleVisibility?.Invoke(false);
+                break;
             case GameState.DEBATING:
                 _cameraLook.ToggleCursor(false);
                 ClueSlotsCanvasScript.ToggleVisibility?.Invoke(false);
                 break;
             case GameState.PLAYING:
                 CardGameCanvasScript.ToggleVisibility?.Invoke(false);
+                Card.ToggleInteraction?.Invoke(false);
                 _previousState = GameState.PLAYING;
                 break;
             default:

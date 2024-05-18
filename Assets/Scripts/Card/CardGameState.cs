@@ -11,6 +11,7 @@ public enum TurnPhase
 
 public enum GamePhase
 {
+    Null,
     Start,
     First_Threshold,
     Second_Threshold,
@@ -23,21 +24,26 @@ public enum GamePhase
 public class CardGameState : MonoBehaviour
 {
     public static Action<GamePhase> ChangeGamePhase;
+    public static Action<PlayGameQuest> UpdateQuest;
     private GamePhase currentGamePhase;
 
-    public PlayGameQuest Quest;
-
+    private PlayGameQuest _currentQuest;
     private DialogueInvoker _invoker;
 
     private void Awake()
     {
         ChangeGamePhase += ChangeState;
-        Board.CreateNewVersionOfDeck = () => Quest = (PlayGameQuest)QuestManager.CurrentQuest?.Invoke("PlayGame");
+        UpdateQuest += OnUpdateQuest;
     }
 
     private void Start()
     {
         _invoker = GetComponent<DialogueInvoker>();
+    }
+
+    public void OnUpdateQuest(PlayGameQuest quest)
+    {
+        _currentQuest = quest;
     }
 
     public void ChangeState(GamePhase gamephase)
@@ -52,16 +58,21 @@ public class CardGameState : MonoBehaviour
         switch(currentGamePhase)
         {
             case GamePhase.Start:
-                _invoker.SendDialogueBranch(Quest.StartingGameDialogue);
+                Debug.Log("Start Game Dialogue");
+                _invoker.SendDialogueBranch(_currentQuest.StartingGameDialogue);
+                Board.CreateNewVersionOfDeck?.Invoke();
                 break;
             case GamePhase.First_Threshold:
-                _invoker.SendDialogueBranch(Quest.FirstThresholdDialogue);
+                Debug.Log("First Threshold Dialogue");
+                _invoker.SendDialogueBranch(_currentQuest.FirstThresholdDialogue);
                 break;
             case GamePhase.Second_Threshold:
-                _invoker.SendDialogueBranch(Quest.SecondThresholdDialogue);
+                Debug.Log("Second Threshold Dialogue");
+                _invoker.SendDialogueBranch(_currentQuest.SecondThresholdDialogue);
                 break;
             case GamePhase.Win:
-                _invoker.SendDialogueBranch(Quest.WinningGameDialogue);
+                Debug.Log("Win Game Dialogue");
+                _invoker.SendDialogueBranch(_currentQuest.WinningGameDialogue);
                 break;
             default:
                 break;
