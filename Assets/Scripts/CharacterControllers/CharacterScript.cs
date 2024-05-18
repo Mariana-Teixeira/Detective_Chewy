@@ -23,12 +23,12 @@ public class CharacterScript : InteractableObject
     {
         try
         {
-            var Q = (TalkToQuest)QuestManager.CurrentQuest?.Invoke("TalkTo");
+            var Q = QuestManager.CurrentQuest?.Invoke("TalkTo") as TalkToQuest;
 
             if (Q.Character == this.Character)
             {
                 _invoker.SendDialogueBranch(Q.Dialogue);
-                // QuestManager.CompleteQuest?.Invoke();
+                QuestManager.CompleteQuest?.Invoke();
             }
             else
             {

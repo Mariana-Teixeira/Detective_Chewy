@@ -1,10 +1,10 @@
 using System;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 
 public class DialogueManager : MonoBehaviour
 {
-    public TMP_Text DialogueText;
     private DialogueNode[] CurrentBranch;
     private DialogueNode CurrentNode;
     private int DialogueIndex;
@@ -16,7 +16,16 @@ public class DialogueManager : MonoBehaviour
 
     public void OnSendDialogue(DialogueNode[] nodes)
     {
-        CurrentBranch = nodes;
+        if (CurrentBranch != null) // If the branch isn't empty, add whatever comes next to yourself.
+        {
+            var branch = CurrentBranch.Concat(nodes).ToArray();
+            CurrentBranch = branch;
+        }
+        else
+        {
+            CurrentBranch = nodes;
+        }
+
 
         DialogueIndex = -1;
         IterateDialogue();

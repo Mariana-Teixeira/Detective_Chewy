@@ -18,28 +18,40 @@ public class ClueScript : InteractableObject
     }
 
     // I don't enjoy it either, let me live. I'm thinking!
-    public bool GatherClue()
+    public void GatherClue()
     {
         try
         {
-            var Q = (CollectThingQuest)QuestManager.CurrentQuest?.Invoke("CollectThing");
+            var Q = QuestManager.CurrentQuest?.Invoke("CollectThings") as CollectThingsQuest;
 
-            if (Q.Clue == this.Clue)
+            if (Q != null)
             {
-                this.gameObject.SetActive(false);
-                QuestManager.CompleteQuest?.Invoke();
-                return true;
-            }
-            else
-            {
-                _invoker.SendDialogueBranch(nonQuestDialogue);
+                for (int i = 0; i < Q.Things.Length; i++)
+                {
+                    var item = Q.Things[i];
+                    CheckClue(item);
+                }
             }
         }
         catch
         {
             _invoker.SendDialogueBranch(nonQuestDialogue);
         }
+    }
 
-        return false;
+    public bool CheckClue(Thing item)
+    {
+        if (item.ThingName == this.Clue)
+        {
+            this.gameObject.SetActive(false);
+            _invoker.SendDialogueBranch(item.Dialogue);
+            ClueManager.FindClue?.Invoke(item);
+            ClueSlotsCanvasScript.ToggleIcon?.Invoke(item);
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 }

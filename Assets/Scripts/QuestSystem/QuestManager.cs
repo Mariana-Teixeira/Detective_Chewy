@@ -20,12 +20,16 @@ public class QuestManager : MonoBehaviour
     private void Start()
     {
         InformationCanvasScript.UpdateQuestInformation?.Invoke(CurrentQuest?.Invoke(""));
+        ClueManager.InitQueue?.Invoke();
     }
 
     private void OnCompleteQuest()
     {
+        Debug.Log("On Complete Quest");
+
         QuestsIndex++;
         InformationCanvasScript.UpdateQuestInformation?.Invoke(CurrentQuest?.Invoke(""));
+        ClueManager.InitQueue?.Invoke();
     }
 
     // I'm not saying it's pretty, I'm saying it works for me.
@@ -37,8 +41,8 @@ public class QuestManager : MonoBehaviour
         {
             case "TalkTo":
                 return (TalkToQuest)Q;
-            case "CollectThing":
-                return (CollectThingQuest)Q;
+            case "CollectThings":
+                return (CollectThingsQuest)Q;
             case "PlayGame":
                 return (PlayGameQuest)Q;
             default:

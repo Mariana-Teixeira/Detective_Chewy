@@ -58,7 +58,6 @@ public class InteractWith : MonoBehaviour
     void InteractWithClue(RaycastHit hit)
     {
         ClueScript item = hit.collider.gameObject.GetComponent<ClueScript>();
-        _currentInspectingObject = item.gameObject;
         item.GatherClue();
     }
 
@@ -74,17 +73,5 @@ public class InteractWith : MonoBehaviour
         {
             PlayerStates.ChangeState?.Invoke(GameState.SITTING);
         }
-    }
-
-    public void ListenForExitInspect() 
-    {
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            PlayerStates.ChangeState?.Invoke(GameState.WALKING);
-        }
-    }
-    public GameObject InteractedObject()
-    {
-        return _currentInspectingObject;
     }
 }

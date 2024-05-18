@@ -28,7 +28,7 @@ public class TableScript : InteractableObject
     {
         try
         {
-            var Q = (PlayGameQuest)QuestManager.CurrentQuest?.Invoke("PlayGame");
+            var Q = QuestManager.CurrentQuest?.Invoke("PlayGame") as PlayGameQuest;
 
             if (Q.Game == this.Game)
             {

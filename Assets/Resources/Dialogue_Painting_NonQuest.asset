@@ -10,18 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 0}
-  m_Name: Dialogue_Flushy_TalkTo
+  m_Name: Dialogue_Painting_NonQuest
   m_EditorClassIdentifier: Assembly-CSharp::DialogueBranch
   Nodes:
-  - DialogueText: Hello Detective...
+  - DialogueText: A painting of two rats...
     DialogueSound: 0
     Evidence: 
-  - DialogueText: Are you calling me a gambler, Detective? Without evidence, no less...
-    DialogueSound: 0
-    Evidence: PokerChip
-  - DialogueText: I've never met the Cheesy's...
-    DialogueSound: 0
-    Evidence: Painting
-  - DialogueText: I won't speak more without a proper match, Chewy!
+  - DialogueText: Not important to me...
     DialogueSound: 0
     Evidence: 
