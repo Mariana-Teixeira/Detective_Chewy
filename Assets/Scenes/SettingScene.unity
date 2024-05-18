@@ -4117,6 +4117,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CardLogic
       objectReference: {fileID: 0}
+    - target: {fileID: 4845576717928872556, guid: 4a526635ae604a14aa3a1755f78d5dbf, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7874689010637183828, guid: 4a526635ae604a14aa3a1755f78d5dbf, type: 3}
       propertyPath: tables.Array.size
       value: 3
@@ -46624,7 +46628,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerState: {fileID: 2430672565796937298}
-  Clue: PokerChip
+  Clue: Painting
   nonQuestDialogue: {fileID: 11400000, guid: 93fd988f819220a408d06c3b52a0452b, type: 2}
 --- !u!114 &1464295987
 MonoBehaviour:

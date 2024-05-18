@@ -16,3 +16,7 @@ MonoBehaviour:
   - DialogueText: What can I get you, Detective?
     DialogueSound: 0
     Evidence: 
+  - DialogueText: You'll want to talk to Flushy, but you'll need to collect some
+      <color=blue>clues</color> first.
+    DialogueSound: 0
+    Evidence: 

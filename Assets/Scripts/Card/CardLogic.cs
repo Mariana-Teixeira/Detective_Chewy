@@ -239,7 +239,11 @@ public class CardLogic : MonoBehaviour
     
                     _pointsText.text = "POINTS: " + _boardPointsCollected + " / " + MatchesScoreObjective[_gameBoard.GetActiveTable()];
 
-                    //ACTIVATE AUDIO CLUES
+                    #region Thresholds
+                    if (_boardPointsCollected >= (MatchesScoreObjective[_gameBoard.GetActiveTable()] * 0.0f))
+                    {
+                        CardGameState.ChangeGamePhase?.Invoke(GamePhase.Start);
+                    }
                     if (_boardPointsCollected >= (MatchesScoreObjective[_gameBoard.GetActiveTable()] * 0.4f))
                     {
                         CardGameState.ChangeGamePhase?.Invoke(GamePhase.First_Threshold);
@@ -252,6 +256,7 @@ public class CardLogic : MonoBehaviour
                     {
                         GameWon();
                     };
+                    #endregion
                 }
                 else
                 { 

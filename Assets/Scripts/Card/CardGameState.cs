@@ -31,7 +31,7 @@ public class CardGameState : MonoBehaviour
 
     private void Awake()
     {
-        ChangeGamePhase += EnterState;
+        ChangeGamePhase += ChangeState;
         Board.CreateNewVersionOfDeck = () => Quest = (PlayGameQuest)QuestManager.CurrentQuest?.Invoke("PlayGame");
     }
 
@@ -40,10 +40,15 @@ public class CardGameState : MonoBehaviour
         _invoker = GetComponent<DialogueInvoker>();
     }
 
-    public void EnterState(GamePhase gamephase)
+    public void ChangeState(GamePhase gamephase)
     {
+        if (gamephase == currentGamePhase) return;
         currentGamePhase = gamephase;
+        EnterState();
+    }
 
+    public void EnterState()
+    {
         switch(currentGamePhase)
         {
             case GamePhase.Start:
