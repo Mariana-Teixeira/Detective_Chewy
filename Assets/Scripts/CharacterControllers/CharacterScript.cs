@@ -18,24 +18,16 @@ public class CharacterScript : InteractableObject
         Character = this.gameObject.name;
     }
 
-    // IDK how to feel about this code.
     public void TalkToCharacter()
     {
-        try
-        {
-            var Q = QuestManager.CurrentQuest?.Invoke("TalkTo") as TalkToQuest;
+        var Q = QuestManager.CurrentQuest?.Invoke("TalkTo");
+        var TTQ = Q as TalkToQuest;
 
-            if (Q.Character == this.Character)
-            {
-                _invoker.SendDialogueBranch(Q.Dialogue);
-                QuestManager.CompleteQuest?.Invoke();
-            }
-            else
-            {
-                _invoker.SendDialogueBranch(nonQuestDialogue);
-            }
+        if(TTQ != null && TTQ.Character == this.Character)
+        {
+            _invoker.SendDialogueBranch(TTQ.Dialogue, true);
         }
-        catch
+        else
         {
             _invoker.SendDialogueBranch(nonQuestDialogue);
         }

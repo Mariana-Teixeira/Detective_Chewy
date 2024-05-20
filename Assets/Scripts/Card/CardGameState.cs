@@ -12,11 +12,8 @@ public enum TurnPhase
 public enum GamePhase
 {
     Null,
-    Start,
     First_Threshold,
-    Second_Threshold,
-    Win,
-    Lose
+    Second_Threshold
 }
 
 // This one has something special... like milk gone bad.
@@ -57,11 +54,6 @@ public class CardGameState : MonoBehaviour
     {
         switch(currentGamePhase)
         {
-            case GamePhase.Start:
-                Debug.Log("Start Game Dialogue");
-                _invoker.SendDialogueBranch(_currentQuest.StartingGameDialogue);
-                Board.CreateNewVersionOfDeck?.Invoke();
-                break;
             case GamePhase.First_Threshold:
                 Debug.Log("First Threshold Dialogue");
                 _invoker.SendDialogueBranch(_currentQuest.FirstThresholdDialogue);
@@ -69,10 +61,6 @@ public class CardGameState : MonoBehaviour
             case GamePhase.Second_Threshold:
                 Debug.Log("Second Threshold Dialogue");
                 _invoker.SendDialogueBranch(_currentQuest.SecondThresholdDialogue);
-                break;
-            case GamePhase.Win:
-                Debug.Log("Win Game Dialogue");
-                _invoker.SendDialogueBranch(_currentQuest.WinningGameDialogue);
                 break;
             default:
                 break;

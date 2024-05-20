@@ -14,8 +14,6 @@ public class PlayerStates : MonoBehaviour
     InteractWith _interactWith;
     GameState _previousState;
     GameState _currentState;
-    // This is a confusing variable, but I need it, at least for now.
-    bool _currentlyPlaying = false;
 
     private void Awake()
     {
@@ -80,7 +78,6 @@ public class PlayerStates : MonoBehaviour
             case GameState.SITTING:
                 StartCoroutine(_cameraLook.ToggleSitting());
                 InformationCanvasScript.ToggleVisibility?.Invoke(false);
-                _currentlyPlaying = false;
                 break;
             case GameState.TUTORIAL:
                 TutorialCanvasScript.ToggleVisibility?.Invoke(true);
@@ -90,8 +87,6 @@ public class PlayerStates : MonoBehaviour
                 Card.ToggleInteraction?.Invoke(true);
                 CardGameCanvasScript.ToggleVisibility?.Invoke(true);
                 DialogueCanvasScript.ToggleVisibility?.Invoke(false);
-                // Useful when I'm technically entering this state from dialogue.
-                if (!_currentlyPlaying) { CardGameState.ChangeGamePhase?.Invoke(GamePhase.Start); _currentlyPlaying = true; }
                 break;
             default:
                 Debug.LogError("Player State not found.");

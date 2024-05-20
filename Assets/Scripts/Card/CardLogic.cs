@@ -34,6 +34,9 @@ public class CardLogic : MonoBehaviour
     private bool tavernCardSelectedBuyPhase = false;
     private bool handCardSelectedBuyPhase = false;
 
+    bool reachedFirstThreshold;
+    bool reachedSecondThreshold;
+
     private void Awake()
     {
         #region UI Elements
@@ -240,13 +243,15 @@ public class CardLogic : MonoBehaviour
                     _pointsText.text = "POINTS: " + _boardPointsCollected + " / " + MatchesScoreObjective[_gameBoard.GetActiveTable()];
 
                     #region Thresholds
-                    if (_boardPointsCollected >= (MatchesScoreObjective[_gameBoard.GetActiveTable()] * 0.4f))
+                    if (_boardPointsCollected >= (MatchesScoreObjective[_gameBoard.GetActiveTable()] * 0.4f) && !reachedFirstThreshold)
                     {
                         CardGameState.ChangeGamePhase?.Invoke(GamePhase.First_Threshold);
+                        reachedFirstThreshold = true;
                     };
-                    if (_boardPointsCollected >= (MatchesScoreObjective[_gameBoard.GetActiveTable()] * 0.7f))
+                    if (_boardPointsCollected >= (MatchesScoreObjective[_gameBoard.GetActiveTable()] * 0.7f) && !reachedSecondThreshold)
                     {
                         CardGameState.ChangeGamePhase?.Invoke(GamePhase.Second_Threshold);
+                        reachedSecondThreshold = true;
                     };
                     if (_boardPointsCollected >= MatchesScoreObjective[_gameBoard.GetActiveTable()])
                     {
@@ -273,9 +278,7 @@ public class CardLogic : MonoBehaviour
     public void GameWon() 
     {
         Debug.Log("GAME WON");
-        CardGameState.ChangeGamePhase?.Invoke(GamePhase.Win);
         _gameBoard.GameWonGoNextTable();
-        
         ExitCardGame();
     }
 

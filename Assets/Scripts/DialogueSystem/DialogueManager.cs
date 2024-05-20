@@ -8,14 +8,17 @@ public class DialogueManager : MonoBehaviour
     private DialogueNode[] CurrentBranch;
     private DialogueNode CurrentNode;
     private int DialogueIndex;
+    private bool DialogueForQuest;
 
     private void Start()
     {
         DialogueInvoker.SendDialogue += OnSendDialogue;
     }
 
-    public void OnSendDialogue(DialogueNode[] nodes)
+    public void OnSendDialogue(DialogueNode[] nodes, bool isQuest)
     {
+        DialogueForQuest = isQuest;
+
         if (CurrentBranch != null) // If the branch isn't empty, add whatever comes next to yourself.
         {
             var branch = CurrentBranch.Concat(nodes).ToArray();
@@ -45,6 +48,11 @@ public class DialogueManager : MonoBehaviour
         {
             IterateDialogue();
         }
+        else
+        {
+            EndDialogue();
+            return;
+        }
     }
 
     public void IterateDialogue()
@@ -53,6 +61,7 @@ public class DialogueManager : MonoBehaviour
 
         if (DialogueIndex >= CurrentBranch.Length)
         {
+            if (DialogueForQuest) QuestManager.CompleteQuest?.Invoke();
             EndDialogue();
             return;
         }
@@ -77,6 +86,7 @@ public class DialogueManager : MonoBehaviour
     public void EndDialogue()
     {
         CurrentBranch = null;
+        DialogueForQuest = false;
         PlayerStates.PreviousState?.Invoke();
     }
 }

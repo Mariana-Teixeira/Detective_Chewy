@@ -35,17 +35,10 @@ public class ClueManager : MonoBehaviour
         }
     }
 
-    // I don't know... I guess it's staying...
     public void OnInitQueue()
     {
-        try
-        {
-            var Q = QuestManager.CurrentQuest?.Invoke("CollectThing") as CollectThingsQuest;
-            Clues = new Queue<Thing>(Q.Things);
-        }
-        catch
-        {
-            Debug.Log("I didn't optimize this code, so enjoy this message.");
-        }
+        var Q = QuestManager.CurrentQuest?.Invoke("CollectThing");
+        var CTQ = Q as CollectThingsQuest;
+        if (CTQ != null) Clues = new Queue<Thing>(CTQ.Things);
     }
 }
