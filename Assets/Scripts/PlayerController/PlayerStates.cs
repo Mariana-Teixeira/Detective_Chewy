@@ -15,6 +15,8 @@ public class PlayerStates : MonoBehaviour
     GameState _previousState;
     GameState _currentState;
 
+    bool _currentlyPlaying;
+
     private void Awake()
     {
         PreviousState += OnPreviousChange;
@@ -76,6 +78,7 @@ public class PlayerStates : MonoBehaviour
                 ClueSlotsCanvasScript.ToggleVisibility?.Invoke(true);
                 break;
             case GameState.SITTING:
+                _currentlyPlaying = false;
                 StartCoroutine(_cameraLook.ToggleSitting());
                 InformationCanvasScript.ToggleVisibility?.Invoke(false);
                 break;
@@ -87,6 +90,7 @@ public class PlayerStates : MonoBehaviour
                 Card.ToggleInteraction?.Invoke(true);
                 CardGameCanvasScript.ToggleVisibility?.Invoke(true);
                 DialogueCanvasScript.ToggleVisibility?.Invoke(false);
+                if (!_currentlyPlaying) { Board.CreateNewVersionOfDeck?.Invoke(); _currentlyPlaying = true; }
                 break;
             default:
                 Debug.LogError("Player State not found.");
