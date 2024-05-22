@@ -174,10 +174,17 @@ public class Card : MonoBehaviour
         }
     }
 
-    public void UnselectCard() 
+    public void UnselectCard()
     {
         _selected = false;
         _outline.OutlineColor = Color.yellow;
+        if (this.CardData.Position == Position.Hand)
+        {
+            this.transform.position = this.transform.position + new Vector3(0, 0, -0.01f);
+        }
+        else {
+            this.transform.position = this.transform.position + new Vector3(0, 0, 0.01f);
+        }
         _cardLogic.UnselectCard(this);
         _outline.enabled = false;
     }
@@ -185,7 +192,15 @@ public class Card : MonoBehaviour
     public void SelectCard()
     {
         _selected = true;
-        _outline.OutlineColor = Color.green;
+        _outline.OutlineColor = Color.green; 
+        if (this.CardData.Position == Position.Hand)
+        {
+            this.transform.position = this.transform.position + new Vector3(0, 0, 0.01f);
+        }
+        else
+        {
+            this.transform.position = this.transform.position + new Vector3(0, 0, -0.01f);
+        }
         _cardLogic.SelectCard(this);
         _outline.enabled = true;
     }

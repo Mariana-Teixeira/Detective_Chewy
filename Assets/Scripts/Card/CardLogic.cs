@@ -219,15 +219,17 @@ public class CardLogic : MonoBehaviour
                     }
 
                     //Add points of all cards
+
                     foreach (Card card in cards)
                     {
                         collectedPoints = collectedPoints + card.CardData.Score; 
                         pointsCardsPositions.Add(card.transform.position);
                     }
 
-
                     _gameBoard.CollectPoints(cards);
+
                     UnselectAllCards();
+
                     _errorText.gameObject.SetActive(false);
 
                     //add points from previous SET if second SET was used during these turn
