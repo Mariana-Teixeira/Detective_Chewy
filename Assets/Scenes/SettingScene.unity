@@ -4197,6 +4197,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7874689010637183828, guid: 4a526635ae604a14aa3a1755f78d5dbf, type: 3}
+      propertyPath: _interactWith
+      value: 
+      objectReference: {fileID: 2430672565796937304}
+    - target: {fileID: 7874689010637183828, guid: 4a526635ae604a14aa3a1755f78d5dbf, type: 3}
       propertyPath: tables.Array.size
       value: 3
       objectReference: {fileID: 0}
@@ -84016,6 +84020,17 @@ Camera:
   m_CorrespondingSourceObject: {fileID: 82501404278095903, guid: 70f86841eb55b23419c1fe874401f2fe, type: 3}
   m_PrefabInstance: {fileID: 2430672565796937297}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2430672565796937304 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 762800717455549602, guid: 70f86841eb55b23419c1fe874401f2fe, type: 3}
+  m_PrefabInstance: {fileID: 2430672565796937297}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3eb1eea9e76732b43ad3bed498e00e3d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &4306207581456487659
 PrefabInstance:
   m_ObjectHideFlags: 0

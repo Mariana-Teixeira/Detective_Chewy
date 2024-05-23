@@ -16,6 +16,8 @@ public class Board : MonoBehaviour
     [SerializeField] GameObject discards;
     [SerializeField] GameObject _DeckStartPosition;
 
+    [SerializeField] InteractWith _interactWith;
+
     [SerializeField] List<GameObject> tables;
     private int _activeTable;
 
@@ -144,20 +146,7 @@ public class Board : MonoBehaviour
 
     public void UpdatePosition(Card card, Position pos)
     {
-        if (pos == Position.Discard)
-        {
-            card.CardData.Position = pos;
-        }
-        else if (pos == Position.Hand)
-        {
-            card.CardData.Position = pos;
-            //card.transform.position = card.transform.position + new Vector3(0, 0, -0.01f);
-        }
-        else
-        {
-            card.CardData.Position = pos;
-            //card.transform.position = card.transform.position + new Vector3(0, 0, 0.01f);
-        }
+        card.CardData.Position = pos;
     }
 
     //PLACE CARDS ON TABLE NUM
@@ -289,6 +278,8 @@ public class Board : MonoBehaviour
     //LERP FUNCTION OF CARDS
     IEnumerator Lerp(Transform card, Vector3 target)
     {
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
         float timeElapsed = 0;
         float lerpDuration = 2;
         float z = 0.1f;
@@ -339,6 +330,8 @@ public class Board : MonoBehaviour
             card.position = firstTarget + new Vector3(0, 0, 0.01f);
         }
         }
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
 
     }
 
@@ -370,9 +363,10 @@ public class Board : MonoBehaviour
         _tavern.Add(_deck.ElementAt(0));
         //_deck.ElementAt(0).gameObject.transform.position = cardTavern.transform.position;
         StartCoroutine(Lerp(_deck.ElementAt(0).gameObject.transform, cardTavern.transform.position));
-        _deck.RemoveAt(0);
 
         UpdatePosition(_deck.ElementAt(0), Position.Tavern);
+        _deck.RemoveAt(0);
+
 
         //adds to hand from tavern
         _hand.Add(cardTavern);

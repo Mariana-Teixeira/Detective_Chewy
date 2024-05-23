@@ -6,6 +6,7 @@ public class InteractWith : MonoBehaviour
     CameraLook _cameraLook;
     Ray _lookingAtRay;
 
+
     [SerializeField] float _rayDistance;
     [SerializeField] LayerMask _rayMask;
 
@@ -16,6 +17,8 @@ public class InteractWith : MonoBehaviour
         _playerCamera = GetComponentInChildren<Camera>();
         _cameraLook = GetComponentInChildren<CameraLook>();
     }
+
+
 
     public void CastInteractionRays()
     {
