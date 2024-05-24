@@ -20,14 +20,20 @@ public class CharacterScript : InteractableObject
 
     public void TalkToCharacter()
     {
-        var Q = QuestManager.CurrentQuest?.Invoke("TalkTo");
-        var TTQ = Q as TalkToQuest;
-
-        if(TTQ != null && TTQ.Character == this.Character)
+        try
         {
-            _invoker.SendDialogueBranch(TTQ.Dialogue, true);
+            var Q = QuestManager.CurrentQuest?.Invoke("TalkTo") as TalkToQuest;
+
+            if (Q != null)
+            {
+                _invoker.SendDialogueBranch(Q.Dialogue, true);
+            }
+            else
+            {
+                _invoker.SendDialogueBranch(nonQuestDialogue);
+            }
         }
-        else
+        catch
         {
             _invoker.SendDialogueBranch(nonQuestDialogue);
         }

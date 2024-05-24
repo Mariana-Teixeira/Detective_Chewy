@@ -281,13 +281,13 @@ public class CardLogic : MonoBehaviour
     {
         Debug.Log("GAME WON");
         _gameBoard.GameWonGoNextTable();
+        QuestManager.CompleteQuest?.Invoke();
         ExitCardGame();
     }
 
     public void GameOver() 
     {
         Debug.Log("GAME LOST");
-
         ExitCardGame();
     }
 
