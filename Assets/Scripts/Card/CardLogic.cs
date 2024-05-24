@@ -21,6 +21,7 @@ public class CardLogic : MonoBehaviour
     private TurnPhase currentTurnPhase;
 
     [SerializeField] Board _gameBoard;
+    [SerializeField] coinScript _coinScript;
     private List<Card> cards;
 
     public int[] MatchesScoreObjective;
@@ -83,6 +84,8 @@ public class CardLogic : MonoBehaviour
             currentTurnPhase = TurnPhase.Play;
             _turnPhaseText.text = "PLAY PHASE";
             ChangeTurnPhase(TurnPhase.Play);
+            _coinScript.FlipTheCoin("sell");
+
             _errorText.gameObject.SetActive(false);
         }
         else if (currentTurnPhase == TurnPhase.Play)
@@ -90,6 +93,7 @@ public class CardLogic : MonoBehaviour
             currentTurnPhase = TurnPhase.Discard;
             _turnPhaseText.text = "DISCARD PHASE";
             ChangeTurnPhase(TurnPhase.Discard);
+            _coinScript.FlipTheCoin("discard");
 
             if (pointsCardsPositions.Count > 0)
             { 
@@ -121,6 +125,7 @@ public class CardLogic : MonoBehaviour
                 currentTurnPhase = TurnPhase.Trade;
                 _turnPhaseText.text = "BUY PHASE";
                 ChangeTurnPhase(TurnPhase.Trade);
+                _coinScript.FlipTheCoin("buy");
                 _nextPhaseButton.interactable = true;
                 UnselectAllCards();
                 _errorText.gameObject.SetActive(false);
@@ -154,6 +159,8 @@ public class CardLogic : MonoBehaviour
                     currentTurnPhase = TurnPhase.Play;
                     _turnPhaseText.text = "POINTS PHASE";
                     ChangeTurnPhase(TurnPhase.Play);
+
+                    _coinScript.FlipTheCoin("sell");
 
                     UnselectAllCards();
                     _errorText.gameObject.SetActive(false);
