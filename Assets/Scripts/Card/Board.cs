@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using UnityEngine;
 using Random = System.Random;
 
@@ -298,9 +299,19 @@ public class Board : MonoBehaviour
         }
         else
         {
-
             while (timeElapsed < lerpDuration)
             {
+                //adjust 25%
+                if (card.gameObject.GetComponent<Card>().CardData.Position == Position.Hand)
+            {
+
+                    card.transform.rotation = Quaternion.Lerp(card.transform.rotation, Quaternion.AngleAxis(-75, Vector3.left), timeElapsed / lerpDuration);
+
+
+                //card.transform.rotation = Quaternion.AngleAxis(-75, Vector3.left);
+            }
+            //
+
                 if (timeElapsed < lerpDuration / 2)
                 {
                     card.position = Vector3.Lerp(card.position, target, timeElapsed / (lerpDuration * 2));
@@ -324,12 +335,20 @@ public class Board : MonoBehaviour
         //adjust cards that were selected to go back to the hand
         if (card.gameObject.GetComponent<Card>().CardData.Position == Position.Hand)
         {
-            card.position = firstTarget + new Vector3(0, 0, -0.01f);
+            card.position = firstTarget + new Vector3(0, -0.01f, -0.01f);
         }
         else {
-            card.position = firstTarget + new Vector3(0, 0, 0.01f);
+            card.position = firstTarget + new Vector3(0, 0.01f, 0.01f);
         }
         }
+ 
+        if (card.gameObject.GetComponent<Card>().CardData.Position == Position.Discard)
+        {
+            card.transform.rotation = Quaternion.AngleAxis(25, Vector3.left);
+        }
+
+
+
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
 
