@@ -24,7 +24,7 @@ public class CharacterScript : InteractableObject
         {
             var Q = QuestManager.CurrentQuest?.Invoke("TalkTo") as TalkToQuest;
 
-            if (Q != null)
+            if (Q.Character == this.Character)
             {
                 _invoker.SendDialogueBranch(Q.Dialogue, true);
             }

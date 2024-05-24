@@ -24,13 +24,10 @@ public class ClueScript : InteractableObject
         {
             var Q = QuestManager.CurrentQuest?.Invoke("CollectThings") as CollectThingsQuest;
 
-            if (Q != null)
+            for (int i = 0; i < Q.Things.Length; i++)
             {
-                for (int i = 0; i < Q.Things.Length; i++)
-                {
-                    var item = Q.Things[i];
-                    CheckClue(item);
-                }
+                var item = Q.Things[i];
+                CheckClue(item);
             }
         }
         catch
