@@ -10,9 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 974d03248160ac84dad927547d7629eb, type: 3}
-  m_Name: Dialogue_Flushy_FirstThreshold
+  m_Name: Dialogue_Flushy_NonQuest
   m_EditorClassIdentifier: Assembly-CSharp::DialogueBranch
   Nodes:
-  - DialogueText: The Madame and I just gambled casually...
+  - DialogueText: <color=green>I need one good game and everything will be alright!</color>
+    DialogueSound: 0
+    Evidence: 
+  - DialogueText: <color=green>I don't have anything to tell you, Detective!</color>
     DialogueSound: 0
     Evidence: 

@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Dialogue_Chewy_CollectedAllClues
   m_EditorClassIdentifier: Assembly-CSharp::DialogueBranch
   Nodes:
-  - DialogueText: I'm ready to rumble...
+  - DialogueText: <color=yellow>(I found every clue I need. I should interrogate
+      the suspect.)</color>
     DialogueSound: 0
     Evidence: 

@@ -1,0 +1,58 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 974d03248160ac84dad927547d7629eb, type: 3}
+  m_Name: Dialogue_Flushy_TalkTo
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueBranch
+  Nodes:
+  - DialogueText: "<color=green>Hello, Sir! I haven\u2019t seen you around.</color>"
+    DialogueSound: 0
+    Evidence: 
+  - DialogueText: '<color=green>You strike me as an adrenaline enthusiast.
+
+      Would
+      you fancy a game?</color>'
+    DialogueSound: 0
+    Evidence: 
+  - DialogueText: <color=green>A gambling game?</color>
+    DialogueSound: 0
+    Evidence: 
+  - DialogueText: <color=green>A gambling game of cards?</color>
+    DialogueSound: 0
+    Evidence: 
+  - DialogueText: <color=green>How much are you willing to bet? I will bet it all!
+      You could make it big!</color>
+    DialogueSound: 0
+    Evidence: 
+  - DialogueText: <color=yellow>(I see the rat padding his pockets frantically. A
+      measly display akin to a mouse desperate for his cookie.)</color>
+    DialogueSound: 0
+    Evidence: 
+  - DialogueText: <color=yellow>Are you <color=green>Flushy</color>?</color>
+    DialogueSound: 0
+    Evidence: 
+  - DialogueText: "<color=green>Is that relevant for the gambling game of cards?
+      It doesn\u2019t appear so.</color>"
+    DialogueSound: 0
+    Evidence: 
+  - DialogueText: <color=yellow>Do you know Madame Cheesy?</color>
+    DialogueSound: 0
+    Evidence: 
+  - DialogueText: '<color=green>Who am I? Who do I know?
+
+      Do you want to play
+      a gambling game of cards or do you not?</color>'
+    DialogueSound: 0
+    Evidence: 
+  - DialogueText: <color=yellow>(I need to convince him to talk. I should look around
+      for clues.)</color>
+    DialogueSound: 0
+    Evidence: 

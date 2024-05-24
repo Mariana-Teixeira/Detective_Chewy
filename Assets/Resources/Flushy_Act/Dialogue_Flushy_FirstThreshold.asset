@@ -10,9 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 974d03248160ac84dad927547d7629eb, type: 3}
-  m_Name: Dialogue_Flushy_SecondThreshold
+  m_Name: Dialogue_Flushy_FirstThreshold
   m_EditorClassIdentifier: Assembly-CSharp::DialogueBranch
   Nodes:
-  - DialogueText: The Madame kept forcing my hand... damn her beauty!
+  - DialogueText: "<color=green>There was not a single night where the Madame\u2019s
+      presence did not grace the tables but her husband did not appreciate the time
+      we spent gambling.</color>"
     DialogueSound: 0
     Evidence: 

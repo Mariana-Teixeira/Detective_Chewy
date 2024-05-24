@@ -10,9 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 974d03248160ac84dad927547d7629eb, type: 3}
-  m_Name: Dialogue_Game_NonQuest
+  m_Name: Dialogue_Letter_NonQuest
   m_EditorClassIdentifier: Assembly-CSharp::DialogueBranch
   Nodes:
-  - DialogueText: This isn't time for games...
+  - DialogueText: <color=yellow>(There's an <color=white>open letter</color>.)</color>
+    DialogueSound: 0
+    Evidence: 
+  - DialogueText: <color=yellow>(I'm not the type to pry on another rat's life.)</color>
+    DialogueSound: 0
+    Evidence: 
+  - DialogueText: <color=yellow>(Unless I'm looking for clues, of course!)</color>
     DialogueSound: 0
     Evidence: 

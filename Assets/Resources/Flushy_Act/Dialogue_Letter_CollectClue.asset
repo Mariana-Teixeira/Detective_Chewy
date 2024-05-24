@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 974d03248160ac84dad927547d7629eb, type: 3}
+  m_Name: Dialogue_Letter_CollectClue
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueBranch
+  Nodes:
+  - DialogueText: <color=yellow>(This <color=white>letter</color> is addressed to
+      the Chewy Estate.)</color>
+    DialogueSound: 0
+    Evidence: 
+  - DialogueText: <color=yellow>(It accuses Mr. Cheesy of owing the sender an exuberant
+      amount of money.)</color>
+    DialogueSound: 0
+    Evidence: 
+  - DialogueText: <color=yellow>(I was told Flushy often talks about being owed money,
+      this might be valuable evidence.)</color>
+    DialogueSound: 0
+    Evidence: 
+  - DialogueText: "<color=yellow>(I\u2019m keeping this <color=white>letter</color>
+      with me.)</color>"
+    DialogueSound: 0
+    Evidence: 
