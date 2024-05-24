@@ -10,9 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 974d03248160ac84dad927547d7629eb, type: 3}
-  m_Name: Dialogue_Flushy_NonQuest
+  m_Name: Dialogue_PokerChip_NonQuest
   m_EditorClassIdentifier: Assembly-CSharp::DialogueBranch
   Nodes:
-  - DialogueText: I don't have much else to tell you, Sir Mister Lord Detective.
+  - DialogueText: <color=yellow>How did this <color=white>poker chip</color> find
+      its way here?</color>
+    DialogueSound: 0
+    Evidence: 
+  - DialogueText: <color=yellow>I shouldn't worry about that for now.</color>
     DialogueSound: 0
     Evidence: 

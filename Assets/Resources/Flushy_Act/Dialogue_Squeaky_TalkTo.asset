@@ -1,0 +1,88 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 974d03248160ac84dad927547d7629eb, type: 3}
+  m_Name: Dialogue_Squeaky_TalkTo
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueBranch
+  Nodes:
+  - DialogueText: <color=orange>What can I get you, Detective?</color>
+    DialogueSound: 0
+    Evidence: 
+  - DialogueText: <color=yellow>Get me a glass of moss-wine.</color>
+    DialogueSound: 0
+    Evidence: 
+  - DialogueText: '<color=yellow>You have a keen sight for a rat. What gave it away?
+
+      Was
+      it my raspy voice, my somber look, my introspective demeanor?
+
+      .</color>'
+    DialogueSound: 0
+    Evidence: 
+  - DialogueText: <color=orange>It's the hat, Detective.</color>
+    DialogueSound: 0
+    Evidence: 
+  - DialogueText: "<color=yellow>I\u2019ll have you know I\u2019ve got a great deal
+      on this hat.\r\n</color>"
+    DialogueSound: 0
+    Evidence: 
+  - DialogueText: <color=orange>...</color>
+    DialogueSound: 0
+    Evidence: 
+  - DialogueText: <color=yellow>And it suits my trench coat.</color>
+    DialogueSound: 0
+    Evidence: 
+  - DialogueText: <color=orange>Certainly.</color>
+    DialogueSound: 0
+    Evidence: 
+  - DialogueText: <color=yellow>... Anyway.</color>
+    DialogueSound: 0
+    Evidence: 
+  - DialogueText: <color=yellow>I'm looking for a rat... a rat capable of anything.</color>
+    DialogueSound: 0
+    Evidence: 
+  - DialogueText: "<color=orange>What makes a rat capable of anything? Is it desperation,
+      Detective?\nAre you looking for a <color=green>desperate rat</color>?</color>\r"
+    DialogueSound: 0
+    Evidence: 
+  - DialogueText: "<color=orange>My sister says despair is gambled in casino chips.</color>\r"
+    DialogueSound: 0
+    Evidence: 
+  - DialogueText: "<color=yellow>You\u2019re singing too much poetry for a bartender.\nGet
+      to the point.</color>"
+    DialogueSound: 0
+    Evidence: 
+  - DialogueText: "<color=orange>My bar attracts the anguished, the desperate, those
+      looking to drown their sorrows in cheese.\nI\u2019d advise talking to Flushy
+      at the entrance.</color>"
+    DialogueSound: 0
+    Evidence: 
+  - DialogueText: "<color=yellow>What can you tell me about this <color=green>\u201CFlushy\u201D</color>?</color>"
+    DialogueSound: 0
+    Evidence: 
+  - DialogueText: <color=orange>Well, Flushy was one of the richest aristorats in
+      the city, until lady luck frowned upon him.</color>
+    DialogueSound: 0
+    Evidence: 
+  - DialogueText: "<color=orange>It was only a matter of time until he stumbled upon
+      this place. Two glasses of moss-wine and he\u2019ll start blabbering about
+      unpaid debt\u2026</color>"
+    DialogueSound: 0
+    Evidence: 
+  - DialogueText: <color=orange>not his.</color>
+    DialogueSound: 0
+    Evidence: 
+  - DialogueText: <color=yellow>(This case will be a walk in the pipes.)</color>
+    DialogueSound: 0
+    Evidence: 
+  - DialogueText: "<color=yellow>I\u2019ll speak with <color=green>Flushy</color>.</color>"
+    DialogueSound: 0
+    Evidence: 

@@ -10,10 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 974d03248160ac84dad927547d7629eb, type: 3}
-  m_Name: Dialogue_Flushy_WinningGame
-  m_EditorClassIdentifier: Assembly-CSharp::DialogueBranch
+  m_Name: Dialogue_OtherTable_NonQuest
+  m_EditorClassIdentifier: 
   Nodes:
-  - DialogueText: Her Husband hated her habits... hated that she gambled. I didn't
-      do anything Chewy...
-    DialogueSound: 0
+  - DialogueText: <color=yellow>(This isn't time to be looking at tables.)</color>
+    DialogueSound: 
     Evidence: 

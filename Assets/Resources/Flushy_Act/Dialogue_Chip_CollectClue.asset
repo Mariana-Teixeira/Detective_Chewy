@@ -10,18 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 974d03248160ac84dad927547d7629eb, type: 3}
-  m_Name: Dialogue_Flushy_TalkTo
+  m_Name: Dialogue_Chip_CollectClue
   m_EditorClassIdentifier: Assembly-CSharp::DialogueBranch
   Nodes:
-  - DialogueText: Hello Detective...
+  - DialogueText: <color=yellow>(Seems like a standard <color=white>gambling chip</color>.)</color>
     DialogueSound: 0
     Evidence: 
-  - DialogueText: Are you calling me a gambler, Detective? Without evidence, no less...
+  - DialogueText: <color=yellow>(On closer inspection, I see lipstick stains on the
+      <color=white>chip</color>. I wonder who it belongs to?)</color>
     DialogueSound: 0
-    Evidence: PokerChip
-  - DialogueText: I've never met the Cheesy's...
-    DialogueSound: 0
-    Evidence: Painting
-  - DialogueText: I won't speak more without a proper match, Chewy!
+    Evidence: 
+  - DialogueText: "<color=yellow>(This is someone\u2019s special <color=white>gambling
+      chip</color>. I should pocket it.)</color>"
     DialogueSound: 0
     Evidence: 

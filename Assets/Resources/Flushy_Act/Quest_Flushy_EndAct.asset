@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e53cb7ddd640534459c7609da8774468, type: 3}
-  m_Name: Quest_Squeaky_TalkTo
+  m_Name: Quest_Flushy_EndAct
   m_EditorClassIdentifier: 
-  QuestDescription: Talk to Squeaky.
-  Character: Squeaky
-  Dialogue: {fileID: 11400000, guid: 7522fa04581b1094fae36b16322da083, type: 2}
+  QuestDescription: Talk to Flushy.
+  Character: Flushy.
+  Dialogue: {fileID: 11400000, guid: 9f17b6195ff374b45a0203224522f86b, type: 2}

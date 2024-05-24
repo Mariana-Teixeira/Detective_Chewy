@@ -5,8 +5,6 @@ using UnityEngine;
 public class PlayGameQuest : Quest
 {
     public string Game;
-    public DialogueBranch StartingGameDialogue;
     public DialogueBranch FirstThresholdDialogue;
     public DialogueBranch SecondThresholdDialogue;
-    public DialogueBranch WinningGameDialogue;
 }

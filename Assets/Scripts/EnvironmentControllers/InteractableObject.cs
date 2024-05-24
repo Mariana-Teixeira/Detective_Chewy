@@ -27,7 +27,7 @@ public class InteractableObject : MonoBehaviour
         { 
             float distance = Vector3.Distance(_gameCamera.transform.position, transform.position);
 
-            if (distance < 2.25)
+            if (distance <= 2.25f)
             {
                 _outline.enabled = true;
             }
