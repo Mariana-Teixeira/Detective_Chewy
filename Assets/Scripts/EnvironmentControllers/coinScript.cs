@@ -25,22 +25,34 @@ public class coinScript : MonoBehaviour
 
     public void FlipTheCoin(string s) 
     {
+
+        anim.SetTrigger("flip_coin");
+        StartCoroutine(ChangeCoinType(s));
+
+
+    }
+
+    private IEnumerator ChangeCoinType(string s) {
+
+        yield return new WaitForSeconds(0.5f);
+
         if (s == "discard")
         {
             //discard mesh of the coin
             Discard.SetActive(true);
             Sell.SetActive(false);
         }
-        else if (s == "buy") {
+        else if (s == "buy")
+        {
             //buy mesh of the coin
             Discard.SetActive(false);
             Buy.SetActive(true);
         }
-        else {
+        else
+        {
             //sell mesh of the coin
             Buy.SetActive(false);
             Sell.SetActive(true);
         }
-        anim.SetTrigger("flip_coin");
     }
 }
