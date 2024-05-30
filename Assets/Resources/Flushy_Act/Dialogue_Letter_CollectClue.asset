@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueBranch
   Nodes:
   - DialogueText: <color=yellow>(This <color=white>letter</color> is addressed to
-      the Chewy Estate.)</color>
+      the Cheesy Estate.)</color>
     DialogueSound: 0
     Evidence: 
   - DialogueText: <color=yellow>(It accuses Mr. Cheesy of owing the sender an exuberant

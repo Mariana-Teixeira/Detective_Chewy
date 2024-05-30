@@ -25,16 +25,13 @@ public class coinScript : MonoBehaviour
 
     public void FlipTheCoin(string s) 
     {
-
-        anim.SetTrigger("flip_coin");
         StartCoroutine(ChangeCoinType(s));
-
-
+        anim.SetTrigger("flip_coin");
     }
 
     private IEnumerator ChangeCoinType(string s) {
 
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.2f);
 
         if (s == "discard")
         {

@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 [SelectionBase]
@@ -20,19 +19,15 @@ public class ClueScript : InteractableObject
     // I don't enjoy it either, let me live. I'm thinking!
     public void GatherClue()
     {
-        try
-        {
-            var Q = QuestManager.CurrentQuest?.Invoke("CollectThings") as CollectThingsQuest;
+        var Q = QuestManager.CurrentQuest?.Invoke();
+        var CCQ = Q as CollectThingsQuest;
 
-            for (int i = 0; i < Q.Things.Length; i++)
-            {
-                var item = Q.Things[i];
-                CheckClue(item);
-            }
-        }
-        catch
+        if (CCQ == null) { return; }
+
+        for (int i = 0; i < CCQ.Things.Length; i++)
         {
-            _invoker.SendDialogueBranch(nonQuestDialogue);
+            var item = CCQ.Things[i];
+            CheckClue(item);
         }
     }
 

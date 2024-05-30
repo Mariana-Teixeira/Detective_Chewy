@@ -19,19 +19,18 @@ MonoBehaviour:
   - DialogueText: <color=yellow>Get me a glass of moss-wine.</color>
     DialogueSound: 0
     Evidence: 
-  - DialogueText: '<color=yellow>You have a keen sight for a rat. What gave it away?
-
-      Was
-      it my raspy voice, my somber look, my introspective demeanor?
-
-      .</color>'
+  - DialogueText: <color=yellow>You have a keen sight for a rat. What gave it away?</color>
+    DialogueSound: 0
+    Evidence: 
+  - DialogueText: <color=yellow>Was it my raspy voice, my somber look, my introspective
+      demeanor?</color>
     DialogueSound: 0
     Evidence: 
   - DialogueText: <color=orange>It's the hat, Detective.</color>
     DialogueSound: 0
     Evidence: 
   - DialogueText: "<color=yellow>I\u2019ll have you know I\u2019ve got a great deal
-      on this hat.\r\n</color>"
+      on this hat.</color>"
     DialogueSound: 0
     Evidence: 
   - DialogueText: <color=orange>...</color>
@@ -49,8 +48,11 @@ MonoBehaviour:
   - DialogueText: <color=yellow>I'm looking for a rat... a rat capable of anything.</color>
     DialogueSound: 0
     Evidence: 
-  - DialogueText: "<color=orange>What makes a rat capable of anything? Is it desperation,
-      Detective?\nAre you looking for a <color=green>desperate rat</color>?</color>\r"
+  - DialogueText: <color=orange>What makes a rat capable of anything? Is it desperation,
+      Detective?</color>
+    DialogueSound: 0
+    Evidence: 
+  - DialogueText: <color=orange>Are you looking for a <color=green>desperate rat</color>?</color>
     DialogueSound: 0
     Evidence: 
   - DialogueText: "<color=orange>My sister says despair is gambled in casino chips.</color>\r"

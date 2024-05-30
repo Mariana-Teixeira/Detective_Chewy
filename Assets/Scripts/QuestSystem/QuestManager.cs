@@ -6,7 +6,7 @@ using UnityEngine;
 public class QuestManager : MonoBehaviour
 {
     public static Action CompleteQuest;
-    public static Func<string, Quest> CurrentQuest;
+    public static Func<Quest> CurrentQuest;
 
     public Quest[] Quests;
     private int QuestsIndex;
@@ -19,7 +19,7 @@ public class QuestManager : MonoBehaviour
 
     private void Start()
     {
-        InformationCanvasScript.UpdateQuestInformation?.Invoke(CurrentQuest?.Invoke(""));
+        InformationCanvasScript.UpdateQuestInformation?.Invoke(CurrentQuest?.Invoke());
         ClueManager.InitQueue?.Invoke();
     }
 
@@ -28,25 +28,14 @@ public class QuestManager : MonoBehaviour
         Debug.Log("On Complete Quest");
 
         QuestsIndex++;
-        InformationCanvasScript.UpdateQuestInformation?.Invoke(CurrentQuest?.Invoke(""));
+        InformationCanvasScript.UpdateQuestInformation?.Invoke(CurrentQuest?.Invoke());
         ClueManager.InitQueue?.Invoke();
     }
 
     // I'm not saying it's pretty, I'm saying it works for me.
-    public Quest OnCurrentQuest(string type)
+    public Quest OnCurrentQuest()
     {
         var Q = Quests[QuestsIndex];
-        
-        switch (type)
-        {
-            case "TalkTo":
-                return (TalkToQuest)Q;
-            case "CollectThings":
-                return (CollectThingsQuest)Q;
-            case "PlayGame":
-                return (PlayGameQuest)Q;
-            default:
-                return Q;
-        }
+        return Q;
     }
 }

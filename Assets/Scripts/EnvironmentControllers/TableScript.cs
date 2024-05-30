@@ -13,38 +13,62 @@ public class TableScript : InteractableObject
     public DialogueBranch nonQuestDialogue;
     private DialogueInvoker _invoker;
 
-    public void Start()
+    public GameObject Exclamation;
+
+    private void Start()
     {
         base.SetCamera();
         base.SetOutline();
+        Game = this.gameObject.name;
         LookAtTarget = this.transform.GetChild(0);
         CardCameraPosition = this.transform.GetChild(2);
         _invoker = GetComponent<DialogueInvoker>();
-        Game = this.gameObject.name;
+
+        ToggleExclamation();
+        QuestManager.CompleteQuest += ToggleExclamation;
+    }
+
+    // I know, I know. I just need it to work for Friday!
+    public void ToggleExclamation()
+    {
+        var Quest = ReturnQuest();
+        if(Quest != null)
+        {
+            Exclamation.SetActive(true);
+        }
+        else
+        {
+            Exclamation.SetActive(false);
+        }
     }
 
     // I'm sorry, God.
     public bool PlayGame()
     {
-        try
+        var Quest = ReturnQuest();
+        if(Quest != null)
         {
-            var Q = QuestManager.CurrentQuest?.Invoke("PlayGame") as PlayGameQuest;
-
-            if (Q.Game == this.Game)
-            {
-                CardGameState.UpdateQuest?.Invoke(Q);
-                return true;
-            }
-            else
-            {
-                _invoker.SendDialogueBranch(nonQuestDialogue);
-            }
+            CardGameState.UpdateQuest?.Invoke(Quest);
+            return true;
         }
-        catch
+        else
         {
             _invoker.SendDialogueBranch(nonQuestDialogue);
+            return false;
         }
+    }
 
-        return false;
+    public PlayGameQuest ReturnQuest()
+    {
+        var Q = QuestManager.CurrentQuest?.Invoke();
+        var PGQ = Q as PlayGameQuest;
+
+        if (PGQ == null) { return null; }
+
+        if (PGQ.Game == this.Game)
+        {
+            return PGQ;
+        }
+        return null;
     }
 }

@@ -10,8 +10,6 @@ public class InteractWith : MonoBehaviour
     [SerializeField] float _rayDistance;
     [SerializeField] LayerMask _rayMask;
 
-    private GameObject _currentInspectingObject;
-
     private void Start()
     {
         _playerCamera = GetComponentInChildren<Camera>();

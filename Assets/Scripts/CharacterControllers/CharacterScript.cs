@@ -10,32 +10,56 @@ public class CharacterScript : InteractableObject
     public DialogueBranch nonQuestDialogue;
     private DialogueInvoker _invoker;
 
+    public GameObject Exclamation;
+
     public void Start()
     {
         base.SetCamera();
         base.SetOutline();
         _invoker = GetComponent<DialogueInvoker>();
         Character = this.gameObject.name;
+
+        ToggleExclamation();
+        QuestManager.CompleteQuest += ToggleExclamation;
+    }
+
+    public void ToggleExclamation()
+    {
+        var Quest = ReturnQuest();
+        if (Quest != null)
+        {
+            Exclamation.SetActive(true);
+        }
+        else
+        {
+            Exclamation.SetActive(false);
+        }
     }
 
     public void TalkToCharacter()
     {
-        try
+        var Quest = ReturnQuest();
+        if (Quest != null)
         {
-            var Q = QuestManager.CurrentQuest?.Invoke("TalkTo") as TalkToQuest;
-
-            if (Q.Character == this.Character)
-            {
-                _invoker.SendDialogueBranch(Q.Dialogue, true);
-            }
-            else
-            {
-                _invoker.SendDialogueBranch(nonQuestDialogue);
-            }
+            _invoker.SendDialogueBranch(Quest.Dialogue, true);
         }
-        catch
+        else
         {
             _invoker.SendDialogueBranch(nonQuestDialogue);
         }
+    }
+
+    public TalkToQuest ReturnQuest()
+    {
+        var Q = QuestManager.CurrentQuest?.Invoke();
+        var TTQ = Q as TalkToQuest;
+
+        if (TTQ == null) { return null; }
+
+        if (TTQ.Character == this.Character)
+        {
+            return TTQ;
+        }
+        return null;
     }
 }

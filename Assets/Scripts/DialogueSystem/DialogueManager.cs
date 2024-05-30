@@ -1,36 +1,43 @@
-using System;
+using System.Collections.Generic;
 using System.Linq;
-using TMPro;
+using Unity.VisualScripting;
+using UnityEditor.PackageManager.Requests;
 using UnityEngine;
 
 public class DialogueManager : MonoBehaviour
 {
+    public DialogueCanvasScript DialogueCanvas;
+
+    private Queue<DialogueNode[]> BranchQueue;
     private DialogueNode[] CurrentBranch;
     private DialogueNode CurrentNode;
     private int DialogueIndex;
     private bool DialogueForQuest;
+    private bool _isTalking;
 
     private void Start()
     {
+        BranchQueue = new Queue<DialogueNode[]>();
+
         DialogueInvoker.SendDialogue += OnSendDialogue;
     }
 
     public void OnSendDialogue(DialogueNode[] nodes, bool isQuest)
     {
         DialogueForQuest = isQuest;
+        BranchQueue.Enqueue(nodes);
 
-        if (CurrentBranch != null) // If the branch isn't empty, add whatever comes next to yourself.
+        if (!_isTalking)
         {
-            var branch = CurrentBranch.Concat(nodes).ToArray();
-            CurrentBranch = branch;
+            DialogueIndex = -1;
+            StartDialogue();
         }
-        else
-        {
-            CurrentBranch = nodes;
-        }
+    }
 
-
-        DialogueIndex = -1;
+    public void StartDialogue()
+    {
+        _isTalking = true;
+        CurrentBranch = BranchQueue.Dequeue();
         IterateDialogue();
     }
 
@@ -51,24 +58,43 @@ public class DialogueManager : MonoBehaviour
         else
         {
             EndDialogue();
-            return;
         }
     }
 
     public void IterateDialogue()
     {
+        if (!DialogueCanvas.IsTyping)
+        {
+            MoveToNextNode();
+        }
+        else
+        {
+            DialogueCanvas.EndTypeWritterEffect();
+        }
+    }
+
+    public void MoveToNextNode()
+    {
         DialogueIndex++;
 
         if (DialogueIndex >= CurrentBranch.Length)
         {
-            if (DialogueForQuest) QuestManager.CompleteQuest?.Invoke();
-            EndDialogue();
-            return;
+            if (BranchQueue.Count > 0)
+            {
+                CurrentBranch = BranchQueue.Dequeue();
+                DialogueIndex = 0;
+            }
+            else
+            {
+                if (DialogueForQuest) QuestManager.CompleteQuest?.Invoke();
+                EndDialogue();
+                return;
+            }
         }
 
         CurrentNode = CurrentBranch[DialogueIndex];
+        DialogueCanvas.StartTypeWritterEffect(CurrentNode.DialogueText);
         CheckForNewTalkingState();
-        DialogueCanvasScript.UpdateCanvas?.Invoke(CurrentNode.DialogueText);
     }
 
     private void CheckForNewTalkingState()
@@ -85,6 +111,7 @@ public class DialogueManager : MonoBehaviour
 
     public void EndDialogue()
     {
+        _isTalking = false;
         CurrentBranch = null;
         DialogueForQuest = false;
         PlayerStates.PreviousState?.Invoke();

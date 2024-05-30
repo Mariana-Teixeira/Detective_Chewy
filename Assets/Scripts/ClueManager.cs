@@ -30,14 +30,13 @@ public class ClueManager : MonoBehaviour
     {
         if (Clues.Count <= 0)
         {
-            _invoker.SendDialogueBranch(FinishedCollectingItems);
-            QuestManager.CompleteQuest?.Invoke();
+            _invoker.SendDialogueBranch(FinishedCollectingItems, true);
         }
     }
 
     public void OnInitQueue()
     {
-        var Q = QuestManager.CurrentQuest?.Invoke("CollectThing");
+        var Q = QuestManager.CurrentQuest?.Invoke();
         var CTQ = Q as CollectThingsQuest;
         if (CTQ != null) Clues = new Queue<Thing>(CTQ.Things);
     }
