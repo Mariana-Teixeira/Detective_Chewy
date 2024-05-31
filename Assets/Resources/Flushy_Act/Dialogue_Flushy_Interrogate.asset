@@ -101,7 +101,7 @@ MonoBehaviour:
   - DialogueText: <color=yellow>(Instinctively, I lick the <color=white>chip</color>.)</color>
     DialogueSound: 0
     Evidence: 
-  - DialogueText: "<color=yellow>(Memories start flooding back of me of the Madame
+  - DialogueText: "<color=yellow>(Memories start flooding back of me and the Madame
       at the sewer\u2019s pier.)</color>"
     DialogueSound: 0
     Evidence: 

@@ -79,7 +79,7 @@ MonoBehaviour:
       unpaid debt\u2026</color>"
     DialogueSound: 0
     Evidence: 
-  - DialogueText: <color=orange>not his.</color>
+  - DialogueText: <color=orange>... not his, of course.</color>
     DialogueSound: 0
     Evidence: 
   - DialogueText: <color=yellow>(This case will be a walk in the pipes.)</color>
