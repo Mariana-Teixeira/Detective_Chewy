@@ -31,7 +31,7 @@ public class coinScript : MonoBehaviour
 
     private IEnumerator ChangeCoinType(string s) {
 
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(0.3f);
 
         if (s == "discard")
         {

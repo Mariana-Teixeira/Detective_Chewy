@@ -174,7 +174,9 @@ public class Board : MonoBehaviour
             {
                 card.transform.position = _deckPos.transform.position;
             }
-            moveStep = 0.2f;
+            moveStep = 0.15f;
+            moveStepY = 0.07f;
+            moveStepZ = 0.01f;
             foreach (var card in _hand)
             {
                 StartCoroutine(Lerp(card.transform, _handPos.transform.position + new Vector3(moveStepY, moveStepZ, moveStep)));
@@ -222,7 +224,8 @@ public class Board : MonoBehaviour
                 card.transform.Rotate(0, 0, 90);
             }
             moveStep = -0.2f;
-            moveStepZ = 0;
+            moveStepY = 0.07f;
+            moveStepZ = 0.01f;
             foreach (var card in _hand)
             {
                 StartCoroutine(Lerp(card.transform, _handPos.transform.position + new Vector3(moveStep, moveStepZ, moveStepY)));
@@ -335,19 +338,17 @@ public class Board : MonoBehaviour
         //adjust cards that were selected to go back to the hand
         if (card.gameObject.GetComponent<Card>().CardData.Position == Position.Hand)
         {
-            card.position = firstTarget + new Vector3(0, -0.01f, -0.01f);
-        }
+            card.position = firstTarget + new Vector3(0, -0.0091f, -0.035f);
+            }
         else {
-            card.position = firstTarget + new Vector3(0, 0.01f, 0.01f);
-        }
+            card.position = firstTarget + new Vector3(0, 0.0091f, 0.035f);
+            }
         }
  
         if (card.gameObject.GetComponent<Card>().CardData.Position == Position.Discard)
         {
-            card.transform.rotation = Quaternion.AngleAxis(25, Vector3.left);
+            card.transform.rotation = Quaternion.AngleAxis(105, Vector3.left);
         }
-
-
 
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
