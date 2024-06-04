@@ -16,8 +16,6 @@ public class InteractWith : MonoBehaviour
         _cameraLook = GetComponentInChildren<CameraLook>();
     }
 
-
-
     public void CastInteractionRays()
     {
         if (Input.GetMouseButtonDown(0))
@@ -40,6 +38,22 @@ public class InteractWith : MonoBehaviour
                     InteractWithCharacter(hit);
                 }
             }
+        }
+    }
+
+    // Bad bad bad
+    public void CastCursorRays()
+    {
+        var centerViewport = new Vector3(Screen.width / 2, Screen.height / 2, 0);
+        _lookingAtRay = _playerCamera.ScreenPointToRay(centerViewport);
+
+        if (Physics.Raycast(_lookingAtRay, out RaycastHit hit, _rayDistance, _rayMask))
+        {
+            CursorCanvas.ChangeCursor?.Invoke(true);
+        }
+        else
+        {
+            CursorCanvas.ChangeCursor?.Invoke(false);
         }
     }
 

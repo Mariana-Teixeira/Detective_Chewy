@@ -2,16 +2,14 @@ using UnityEngine;
 
 [SelectionBase]
 [RequireComponent(typeof(DialogueInvoker))]
-public class ClueScript : InteractableObject
+public class ClueScript : MonoBehaviour
 {
     public string Clue;
     public DialogueBranch nonQuestDialogue;
     private DialogueInvoker _invoker;
 
-    private void Start()
+    private void Awake()
     {
-        base.SetCamera();
-        base.SetOutline();
         _invoker = GetComponent<DialogueInvoker>();
         Clue = this.gameObject.name;
     }
@@ -22,7 +20,11 @@ public class ClueScript : InteractableObject
         var Q = QuestManager.CurrentQuest?.Invoke();
         var CCQ = Q as CollectThingsQuest;
 
-        if (CCQ == null) { return; }
+        if (CCQ == null)
+        {
+            _invoker.SendDialogueBranch(nonQuestDialogue);
+            return;
+        }
 
         for (int i = 0; i < CCQ.Things.Length; i++)
         {

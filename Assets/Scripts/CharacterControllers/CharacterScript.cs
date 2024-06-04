@@ -1,10 +1,8 @@
-using JetBrains.Annotations;
-using System;
 using UnityEngine;
 
 [SelectionBase]
 [RequireComponent(typeof(DialogueInvoker))]
-public class CharacterScript : InteractableObject
+public class CharacterScript : MonoBehaviour
 {
     public string Character;
     public DialogueBranch nonQuestDialogue;
@@ -12,13 +10,14 @@ public class CharacterScript : InteractableObject
 
     public GameObject Exclamation;
 
-    public void Start()
+    private void Awake()
     {
-        base.SetCamera();
-        base.SetOutline();
         _invoker = GetComponent<DialogueInvoker>();
         Character = this.gameObject.name;
+    }
 
+    public void Start()
+    {
         ToggleExclamation();
         QuestManager.CompleteQuest += ToggleExclamation;
     }

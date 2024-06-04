@@ -3,7 +3,7 @@ using UnityEngine;
 
 [SelectionBase]
 [RequireComponent(typeof(DialogueInvoker))]
-public class TableScript : InteractableObject
+public class TableScript : MonoBehaviour
 {
     public Transform CardBodyPosition;
     [HideInInspector] public Transform CardCameraPosition;
@@ -15,15 +15,16 @@ public class TableScript : InteractableObject
 
     public GameObject Exclamation;
 
-    private void Start()
+    private void Awake()
     {
-        base.SetCamera();
-        base.SetOutline();
         Game = this.gameObject.name;
         LookAtTarget = this.transform.GetChild(0);
         CardCameraPosition = this.transform.GetChild(2);
         _invoker = GetComponent<DialogueInvoker>();
+    }
 
+    private void Start()
+    {
         ToggleExclamation();
         QuestManager.CompleteQuest += ToggleExclamation;
     }

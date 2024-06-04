@@ -72,7 +72,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7822740054378617943}
   - component: {fileID: 2348272315876104179}
-  - component: {fileID: 5815980682190495685}
   - component: {fileID: 2685939059108771852}
   - component: {fileID: 1059603222838743317}
   m_Layer: 6
@@ -122,24 +121,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 0.81651443, z: 1}
   m_Center: {x: 0, y: 0.39755216, z: 0}
---- !u!114 &5815980682190495685
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8794031200644923767}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  outlineMode: 0
-  outlineColor: {r: 1, g: 1, b: 1, a: 1}
-  outlineWidth: 2
-  precomputeOutline: 0
-  bakeKeys: []
-  bakeValues: []
 --- !u!114 &2685939059108771852
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -152,10 +133,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3efea6ecd0a3214da5c4fdc0ab1995a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerState: {fileID: 0}
   CardBodyPosition: {fileID: 2264839912398266969}
   CardCameraPosition: {fileID: 2264494091297162308}
   LookAtTarget: {fileID: 5415793167313110080}
+  Game: 
+  nonQuestDialogue: {fileID: 0}
+  Exclamation: {fileID: 0}
 --- !u!114 &1059603222838743317
 MonoBehaviour:
   m_ObjectHideFlags: 0

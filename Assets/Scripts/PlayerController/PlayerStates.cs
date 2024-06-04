@@ -105,6 +105,7 @@ public class PlayerStates : MonoBehaviour
             case GameState.WALKING:
                 _cameraLook.RotateWithMouse();
                 _interactWith.CastInteractionRays();
+                _interactWith.CastCursorRays();
                 _playerMove.Move();
                 break;
             case GameState.TUTORIAL:
