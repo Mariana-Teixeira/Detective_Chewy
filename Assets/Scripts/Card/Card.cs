@@ -180,11 +180,11 @@ public class Card : MonoBehaviour
         _outline.OutlineColor = Color.yellow;
         if (this.CardData.Position == Position.Hand)
         {
-            //this.transform.position
-            this.transform.localPosition = this.transform.localPosition + new Vector3(0, -0.01f, -0.01f);
+            //this.transform.position 0.01f
+            this.transform.localPosition = this.transform.localPosition + new Vector3(0, -0.0091f, -0.035f);
         }
         else {
-            this.transform.localPosition = this.transform.localPosition + new Vector3(0, 0.01f, 0.01f);
+            this.transform.localPosition = this.transform.localPosition + new Vector3(0, 0.0091f, 0.035f);
         }
         _cardLogic.UnselectCard(this);
         _outline.enabled = false;
@@ -196,11 +196,11 @@ public class Card : MonoBehaviour
         _outline.OutlineColor = Color.green; 
         if (this.CardData.Position == Position.Hand)
         {
-            this.transform.localPosition = this.transform.localPosition + new Vector3(0, 0.01f, 0.01f);
+            this.transform.localPosition = this.transform.localPosition + new Vector3(0, 0.0091f, 0.035f);
         }
         else
         {
-            this.transform.localPosition = this.transform.localPosition + new Vector3(0, -0.01f, -0.01f);
+            this.transform.localPosition = this.transform.localPosition + new Vector3(0, -0.0091f, -0.035f);
         }
         _cardLogic.SelectCard(this);
         _outline.enabled = true;

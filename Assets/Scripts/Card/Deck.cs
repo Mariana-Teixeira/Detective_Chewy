@@ -28,6 +28,7 @@ public class Deck : MonoBehaviour
             {
                 var value = j + 1;
                 var score = value >= 10 ? 10 : value;
+
                 var card = new CardData(suit, value, score);
                 _deck.Add(card);
             }
