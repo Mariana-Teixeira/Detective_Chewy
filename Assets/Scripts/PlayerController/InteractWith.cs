@@ -29,13 +29,18 @@ public class InteractWith : MonoBehaviour
                 {
                     InteractWithTable(hit);
                 }
-                if (hit.collider.CompareTag("Clue"))
+                else if (hit.collider.CompareTag("Clue"))
                 {
                     InteractWithClue(hit);
                 }
-                if (hit.collider.CompareTag("Character"))
+                else if (hit.collider.CompareTag("Character"))
                 {
                     InteractWithCharacter(hit);
+                }
+                else if (hit.collider.CompareTag("Object"))
+                {
+                    ObjectScript thing = hit.collider.GetComponent<ObjectScript>();
+                    thing.ActivateAnimation();
                 }
             }
         }
