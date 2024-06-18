@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 293d5574715f0a241a16010c2138f9fe, type: 3}
-  m_Name: Quest_Flushy_PlayGame
+  m_Name: Test_Servy_Game
   m_EditorClassIdentifier: 
-  QuestDescription: Play a Game with Flushy.
-  Game: Flushy_Game
-  FirstThresholdDialogue: {fileID: 11400000, guid: fb55b8de79d570946a7280917e23c12f, type: 2}
-  SecondThresholdDialogue: {fileID: 11400000, guid: 029f87cf382b93b40942735ea4078294, type: 2}
+  QuestDescription: 'Test_Quest: Servy'
+  Game: Servy_Game
+  FirstThresholdDialogue: {fileID: 11400000, guid: 4efa2f7476b0e934b8ab1108b0c1096b, type: 2}
+  SecondThresholdDialogue: {fileID: 11400000, guid: 4efa2f7476b0e934b8ab1108b0c1096b, type: 2}
