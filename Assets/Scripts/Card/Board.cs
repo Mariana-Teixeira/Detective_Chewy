@@ -17,10 +17,12 @@ public class Board : MonoBehaviour
     [SerializeField] GameObject discards;
     [SerializeField] GameObject _DeckStartPosition;
 
+    [SerializeField] coinScript coinScript;
+
     [SerializeField] InteractWith _interactWith;
 
     [SerializeField] List<GameObject> tables;
-    private int _activeTable;
+    [SerializeField] int _activeTable;
 
     private List<Card> _allCardsList;
     private List<Card> _deck;
@@ -54,7 +56,7 @@ public class Board : MonoBehaviour
     // I haven't figured out why this doesn't work when placed on Awaken! Maybe never will~ uuhh~
     private void Start()
     {
-        CreateNewVersionOfDeck += OnCreateNewVersionOfDeck;
+        //CreateNewVersionOfDeck += OnCreateNewVersionOfDeck;
     }
 
     //CREATE CARDS
@@ -77,7 +79,7 @@ public class Board : MonoBehaviour
         foreach (Card card in _allCardsList)
         {
             card.transform.position = _DeckStartPosition.transform.position;
-            card.transform.rotation = Quaternion.identity;
+            card.transform.rotation = _DeckStartPosition.transform.rotation;
             card.transform.Rotate(90, 90, 0);
         }
     }
@@ -167,15 +169,17 @@ public class Board : MonoBehaviour
         {
             card.transform.position = _deckPos.transform.position;
         }
-        
-        if (num == 1 || num == 2)
+
+
+        if (num >= 1)
         {
             foreach (var card in _deck)
             {
                 card.transform.position = _deckPos.transform.position;
+                card.transform.Rotate(0, 0, 90);
             }
-            moveStep = 0.15f;
-            moveStepY = 0.07f;
+            moveStep = 0.65f;
+            moveStepY = 0.02f;
             moveStepZ = 0.01f;
             foreach (var card in _hand)
             {
@@ -197,31 +201,39 @@ public class Board : MonoBehaviour
                     moveStep = moveStep - 0.1f;
                 }
                 */
-                moveStepZ = moveStepZ - 0.001f;
+                moveStepZ = moveStepZ + 0.001f;
                 moveStep = moveStep - 0.05f;
                 counter++;
+
+                //card.transform.Rotate(0, 0, 90);
             }
             moveStep = -0.15f;
             foreach (var card in _tavern)
             {
-                StartCoroutine(Lerp(card.transform, _tavernPos.transform.position + new Vector3(-0.15f, 0, moveStep)));
+                StartCoroutine(Lerp(card.transform, _tavernPos.transform.position + new Vector3(-0.2f, 0, moveStep)));
                 //card.transform.position = _tavernPos.transform.position + new Vector3(0, 0, moveStep);
                 moveStep = moveStep + 0.1f;
+                card.transform.Rotate(0, 0, 90);
             }
             foreach (var card in _discards)
             {
                 StartCoroutine(Lerp(card.transform, _discardsPos.transform.position));
                 //card.transform.position = _discardsPos.transform.position;
+                card.transform.Rotate(0, 0, 90);
+
             }
+
         }
+
         //----------------------------------------------------
         else
         {
+
             foreach (var card in _deck)
             {
                 StartCoroutine(Lerp(card.transform, _deckPos.transform.position));
                 //card.transform.position = _deckPos.transform.position;
-                card.transform.Rotate(0, 0, 90);
+                card.transform.Rotate(0, 0, 0);
             }
             moveStep = -0.2f;
             moveStepY = 0.07f;
@@ -258,7 +270,7 @@ public class Board : MonoBehaviour
                 //card.transform.position = _tavernPos.transform.position + new Vector3(moveStep, 0, 0);
                 moveStep = moveStep + 0.1f;
 
-                card.transform.Rotate(0, 0, 90);
+                card.transform.Rotate(0, 0, 0);
                 /*
                 card.transform.Rotate(-35, 0, 0);
                 card.transform.position = card.transform.position + new Vector3(0, 0.03f, 0);
@@ -302,17 +314,26 @@ public class Board : MonoBehaviour
         }
         else
         {
+
             while (timeElapsed < lerpDuration)
             {
                 //adjust 25%
                 if (card.gameObject.GetComponent<Card>().CardData.Position == Position.Hand)
-            {
-
-                    card.transform.rotation = Quaternion.Lerp(card.transform.rotation, Quaternion.AngleAxis(-75, Vector3.left), timeElapsed / lerpDuration);
+                {
+                    if (ActiveTable == 0)
+                    {
+                        card.transform.rotation = Quaternion.Lerp(card.transform.rotation, Quaternion.AngleAxis(-75, Vector3.left), timeElapsed / lerpDuration);
+                    }
+                    else
+                    {
+                        card.transform.rotation = Quaternion.identity;
+                        card.transform.Rotate(0, 90, 0);
+                        card.transform.Rotate(75, 0, 0);
+                    }
 
 
                 //card.transform.rotation = Quaternion.AngleAxis(-75, Vector3.left);
-            }
+                }
             //
 
                 if (timeElapsed < lerpDuration / 2)
@@ -335,19 +356,33 @@ public class Board : MonoBehaviour
         }
         card.position = firstTarget;
         if (_setup == true) {
-        //adjust cards that were selected to go back to the hand
-        if (card.gameObject.GetComponent<Card>().CardData.Position == Position.Hand)
-        {
-            card.position = firstTarget + new Vector3(0, -0.0091f, -0.035f);
+            //adjust cards that were selected to go back to the hand
+            if (card.gameObject.GetComponent<Card>().CardData.Position == Position.Hand)
+            {
+                if (_activeTable == 0)
+                {
+                    card.position = firstTarget + new Vector3(0, -0.0091f, -0.035f);
+                }
+                else
+                {
+                    card.position = firstTarget + new Vector3(-0.035f, -0.0091f, 0);
+                }
             }
-        else {
-            card.position = firstTarget + new Vector3(0, 0.0091f, 0.035f);
+            else
+            {
+                if (_activeTable == 0)
+                {
+                    card.position = firstTarget + new Vector3(0, 0.0091f, 0.035f);
+                }
+                else {
+                    card.position = firstTarget + new Vector3(0.035f, 0.0091f, 0);
+                }
             }
         }
  
         if (card.gameObject.GetComponent<Card>().CardData.Position == Position.Discard)
         {
-            card.transform.rotation = Quaternion.AngleAxis(105, Vector3.left);
+            card.transform.rotation = Quaternion.AngleAxis(90, Vector3.left);
         }
 
         Cursor.visible = true;
@@ -429,6 +464,9 @@ public class Board : MonoBehaviour
     public void GameWonGoNextTable()
     {
         _activeTable = _activeTable + 1;
+        if (_activeTable == 1) { coinScript.MoveToTable2(); }
+        if (_activeTable == 2) { coinScript.MoveToTable3(); }
+
     }
 
     public Transform GetTavernPos()

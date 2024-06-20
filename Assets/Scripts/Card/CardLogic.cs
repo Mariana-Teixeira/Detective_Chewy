@@ -351,5 +351,9 @@ public class CardLogic : MonoBehaviour
         return tavernCardSelectedBuyPhase;
     }
 
+    public int GetActiveTable() { 
+        return _gameBoard.GetActiveTable();
+    }
+
 }
 

@@ -9,6 +9,8 @@ public class TableScript : MonoBehaviour
     [HideInInspector] public Transform CardCameraPosition;
     [HideInInspector] public Transform LookAtTarget;
 
+    [SerializeField] Board board;
+
     public string Game;
     public DialogueBranch nonQuestDialogue;
     private DialogueInvoker _invoker;
@@ -46,6 +48,7 @@ public class TableScript : MonoBehaviour
     // I'm sorry, God.
     public bool PlayGame()
     {
+        board.OnCreateNewVersionOfDeck();
         var Quest = ReturnQuest();
         if(Quest != null)
         {

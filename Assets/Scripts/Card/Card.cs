@@ -15,6 +15,7 @@ public class Card : MonoBehaviour
 
     [SerializeField] List<Material> materials;
     [SerializeField] GameObject mesh;
+
     public TurnPhase Phase;
 
     public static Action<bool> ToggleInteraction;
@@ -180,11 +181,26 @@ public class Card : MonoBehaviour
         _outline.OutlineColor = Color.yellow;
         if (this.CardData.Position == Position.Hand)
         {
-            //this.transform.position 0.01f
-            this.transform.localPosition = this.transform.localPosition + new Vector3(0, -0.0091f, -0.035f);
+
+            if (_cardLogic.GetActiveTable() == 0)
+            {
+                this.transform.localPosition = this.transform.localPosition + new Vector3(0, -0.0091f, -0.035f);
+            }
+            else
+            {
+                this.transform.localPosition = this.transform.localPosition + new Vector3(-0.035f, -0.0091f, 0);
+            }
         }
-        else {
-            this.transform.localPosition = this.transform.localPosition + new Vector3(0, 0.0091f, 0.035f);
+        else
+        {
+            if (_cardLogic.GetActiveTable() == 0)
+            {
+                this.transform.localPosition = this.transform.localPosition + new Vector3(0, 0.0091f, 0.035f);
+            }
+            else
+            {
+                this.transform.localPosition = this.transform.localPosition + new Vector3(0.035f, 0.0091f, 0);
+            }
         }
         _cardLogic.UnselectCard(this);
         _outline.enabled = false;
@@ -193,14 +209,27 @@ public class Card : MonoBehaviour
     public void SelectCard()
     {
         _selected = true;
-        _outline.OutlineColor = Color.green; 
+        _outline.OutlineColor = Color.green;
         if (this.CardData.Position == Position.Hand)
         {
-            this.transform.localPosition = this.transform.localPosition + new Vector3(0, 0.0091f, 0.035f);
+            if (_cardLogic.GetActiveTable() == 0)
+            {
+                this.transform.localPosition = this.transform.localPosition + new Vector3(0, 0.0091f, 0.035f);
+            }
+            else
+            {
+                this.transform.localPosition = this.transform.localPosition + new Vector3(0.035f, 0.0091f, 0);
+            }
         }
         else
         {
-            this.transform.localPosition = this.transform.localPosition + new Vector3(0, -0.0091f, -0.035f);
+            if (_cardLogic.GetActiveTable() == 0)
+            {
+                this.transform.localPosition = this.transform.localPosition + new Vector3(0, -0.0091f, -0.035f);
+            }
+            else {
+                this.transform.localPosition = this.transform.localPosition + new Vector3(-0.035f, -0.0091f, 0);
+            }
         }
         _cardLogic.SelectCard(this);
         _outline.enabled = true;

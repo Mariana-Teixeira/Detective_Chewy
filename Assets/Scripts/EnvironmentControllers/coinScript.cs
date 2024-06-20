@@ -10,6 +10,13 @@ public class coinScript : MonoBehaviour
     [SerializeField] GameObject Discard;
     [SerializeField] GameObject Buy;
     [SerializeField] GameObject Sell;
+
+
+    [SerializeField] GameObject Table1;
+    [SerializeField] GameObject Table2;
+    [SerializeField] GameObject Table3;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -52,4 +59,20 @@ public class coinScript : MonoBehaviour
             Sell.SetActive(true);
         }
     }
+
+    public void MoveToTable2() {
+
+        this.transform.parent.SetParent(Table2.gameObject.transform);
+        this.transform.parent.localPosition = new Vector3(-0.224999994f, -0.0577000268f, 0.0250000656f);
+
+    }
+    public void MoveToTable3()
+    {
+
+        this.transform.parent.SetParent(Table3.gameObject.transform);
+        this.transform.parent.localPosition = new Vector3(-0.224999994f, -0.0577000268f, 0.0250000656f);
+
+    }
+
+
 }
