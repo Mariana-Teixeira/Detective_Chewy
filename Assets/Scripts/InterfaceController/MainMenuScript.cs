@@ -70,20 +70,32 @@ public class MainMenuScript : MonoBehaviour
 
     public void Continue()
     {
-        
+        if (SceneManager.GetActiveScene().buildIndex == 0) {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        }
+
+        else { 
         if (state1 == 1) { }
-        else {
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+        else
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
         }
         Time.timeScale = 1;
         _menuPanel.SetActive(false);
         //_cameraTransition.DisableCursor();
+        }
     }
 
     public void BackToMainMenu() 
     {
+        if (SceneManager.GetActiveScene().buildIndex == 0)
+        {
+            Application.Quit();
+        }
+        else { 
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+        }
     }
 
     IEnumerator LoadLevel(int LevelIndex) 

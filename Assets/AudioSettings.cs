@@ -15,6 +15,8 @@ public class AudioSettings : MonoBehaviour
 
     [SerializeField] GameObject menuPanel;
 
+    [SerializeField] MenuManager menuManager;
+
 
     private void Start()
     {
@@ -28,6 +30,7 @@ public class AudioSettings : MonoBehaviour
     }
 
     void BackToMenu() {
+        menuManager.StoreValues();
         menuPanel.SetActive(true);
         this.gameObject.SetActive(false);
     }

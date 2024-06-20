@@ -16,6 +16,7 @@ public class MenuManager : MonoBehaviour
             OpenPauseMenu();
         }
     }
+
     public void StoreValues() 
     {
         StaticData.MasterVolume = audioSettings.GetMasterVolume();

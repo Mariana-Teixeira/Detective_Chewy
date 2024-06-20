@@ -8,6 +8,8 @@ public class InputSettings : MonoBehaviour
     [SerializeField] Button backBtn;
 
     [SerializeField] GameObject menuPanel;
+
+    [SerializeField] MenuManager menuManager;
     void Start()
     {
         backBtn.onClick.AddListener(BackToMenu);
@@ -15,6 +17,7 @@ public class InputSettings : MonoBehaviour
 
     void BackToMenu()
     {
+        menuManager.StoreValues();
         menuPanel.SetActive(true);
         this.gameObject.SetActive(false);
     }
