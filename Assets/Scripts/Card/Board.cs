@@ -97,6 +97,7 @@ public class Board : MonoBehaviour
         foreach (Card card in _allCardsList)
         {
             _deck.Add(card);
+            card.transform.rotation = Quaternion.identity;
         }
 
         CreateHand();
@@ -176,7 +177,7 @@ public class Board : MonoBehaviour
             foreach (var card in _deck)
             {
                 card.transform.position = _deckPos.transform.position;
-                card.transform.Rotate(0, 0, 90);
+                card.transform.Rotate(90, 0, 90);
             }
             moveStep = 0.65f;
             moveStepY = 0.02f;
@@ -213,13 +214,14 @@ public class Board : MonoBehaviour
                 StartCoroutine(Lerp(card.transform, _tavernPos.transform.position + new Vector3(-0.2f, 0, moveStep)));
                 //card.transform.position = _tavernPos.transform.position + new Vector3(0, 0, moveStep);
                 moveStep = moveStep + 0.1f;
-                card.transform.Rotate(0, 0, 90);
+                card.transform.Rotate(90, 0, 90);
             }
             foreach (var card in _discards)
             {
-                StartCoroutine(Lerp(card.transform, _discardsPos.transform.position));
+                StartCoroutine(Lerp(card.transform, _discardsPos.transform.position + new Vector3(0, -0.02f, -0.05f)));
+
                 //card.transform.position = _discardsPos.transform.position;
-                card.transform.Rotate(0, 0, 90);
+                card.transform.Rotate(90, 0, 90);
 
             }
 
@@ -233,7 +235,7 @@ public class Board : MonoBehaviour
             {
                 StartCoroutine(Lerp(card.transform, _deckPos.transform.position));
                 //card.transform.position = _deckPos.transform.position;
-                card.transform.Rotate(0, 0, 0);
+                card.transform.Rotate(90, 0, 0);
             }
             moveStep = -0.2f;
             moveStepY = 0.07f;
@@ -270,7 +272,7 @@ public class Board : MonoBehaviour
                 //card.transform.position = _tavernPos.transform.position + new Vector3(moveStep, 0, 0);
                 moveStep = moveStep + 0.1f;
 
-                card.transform.Rotate(0, 0, 0);
+                card.transform.Rotate(90, 0, 0);
                 /*
                 card.transform.Rotate(-35, 0, 0);
                 card.transform.position = card.transform.position + new Vector3(0, 0.03f, 0);
@@ -279,10 +281,8 @@ public class Board : MonoBehaviour
             }
             foreach (var card in _discards)
             {
-
-                card.transform.position = _discardsPos.transform.position;
-
-                card.transform.Rotate(0, 0, 90);
+                StartCoroutine(Lerp(card.transform, (_discardsPos.transform.position + new Vector3(0, 0.4f, -0.35f)))); 
+                card.transform.Rotate(90, 0, 0);
             }
         }
         _setup = true;
@@ -308,6 +308,7 @@ public class Board : MonoBehaviour
             while (timeElapsed < lerpDuration)
             {
                 card.position = Vector3.Lerp(card.position, firstTarget, timeElapsed / lerpDuration);
+                card.transform.rotation = Quaternion.Lerp(card.transform.rotation, Quaternion.AngleAxis(180, Vector3.up), timeElapsed / lerpDuration);
                 timeElapsed += Time.deltaTime;
                 yield return null;
             }
@@ -383,6 +384,9 @@ public class Board : MonoBehaviour
         if (card.gameObject.GetComponent<Card>().CardData.Position == Position.Discard)
         {
             card.transform.rotation = Quaternion.AngleAxis(90, Vector3.left);
+            if (_activeTable > 0) {
+                card.transform.Rotate(90, 0, 0);
+            }
         }
 
         Cursor.visible = true;
@@ -406,10 +410,11 @@ public class Board : MonoBehaviour
         _discards.Add(card);
         _hand.Remove(card);
         DrawCard(card.transform.position);
-        StartCoroutine(Lerp(card.gameObject.transform, _discardsPos.transform.position + new Vector3(0, (float)0.001 * _discards.Count(), 0)));
+        UpdatePosition(card, Position.Discard);
+        StartCoroutine(Lerp(card.gameObject.transform, _discardsPos.transform.position + new Vector3(0, (float)0.001 * _discards.Count(), 0) + new Vector3(0, -0.05f, -0.15f)));
         //card.gameObject.transform.position = _discardsPos.transform.position + new Vector3 (0, (float) 0.001*_discards.Count(),0);
 
-        UpdatePosition(card, Position.Discard);
+ 
     }
 
     public void ExchangeTavernCard(Card cardHand, Card cardTavern) 
@@ -435,9 +440,10 @@ public class Board : MonoBehaviour
         _discards.Add(cardHand);
         _hand.Remove(cardHand);
         //cardHand.gameObject.transform.position = _discardsPos.transform.position;
-        StartCoroutine(Lerp(cardHand.gameObject.transform, _discardsPos.transform.position));
 
         UpdatePosition(cardHand, Position.Discard);
+        StartCoroutine(Lerp(cardHand.gameObject.transform, _discardsPos.transform.position + new Vector3(0, -0.05f, -0.15f)));
+
     }
 
     public void CollectPoints(List<Card> cards) 

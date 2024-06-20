@@ -45,6 +45,7 @@ public class coinScript : MonoBehaviour
             //discard mesh of the coin
             Discard.SetActive(true);
             Sell.SetActive(false);
+            Buy.SetActive(false);
         }
         else if (s == "buy")
         {

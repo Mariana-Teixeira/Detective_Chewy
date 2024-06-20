@@ -319,6 +319,7 @@ public class CardLogic : MonoBehaviour
 
         currentTurnPhase = TurnPhase.Discard;
         _turnPhaseText.text = "DISCARD PHASE";
+        _coinScript.FlipTheCoin("discard");
     }
 
     public void SelectHandCardBuyPhase()
