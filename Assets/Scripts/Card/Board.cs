@@ -307,7 +307,7 @@ public class Board : MonoBehaviour
         {
             while (timeElapsed < lerpDuration)
             {
-                card.position = Vector3.Lerp(card.position, firstTarget, timeElapsed / lerpDuration);
+                card.position = Vector3.Lerp(card.position, firstTarget + new Vector3(0, 0.08f,0), timeElapsed / lerpDuration);
                 card.transform.rotation = Quaternion.Lerp(card.transform.rotation, Quaternion.AngleAxis(180, Vector3.up), timeElapsed / lerpDuration);
                 timeElapsed += Time.deltaTime;
                 yield return null;
@@ -385,7 +385,8 @@ public class Board : MonoBehaviour
         {
             card.transform.rotation = Quaternion.AngleAxis(90, Vector3.left);
             if (_activeTable > 0) {
-                card.transform.Rotate(90, 0, 0);
+                card.transform.Rotate(0, 0, 90);
+                card.transform.localPosition = card.transform.localPosition + new Vector3(-1, -0.4f, 0f);
             }
         }
 

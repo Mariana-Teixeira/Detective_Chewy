@@ -61165,6 +61165,7 @@ MonoBehaviour:
   Table1: {fileID: 1632468605}
   Table2: {fileID: 1352414388}
   Table3: {fileID: 252471281}
+  anim: {fileID: 1777151433}
 --- !u!43 &1778232033
 Mesh:
   m_ObjectHideFlags: 0

@@ -6,7 +6,6 @@ using UnityEngine;
 
 public class coinScript : MonoBehaviour
 {
-    Animator anim;
     [SerializeField] GameObject Discard;
     [SerializeField] GameObject Buy;
     [SerializeField] GameObject Sell;
@@ -15,6 +14,8 @@ public class coinScript : MonoBehaviour
     [SerializeField] GameObject Table1;
     [SerializeField] GameObject Table2;
     [SerializeField] GameObject Table3;
+
+    [SerializeField] Animator anim;
 
 
     // Start is called before the first frame update
