@@ -15139,7 +15139,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: c2de6a8dc8d689849a145588951d7bc1, type: 2}
     - target: {fileID: 919132149155446097, guid: 2f2352a92b2be284a90975f7b40c7b09, type: 3}
       propertyPath: m_Name
-      value: stool
+      value: second_stool
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 2f2352a92b2be284a90975f7b40c7b09, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -35969,7 +35969,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 2eb5e423952a5f44bb4e44dc3074e09f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.333
+      value: 1.3297
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2eb5e423952a5f44bb4e44dc3074e09f, type: 3}
       propertyPath: m_LocalPosition.y
@@ -35977,35 +35977,35 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2eb5e423952a5f44bb4e44dc3074e09f, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -2.342
+      value: -2.2855
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2eb5e423952a5f44bb4e44dc3074e09f, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.5086223
+      value: -0.06698762
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2eb5e423952a5f44bb4e44dc3074e09f, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.7122482
+      value: 0.3375761
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2eb5e423952a5f44bb4e44dc3074e09f, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.4687854
+      value: 0.688462
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2eb5e423952a5f44bb4e44dc3074e09f, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.11935698
+      value: -0.6384161
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2eb5e423952a5f44bb4e44dc3074e09f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 56.766
+      value: 56.494
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2eb5e423952a5f44bb4e44dc3074e09f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 145.953
+      value: 251.422
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2eb5e423952a5f44bb4e44dc3074e09f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 94.509
+      value: 94.474
       objectReference: {fileID: 0}
     - target: {fileID: -7511558181221131132, guid: 2eb5e423952a5f44bb4e44dc3074e09f, type: 3}
       propertyPath: m_ScaleInLightmap
@@ -44107,7 +44107,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: c2de6a8dc8d689849a145588951d7bc1, type: 2}
     - target: {fileID: 919132149155446097, guid: 2f2352a92b2be284a90975f7b40c7b09, type: 3}
       propertyPath: m_Name
-      value: stool
+      value: first_stool
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 2f2352a92b2be284a90975f7b40c7b09, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -62227,6 +62227,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -6094360862008798284, guid: 44951c9377cc18042a3b756495686747, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2865700857016338721, guid: 44951c9377cc18042a3b756495686747, type: 3}
     - target: {fileID: -4302394982776184030, guid: 44951c9377cc18042a3b756495686747, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
