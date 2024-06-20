@@ -44059,23 +44059,23 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 2f2352a92b2be284a90975f7b40c7b09, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.5
+      value: 0.346
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2f2352a92b2be284a90975f7b40c7b09, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.1
+      value: 0.342
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2f2352a92b2be284a90975f7b40c7b09, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.1
+      value: -0.81681645
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2f2352a92b2be284a90975f7b40c7b09, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2f2352a92b2be284a90975f7b40c7b09, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: -0.70710677
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2f2352a92b2be284a90975f7b40c7b09, type: 3}
       propertyPath: m_LocalRotation.y
@@ -44087,7 +44087,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2f2352a92b2be284a90975f7b40c7b09, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
+      value: -90
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 2f2352a92b2be284a90975f7b40c7b09, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
@@ -44104,10 +44104,10 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: 2f2352a92b2be284a90975f7b40c7b09, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: c2de6a8dc8d689849a145588951d7bc1, type: 2}
+      objectReference: {fileID: 2100000, guid: cc704ad252b5b41488d2a5ef70e306c1, type: 2}
     - target: {fileID: 919132149155446097, guid: 2f2352a92b2be284a90975f7b40c7b09, type: 3}
       propertyPath: m_Name
-      value: stool
+      value: TarnishedStool
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 2f2352a92b2be284a90975f7b40c7b09, type: 3}
       propertyPath: m_StaticEditorFlags
