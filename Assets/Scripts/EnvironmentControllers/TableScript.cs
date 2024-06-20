@@ -48,10 +48,11 @@ public class TableScript : MonoBehaviour
     // I'm sorry, God.
     public bool PlayGame()
     {
-        board.OnCreateNewVersionOfDeck();
         var Quest = ReturnQuest();
         if(Quest != null)
         {
+
+            board.OnCreateNewVersionOfDeck();
             CardGameState.UpdateQuest?.Invoke(Quest);
             return true;
         }
