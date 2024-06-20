@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class MainMenuScript : MonoBehaviour
 {
@@ -8,13 +9,46 @@ public class MainMenuScript : MonoBehaviour
     //[SerializeField] CameraTransition _cameraTransition;
     [SerializeField] Animator _animator;
 
+    [SerializeField] Button backToGameBtn;
+    [SerializeField] Button audioSettingsBtn;
+    [SerializeField] Button inputSettingsBtn;
+    [SerializeField] Button exitGameBtn;
+
+
+    [SerializeField] GameObject _audioPanel;
+    [SerializeField] GameObject _inputPanel;
+
     public float transitionTime = 1.5f;
 
     private int state1 = 0;
-    public void PlayGame()
+
+    private void Start()
+    {
+        backToGameBtn.onClick.AddListener(Continue);
+        audioSettingsBtn.onClick.AddListener(OpenAudioSettings);
+        inputSettingsBtn.onClick.AddListener(OpenInputSettings);
+        exitGameBtn.onClick.AddListener(BackToMainMenu);
+
+        _menuPanel.SetActive(true);
+        _audioPanel.SetActive(false);
+        _inputPanel.SetActive(false);
+    }
+
+        public void PlayGame()
     {
         StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex + 2));
     }
+
+    void OpenAudioSettings() {
+        _audioPanel.SetActive(true);
+        this.gameObject.SetActive(false);
+    }
+
+    void OpenInputSettings() {
+        _inputPanel.SetActive(true);
+        this.gameObject.SetActive(false);
+    }
+
     public void QuitGame()
     {
         Debug.Log("Game Quit");
@@ -36,13 +70,14 @@ public class MainMenuScript : MonoBehaviour
 
     public void Continue()
     {
-        _menuPanel.SetActive(false);
+        
         if (state1 == 1) { }
         else {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         }
         Time.timeScale = 1;
+        _menuPanel.SetActive(false);
         //_cameraTransition.DisableCursor();
     }
 
@@ -59,4 +94,6 @@ public class MainMenuScript : MonoBehaviour
 
         SceneManager.LoadScene(LevelIndex);
     }
+
+
 }

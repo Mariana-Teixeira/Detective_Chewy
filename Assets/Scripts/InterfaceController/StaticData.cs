@@ -4,13 +4,21 @@ using UnityEngine;
 
 public class StaticData : MonoBehaviour
 {
-    public static float Volume = 100;
-    public static float Subtitles = 1;
+    public static float MasterVolume = 100;
+    public static float MusicVolume = 100;
+    public static float AmbienceVolume = 100;
+    public static float EffectsVolume = 100;
+    public static float VoicesVolume = 100;
+
+
 
     private void Start()
     {
-        Volume = 100;
-        Subtitles = 1;
-    }
+        MasterVolume = 100;
+        MusicVolume = 100;
+        AmbienceVolume = 100;
+        EffectsVolume = 100;
+        VoicesVolume = 100;
 
+    }
 }

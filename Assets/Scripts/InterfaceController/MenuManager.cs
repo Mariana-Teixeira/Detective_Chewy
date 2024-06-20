@@ -5,7 +5,8 @@ using UnityEngine;
 public class MenuManager : MonoBehaviour
 {
     [SerializeField] GameObject menuPanel;
-    [SerializeField] settingsScript menuSettings;
+    [SerializeField] AudioSettings audioSettings;
+    [SerializeField] InputSettings inputSettings;
 
     // Update is called once per frame
     void Update()
@@ -17,8 +18,12 @@ public class MenuManager : MonoBehaviour
     }
     public void StoreValues() 
     {
-        StaticData.Volume = menuSettings.GetVolume();
-        StaticData.Subtitles = menuSettings.GetSubtitles();
+        StaticData.MasterVolume = audioSettings.GetMasterVolume();
+        StaticData.MusicVolume = audioSettings.GetMusicVolume();
+        StaticData.AmbienceVolume = audioSettings.GetAmbienceVolume();
+        StaticData.EffectsVolume = audioSettings.GetEffectsVolume();
+        StaticData.VoicesVolume = audioSettings.GetVoicesVolume();
+
     }
 
     public void OpenPauseMenu() 
