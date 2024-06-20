@@ -386,7 +386,7 @@ public class Board : MonoBehaviour
             card.transform.rotation = Quaternion.AngleAxis(90, Vector3.left);
             if (_activeTable > 0) {
                 card.transform.Rotate(0, 0, 90);
-                card.transform.localPosition = card.transform.localPosition + new Vector3(-1, -0.4f, 0f);
+                card.transform.localPosition = card.transform.localPosition + new Vector3(-0.15f, 0, 0.15f);
             }
         }
 
