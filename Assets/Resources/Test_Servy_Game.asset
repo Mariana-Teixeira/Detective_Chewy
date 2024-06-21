@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Test_Servy_Game
   m_EditorClassIdentifier: 
   QuestDescription: 'Test_Quest: Servy'
-  Game: Servy_Game
+  Game: Servy_Table
   FirstThresholdDialogue: {fileID: 11400000, guid: 4efa2f7476b0e934b8ab1108b0c1096b, type: 2}
   SecondThresholdDialogue: {fileID: 11400000, guid: 4efa2f7476b0e934b8ab1108b0c1096b, type: 2}

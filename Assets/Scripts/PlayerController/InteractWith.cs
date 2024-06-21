@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class InteractWith : MonoBehaviour
 {
@@ -10,15 +11,19 @@ public class InteractWith : MonoBehaviour
     [SerializeField] float _rayDistance;
     [SerializeField] LayerMask _rayMask;
 
+    private string _rebindedInput;
+
     private void Start()
     {
         _playerCamera = GetComponentInChildren<Camera>();
         _cameraLook = GetComponentInChildren<CameraLook>();
+
+        _rebindedInput = StaticData.InteractBtn;
     }
 
     public void CastInteractionRays()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.E) || Input.GetButtonDown("Fire1"))
         {
             var centerViewport = new Vector3(Screen.width/2, Screen.height/2, 0);
             _lookingAtRay = _playerCamera.ScreenPointToRay(centerViewport);
