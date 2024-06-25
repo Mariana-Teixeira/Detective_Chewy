@@ -7,7 +7,17 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: AtlasMaterial
+    second: {fileID: 2100000, guid: 7cba042d7a008764fbe1a8c2e169dd09, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: Beer_Material
+    second: {fileID: 2100000, guid: 7cba042d7a008764fbe1a8c2e169dd09, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Color_Atlas
     second: {fileID: 2100000, guid: 7cba042d7a008764fbe1a8c2e169dd09, type: 2}
   - first:
       type: UnityEngine:Material

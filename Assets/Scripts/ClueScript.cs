@@ -17,6 +17,8 @@ public class ClueScript : MonoBehaviour
     // I don't enjoy it either, let me live. I'm thinking!
     public void GatherClue()
     {
+        // putting this when player interacts
+        // or put on quest manager
         var Q = QuestManager.CurrentQuest?.Invoke();
         var CCQ = Q as CollectThingsQuest;
 
@@ -49,3 +51,5 @@ public class ClueScript : MonoBehaviour
         }
     }
 }
+
+// data, functionally, visuals
