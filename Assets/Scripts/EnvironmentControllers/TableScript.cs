@@ -51,7 +51,6 @@ public class TableScript : MonoBehaviour
         var Quest = ReturnQuest();
         if(Quest != null)
         {
-
             board.OnCreateNewVersionOfDeck();
             CardGameState.UpdateQuest?.Invoke(Quest);
             return true;
