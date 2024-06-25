@@ -41,11 +41,14 @@ Material:
     - _Metalic: 1
     - _NoiseScale: 5
     - _NormalStrength: 0.01
+    - _OuterVibe: 0.86
     - _QueueControl: 0
     - _QueueOffset: 0
     - _ReflectionStrength: 1
+    - _ReflectionVibe: 0.15
     - _Smoothness: 1
     m_Colors:
+    - _ColorVibe: {r: 1, g: 0, b: 0, a: 0}
     - _GlassColor: {r: 1, g: 1, b: 1, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &6671517112200758249
