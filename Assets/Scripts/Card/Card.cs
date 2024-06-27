@@ -74,17 +74,19 @@ public class Card : MonoBehaviour
 
     void OnMouseOver()
     {
+        float amount = 0.015f;
+
         if(!_canInteract || _isHovered) return;
 
-        if(_cardData.Position == Position.Hand && !_isSelected)
+        if(_cardData.Position == Position.Hand)
         {
             _isHovered = true;
-            this.transform.localPosition += this.transform.up * 0.015f;
+            if (!_isSelected) this.transform.localPosition += this.transform.up * amount;
         }
-        else if (_cardData.Position == Position.Tavern && !_isSelected)
+        else if (_cardData.Position == Position.Tavern)
         {
             _isHovered = true;
-            this.transform.localPosition -= this.transform.forward * 0.015f;
+            if (!_isSelected) this.transform.localPosition -= this.transform.forward * amount;
         }
 
         //if (_cardData.Position == Position.Hand || _cardData.Position == Position.Tavern)
@@ -95,17 +97,19 @@ public class Card : MonoBehaviour
 
     void OnMouseExit()
     {
+        float amount = 0.015f;
+
         if (!_canInteract || !_isHovered) return;
 
-        if (_cardData.Position == Position.Hand && !_isSelected)
+        if (_cardData.Position == Position.Hand)
         {
             _isHovered = false;
-            this.transform.localPosition -= this.transform.up * 0.015f;
+            if (!_isSelected) this.transform.localPosition -= this.transform.up * amount;
         }
-        else if (_cardData.Position == Position.Tavern && !_isSelected)
+        else if (_cardData.Position == Position.Tavern)
         {
             _isHovered = false;
-            this.transform.localPosition += this.transform.forward * 0.015f;
+            if (!_isSelected) this.transform.localPosition += this.transform.forward * amount;
         }
 
         //if (!_selected)
@@ -190,7 +194,11 @@ public class Card : MonoBehaviour
 
     public void UnselectCard()
     {
+        float amount = 0.020f;
+        if (!_isHovered) amount += 0.015f;
+
         _isSelected = false;
+
         //_outline.OutlineColor = Color.yellow;
         if (this.CardData.Position == Position.Hand)
         {
@@ -198,7 +206,7 @@ public class Card : MonoBehaviour
             if (_cardLogic.GetActiveTable() == 0)
             {
                 //this.transform.localPosition = this.transform.localPosition + new Vector3(0, -0.0091f, -0.035f);
-                this.transform.localPosition -= this.transform.up * 0.035f;
+                this.transform.localPosition -= this.transform.up * amount;
             }
             else
             {
@@ -210,7 +218,7 @@ public class Card : MonoBehaviour
             if (_cardLogic.GetActiveTable() == 0)
             {
                 //this.transform.localPosition = this.transform.localPosition + new Vector3(0, 0.0091f, 0.035f);
-                this.transform.localPosition += this.transform.forward * 0.035f;
+                this.transform.localPosition += this.transform.forward * amount;
             }
             else
             {
@@ -223,6 +231,8 @@ public class Card : MonoBehaviour
 
     public void SelectCard()
     {
+        float amount = 0.020f;
+
         _isSelected = true;
         //_outline.OutlineColor = Color.green;
         if (this.CardData.Position == Position.Hand)
@@ -230,7 +240,7 @@ public class Card : MonoBehaviour
             if (_cardLogic.GetActiveTable() == 0)
             {
                 //this.transform.localPosition = this.transform.localPosition + new Vector3(0, 0.0091f, 0.035f);
-                this.transform.localPosition += this.transform.up * 0.035f;
+                this.transform.localPosition += this.transform.up * amount;
             }
             else
             {
@@ -242,7 +252,7 @@ public class Card : MonoBehaviour
             if (_cardLogic.GetActiveTable() == 0)
             {
                 //this.transform.localPosition = this.transform.localPosition + new Vector3(0, -0.0091f, -0.035f);
-                this.transform.localPosition -= this.transform.forward * 0.035f;
+                this.transform.localPosition -= this.transform.forward * amount;
             }
             else {
                 this.transform.localPosition = this.transform.localPosition + new Vector3(-0.035f, -0.0091f, 0);

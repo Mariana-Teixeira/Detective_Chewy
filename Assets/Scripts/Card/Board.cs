@@ -293,10 +293,15 @@ public class Board : MonoBehaviour
         StartCoroutine(Lerp(card, target, movementVector));
     }
     //LERP FUNCTION OF CARDS
+
     IEnumerator Lerp(Transform card, Vector3 target, Vector3 movementVector = default)
     {
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
+        card.gameObject.GetComponent<Card>()._canInteract = false;
+        card.gameObject.GetComponent<Card>()._isSelected = false;
+        card.gameObject.GetComponent<Card>()._isHovered = false;
+        //Cursor.visible = false;
+        //Cursor.lockState = CursorLockMode.Locked;
+
         float timeElapsed = 0;
         float lerpDuration = 2;
         float z = 0.1f;
@@ -321,12 +326,12 @@ public class Board : MonoBehaviour
                 if (movementVector.y > 0)
                 {
                     Debug.Log("Hand MovementVector: " + movementVector);
-                    firstTarget -= movementVector * (0.035f + 0.015f);
+                    firstTarget -= movementVector * 0.035f;
                 }
                 else if (movementVector.y < 0)
                 {
                     Debug.Log("Other MovementVector: " + movementVector);
-                    firstTarget += movementVector * (0.035f + 0.015f);
+                    firstTarget += movementVector * 0.035f;
                 }
             }
 
@@ -407,10 +412,8 @@ public class Board : MonoBehaviour
         }
 
         card.gameObject.GetComponent<Card>()._canInteract = true;
-
-        Cursor.visible = true;
-        Cursor.lockState = CursorLockMode.None;
-
+        //Cursor.visible = true;
+        //Cursor.lockState = CursorLockMode.None;
     }
 
     //DRAWING MECHANICS
