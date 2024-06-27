@@ -14,6 +14,11 @@ ModelImporter:
       assembly: UnityEngine.CoreModule
       name: Material
     second: {fileID: 2100000, guid: 47ad9ded88f21fa44bf189fb310f8477, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Metalic
+    second: {fileID: 2100000, guid: 0fc2e033be2d545408804499c201ce85, type: 2}
   materials:
     materialImportMode: 1
     materialName: 0
