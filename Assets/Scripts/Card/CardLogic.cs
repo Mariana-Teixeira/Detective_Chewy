@@ -149,9 +149,10 @@ public class CardLogic : MonoBehaviour
         {
             if (cards.Count == 2)
             {
-                if ((cards[0].CardData.Position == Position.Tavern && cards[0].CardData.Value <= cards[1].CardData.Value)
-                    ||
-                    (cards[1].CardData.Position == Position.Tavern && cards[1].CardData.Value <= cards[0].CardData.Value))
+                //if ((cards[0].CardData.Position == Position.Tavern && cards[0].CardData.Value <= cards[1].CardData.Value) || (cards[1].CardData.Position == Position.Tavern && cards[1].CardData.Value <= cards[0].CardData.Value))
+                    
+                if ((cards[0].CardData.Position == Position.Tavern) ||
+                    (cards[1].CardData.Position == Position.Tavern))
                 {
                     if (cards[0].CardData.Position == Position.Tavern)
                     {

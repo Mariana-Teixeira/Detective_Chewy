@@ -49630,7 +49630,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6074250823429451218, guid: 8281c9f49e0610447bb4a193c51781af, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.431
+      value: -0.425
       objectReference: {fileID: 0}
     - target: {fileID: 6733414005748789471, guid: 8281c9f49e0610447bb4a193c51781af, type: 3}
       propertyPath: m_StaticEditorFlags
