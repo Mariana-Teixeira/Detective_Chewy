@@ -20,6 +20,14 @@ public class CardLogic : MonoBehaviour
     const string InvalidSelectionByNumber = "Wrong number of cards selected";
     #endregion
 
+    #region Scores
+    public int[] MatchesScoreObjective;
+    float firstThresholdPercentage = 0.4f;
+    float secondThresholdPercentage = 0.7f;
+    bool reachedFirstThreshold;
+    bool reachedSecondThreshold;
+    #endregion
+
     #region UI Elements
     [SerializeField] TextMeshProUGUI _turnPhaseText;
     [SerializeField] Slider _pointsSlider;
@@ -39,7 +47,7 @@ public class CardLogic : MonoBehaviour
     [SerializeField] CoinScript _coinScript;
     private List<Card> cards;
 
-    public int[] MatchesScoreObjective;
+
     private List<CardPositionAndDirection> pointsCardsPositions;
     private int _boardPointsCollected;
 
@@ -49,9 +57,6 @@ public class CardLogic : MonoBehaviour
 
     private bool tavernCardSelectedBuyPhase = false;
     private bool handCardSelectedBuyPhase = false;
-
-    bool reachedFirstThreshold;
-    bool reachedSecondThreshold;
 
     private void Awake()
     {
@@ -82,14 +87,6 @@ public class CardLogic : MonoBehaviour
         cards.Remove(card);
     }
 
-    public void ExitCardGame()
-    {
-        PlayerStates.ChangeState?.Invoke(GameState.SITTING);
-        _gameBoard.ResetDeck();
-        UnselectAllCards();
-        StartNewBoard();
-    }
-
     public void ChangeToNextPhase() 
     {
         if (currentTurnPhase == TurnPhase.Trade)
@@ -103,6 +100,7 @@ public class CardLogic : MonoBehaviour
 
             _errorText.gameObject.SetActive(false);
         }
+
         else if (currentTurnPhase == TurnPhase.Play)
         {
             currentTurnPhase = TurnPhase.Discard;
@@ -127,6 +125,7 @@ public class CardLogic : MonoBehaviour
                 GameOver();
             }
         }
+
         UnselectAllCards();
     }
 
@@ -246,24 +245,23 @@ public class CardLogic : MonoBehaviour
                     }
 
                     _boardPointsCollected = _boardPointsCollected + Convert.ToInt32(Math.Floor(collectedPoints * multiScore));
-
                     lastAddedPoints = Convert.ToInt32(Math.Floor(collectedPoints * multiScore));
 
+                    // Update Score UI
                     _pointsText.text = _boardPointsCollected.ToString();
                     _pointsSlider.value = _boardPointsCollected;
 
                     #region Thresholds
-                    if (_boardPointsCollected >= (MatchesScoreObjective[_gameBoard.GetActiveTable()] * 0.4f) && !reachedFirstThreshold)
+                    var currentMatchScores = MatchesScoreObjective[_gameBoard.GetActiveTable()];
+                    if (_boardPointsCollected >= (currentMatchScores * firstThresholdPercentage) && !reachedFirstThreshold)
                     {
-                        CardGameState.ChangeGamePhase?.Invoke(GamePhase.First_Threshold);
                         reachedFirstThreshold = true;
                     };
-                    if (_boardPointsCollected >= (MatchesScoreObjective[_gameBoard.GetActiveTable()] * 0.7f) && !reachedSecondThreshold)
+                    if (_boardPointsCollected >= (currentMatchScores * secondThresholdPercentage) && !reachedSecondThreshold)
                     {
-                        CardGameState.ChangeGamePhase?.Invoke(GamePhase.Second_Threshold);
                         reachedSecondThreshold = true;
                     };
-                    if (_boardPointsCollected >= MatchesScoreObjective[_gameBoard.GetActiveTable()])
+                    if (_boardPointsCollected >= currentMatchScores)
                     {
                         GameWon();
                     };
@@ -304,14 +302,19 @@ public class CardLogic : MonoBehaviour
 
     public void GameWon() 
     {
+        PlayerStates.ChangeState?.Invoke(GameState.SITTING);
         _gameBoard.SetNextActiveTable();
-        QuestManager.CompleteQuest?.Invoke();
-        ExitCardGame();
+        _gameBoard.ResetDeck();
+        UnselectAllCards();
+        StartNewBoard();
     }
 
     public void GameOver() 
     {
-        ExitCardGame();
+        PlayerStates.ChangeState?.Invoke(GameState.SITTING);
+        _gameBoard.ResetDeck();
+        UnselectAllCards();
+        StartNewBoard();
     }
 
     public int SelectedCardsLength()

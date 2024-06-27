@@ -111,6 +111,7 @@ public class DialogueManager : MonoBehaviour
         _isTalking = false;
         CurrentBranch = null;
         DialogueForQuest = false;
+
         PlayerStates.PreviousState?.Invoke();
     }
 }

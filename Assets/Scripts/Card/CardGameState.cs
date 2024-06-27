@@ -13,7 +13,8 @@ public enum GamePhase
 {
     Null,
     First_Threshold,
-    Second_Threshold
+    Second_Threshold,
+    Win_Condition
 }
 
 // This one has something special... like milk gone bad.
@@ -59,6 +60,9 @@ public class CardGameState : MonoBehaviour
                 break;
             case GamePhase.Second_Threshold:
                 _invoker.SendDialogueBranch(_currentQuest.SecondThresholdDialogue);
+                break;
+            case GamePhase.Win_Condition:
+                _invoker.SendDialogueBranch(_currentQuest.SecondThresholdDialogue, true);
                 break;
             default:
                 break;
