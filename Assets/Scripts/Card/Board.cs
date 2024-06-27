@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
+using Unity.VisualScripting;
 using UnityEngine;
 using Random = System.Random;
 
@@ -317,8 +318,16 @@ public class Board : MonoBehaviour
         {
             if (movementVector != Vector3.zero)
             {
-                Debug.Log("First Target: " + firstTarget + " || Movement Vector: " + movementVector);
-                firstTarget -= movementVector * (0.035f + 0.015f);
+                if (movementVector.y > 0)
+                {
+                    Debug.Log("Hand MovementVector: " + movementVector);
+                    firstTarget -= movementVector * (0.035f + 0.015f);
+                }
+                else if (movementVector.y < 0)
+                {
+                    Debug.Log("Other MovementVector: " + movementVector);
+                    firstTarget += movementVector * (0.035f + 0.015f);
+                }
             }
 
             while (timeElapsed < lerpDuration)
@@ -379,7 +388,7 @@ public class Board : MonoBehaviour
             {
                 if (_activeTable == 0)
                 {
-                    card.position = firstTarget + new Vector3(0, 0.0091f, 0.035f);
+                    //card.position = firstTarget + new Vector3(0, 0.0091f, 0.035f);
                 }
                 else
                 {
@@ -432,7 +441,7 @@ public class Board : MonoBehaviour
         //add from deck to tavern
         _tavern.Add(_deck.ElementAt(0));
         //_deck.ElementAt(0).gameObject.transform.position = cardTavern.transform.position;
-        StartCoroutine(Lerp(_deck.ElementAt(0).gameObject.transform, cardTavern.transform.position));
+        StartCoroutine(Lerp(_deck.ElementAt(0).gameObject.transform, cardTavern.transform.position, cardTavern.transform.forward));
 
         UpdatePosition(_deck.ElementAt(0), Position.Tavern);
         _deck.RemoveAt(0);

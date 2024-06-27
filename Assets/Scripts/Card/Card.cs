@@ -76,10 +76,15 @@ public class Card : MonoBehaviour
     {
         if(!_canInteract || _isHovered) return;
 
-        if(_cardData.Position == Position.Hand)
+        if(_cardData.Position == Position.Hand && !_isSelected)
         {
             _isHovered = true;
             this.transform.localPosition += this.transform.up * 0.015f;
+        }
+        else if (_cardData.Position == Position.Tavern && !_isSelected)
+        {
+            _isHovered = true;
+            this.transform.localPosition -= this.transform.forward * 0.015f;
         }
 
         //if (_cardData.Position == Position.Hand || _cardData.Position == Position.Tavern)
@@ -96,6 +101,11 @@ public class Card : MonoBehaviour
         {
             _isHovered = false;
             this.transform.localPosition -= this.transform.up * 0.015f;
+        }
+        else if (_cardData.Position == Position.Tavern && !_isSelected)
+        {
+            _isHovered = false;
+            this.transform.localPosition += this.transform.forward * 0.015f;
         }
 
         //if (!_selected)
@@ -199,7 +209,8 @@ public class Card : MonoBehaviour
         {
             if (_cardLogic.GetActiveTable() == 0)
             {
-                this.transform.localPosition = this.transform.localPosition + new Vector3(0, 0.0091f, 0.035f);
+                //this.transform.localPosition = this.transform.localPosition + new Vector3(0, 0.0091f, 0.035f);
+                this.transform.localPosition += this.transform.forward * 0.035f;
             }
             else
             {
@@ -230,7 +241,8 @@ public class Card : MonoBehaviour
         {
             if (_cardLogic.GetActiveTable() == 0)
             {
-                this.transform.localPosition = this.transform.localPosition + new Vector3(0, -0.0091f, -0.035f);
+                //this.transform.localPosition = this.transform.localPosition + new Vector3(0, -0.0091f, -0.035f);
+                this.transform.localPosition -= this.transform.forward * 0.035f;
             }
             else {
                 this.transform.localPosition = this.transform.localPosition + new Vector3(-0.035f, -0.0091f, 0);
