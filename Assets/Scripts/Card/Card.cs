@@ -18,13 +18,7 @@ public class Card : MonoBehaviour
 
     public TurnPhase Phase;
 
-    public static Action<bool> ToggleInteraction;
-    bool _canInteract;
-    public void OnToggleInteraction(bool isInteractable)
-    {
-        _canInteract = isInteractable;
-    }
-
+    public bool _canInteract;
 
     public CardData CardData
     {
@@ -46,7 +40,6 @@ public class Card : MonoBehaviour
     private void Start()
     {
         CardLogic.ChangeTurnPhase += OnChangePhase;
-        ToggleInteraction += OnToggleInteraction;
     }
 
     public void OnChangePhase(TurnPhase phase)

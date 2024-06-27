@@ -390,6 +390,8 @@ public class Board : MonoBehaviour
             }
         }
 
+        card.gameObject.GetComponent<Card>()._canInteract = true;
+
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
 
