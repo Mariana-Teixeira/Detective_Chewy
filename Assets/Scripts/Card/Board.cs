@@ -56,7 +56,7 @@ public class Board : MonoBehaviour
     // I haven't figured out why this doesn't work when placed on Awaken! Maybe never will~ uuhh~
     private void Start()
     {
-        //CreateNewVersionOfDeck += OnCreateNewVersionOfDeck;
+        CreateNewVersionOfDeck += OnCreateNewVersionOfDeck;
     }
 
     //CREATE CARDS

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 9704229bd1a3f404284cb85d495c18d6
+guid: c3f013e43b1661847a81ab1fa1b4247e
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -9,11 +9,6 @@ ModelImporter:
       assembly: UnityEngine.CoreModule
       name: Atlas_Color
     second: {fileID: 2100000, guid: 7cba042d7a008764fbe1a8c2e169dd09, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Material
-    second: {fileID: 2100000, guid: 170adeed64d24c047840d20c68e8290c, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -71,7 +66,7 @@ ModelImporter:
     meshOptimizationFlags: -1
     indexFormat: 0
     secondaryUVAngleDistortion: 8
-    secondaryUVAreaDistortion: 15
+    secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
     secondaryUVMarginMethod: 1
     secondaryUVMinLightmapResolution: 40

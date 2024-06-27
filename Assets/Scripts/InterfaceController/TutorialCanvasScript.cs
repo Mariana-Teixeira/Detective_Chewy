@@ -43,7 +43,7 @@ public class TutorialCanvasScript : MonoBehaviour
 
     public void UpdateImage()
     {
-        var child = this.transform.GetChild(0).GetComponent<Image>();
+        var child = this.transform.GetChild(1).GetComponent<Image>();
         child.sprite = TutorialImages[ImageIndex];
     }
 }

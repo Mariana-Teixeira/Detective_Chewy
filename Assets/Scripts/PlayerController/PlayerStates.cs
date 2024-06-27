@@ -87,7 +87,6 @@ public class PlayerStates : MonoBehaviour
                 break;
             case GameState.PLAYING:
                 _cameraLook.ToggleCursor(true);
-                Card.ToggleInteraction?.Invoke(true);
                 CardGameCanvasScript.ToggleVisibility?.Invoke(true);
                 DialogueCanvasScript.ToggleVisibility?.Invoke(false);
                 if (!_currentlyPlaying) { Board.CreateNewVersionOfDeck?.Invoke(); _currentlyPlaying = true; }
@@ -137,7 +136,6 @@ public class PlayerStates : MonoBehaviour
                 break;
             case GameState.PLAYING:
                 CardGameCanvasScript.ToggleVisibility?.Invoke(false);
-                Card.ToggleInteraction?.Invoke(false);
                 _previousState = GameState.PLAYING;
                 break;
             default:

@@ -334,6 +334,7 @@ public class CardLogic : MonoBehaviour
         _coinScript.FlipTheCoin("discard");
 
         _objectivePoints.text = MatchesScoreObjective[_gameBoard.GetActiveTable()].ToString();
+        _pointsSlider.maxValue = MatchesScoreObjective[_gameBoard.GetActiveTable()];
     }
 
     public void SelectHandCardBuyPhase()
