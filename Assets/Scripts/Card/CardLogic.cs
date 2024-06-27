@@ -1,28 +1,23 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public struct CardPositionAndNormal
-{
-    public CardPositionAndNormal(Vector3 position, Vector3 normal)
-    {
-        cardPosition = position;
-        cardNormal = normal;
-    }
-
-    public Vector3 cardPosition;
-    public Vector3 cardNormal;
-}
-
 public class CardLogic : MonoBehaviour
 {
     #region PhaseText
-    string PlayText = "Play";
-    string TradeText = "Trade";
-    string DiscardText = "Discard";
+    const string PlayText = "Play";
+    const string TradeText = "Trade";
+    const string DiscardText = "Discard";
+    #endregion
+
+    #region ErrorMessages
+    float _errorMessageDuration = 3.0f;
+    const string InvalidSelectionByType = "Your selection is invalid.";
+    const string InvalidSelectionByNumber = "Wrong number of cards selected";
     #endregion
 
     #region UI Elements
@@ -45,7 +40,7 @@ public class CardLogic : MonoBehaviour
     private List<Card> cards;
 
     public int[] MatchesScoreObjective;
-    private List<CardPositionAndNormal> pointsCardsPositions;
+    private List<CardPositionAndDirection> pointsCardsPositions;
     private int _boardPointsCollected;
 
     private bool _gotSetThisTurn = false;
@@ -69,7 +64,7 @@ public class CardLogic : MonoBehaviour
         #endregion
 
         cards = new List<Card> ();
-        pointsCardsPositions = new List<CardPositionAndNormal>();
+        pointsCardsPositions = new List<CardPositionAndDirection>();
 
         _turnCounter = 1;
         currentTurnPhase = TurnPhase.Discard;
@@ -148,12 +143,11 @@ public class CardLogic : MonoBehaviour
                 _coinScript.FlipTheCoin("buy");
                 _nextPhaseButton.interactable = true;
                 UnselectAllCards();
-                _errorText.gameObject.SetActive(false);
             }
-            else { 
-                Debug.Log("Select more cards to confirm");
-                _errorText.text = "Select more cards to confirm";
-                _errorText.gameObject.SetActive(true);
+            else
+            {
+                // Didn't select enough cards.
+                StartCoroutine(ErrorAppeared(InvalidSelectionByNumber, _errorMessageDuration));
             }
         }
 
@@ -161,43 +155,29 @@ public class CardLogic : MonoBehaviour
         {
             if (cards.Count == 2)
             {
-                //if ((cards[0].CardData.Position == Position.Tavern && cards[0].CardData.Value <= cards[1].CardData.Value) || (cards[1].CardData.Position == Position.Tavern && cards[1].CardData.Value <= cards[0].CardData.Value))
-                    
-                if ((cards[0].CardData.Position == Position.Tavern) ||
-                    (cards[1].CardData.Position == Position.Tavern))
+                if (cards[0].CardData.Position == Position.Tavern)
                 {
-                    if (cards[0].CardData.Position == Position.Tavern)
-                    {
-                        _gameBoard.ExchangeTavernCard(cards[1], cards[0]);
-                    }
-                    else
-                    {
-                        _gameBoard.ExchangeTavernCard(cards[0], cards[1]);
-                    }
-                    
-                    UnSelectTavernCardBuyPhase();
-                    UnSelectHandCardBuyPhase();
-                    currentTurnPhase = TurnPhase.Play;
-                    _turnPhaseText.text = PlayText;
-                    ChangeTurnPhase(TurnPhase.Play);
-
-                    _coinScript.FlipTheCoin("sell");
-
-                    UnselectAllCards();
-                    _errorText.gameObject.SetActive(false);
+                    _gameBoard.ExchangeTavernCard(cards[1], cards[0]);
                 }
                 else
-                { 
-                    Debug.Log("Cant sell a card that is worth less then the one you are buying"); 
-                    _errorText.text = "Cant sell a card that is worth less then the one you are buying";
-                    _errorText.gameObject.SetActive(true);
+                {
+                    _gameBoard.ExchangeTavernCard(cards[0], cards[1]);
                 }
+                    
+                UnSelectTavernCardBuyPhase();
+                UnSelectHandCardBuyPhase();
+                currentTurnPhase = TurnPhase.Play;
+                _turnPhaseText.text = PlayText;
+                ChangeTurnPhase(TurnPhase.Play);
+
+                _coinScript.FlipTheCoin("sell");
+
+                UnselectAllCards();
             }
             else
-            { 
-                Debug.Log("Select more cards to confirm or skip");
-                _errorText.text = "Select more cards to confirm or skip";
-                _errorText.gameObject.SetActive(true);
+            {
+                // Didn't select enough cards.
+                StartCoroutine(ErrorAppeared(InvalidSelectionByNumber, _errorMessageDuration));
             }
         }
         else if (currentTurnPhase == TurnPhase.Play)
@@ -219,22 +199,22 @@ public class CardLogic : MonoBehaviour
                     ||
                     (((cards[0].CardData.Suit == cards[1].CardData.Suit) && (cards[1].CardData.Suit == cards[2].CardData.Suit))
                     &&
-                    (((tmpNumList.ElementAt(0) == tmpNumList.ElementAt(1)-1)&&(tmpNumList.ElementAt(0) == tmpNumList.ElementAt(2)-2)) 
+                    (((tmpNumList.ElementAt(0) == tmpNumList.ElementAt(1) - 1) && (tmpNumList.ElementAt(0) == tmpNumList.ElementAt(2) - 2))
                     ||
                     ((tmpNumList.ElementAt(0) == tmpNumList.ElementAt(1) - 11) && (tmpNumList.ElementAt(0) == tmpNumList.ElementAt(2) - 12))
                     ||
-                    ((tmpNumList.ElementAt(0) == tmpNumList.ElementAt(1) - 1) &&(tmpNumList.ElementAt(0) == tmpNumList.ElementAt(2) - 12)))))
+                    ((tmpNumList.ElementAt(0) == tmpNumList.ElementAt(1) - 1) && (tmpNumList.ElementAt(0) == tmpNumList.ElementAt(2) - 12)))))
                 {
                     //Add flag that SET was converted to points this turn, if another is converted, set score to 2x
                     if (((cards[0].CardData.Value == cards[1].CardData.Value) && (cards[1].CardData.Value == cards[2].CardData.Value)))
                     {
                         multiScore = 1;
-                        
+
                         if (_gotSetThisTurn == true)
                         {
                             multiScore = 2;
                         }
-                        
+
                         if (_gotSetThisTurn == false)
                         {
                             _gotSetThisTurn = true;
@@ -247,20 +227,17 @@ public class CardLogic : MonoBehaviour
                     }
 
                     //Add points of all cards
-
                     foreach (Card card in cards)
                     {
                         collectedPoints = collectedPoints + card.CardData.Score;
                         Vector3 cardPosition = card.transform.position;
                         Vector3 cardDirection = card.transform.up;
-                        pointsCardsPositions.Add(new CardPositionAndNormal(cardPosition, cardDirection));
+                        pointsCardsPositions.Add(new CardPositionAndDirection(cardPosition, cardDirection));
                     }
 
                     _gameBoard.CollectPoints(cards);
 
                     UnselectAllCards();
-
-                    _errorText.gameObject.SetActive(false);
 
                     //add points from previous SET if second SET was used during these turn
                     if (multiScore == 2)
@@ -268,11 +245,10 @@ public class CardLogic : MonoBehaviour
                         _boardPointsCollected = _boardPointsCollected + lastAddedPoints;
                     }
 
-                    _boardPointsCollected = _boardPointsCollected + Convert.ToInt32(Math.Floor(collectedPoints*multiScore));
+                    _boardPointsCollected = _boardPointsCollected + Convert.ToInt32(Math.Floor(collectedPoints * multiScore));
 
                     lastAddedPoints = Convert.ToInt32(Math.Floor(collectedPoints * multiScore));
 
-                    //_pointsText.text = "POINTS: " + _boardPointsCollected + " / " + MatchesScoreObjective[_gameBoard.GetActiveTable()];
                     _pointsText.text = _boardPointsCollected.ToString();
                     _pointsSlider.value = _boardPointsCollected;
 
@@ -294,19 +270,36 @@ public class CardLogic : MonoBehaviour
                     #endregion
                 }
                 else
-                { 
-                    Debug.Log("You can not use those cards for points");
-                    _errorText.text = "You can not use those cards for points";
-                    _errorText.gameObject.SetActive(true);
+                {
+                    // Selected wrong cards to score.
+                    StartCoroutine(ErrorAppeared(InvalidSelectionByType, _errorMessageDuration));
                 }
             }
             else
             {
-                Debug.Log("Select more cards to confirm or skip");
-                _errorText.text = "Select more cards to confirm or skip";
-                _errorText.gameObject.SetActive(true);
+                // Didn't select enough cards.
+                StartCoroutine(ErrorAppeared(InvalidSelectionByNumber, _errorMessageDuration));
             } 
         }
+    }
+
+    IEnumerator ErrorAppeared (string message, float displayTime)
+    {
+        var timeElapsed = 0f;
+
+        foreach (var card in cards)
+        {
+            card.DenyCard();
+        }
+
+        _errorText.text = message;
+        _errorText.enabled = true;
+        while (timeElapsed < displayTime)
+        {
+            timeElapsed += Time.deltaTime;
+            yield return null;
+        }
+        _errorText.enabled = false;
     }
 
     public void GameWon() 
@@ -340,7 +333,6 @@ public class CardLogic : MonoBehaviour
         _boardPointsCollected = 0;
         _turnCounter = 1;
 
-        //_pointsText.text = "POINTS: " + _boardPointsCollected + " / " + MatchesScoreObjective[_gameBoard.GetActiveTable()];
         _pointsText.text = _boardPointsCollected.ToString();
         _pointsSlider.value = _boardPointsCollected;
 
@@ -384,9 +376,16 @@ public class CardLogic : MonoBehaviour
         return tavernCardSelectedBuyPhase;
     }
 
-    public int GetActiveTable() { 
-        return _gameBoard.GetActiveTable();
-    }
-
 }
 
+public struct CardPositionAndDirection
+{
+    public CardPositionAndDirection(Vector3 position, Vector3 normal)
+    {
+        cardPosition = position;
+        cardNormal = normal;
+    }
+
+    public Vector3 cardPosition;
+    public Vector3 cardNormal;
+}

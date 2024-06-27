@@ -2,10 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading;
-using Unity.VisualScripting;
 using UnityEngine;
-using static UnityEngine.Rendering.DebugUI;
 using Random = System.Random;
 
 public class Board : MonoBehaviour
@@ -230,9 +227,21 @@ public class Board : MonoBehaviour
         var DiscardRotation = 180f - HandRotation;
         var DiscardRotateTo = card.transform.rotation * Quaternion.Euler(DiscardRotation, 0f, 0f);
 
-        if (cardScript.CardData.Position == Position.Discard)
+        if (movementVector != Vector3.zero)
         {
-            while (timeElapsed < lerpDuration)
+            if (movementVector.y > 0)
+            {
+                target -= movementVector * 0.035f;
+            }
+            else if (movementVector.y < 0)
+            {
+                target += movementVector * 0.035f;
+            }
+        }
+
+        while (timeElapsed < lerpDuration)
+        {
+            if (cardScript.CardData.Position == Position.Discard)
             {
                 card.transform.rotation = Quaternion.Lerp(card.transform.rotation, DiscardRotateTo, timeElapsed / lerpDuration);
                 card.position = Vector3.Lerp(card.position, target, timeElapsed / lerpDuration);
@@ -240,38 +249,19 @@ public class Board : MonoBehaviour
                 timeElapsed += Time.deltaTime;
                 yield return null;
             }
-
-        }
-        else
-        {
-            if (movementVector != Vector3.zero)
+            else if (cardScript.CardData.Position == Position.Hand)
             {
-                if (movementVector.y > 0)
-                {
-                    target -= movementVector * 0.035f;
-                }
-                else if (movementVector.y < 0)
-                {
-                    target += movementVector * 0.035f;
-                }
+                card.transform.rotation = Quaternion.Lerp(card.transform.rotation, HandRotateTo, timeElapsed / lerpDuration);
+                card.position = Vector3.Lerp(card.position, target, timeElapsed / lerpDuration);
+            }
+            else
+            {
+                card.position = Vector3.Lerp(card.position, target, (timeElapsed - 1) / (lerpDuration * 2));
             }
 
-            while (timeElapsed < lerpDuration)
-            {
-                if (cardScript.CardData.Position == Position.Hand)
-                {
-                    card.transform.rotation = Quaternion.Lerp(card.transform.rotation, HandRotateTo, timeElapsed / lerpDuration);
-                    card.position = Vector3.Lerp(card.position, target, timeElapsed / lerpDuration);
-                }
-                else
-                {
-                    card.position = Vector3.Lerp(card.position, target, (timeElapsed - 1) / (lerpDuration * 2));
-                }
+            timeElapsed += Time.deltaTime;
 
-                timeElapsed += Time.deltaTime;
-
-                yield return null;
-            }
+            yield return null;
         }
 
         cardScript._canInteract = true;
@@ -285,6 +275,7 @@ public class Board : MonoBehaviour
         UpdatePosition(_deck.ElementAt(0), Position.Hand);
         _deck.RemoveAt(0);
     }
+
     public void DiscardCard(Card card)
     {
         _discards.Add(card);
@@ -336,7 +327,7 @@ public class Board : MonoBehaviour
         }
     }
 
-    public void FinishTurn(List<CardPositionAndNormal> cards)
+    public void FinishTurn(List<CardPositionAndDirection> cards)
     {
         foreach (var card in cards)
         {

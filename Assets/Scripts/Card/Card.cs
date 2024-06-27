@@ -17,6 +17,8 @@ public class Card : MonoBehaviour
 
     public bool _isSelected, _canInteract, _isHovered;
 
+    Animator _animator;
+
     public CardData CardData
     {
         get
@@ -30,6 +32,7 @@ public class Card : MonoBehaviour
     }
     private void Awake()
     {
+        _animator = GetComponent<Animator>();
         _cardLogic = FindFirstObjectByType<CardLogic>();
     }
 
@@ -213,5 +216,10 @@ public class Card : MonoBehaviour
         }
 
         _cardLogic.SelectCard(this);
+    }
+
+    public void DenyCard()
+    {
+        _animator.SetTrigger("denied");
     }
 }
