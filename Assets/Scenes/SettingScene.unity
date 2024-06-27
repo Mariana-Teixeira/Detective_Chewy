@@ -187,14 +187,6 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: a838d49d9cd78fc4b81a828358e3b362, type: 3}
-      propertyPath: m_ScaleInLightmap
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: a838d49d9cd78fc4b81a828358e3b362, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 7cba042d7a008764fbe1a8c2e169dd09, type: 2}
     - target: {fileID: -4118620546562209994, guid: a838d49d9cd78fc4b81a828358e3b362, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
@@ -404,14 +396,6 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_ScaleInLightmap
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 7cba042d7a008764fbe1a8c2e169dd09, type: 2}
     - target: {fileID: 919132149155446097, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
       propertyPath: m_Name
       value: pipe_thin
@@ -482,14 +466,6 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_ScaleInLightmap
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 7cba042d7a008764fbe1a8c2e169dd09, type: 2}
     - target: {fileID: 919132149155446097, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
       propertyPath: m_Name
       value: pipe_thin (7)
@@ -626,14 +602,6 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_ScaleInLightmap
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 7cba042d7a008764fbe1a8c2e169dd09, type: 2}
     - target: {fileID: 919132149155446097, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
       propertyPath: m_Name
       value: pipe_thin (14)
@@ -779,14 +747,6 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_ScaleInLightmap
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 7cba042d7a008764fbe1a8c2e169dd09, type: 2}
     - target: {fileID: 919132149155446097, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
       propertyPath: m_Name
       value: pipe_thin (1)
@@ -1280,14 +1240,6 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_ScaleInLightmap
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 7cba042d7a008764fbe1a8c2e169dd09, type: 2}
     - target: {fileID: 919132149155446097, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
       propertyPath: m_Name
       value: pipe_thin (40)
@@ -1444,14 +1396,6 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_ScaleInLightmap
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 7cba042d7a008764fbe1a8c2e169dd09, type: 2}
     - target: {fileID: 919132149155446097, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
       propertyPath: m_Name
       value: pipe_thin (34)
@@ -2549,6 +2493,7 @@ Transform:
   - {fileID: 2018615921}
   - {fileID: 968249199}
   - {fileID: 1073807907}
+  - {fileID: 425947704}
   m_Father: {fileID: 870615062}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &165884459
@@ -2619,14 +2564,6 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_ScaleInLightmap
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 7cba042d7a008764fbe1a8c2e169dd09, type: 2}
     - target: {fileID: 919132149155446097, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
       propertyPath: m_Name
       value: pipe_thin (38)
@@ -3005,14 +2942,6 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_ScaleInLightmap
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 7cba042d7a008764fbe1a8c2e169dd09, type: 2}
     - target: {fileID: 919132149155446097, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
       propertyPath: m_Name
       value: pipe_thin
@@ -3181,14 +3110,6 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_ScaleInLightmap
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 7cba042d7a008764fbe1a8c2e169dd09, type: 2}
     - target: {fileID: 919132149155446097, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
       propertyPath: m_Name
       value: pipe_thin (16)
@@ -3259,14 +3180,6 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_ScaleInLightmap
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 7cba042d7a008764fbe1a8c2e169dd09, type: 2}
     - target: {fileID: 919132149155446097, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
       propertyPath: m_Name
       value: pipe_thin (7)
@@ -3353,14 +3266,6 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_ScaleInLightmap
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 7cba042d7a008764fbe1a8c2e169dd09, type: 2}
     - target: {fileID: 919132149155446097, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
       propertyPath: m_Name
       value: pipe_thin (39)
@@ -3533,14 +3438,6 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_ScaleInLightmap
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 7cba042d7a008764fbe1a8c2e169dd09, type: 2}
     - target: {fileID: 919132149155446097, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
       propertyPath: m_Name
       value: pipe_thin (20)
@@ -3953,14 +3850,6 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_ScaleInLightmap
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 7cba042d7a008764fbe1a8c2e169dd09, type: 2}
     - target: {fileID: 919132149155446097, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
       propertyPath: m_Name
       value: pipe_thin (25)
@@ -4247,14 +4136,6 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_ScaleInLightmap
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 7cba042d7a008764fbe1a8c2e169dd09, type: 2}
     - target: {fileID: 919132149155446097, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
       propertyPath: m_Name
       value: pipe_thin (6)
@@ -4329,14 +4210,6 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_ScaleInLightmap
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 7cba042d7a008764fbe1a8c2e169dd09, type: 2}
     - target: {fileID: 919132149155446097, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
       propertyPath: m_Name
       value: pipe_thin (10)
@@ -4798,14 +4671,6 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_ScaleInLightmap
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 7cba042d7a008764fbe1a8c2e169dd09, type: 2}
     - target: {fileID: 919132149155446097, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
       propertyPath: m_Name
       value: pipe_thin
@@ -5134,14 +4999,6 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_ScaleInLightmap
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 7cba042d7a008764fbe1a8c2e169dd09, type: 2}
     - target: {fileID: 919132149155446097, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
       propertyPath: m_Name
       value: pipe_thin (7)
@@ -5294,14 +5151,6 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: a838d49d9cd78fc4b81a828358e3b362, type: 3}
-      propertyPath: m_ScaleInLightmap
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: a838d49d9cd78fc4b81a828358e3b362, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 7cba042d7a008764fbe1a8c2e169dd09, type: 2}
     - target: {fileID: -4118620546562209994, guid: a838d49d9cd78fc4b81a828358e3b362, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
@@ -5391,14 +5240,6 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: a838d49d9cd78fc4b81a828358e3b362, type: 3}
-      propertyPath: m_ScaleInLightmap
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: a838d49d9cd78fc4b81a828358e3b362, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 7cba042d7a008764fbe1a8c2e169dd09, type: 2}
     - target: {fileID: -4118620546562209994, guid: a838d49d9cd78fc4b81a828358e3b362, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
@@ -5621,14 +5462,6 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_ScaleInLightmap
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 7cba042d7a008764fbe1a8c2e169dd09, type: 2}
     - target: {fileID: 919132149155446097, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
       propertyPath: m_Name
       value: pipe_thin (5)
@@ -5807,14 +5640,6 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_ScaleInLightmap
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 7cba042d7a008764fbe1a8c2e169dd09, type: 2}
     - target: {fileID: 919132149155446097, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
       propertyPath: m_Name
       value: pipe_thin (11)
@@ -5889,14 +5714,6 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_ScaleInLightmap
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 7cba042d7a008764fbe1a8c2e169dd09, type: 2}
     - target: {fileID: 919132149155446097, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
       propertyPath: m_Name
       value: pipe_thin (3)
@@ -5983,14 +5800,6 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_ScaleInLightmap
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 7cba042d7a008764fbe1a8c2e169dd09, type: 2}
     - target: {fileID: 919132149155446097, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
       propertyPath: m_Name
       value: pipe_thin (12)
@@ -6073,14 +5882,6 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: a838d49d9cd78fc4b81a828358e3b362, type: 3}
-      propertyPath: m_ScaleInLightmap
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: a838d49d9cd78fc4b81a828358e3b362, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 7cba042d7a008764fbe1a8c2e169dd09, type: 2}
     - target: {fileID: -4118620546562209994, guid: a838d49d9cd78fc4b81a828358e3b362, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
@@ -6310,14 +6111,6 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_ScaleInLightmap
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 7cba042d7a008764fbe1a8c2e169dd09, type: 2}
     - target: {fileID: 919132149155446097, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
       propertyPath: m_Name
       value: pipe_thin (2)
@@ -6454,6 +6247,92 @@ Light:
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0.2
   m_ShadowAngle: 0
+--- !u!1001 &425947703
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 164736885}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: b16d1ff906ca76c40a5cfd0088952d63, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.157232
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: b16d1ff906ca76c40a5cfd0088952d63, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.1572322
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: b16d1ff906ca76c40a5cfd0088952d63, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.1572322
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: b16d1ff906ca76c40a5cfd0088952d63, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 5.817
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: b16d1ff906ca76c40a5cfd0088952d63, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.475
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: b16d1ff906ca76c40a5cfd0088952d63, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 2.885
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: b16d1ff906ca76c40a5cfd0088952d63, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: b16d1ff906ca76c40a5cfd0088952d63, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: b16d1ff906ca76c40a5cfd0088952d63, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: b16d1ff906ca76c40a5cfd0088952d63, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: b16d1ff906ca76c40a5cfd0088952d63, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: b16d1ff906ca76c40a5cfd0088952d63, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: b16d1ff906ca76c40a5cfd0088952d63, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: b16d1ff906ca76c40a5cfd0088952d63, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b16d1ff906ca76c40a5cfd0088952d63, type: 3}
+      propertyPath: m_Name
+      value: pipe_turn (9)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b16d1ff906ca76c40a5cfd0088952d63, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 5368984853203893046, guid: b16d1ff906ca76c40a5cfd0088952d63, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: b16d1ff906ca76c40a5cfd0088952d63, type: 3}
+--- !u!4 &425947704 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: b16d1ff906ca76c40a5cfd0088952d63, type: 3}
+  m_PrefabInstance: {fileID: 425947703}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &428254825
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6792,14 +6671,6 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_ScaleInLightmap
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 7cba042d7a008764fbe1a8c2e169dd09, type: 2}
     - target: {fileID: 919132149155446097, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
       propertyPath: m_Name
       value: pipe_thin (8)
@@ -7230,14 +7101,6 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_ScaleInLightmap
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 7cba042d7a008764fbe1a8c2e169dd09, type: 2}
     - target: {fileID: 919132149155446097, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
       propertyPath: m_Name
       value: pipe_thin (33)
@@ -7402,14 +7265,6 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: b16d1ff906ca76c40a5cfd0088952d63, type: 3}
-      propertyPath: m_ScaleInLightmap
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: b16d1ff906ca76c40a5cfd0088952d63, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 7cba042d7a008764fbe1a8c2e169dd09, type: 2}
     - target: {fileID: 919132149155446097, guid: b16d1ff906ca76c40a5cfd0088952d63, type: 3}
       propertyPath: m_Name
       value: pipe_turn (4)
@@ -7487,14 +7342,6 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_ScaleInLightmap
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 7cba042d7a008764fbe1a8c2e169dd09, type: 2}
     - target: {fileID: 919132149155446097, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
       propertyPath: m_Name
       value: pipe_thin (1)
@@ -7581,14 +7428,6 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_ScaleInLightmap
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 7cba042d7a008764fbe1a8c2e169dd09, type: 2}
     - target: {fileID: 919132149155446097, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
       propertyPath: m_Name
       value: pipe_thin (45)
@@ -7663,14 +7502,6 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_ScaleInLightmap
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 7cba042d7a008764fbe1a8c2e169dd09, type: 2}
     - target: {fileID: 919132149155446097, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
       propertyPath: m_Name
       value: pipe_thin (14)
@@ -7940,14 +7771,6 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_ScaleInLightmap
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 7cba042d7a008764fbe1a8c2e169dd09, type: 2}
     - target: {fileID: 919132149155446097, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
       propertyPath: m_Name
       value: pipe_thin (6)
@@ -8018,14 +7841,6 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_ScaleInLightmap
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 7cba042d7a008764fbe1a8c2e169dd09, type: 2}
     - target: {fileID: 919132149155446097, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
       propertyPath: m_Name
       value: pipe_thin (14)
@@ -8850,14 +8665,6 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_ScaleInLightmap
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 7cba042d7a008764fbe1a8c2e169dd09, type: 2}
     - target: {fileID: 919132149155446097, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
       propertyPath: m_Name
       value: pipe_thin (29)
@@ -8933,14 +8740,6 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_ScaleInLightmap
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 7cba042d7a008764fbe1a8c2e169dd09, type: 2}
     - target: {fileID: 919132149155446097, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
       propertyPath: m_Name
       value: pipe_thin
@@ -9165,14 +8964,6 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_ScaleInLightmap
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 7cba042d7a008764fbe1a8c2e169dd09, type: 2}
     - target: {fileID: 919132149155446097, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
       propertyPath: m_Name
       value: pipe_thin (3)
@@ -9269,14 +9060,6 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_ScaleInLightmap
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 7cba042d7a008764fbe1a8c2e169dd09, type: 2}
     - target: {fileID: 919132149155446097, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
       propertyPath: m_Name
       value: pipe_thin (36)
@@ -9617,14 +9400,6 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: b16d1ff906ca76c40a5cfd0088952d63, type: 3}
-      propertyPath: m_ScaleInLightmap
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: b16d1ff906ca76c40a5cfd0088952d63, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 7cba042d7a008764fbe1a8c2e169dd09, type: 2}
     - target: {fileID: 919132149155446097, guid: b16d1ff906ca76c40a5cfd0088952d63, type: 3}
       propertyPath: m_Name
       value: pipe_turn
@@ -10570,14 +10345,6 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: a838d49d9cd78fc4b81a828358e3b362, type: 3}
-      propertyPath: m_ScaleInLightmap
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: a838d49d9cd78fc4b81a828358e3b362, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 7cba042d7a008764fbe1a8c2e169dd09, type: 2}
     - target: {fileID: -4118620546562209994, guid: a838d49d9cd78fc4b81a828358e3b362, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
@@ -10664,14 +10431,6 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: a838d49d9cd78fc4b81a828358e3b362, type: 3}
-      propertyPath: m_ScaleInLightmap
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: a838d49d9cd78fc4b81a828358e3b362, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 7cba042d7a008764fbe1a8c2e169dd09, type: 2}
     - target: {fileID: -4118620546562209994, guid: a838d49d9cd78fc4b81a828358e3b362, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
@@ -10762,14 +10521,6 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_ScaleInLightmap
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 7cba042d7a008764fbe1a8c2e169dd09, type: 2}
     - target: {fileID: 919132149155446097, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
       propertyPath: m_Name
       value: pipe_thin (43)
@@ -10910,14 +10661,6 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_ScaleInLightmap
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 7cba042d7a008764fbe1a8c2e169dd09, type: 2}
     - target: {fileID: 919132149155446097, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
       propertyPath: m_Name
       value: pipe_thin (15)
@@ -10992,14 +10735,6 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_ScaleInLightmap
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 7cba042d7a008764fbe1a8c2e169dd09, type: 2}
     - target: {fileID: 919132149155446097, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
       propertyPath: m_Name
       value: pipe_thin (11)
@@ -11144,14 +10879,6 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_ScaleInLightmap
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 7cba042d7a008764fbe1a8c2e169dd09, type: 2}
     - target: {fileID: 919132149155446097, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
       propertyPath: m_Name
       value: pipe_thin
@@ -11345,14 +11072,6 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_ScaleInLightmap
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 7cba042d7a008764fbe1a8c2e169dd09, type: 2}
     - target: {fileID: 919132149155446097, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
       propertyPath: m_Name
       value: pipe_thin (9)
@@ -11722,14 +11441,6 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_ScaleInLightmap
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 7cba042d7a008764fbe1a8c2e169dd09, type: 2}
     - target: {fileID: 919132149155446097, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
       propertyPath: m_Name
       value: pipe_thin (46)
@@ -11816,14 +11527,6 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: a838d49d9cd78fc4b81a828358e3b362, type: 3}
-      propertyPath: m_ScaleInLightmap
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: a838d49d9cd78fc4b81a828358e3b362, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 7cba042d7a008764fbe1a8c2e169dd09, type: 2}
     - target: {fileID: -4118620546562209994, guid: a838d49d9cd78fc4b81a828358e3b362, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
@@ -11910,14 +11613,6 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: a838d49d9cd78fc4b81a828358e3b362, type: 3}
-      propertyPath: m_ScaleInLightmap
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: a838d49d9cd78fc4b81a828358e3b362, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 7cba042d7a008764fbe1a8c2e169dd09, type: 2}
     - target: {fileID: -4118620546562209994, guid: a838d49d9cd78fc4b81a828358e3b362, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
@@ -12273,14 +11968,6 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_ScaleInLightmap
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 7cba042d7a008764fbe1a8c2e169dd09, type: 2}
     - target: {fileID: 919132149155446097, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
       propertyPath: m_Name
       value: pipe_thin (10)
@@ -12444,14 +12131,6 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_ScaleInLightmap
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 7cba042d7a008764fbe1a8c2e169dd09, type: 2}
     - target: {fileID: 919132149155446097, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
       propertyPath: m_Name
       value: pipe_thin (12)
@@ -12534,14 +12213,6 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: a838d49d9cd78fc4b81a828358e3b362, type: 3}
-      propertyPath: m_ScaleInLightmap
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: a838d49d9cd78fc4b81a828358e3b362, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 7cba042d7a008764fbe1a8c2e169dd09, type: 2}
     - target: {fileID: -4118620546562209994, guid: a838d49d9cd78fc4b81a828358e3b362, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
@@ -12632,14 +12303,6 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_ScaleInLightmap
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 7cba042d7a008764fbe1a8c2e169dd09, type: 2}
     - target: {fileID: 919132149155446097, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
       propertyPath: m_Name
       value: pipe_thin (9)
@@ -12887,14 +12550,6 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: a838d49d9cd78fc4b81a828358e3b362, type: 3}
-      propertyPath: m_ScaleInLightmap
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: a838d49d9cd78fc4b81a828358e3b362, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 7cba042d7a008764fbe1a8c2e169dd09, type: 2}
     - target: {fileID: -4118620546562209994, guid: a838d49d9cd78fc4b81a828358e3b362, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
@@ -13132,14 +12787,6 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_ScaleInLightmap
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 7cba042d7a008764fbe1a8c2e169dd09, type: 2}
     - target: {fileID: 919132149155446097, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
       propertyPath: m_Name
       value: pipe_thin (24)
@@ -14337,14 +13984,6 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: a838d49d9cd78fc4b81a828358e3b362, type: 3}
-      propertyPath: m_ScaleInLightmap
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: a838d49d9cd78fc4b81a828358e3b362, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 7cba042d7a008764fbe1a8c2e169dd09, type: 2}
     - target: {fileID: -4118620546562209994, guid: a838d49d9cd78fc4b81a828358e3b362, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
@@ -14998,14 +14637,6 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_ScaleInLightmap
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 7cba042d7a008764fbe1a8c2e169dd09, type: 2}
     - target: {fileID: 919132149155446097, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
       propertyPath: m_Name
       value: pipe_thin (23)
@@ -15088,14 +14719,6 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: b16d1ff906ca76c40a5cfd0088952d63, type: 3}
-      propertyPath: m_ScaleInLightmap
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: b16d1ff906ca76c40a5cfd0088952d63, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 7cba042d7a008764fbe1a8c2e169dd09, type: 2}
     - target: {fileID: 919132149155446097, guid: b16d1ff906ca76c40a5cfd0088952d63, type: 3}
       propertyPath: m_Name
       value: pipe_turn (2)
@@ -15403,14 +15026,6 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_ScaleInLightmap
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 7cba042d7a008764fbe1a8c2e169dd09, type: 2}
     - target: {fileID: 919132149155446097, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
       propertyPath: m_Name
       value: pipe_thin (18)
@@ -15485,14 +15100,6 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_ScaleInLightmap
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 7cba042d7a008764fbe1a8c2e169dd09, type: 2}
     - target: {fileID: 919132149155446097, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
       propertyPath: m_Name
       value: pipe_thin (4)
@@ -17492,14 +17099,6 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_ScaleInLightmap
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 7cba042d7a008764fbe1a8c2e169dd09, type: 2}
     - target: {fileID: 919132149155446097, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
       propertyPath: m_Name
       value: pipe_thin (14)
@@ -18004,14 +17603,6 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_ScaleInLightmap
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 7cba042d7a008764fbe1a8c2e169dd09, type: 2}
     - target: {fileID: 919132149155446097, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
       propertyPath: m_Name
       value: pipe_thin (3)
@@ -18094,14 +17685,6 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_ScaleInLightmap
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 7cba042d7a008764fbe1a8c2e169dd09, type: 2}
     - target: {fileID: 919132149155446097, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
       propertyPath: m_Name
       value: pipe_thin (11)
@@ -18349,14 +17932,6 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_ScaleInLightmap
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 7cba042d7a008764fbe1a8c2e169dd09, type: 2}
     - target: {fileID: 919132149155446097, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
       propertyPath: m_Name
       value: pipe_thin (14)
@@ -18443,14 +18018,6 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_ScaleInLightmap
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 7cba042d7a008764fbe1a8c2e169dd09, type: 2}
     - target: {fileID: 919132149155446097, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
       propertyPath: m_Name
       value: pipe_thin (16)
@@ -18782,14 +18349,6 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_ScaleInLightmap
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 7cba042d7a008764fbe1a8c2e169dd09, type: 2}
     - target: {fileID: 919132149155446097, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
       propertyPath: m_Name
       value: pipe_thin (47)
@@ -18876,14 +18435,6 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_ScaleInLightmap
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 7cba042d7a008764fbe1a8c2e169dd09, type: 2}
     - target: {fileID: 919132149155446097, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
       propertyPath: m_Name
       value: pipe_thin (6)
@@ -19317,14 +18868,6 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_ScaleInLightmap
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 7cba042d7a008764fbe1a8c2e169dd09, type: 2}
     - target: {fileID: 919132149155446097, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
       propertyPath: m_Name
       value: pipe_thin (4)
@@ -19407,14 +18950,6 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: a838d49d9cd78fc4b81a828358e3b362, type: 3}
-      propertyPath: m_ScaleInLightmap
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: a838d49d9cd78fc4b81a828358e3b362, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 7cba042d7a008764fbe1a8c2e169dd09, type: 2}
     - target: {fileID: -4118620546562209994, guid: a838d49d9cd78fc4b81a828358e3b362, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
@@ -19512,14 +19047,6 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: b16d1ff906ca76c40a5cfd0088952d63, type: 3}
-      propertyPath: m_ScaleInLightmap
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: b16d1ff906ca76c40a5cfd0088952d63, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 7cba042d7a008764fbe1a8c2e169dd09, type: 2}
     - target: {fileID: 919132149155446097, guid: b16d1ff906ca76c40a5cfd0088952d63, type: 3}
       propertyPath: m_Name
       value: pipe_turn (8)
@@ -19606,14 +19133,6 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: a838d49d9cd78fc4b81a828358e3b362, type: 3}
-      propertyPath: m_ScaleInLightmap
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: a838d49d9cd78fc4b81a828358e3b362, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 7cba042d7a008764fbe1a8c2e169dd09, type: 2}
     - target: {fileID: -4118620546562209994, guid: a838d49d9cd78fc4b81a828358e3b362, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
@@ -19704,14 +19223,6 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_ScaleInLightmap
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 7cba042d7a008764fbe1a8c2e169dd09, type: 2}
     - target: {fileID: 919132149155446097, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
       propertyPath: m_Name
       value: pipe_thin (2)
@@ -19794,14 +19305,6 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: a838d49d9cd78fc4b81a828358e3b362, type: 3}
-      propertyPath: m_ScaleInLightmap
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: a838d49d9cd78fc4b81a828358e3b362, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 7cba042d7a008764fbe1a8c2e169dd09, type: 2}
     - target: {fileID: -4118620546562209994, guid: a838d49d9cd78fc4b81a828358e3b362, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
@@ -19974,14 +19477,6 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: a838d49d9cd78fc4b81a828358e3b362, type: 3}
-      propertyPath: m_ScaleInLightmap
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: a838d49d9cd78fc4b81a828358e3b362, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 7cba042d7a008764fbe1a8c2e169dd09, type: 2}
     - target: {fileID: -4118620546562209994, guid: a838d49d9cd78fc4b81a828358e3b362, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
@@ -20248,14 +19743,6 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: a838d49d9cd78fc4b81a828358e3b362, type: 3}
-      propertyPath: m_ScaleInLightmap
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: a838d49d9cd78fc4b81a828358e3b362, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 7cba042d7a008764fbe1a8c2e169dd09, type: 2}
     - target: {fileID: -4118620546562209994, guid: a838d49d9cd78fc4b81a828358e3b362, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
@@ -20330,14 +19817,6 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_ScaleInLightmap
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 7cba042d7a008764fbe1a8c2e169dd09, type: 2}
     - target: {fileID: 919132149155446097, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
       propertyPath: m_Name
       value: pipe_thin (15)
@@ -20491,14 +19970,6 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: a838d49d9cd78fc4b81a828358e3b362, type: 3}
-      propertyPath: m_ScaleInLightmap
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: a838d49d9cd78fc4b81a828358e3b362, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 7cba042d7a008764fbe1a8c2e169dd09, type: 2}
     - target: {fileID: -4118620546562209994, guid: a838d49d9cd78fc4b81a828358e3b362, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
@@ -20660,14 +20131,6 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: a838d49d9cd78fc4b81a828358e3b362, type: 3}
-      propertyPath: m_ScaleInLightmap
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: a838d49d9cd78fc4b81a828358e3b362, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 7cba042d7a008764fbe1a8c2e169dd09, type: 2}
     - target: {fileID: -4118620546562209994, guid: a838d49d9cd78fc4b81a828358e3b362, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
@@ -20795,14 +20258,6 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: a838d49d9cd78fc4b81a828358e3b362, type: 3}
-      propertyPath: m_ScaleInLightmap
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: a838d49d9cd78fc4b81a828358e3b362, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 7cba042d7a008764fbe1a8c2e169dd09, type: 2}
     - target: {fileID: -4118620546562209994, guid: a838d49d9cd78fc4b81a828358e3b362, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
@@ -20889,14 +20344,6 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: a838d49d9cd78fc4b81a828358e3b362, type: 3}
-      propertyPath: m_ScaleInLightmap
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: a838d49d9cd78fc4b81a828358e3b362, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 7cba042d7a008764fbe1a8c2e169dd09, type: 2}
     - target: {fileID: -4118620546562209994, guid: a838d49d9cd78fc4b81a828358e3b362, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
@@ -21269,14 +20716,6 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_ScaleInLightmap
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 7cba042d7a008764fbe1a8c2e169dd09, type: 2}
     - target: {fileID: 919132149155446097, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
       propertyPath: m_Name
       value: pipe_thin (13)
@@ -21356,14 +20795,6 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_ScaleInLightmap
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 7cba042d7a008764fbe1a8c2e169dd09, type: 2}
     - target: {fileID: 919132149155446097, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
       propertyPath: m_Name
       value: pipe_thin
@@ -21450,14 +20881,6 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_ScaleInLightmap
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 7cba042d7a008764fbe1a8c2e169dd09, type: 2}
     - target: {fileID: 919132149155446097, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
       propertyPath: m_Name
       value: pipe_thin (27)
@@ -21540,14 +20963,6 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: a838d49d9cd78fc4b81a828358e3b362, type: 3}
-      propertyPath: m_ScaleInLightmap
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: a838d49d9cd78fc4b81a828358e3b362, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 7cba042d7a008764fbe1a8c2e169dd09, type: 2}
     - target: {fileID: -4118620546562209994, guid: a838d49d9cd78fc4b81a828358e3b362, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
@@ -21728,14 +21143,6 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: b16d1ff906ca76c40a5cfd0088952d63, type: 3}
-      propertyPath: m_ScaleInLightmap
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: b16d1ff906ca76c40a5cfd0088952d63, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 7cba042d7a008764fbe1a8c2e169dd09, type: 2}
     - target: {fileID: 919132149155446097, guid: b16d1ff906ca76c40a5cfd0088952d63, type: 3}
       propertyPath: m_Name
       value: pipe_turn (1)
@@ -21814,14 +21221,6 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_ScaleInLightmap
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 7cba042d7a008764fbe1a8c2e169dd09, type: 2}
     - target: {fileID: 919132149155446097, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
       propertyPath: m_Name
       value: pipe_thin (9)
@@ -23312,14 +22711,6 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_ScaleInLightmap
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 7cba042d7a008764fbe1a8c2e169dd09, type: 2}
     - target: {fileID: 919132149155446097, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
       propertyPath: m_Name
       value: pipe_thin (35)
@@ -23406,14 +22797,6 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_ScaleInLightmap
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 7cba042d7a008764fbe1a8c2e169dd09, type: 2}
     - target: {fileID: 919132149155446097, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
       propertyPath: m_Name
       value: pipe_thin (22)
@@ -24097,14 +23480,6 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_ScaleInLightmap
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 7cba042d7a008764fbe1a8c2e169dd09, type: 2}
     - target: {fileID: 919132149155446097, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
       propertyPath: m_Name
       value: pipe_thin (11)
@@ -24430,14 +23805,6 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_ScaleInLightmap
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 7cba042d7a008764fbe1a8c2e169dd09, type: 2}
     - target: {fileID: 919132149155446097, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
       propertyPath: m_Name
       value: pipe_thin (37)
@@ -25349,14 +24716,6 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_ScaleInLightmap
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 7cba042d7a008764fbe1a8c2e169dd09, type: 2}
     - target: {fileID: 919132149155446097, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
       propertyPath: m_Name
       value: pipe_thin (14)
@@ -25568,14 +24927,6 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_ScaleInLightmap
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 7cba042d7a008764fbe1a8c2e169dd09, type: 2}
     - target: {fileID: 919132149155446097, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
       propertyPath: m_Name
       value: pipe_thin (10)
@@ -25724,14 +25075,6 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: a838d49d9cd78fc4b81a828358e3b362, type: 3}
-      propertyPath: m_ScaleInLightmap
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: a838d49d9cd78fc4b81a828358e3b362, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 7cba042d7a008764fbe1a8c2e169dd09, type: 2}
     - target: {fileID: -4118620546562209994, guid: a838d49d9cd78fc4b81a828358e3b362, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
@@ -26059,14 +25402,6 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_ScaleInLightmap
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 7cba042d7a008764fbe1a8c2e169dd09, type: 2}
     - target: {fileID: 919132149155446097, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
       propertyPath: m_Name
       value: pipe_thin (9)
@@ -26522,14 +25857,6 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_ScaleInLightmap
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 7cba042d7a008764fbe1a8c2e169dd09, type: 2}
     - target: {fileID: 919132149155446097, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
       propertyPath: m_Name
       value: pipe_thin (2)
@@ -26612,14 +25939,6 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: a838d49d9cd78fc4b81a828358e3b362, type: 3}
-      propertyPath: m_ScaleInLightmap
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: a838d49d9cd78fc4b81a828358e3b362, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 7cba042d7a008764fbe1a8c2e169dd09, type: 2}
     - target: {fileID: -4118620546562209994, guid: a838d49d9cd78fc4b81a828358e3b362, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
@@ -27119,14 +26438,6 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_ScaleInLightmap
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 7cba042d7a008764fbe1a8c2e169dd09, type: 2}
     - target: {fileID: 919132149155446097, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
       propertyPath: m_Name
       value: pipe_thin (13)
@@ -27427,14 +26738,6 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: a838d49d9cd78fc4b81a828358e3b362, type: 3}
-      propertyPath: m_ScaleInLightmap
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: a838d49d9cd78fc4b81a828358e3b362, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 7cba042d7a008764fbe1a8c2e169dd09, type: 2}
     - target: {fileID: -4118620546562209994, guid: a838d49d9cd78fc4b81a828358e3b362, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
@@ -27525,14 +26828,6 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_ScaleInLightmap
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 7cba042d7a008764fbe1a8c2e169dd09, type: 2}
     - target: {fileID: 919132149155446097, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
       propertyPath: m_Name
       value: pipe_thin (12)
@@ -28121,14 +27416,6 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: b16d1ff906ca76c40a5cfd0088952d63, type: 3}
-      propertyPath: m_ScaleInLightmap
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: b16d1ff906ca76c40a5cfd0088952d63, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 7cba042d7a008764fbe1a8c2e169dd09, type: 2}
     - target: {fileID: 919132149155446097, guid: b16d1ff906ca76c40a5cfd0088952d63, type: 3}
       propertyPath: m_Name
       value: pipe_turn (3)
@@ -28544,14 +27831,6 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_ScaleInLightmap
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 7cba042d7a008764fbe1a8c2e169dd09, type: 2}
     - target: {fileID: 919132149155446097, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
       propertyPath: m_Name
       value: pipe_thin (12)
@@ -28709,14 +27988,6 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: a838d49d9cd78fc4b81a828358e3b362, type: 3}
-      propertyPath: m_ScaleInLightmap
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: a838d49d9cd78fc4b81a828358e3b362, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 7cba042d7a008764fbe1a8c2e169dd09, type: 2}
     - target: {fileID: -4118620546562209994, guid: a838d49d9cd78fc4b81a828358e3b362, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
@@ -28806,14 +28077,6 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: a838d49d9cd78fc4b81a828358e3b362, type: 3}
-      propertyPath: m_ScaleInLightmap
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: a838d49d9cd78fc4b81a828358e3b362, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 7cba042d7a008764fbe1a8c2e169dd09, type: 2}
     - target: {fileID: -4118620546562209994, guid: a838d49d9cd78fc4b81a828358e3b362, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
@@ -28900,14 +28163,6 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: a838d49d9cd78fc4b81a828358e3b362, type: 3}
-      propertyPath: m_ScaleInLightmap
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: a838d49d9cd78fc4b81a828358e3b362, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 7cba042d7a008764fbe1a8c2e169dd09, type: 2}
     - target: {fileID: -4118620546562209994, guid: a838d49d9cd78fc4b81a828358e3b362, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
@@ -28994,14 +28249,6 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_ScaleInLightmap
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 7cba042d7a008764fbe1a8c2e169dd09, type: 2}
     - target: {fileID: 919132149155446097, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
       propertyPath: m_Name
       value: pipe_thin (4)
@@ -29524,14 +28771,6 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_ScaleInLightmap
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 7cba042d7a008764fbe1a8c2e169dd09, type: 2}
     - target: {fileID: 919132149155446097, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
       propertyPath: m_Name
       value: pipe_thin (3)
@@ -29614,14 +28853,6 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: a838d49d9cd78fc4b81a828358e3b362, type: 3}
-      propertyPath: m_ScaleInLightmap
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: a838d49d9cd78fc4b81a828358e3b362, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 7cba042d7a008764fbe1a8c2e169dd09, type: 2}
     - target: {fileID: -4118620546562209994, guid: a838d49d9cd78fc4b81a828358e3b362, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
@@ -29778,14 +29009,6 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: a838d49d9cd78fc4b81a828358e3b362, type: 3}
-      propertyPath: m_ScaleInLightmap
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: a838d49d9cd78fc4b81a828358e3b362, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 7cba042d7a008764fbe1a8c2e169dd09, type: 2}
     - target: {fileID: -4118620546562209994, guid: a838d49d9cd78fc4b81a828358e3b362, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
@@ -30231,14 +29454,6 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_ScaleInLightmap
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 7cba042d7a008764fbe1a8c2e169dd09, type: 2}
     - target: {fileID: 919132149155446097, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
       propertyPath: m_Name
       value: pipe_thin (15)
@@ -30506,14 +29721,6 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_ScaleInLightmap
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 7cba042d7a008764fbe1a8c2e169dd09, type: 2}
     - target: {fileID: 919132149155446097, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
       propertyPath: m_Name
       value: pipe_thin (2)
@@ -30600,14 +29807,6 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_ScaleInLightmap
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 7cba042d7a008764fbe1a8c2e169dd09, type: 2}
     - target: {fileID: 919132149155446097, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
       propertyPath: m_Name
       value: pipe_thin (41)
@@ -30777,14 +29976,6 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_ScaleInLightmap
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 7cba042d7a008764fbe1a8c2e169dd09, type: 2}
     - target: {fileID: 919132149155446097, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
       propertyPath: m_Name
       value: pipe_thin (2)
@@ -30928,14 +30119,6 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_ScaleInLightmap
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 7cba042d7a008764fbe1a8c2e169dd09, type: 2}
     - target: {fileID: 919132149155446097, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
       propertyPath: m_Name
       value: pipe_thin (31)
@@ -31344,14 +30527,6 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_ScaleInLightmap
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 7cba042d7a008764fbe1a8c2e169dd09, type: 2}
     - target: {fileID: 919132149155446097, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
       propertyPath: m_Name
       value: pipe_thin (8)
@@ -31422,14 +30597,6 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_ScaleInLightmap
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 7cba042d7a008764fbe1a8c2e169dd09, type: 2}
     - target: {fileID: 919132149155446097, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
       propertyPath: m_Name
       value: pipe_thin (13)
@@ -31611,14 +30778,6 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_ScaleInLightmap
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 7cba042d7a008764fbe1a8c2e169dd09, type: 2}
     - target: {fileID: 919132149155446097, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
       propertyPath: m_Name
       value: pipe_thin (19)
@@ -31879,14 +31038,6 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_ScaleInLightmap
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 7cba042d7a008764fbe1a8c2e169dd09, type: 2}
     - target: {fileID: 919132149155446097, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
       propertyPath: m_Name
       value: pipe_thin (1)
@@ -32043,14 +31194,6 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_ScaleInLightmap
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 7cba042d7a008764fbe1a8c2e169dd09, type: 2}
     - target: {fileID: 919132149155446097, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
       propertyPath: m_Name
       value: pipe_thin (26)
@@ -32121,14 +31264,6 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_ScaleInLightmap
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 7cba042d7a008764fbe1a8c2e169dd09, type: 2}
     - target: {fileID: 919132149155446097, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
       propertyPath: m_Name
       value: pipe_thin (2)
@@ -32897,14 +32032,6 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_ScaleInLightmap
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 7cba042d7a008764fbe1a8c2e169dd09, type: 2}
     - target: {fileID: 919132149155446097, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
       propertyPath: m_Name
       value: pipe_thin (9)
@@ -32975,14 +32102,6 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_ScaleInLightmap
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 7cba042d7a008764fbe1a8c2e169dd09, type: 2}
     - target: {fileID: 919132149155446097, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
       propertyPath: m_Name
       value: pipe_thin (13)
@@ -33069,14 +32188,6 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_ScaleInLightmap
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 7cba042d7a008764fbe1a8c2e169dd09, type: 2}
     - target: {fileID: 919132149155446097, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
       propertyPath: m_Name
       value: pipe_thin (5)
@@ -33163,14 +32274,6 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_ScaleInLightmap
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 7cba042d7a008764fbe1a8c2e169dd09, type: 2}
     - target: {fileID: 919132149155446097, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
       propertyPath: m_Name
       value: pipe_thin (11)
@@ -33524,14 +32627,6 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: a838d49d9cd78fc4b81a828358e3b362, type: 3}
-      propertyPath: m_ScaleInLightmap
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: a838d49d9cd78fc4b81a828358e3b362, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 7cba042d7a008764fbe1a8c2e169dd09, type: 2}
     - target: {fileID: -4118620546562209994, guid: a838d49d9cd78fc4b81a828358e3b362, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
@@ -33622,14 +32717,6 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_ScaleInLightmap
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 7cba042d7a008764fbe1a8c2e169dd09, type: 2}
     - target: {fileID: 919132149155446097, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
       propertyPath: m_Name
       value: pipe_thin (42)
@@ -34047,14 +33134,6 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_ScaleInLightmap
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 7cba042d7a008764fbe1a8c2e169dd09, type: 2}
     - target: {fileID: 919132149155446097, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
       propertyPath: m_Name
       value: pipe_thin
@@ -34562,14 +33641,6 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_ScaleInLightmap
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 7cba042d7a008764fbe1a8c2e169dd09, type: 2}
     - target: {fileID: 919132149155446097, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
       propertyPath: m_Name
       value: pipe_thin (28)
@@ -34878,14 +33949,6 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: a838d49d9cd78fc4b81a828358e3b362, type: 3}
-      propertyPath: m_ScaleInLightmap
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: a838d49d9cd78fc4b81a828358e3b362, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 7cba042d7a008764fbe1a8c2e169dd09, type: 2}
     - target: {fileID: -4118620546562209994, guid: a838d49d9cd78fc4b81a828358e3b362, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
@@ -34976,14 +34039,6 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_ScaleInLightmap
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 7cba042d7a008764fbe1a8c2e169dd09, type: 2}
     - target: {fileID: 919132149155446097, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
       propertyPath: m_Name
       value: pipe_thin (1)
@@ -35066,14 +34121,6 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: b16d1ff906ca76c40a5cfd0088952d63, type: 3}
-      propertyPath: m_ScaleInLightmap
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: b16d1ff906ca76c40a5cfd0088952d63, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 7cba042d7a008764fbe1a8c2e169dd09, type: 2}
     - target: {fileID: 919132149155446097, guid: b16d1ff906ca76c40a5cfd0088952d63, type: 3}
       propertyPath: m_Name
       value: pipe_turn (7)
@@ -35210,14 +34257,6 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: a838d49d9cd78fc4b81a828358e3b362, type: 3}
-      propertyPath: m_ScaleInLightmap
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: a838d49d9cd78fc4b81a828358e3b362, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 7cba042d7a008764fbe1a8c2e169dd09, type: 2}
     - target: {fileID: -4118620546562209994, guid: a838d49d9cd78fc4b81a828358e3b362, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
@@ -35304,14 +34343,6 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: a838d49d9cd78fc4b81a828358e3b362, type: 3}
-      propertyPath: m_ScaleInLightmap
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: a838d49d9cd78fc4b81a828358e3b362, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 7cba042d7a008764fbe1a8c2e169dd09, type: 2}
     - target: {fileID: -4118620546562209994, guid: a838d49d9cd78fc4b81a828358e3b362, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
@@ -35386,14 +34417,6 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_ScaleInLightmap
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 7cba042d7a008764fbe1a8c2e169dd09, type: 2}
     - target: {fileID: 919132149155446097, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
       propertyPath: m_Name
       value: pipe_thin (1)
@@ -35620,14 +34643,6 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_ScaleInLightmap
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 7cba042d7a008764fbe1a8c2e169dd09, type: 2}
     - target: {fileID: 919132149155446097, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
       propertyPath: m_Name
       value: pipe_thin (30)
@@ -35866,14 +34881,6 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: a838d49d9cd78fc4b81a828358e3b362, type: 3}
-      propertyPath: m_ScaleInLightmap
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: a838d49d9cd78fc4b81a828358e3b362, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 7cba042d7a008764fbe1a8c2e169dd09, type: 2}
     - target: {fileID: -4118620546562209994, guid: a838d49d9cd78fc4b81a828358e3b362, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
@@ -36467,14 +35474,6 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: a838d49d9cd78fc4b81a828358e3b362, type: 3}
-      propertyPath: m_ScaleInLightmap
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: a838d49d9cd78fc4b81a828358e3b362, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 7cba042d7a008764fbe1a8c2e169dd09, type: 2}
     - target: {fileID: -4118620546562209994, guid: a838d49d9cd78fc4b81a828358e3b362, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
@@ -36561,14 +35560,6 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: b16d1ff906ca76c40a5cfd0088952d63, type: 3}
-      propertyPath: m_ScaleInLightmap
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: b16d1ff906ca76c40a5cfd0088952d63, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 7cba042d7a008764fbe1a8c2e169dd09, type: 2}
     - target: {fileID: 919132149155446097, guid: b16d1ff906ca76c40a5cfd0088952d63, type: 3}
       propertyPath: m_Name
       value: pipe_turn
@@ -36798,14 +35789,6 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_ScaleInLightmap
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 7cba042d7a008764fbe1a8c2e169dd09, type: 2}
     - target: {fileID: 919132149155446097, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
       propertyPath: m_Name
       value: pipe_thin (5)
@@ -36962,14 +35945,6 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: a838d49d9cd78fc4b81a828358e3b362, type: 3}
-      propertyPath: m_ScaleInLightmap
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: a838d49d9cd78fc4b81a828358e3b362, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 7cba042d7a008764fbe1a8c2e169dd09, type: 2}
     - target: {fileID: -4118620546562209994, guid: a838d49d9cd78fc4b81a828358e3b362, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
@@ -37247,14 +36222,6 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_ScaleInLightmap
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 7cba042d7a008764fbe1a8c2e169dd09, type: 2}
     - target: {fileID: 919132149155446097, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
       propertyPath: m_Name
       value: pipe_thin (10)
@@ -37401,14 +36368,6 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_ScaleInLightmap
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 7cba042d7a008764fbe1a8c2e169dd09, type: 2}
     - target: {fileID: 919132149155446097, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
       propertyPath: m_Name
       value: pipe_thin (7)
@@ -37666,14 +36625,6 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: a838d49d9cd78fc4b81a828358e3b362, type: 3}
-      propertyPath: m_ScaleInLightmap
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: a838d49d9cd78fc4b81a828358e3b362, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 7cba042d7a008764fbe1a8c2e169dd09, type: 2}
     - target: {fileID: -4118620546562209994, guid: a838d49d9cd78fc4b81a828358e3b362, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
@@ -37979,14 +36930,6 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_ScaleInLightmap
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 7cba042d7a008764fbe1a8c2e169dd09, type: 2}
     - target: {fileID: 919132149155446097, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
       propertyPath: m_Name
       value: pipe_thin (21)
@@ -38073,14 +37016,6 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_ScaleInLightmap
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 7cba042d7a008764fbe1a8c2e169dd09, type: 2}
     - target: {fileID: 919132149155446097, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
       propertyPath: m_Name
       value: pipe_thin (17)
@@ -38251,14 +37186,6 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_ScaleInLightmap
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 7cba042d7a008764fbe1a8c2e169dd09, type: 2}
     - target: {fileID: 919132149155446097, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
       propertyPath: m_Name
       value: pipe_thin (15)
@@ -38399,14 +37326,6 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_ScaleInLightmap
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 7cba042d7a008764fbe1a8c2e169dd09, type: 2}
     - target: {fileID: 919132149155446097, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
       propertyPath: m_Name
       value: pipe_thin (15)
@@ -38493,14 +37412,6 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_ScaleInLightmap
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 7cba042d7a008764fbe1a8c2e169dd09, type: 2}
     - target: {fileID: 919132149155446097, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
       propertyPath: m_Name
       value: pipe_thin (13)
@@ -38587,14 +37498,6 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_ScaleInLightmap
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 7cba042d7a008764fbe1a8c2e169dd09, type: 2}
     - target: {fileID: 919132149155446097, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
       propertyPath: m_Name
       value: pipe_thin
@@ -38681,14 +37584,6 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_ScaleInLightmap
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 7cba042d7a008764fbe1a8c2e169dd09, type: 2}
     - target: {fileID: 919132149155446097, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
       propertyPath: m_Name
       value: pipe_thin (15)
@@ -38968,14 +37863,6 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_ScaleInLightmap
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 7cba042d7a008764fbe1a8c2e169dd09, type: 2}
     - target: {fileID: 919132149155446097, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
       propertyPath: m_Name
       value: pipe_thin (10)
@@ -47052,14 +45939,6 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_ScaleInLightmap
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 7cba042d7a008764fbe1a8c2e169dd09, type: 2}
     - target: {fileID: 919132149155446097, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
       propertyPath: m_Name
       value: pipe_thin (44)
@@ -47342,14 +46221,6 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_ScaleInLightmap
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 7cba042d7a008764fbe1a8c2e169dd09, type: 2}
     - target: {fileID: 919132149155446097, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
       propertyPath: m_Name
       value: pipe_thin (32)
@@ -47574,14 +46445,6 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_ScaleInLightmap
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 7cba042d7a008764fbe1a8c2e169dd09, type: 2}
     - target: {fileID: 919132149155446097, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
       propertyPath: m_Name
       value: pipe_thin (1)
@@ -47829,14 +46692,6 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: a838d49d9cd78fc4b81a828358e3b362, type: 3}
-      propertyPath: m_ScaleInLightmap
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: a838d49d9cd78fc4b81a828358e3b362, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 7cba042d7a008764fbe1a8c2e169dd09, type: 2}
     - target: {fileID: -4118620546562209994, guid: a838d49d9cd78fc4b81a828358e3b362, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
@@ -47993,14 +46848,6 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: b16d1ff906ca76c40a5cfd0088952d63, type: 3}
-      propertyPath: m_ScaleInLightmap
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: b16d1ff906ca76c40a5cfd0088952d63, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 7cba042d7a008764fbe1a8c2e169dd09, type: 2}
     - target: {fileID: 919132149155446097, guid: b16d1ff906ca76c40a5cfd0088952d63, type: 3}
       propertyPath: m_Name
       value: pipe_turn (1)
@@ -48157,14 +47004,6 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: a838d49d9cd78fc4b81a828358e3b362, type: 3}
-      propertyPath: m_ScaleInLightmap
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: a838d49d9cd78fc4b81a828358e3b362, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 7cba042d7a008764fbe1a8c2e169dd09, type: 2}
     - target: {fileID: -4118620546562209994, guid: a838d49d9cd78fc4b81a828358e3b362, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
@@ -48404,14 +47243,6 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_ScaleInLightmap
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 7cba042d7a008764fbe1a8c2e169dd09, type: 2}
     - target: {fileID: 919132149155446097, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
       propertyPath: m_Name
       value: pipe_thin (13)
@@ -48960,14 +47791,6 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_ScaleInLightmap
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 7cba042d7a008764fbe1a8c2e169dd09, type: 2}
     - target: {fileID: 919132149155446097, guid: f3b13f39c3e0ddf46b29d5cde426fe07, type: 3}
       propertyPath: m_Name
       value: pipe_thin (5)
@@ -49050,14 +47873,6 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: a838d49d9cd78fc4b81a828358e3b362, type: 3}
-      propertyPath: m_ScaleInLightmap
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: -7511558181221131132, guid: a838d49d9cd78fc4b81a828358e3b362, type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: 7cba042d7a008764fbe1a8c2e169dd09, type: 2}
     - target: {fileID: -4118620546562209994, guid: a838d49d9cd78fc4b81a828358e3b362, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
