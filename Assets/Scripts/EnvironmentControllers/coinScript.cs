@@ -1,40 +1,22 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 
-public class coinScript : MonoBehaviour
+public class CoinScript : MonoBehaviour
 {
     [SerializeField] GameObject Discard;
     [SerializeField] GameObject Buy;
     [SerializeField] GameObject Sell;
 
+    [SerializeField] GameObject[] Tables;
 
-    [SerializeField] GameObject Table1;
-    [SerializeField] GameObject Table2;
-    [SerializeField] GameObject Table3;
-
-    [SerializeField] Animator anim;
-
-
-    // Start is called before the first frame update
-    void Start()
-    {
-      anim = gameObject.GetComponent<Animator>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    [SerializeField] Animator _animator;
 
 
     public void FlipTheCoin(string s) 
     {
         StartCoroutine(ChangeCoinType(s));
-        anim.SetTrigger("flip_coin");
+        _animator.SetTrigger("flip_coin");
     }
 
     private IEnumerator ChangeCoinType(string s) {
@@ -62,19 +44,9 @@ public class coinScript : MonoBehaviour
         }
     }
 
-    public void MoveToTable2() {
-
-        this.transform.parent.SetParent(Table2.gameObject.transform);
-        this.transform.parent.localPosition = new Vector3(-0.224999994f, -0.0577000268f, 0.0250000656f);
-
-    }
-    public void MoveToTable3()
+    public void MoveToTable(int number)
     {
-
-        this.transform.parent.SetParent(Table3.gameObject.transform);
-        this.transform.parent.localPosition = new Vector3(-0.224999994f, -0.0577000268f, 0.0250000656f);
-
+        this.transform.parent.SetParent(Tables[number].gameObject.transform, false);
+        this.transform.rotation = Tables[number].transform.rotation;
     }
-
-
 }

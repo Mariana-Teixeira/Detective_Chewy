@@ -5,6 +5,18 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
+public struct CardPositionAndNormal
+{
+    public CardPositionAndNormal(Vector3 position, Vector3 normal)
+    {
+        cardPosition = position;
+        cardNormal = normal;
+    }
+
+    public Vector3 cardPosition;
+    public Vector3 cardNormal;
+}
+
 public class CardLogic : MonoBehaviour
 {
     #region PhaseText
@@ -29,11 +41,11 @@ public class CardLogic : MonoBehaviour
     private TurnPhase currentTurnPhase;
 
     [SerializeField] Board _gameBoard;
-    [SerializeField] coinScript _coinScript;
+    [SerializeField] CoinScript _coinScript;
     private List<Card> cards;
 
     public int[] MatchesScoreObjective;
-    private List<Vector3> pointsCardsPositions;
+    private List<CardPositionAndNormal> pointsCardsPositions;
     private int _boardPointsCollected;
 
     private bool _gotSetThisTurn = false;
@@ -57,7 +69,7 @@ public class CardLogic : MonoBehaviour
         #endregion
 
         cards = new List<Card> ();
-        pointsCardsPositions = new List<Vector3>();
+        pointsCardsPositions = new List<CardPositionAndNormal>();
 
         _turnCounter = 1;
         currentTurnPhase = TurnPhase.Discard;
@@ -104,13 +116,13 @@ public class CardLogic : MonoBehaviour
             _coinScript.FlipTheCoin("discard");
 
             if (pointsCardsPositions.Count > 0)
-            { 
-                _gameBoard.FinishTurn(pointsCardsPositions, new Vector3(0.0f, 0.26f, 0.97f)); // HARD CODED VALUE!!
+            {
+                _gameBoard.FinishTurn(pointsCardsPositions);
                 pointsCardsPositions.Clear();
             }
 
             _turnCounter++;
-            Debug.Log("TURN: " +_turnCounter);
+            Debug.Log("Current Turn: " + _turnCounter);
             _nextPhaseButton.interactable = false;
             _errorText.gameObject.SetActive(false);
             _gotSetThisTurn = false;
@@ -238,8 +250,10 @@ public class CardLogic : MonoBehaviour
 
                     foreach (Card card in cards)
                     {
-                        collectedPoints = collectedPoints + card.CardData.Score; 
-                        pointsCardsPositions.Add(card.transform.position);
+                        collectedPoints = collectedPoints + card.CardData.Score;
+                        Vector3 cardPosition = card.transform.position;
+                        Vector3 cardDirection = card.transform.up;
+                        pointsCardsPositions.Add(new CardPositionAndNormal(cardPosition, cardDirection));
                     }
 
                     _gameBoard.CollectPoints(cards);
@@ -297,15 +311,13 @@ public class CardLogic : MonoBehaviour
 
     public void GameWon() 
     {
-        Debug.Log("GAME WON");
-        _gameBoard.GameWonGoNextTable();
+        _gameBoard.SetNextActiveTable();
         QuestManager.CompleteQuest?.Invoke();
         ExitCardGame();
     }
 
     public void GameOver() 
     {
-        Debug.Log("GAME LOST");
         ExitCardGame();
     }
 
@@ -314,11 +326,13 @@ public class CardLogic : MonoBehaviour
         return cards.Count;
     }
 
-    public void UnselectAllCards() {
+    public void UnselectAllCards()
+    {
         var tmpsCards = new List<Card>(cards);
-        foreach (Card c in tmpsCards) {
+        foreach (Card c in tmpsCards)
+        {
             c.UnselectCard();
-            }
+        }
     }
 
     public void StartNewBoard()
@@ -336,6 +350,8 @@ public class CardLogic : MonoBehaviour
 
         _objectivePoints.text = MatchesScoreObjective[_gameBoard.GetActiveTable()].ToString();
         _pointsSlider.maxValue = MatchesScoreObjective[_gameBoard.GetActiveTable()];
+
+        pointsCardsPositions.Clear();
     }
 
     public void SelectHandCardBuyPhase()

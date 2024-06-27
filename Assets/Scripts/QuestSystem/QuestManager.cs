@@ -25,8 +25,6 @@ public class QuestManager : MonoBehaviour
 
     private void OnCompleteQuest()
     {
-        Debug.Log("On Complete Quest");
-
         QuestsIndex++;
         InformationCanvasScript.UpdateQuestInformation?.Invoke(CurrentQuest?.Invoke());
         ClueManager.InitQueue?.Invoke();

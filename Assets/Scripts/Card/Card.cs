@@ -7,7 +7,6 @@ using UnityEngine;
 public class Card : MonoBehaviour
 {
     private CardData _cardData;
-    private Outline _outline;
 
     private CardLogic _cardLogic;
 
@@ -32,7 +31,6 @@ public class Card : MonoBehaviour
     private void Awake()
     {
         _cardLogic = FindFirstObjectByType<CardLogic>();
-        _outline = GetComponent<Outline>();
     }
 
     private void Start()
@@ -88,11 +86,6 @@ public class Card : MonoBehaviour
             _isHovered = true;
             if (!_isSelected) this.transform.localPosition -= this.transform.forward * amount;
         }
-
-        //if (_cardData.Position == Position.Hand || _cardData.Position == Position.Tavern)
-        //{
-        //_outline.enabled = true;
-        //}
     }
 
     void OnMouseExit()
@@ -111,11 +104,6 @@ public class Card : MonoBehaviour
             _isHovered = false;
             if (!_isSelected) this.transform.localPosition += this.transform.forward * amount;
         }
-
-        //if (!_selected)
-        //{
-        //    _outline.enabled = false;
-        //}
     }
 
     private void OnMouseDown()
@@ -198,35 +186,16 @@ public class Card : MonoBehaviour
         if (!_isHovered) amount += 0.015f;
 
         _isSelected = false;
-
-        //_outline.OutlineColor = Color.yellow;
         if (this.CardData.Position == Position.Hand)
         {
+            this.transform.localPosition -= this.transform.up * amount;
 
-            if (_cardLogic.GetActiveTable() == 0)
-            {
-                //this.transform.localPosition = this.transform.localPosition + new Vector3(0, -0.0091f, -0.035f);
-                this.transform.localPosition -= this.transform.up * amount;
-            }
-            else
-            {
-                this.transform.localPosition = this.transform.localPosition + new Vector3(-0.035f, -0.0091f, 0);
-            }
         }
         else
         {
-            if (_cardLogic.GetActiveTable() == 0)
-            {
-                //this.transform.localPosition = this.transform.localPosition + new Vector3(0, 0.0091f, 0.035f);
-                this.transform.localPosition += this.transform.forward * amount;
-            }
-            else
-            {
-                this.transform.localPosition = this.transform.localPosition + new Vector3(0.035f, 0.0091f, 0);
-            }
+            this.transform.localPosition += this.transform.forward * amount;
         }
         _cardLogic.UnselectCard(this);
-        //_outline.enabled = false;
     }
 
     public void SelectCard()
@@ -234,31 +203,15 @@ public class Card : MonoBehaviour
         float amount = 0.020f;
 
         _isSelected = true;
-        //_outline.OutlineColor = Color.green;
         if (this.CardData.Position == Position.Hand)
         {
-            if (_cardLogic.GetActiveTable() == 0)
-            {
-                //this.transform.localPosition = this.transform.localPosition + new Vector3(0, 0.0091f, 0.035f);
-                this.transform.localPosition += this.transform.up * amount;
-            }
-            else
-            {
-                this.transform.localPosition = this.transform.localPosition + new Vector3(0.035f, 0.0091f, 0);
-            }
+            this.transform.localPosition += this.transform.up * amount;
         }
         else
         {
-            if (_cardLogic.GetActiveTable() == 0)
-            {
-                //this.transform.localPosition = this.transform.localPosition + new Vector3(0, -0.0091f, -0.035f);
-                this.transform.localPosition -= this.transform.forward * amount;
-            }
-            else {
-                this.transform.localPosition = this.transform.localPosition + new Vector3(-0.035f, -0.0091f, 0);
-            }
+            this.transform.localPosition -= this.transform.forward * amount;
         }
+
         _cardLogic.SelectCard(this);
-        //_outline.enabled = true;
     }
 }

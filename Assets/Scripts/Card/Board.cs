@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading;
 using Unity.VisualScripting;
 using UnityEngine;
+using static UnityEngine.Rendering.DebugUI;
 using Random = System.Random;
 
 public class Board : MonoBehaviour
@@ -18,7 +19,7 @@ public class Board : MonoBehaviour
     [SerializeField] GameObject discards;
     [SerializeField] GameObject _DeckStartPosition;
 
-    [SerializeField] coinScript coinScript;
+    [SerializeField] CoinScript _coinScript;
 
     [SerializeField] InteractWith _interactWith;
 
@@ -35,7 +36,7 @@ public class Board : MonoBehaviour
     private GameObject _handPos;
     private GameObject _tavernPos;
     private GameObject _discardsPos;
-    bool _setup = false;
+
     public int ActiveTable
     {
         get
@@ -91,7 +92,6 @@ public class Board : MonoBehaviour
         _hand.Clear();
         _tavern.Clear();
         _discards.Clear();
-        _setup = false;
         Random random = new Random();
         _allCardsList = _allCardsList.OrderBy(x => random.Next()).ToList();
         
@@ -162,9 +162,10 @@ public class Board : MonoBehaviour
         _handPos = table.transform.GetChild(1).GetChild(1).gameObject;
         _tavernPos = table.transform.GetChild(1).GetChild(2).gameObject;
         _discardsPos = table.transform.GetChild(1).GetChild(3).gameObject;
-        float moveStep = 0;
-        float moveStepY = 0.05f;
-        float moveStepZ = 0.1f;
+
+        float moveStep = 0f;
+        float moveStepZ = 0f;
+
         int counter = 0;
 
         foreach (Card card in _allCardsList)
@@ -172,157 +173,70 @@ public class Board : MonoBehaviour
             card.transform.position = _deckPos.transform.position;
         }
 
-        #region Not the First Table
-        if (num >= 1)
+        foreach (var card in _deck)
         {
-            foreach (var card in _deck)
-            {
-                card.transform.position = _deckPos.transform.position;
-                card.transform.Rotate(90, 0, 90);
-            }
-            moveStep = 0.65f;
-            moveStepY = 0.02f;
-            moveStepZ = 0.01f;
-
-            foreach (var card in _hand)
-            {
-                StartCoroutine(Lerp(card.transform, _handPos.transform.position + new Vector3(moveStepY, moveStepZ, moveStep)));
-                //card.transform.position = _handPos.transform.position + new Vector3(moveStepY, 0, moveStep);
-                /*
-                if (counter == 4)
-                {
-                    moveStepY = +0.2f;
-                    moveStep = moveStep + 0.1f;
-                }
-                if (counter < 4)
-                {
-                    moveStep = moveStep + 0.1f;
-                }
-                
-                else
-                {
-                    moveStep = moveStep - 0.1f;
-                }
-                */
-                moveStepZ = moveStepZ + 0.001f;
-                moveStep = moveStep - 0.05f;
-                counter++;
-
-                card.transform.Rotate(0, 0, 90);
-            }
-            moveStep = -0.15f;
-            foreach (var card in _tavern)
-            {
-                StartCoroutine(Lerp(card.transform, _tavernPos.transform.position + new Vector3(-0.2f, 0, moveStep)));
-                //card.transform.position = _tavernPos.transform.position + new Vector3(0, 0, moveStep);
-                moveStep = moveStep + 0.1f;
-                card.transform.Rotate(90, 0, 90);
-            }
-            foreach (var card in _discards)
-            {
-                StartCoroutine(Lerp(card.transform, _discardsPos.transform.position + new Vector3(0, -0.02f, -0.05f)));
-
-                //card.transform.position = _discardsPos.transform.position;
-                card.transform.Rotate(90, 0, 90);
-
-            }
-
+            card.transform.rotation = table.transform.rotation;
+            card.transform.Rotate(90, 0, 0);
+            card.transform.position = _deckPos.transform.position;
         }
-        #endregion
-        //----------------------------------------------------
-        else
+
+        moveStep = -0.2f;
+        moveStepZ = 0.01f;
+
+        foreach (var card in _hand)
         {
+            card.transform.rotation = table.transform.rotation;
+            card.transform.Rotate(90, 0, 0);
 
-            foreach (var card in _deck)
-            {
-                //StartCoroutine(Lerp(card.transform, _deckPos.transform.position));
-                card.transform.position = _deckPos.transform.position;
-                card.transform.Rotate(90, 0, 0);
-            }
+            var newHandPosition = _handPos.transform.position +
+                card.transform.right * moveStep + card.transform.forward * moveStepZ + card.transform.up * 0.0f;
 
-            moveStep = -0.2f;
-            moveStepY = 0.0f; //0.07f
-            moveStepZ = 0.0f; //0.01f
+            StartCoroutine(Lerp(card.transform, newHandPosition));
 
-            foreach (var card in _hand)
-            {
-                StartCoroutine(Lerp(card.transform, _handPos.transform.position + new Vector3(moveStep, moveStepZ, moveStepY)));
-                //card.transform.position = _handPos.transform.position + new Vector3(moveStep, 0, moveStepY);
-                /*
-                if (counter == 4)
-                {
-                    moveStepY = 0.2f;
-                    moveStep = moveStep - 0.1f;
-                }
-                if (counter < 4)
-                {
-                    moveStep = moveStep - 0.1f;
-                }
-                else
-                {
-                    moveStep = moveStep + 0.1f;
-                }
-                */
-                moveStepZ = moveStepZ - 0.001f;
-                moveStep = moveStep - 0.05f;
-                counter++;
-
-                card.transform.Rotate(90, 0, 0);
-                //card.transform.Rotate(0, 0, 90);
-            }
-            moveStep = -0.15f;
-            foreach (var card in _tavern)
-            {
-                StartCoroutine(Lerp(card.transform, _tavernPos.transform.position + new Vector3(moveStep, 0, -0.15f)));
-                //card.transform.position = _tavernPos.transform.position + new Vector3(moveStep, 0, 0);
-                moveStep = moveStep + 0.1f;
-
-                card.transform.Rotate(90, 0, 0);
-                /*
-                card.transform.Rotate(-35, 0, 0);
-                card.transform.position = card.transform.position + new Vector3(0, 0.03f, 0);
-                */
-
-            }
-            foreach (var card in _discards)
-            {
-                //StartCoroutine(Lerp(card.transform, (_discardsPos.transform.position + new Vector3(0, 0.4f, -0.35f))));
-                StartCoroutine(Lerp(card.transform, _discardsPos.transform.position));
-                //card.transform.Rotate(90, 0, 0);
-            }
+            moveStepZ += 0.001f;
+            moveStep -= 0.05f;
+            counter++;
         }
-        _setup = true;
+
+        moveStep = -0.15f;
+
+        foreach (var card in _tavern)
+        {
+            card.transform.rotation = table.transform.rotation;
+            card.transform.Rotate(90, 0, 0);
+
+            var newTavernPosition = _tavernPos.transform.position +
+                card.transform.right * moveStep + card.transform.forward * 0.0f + card.transform.up * 0.0f;
+
+            StartCoroutine(Lerp(card.transform, newTavernPosition));
+
+            moveStep = moveStep + 0.1f;
+        }
     }
-    public void PublicLerp(Transform card, Vector3 target, Vector3 movementVector) {
-        StartCoroutine(Lerp(card, target, movementVector));
-    }
-    //LERP FUNCTION OF CARDS
 
     IEnumerator Lerp(Transform card, Vector3 target, Vector3 movementVector = default)
     {
-        card.gameObject.GetComponent<Card>()._canInteract = false;
-        card.gameObject.GetComponent<Card>()._isSelected = false;
-        card.gameObject.GetComponent<Card>()._isHovered = false;
-        //Cursor.visible = false;
-        //Cursor.lockState = CursorLockMode.Locked;
+        var cardScript = card.gameObject.GetComponent<Card>();
+        cardScript._canInteract = false;
+        cardScript._isSelected = false;
+        cardScript._isHovered = false;
 
         float timeElapsed = 0;
         float lerpDuration = 2;
-        float z = 0.1f;
 
-        Vector3 firstTarget = target;
-        target = ((firstTarget + card.position) / 2f) + new Vector3(0, z / 2f, z);
+        var HandRotation = -10f;
+        var HandRotateTo = card.transform.rotation * Quaternion.Euler(HandRotation, 0f, 0f);
 
-        if (card.gameObject.GetComponent<Card>().CardData.Position == Position.Discard)
+        var DiscardRotation = 180f - HandRotation;
+        var DiscardRotateTo = card.transform.rotation * Quaternion.Euler(DiscardRotation, 0f, 0f);
+
+        if (cardScript.CardData.Position == Position.Discard)
         {
             while (timeElapsed < lerpDuration)
             {
-                Debug.Log("Move to Discard");
+                card.transform.rotation = Quaternion.Lerp(card.transform.rotation, DiscardRotateTo, timeElapsed / lerpDuration);
+                card.position = Vector3.Lerp(card.position, target, timeElapsed / lerpDuration);
 
-                //card.position = Vector3.Lerp(card.position, firstTarget + new Vector3(0, 0.08f,0), timeElapsed / lerpDuration);
-                card.position = Vector3.Lerp(card.position, firstTarget, timeElapsed / lerpDuration);
-                //card.transform.rotation = Quaternion.Lerp(card.transform.rotation, Quaternion.AngleAxis(180, Vector3.up), timeElapsed / lerpDuration);
-                card.transform.rotation = Quaternion.Lerp(card.transform.rotation, Quaternion.AngleAxis(90, Vector3.left), timeElapsed / lerpDuration);
                 timeElapsed += Time.deltaTime;
                 yield return null;
             }
@@ -334,152 +248,78 @@ public class Board : MonoBehaviour
             {
                 if (movementVector.y > 0)
                 {
-                    firstTarget -= movementVector * 0.035f;
+                    target -= movementVector * 0.035f;
                 }
                 else if (movementVector.y < 0)
                 {
-                    firstTarget += movementVector * 0.035f;
+                    target += movementVector * 0.035f;
                 }
             }
 
             while (timeElapsed < lerpDuration)
             {
-                //adjust 25%
-                if (card.gameObject.GetComponent<Card>().CardData.Position == Position.Hand)
+                if (cardScript.CardData.Position == Position.Hand)
                 {
-                    Debug.Log("Placing Hand");
-                    if (ActiveTable == 0)
-                    {
-                        card.transform.rotation = Quaternion.Lerp(card.transform.rotation, Quaternion.AngleAxis(-75, Vector3.left), timeElapsed / lerpDuration);
-                        card.position = Vector3.Lerp(card.position, firstTarget, timeElapsed / lerpDuration);
-                    }
-                    else
-                    {
-                        card.transform.rotation = Quaternion.identity;
-                        card.transform.Rotate(0, 90, 0);
-                        card.transform.Rotate(75, 0, 0);
-                    }
-                    //card.transform.rotation = Quaternion.AngleAxis(-75, Vector3.left);
+                    card.transform.rotation = Quaternion.Lerp(card.transform.rotation, HandRotateTo, timeElapsed / lerpDuration);
+                    card.position = Vector3.Lerp(card.position, target, timeElapsed / lerpDuration);
                 }
                 else
                 {
-                                            Debug.Log("Placing Tavern");
-                    card.position = Vector3.Lerp(card.position, firstTarget, (timeElapsed - 1) / (lerpDuration * 2));
+                    card.position = Vector3.Lerp(card.position, target, (timeElapsed - 1) / (lerpDuration * 2));
                 }
-
-                //if (timeElapsed < lerpDuration / 2)
-                //{
-                //    card.position = Vector3.Lerp(card.position, target, timeElapsed / (lerpDuration * 2));
-                //}
-                //else
-                //{
-                //    card.position = Vector3.Lerp(card.position, firstTarget, (timeElapsed - 1) / (lerpDuration * 2));
-                //}
 
                 timeElapsed += Time.deltaTime;
 
                 yield return null;
             }
         }
-        if (card.gameObject.GetComponent<Card>().CardData.Position == Position.Hand)
-        {
-            card.position = firstTarget; // + new Vector3(0, 0.1f, 0)
-        }
-        else
-        {
-            card.position = firstTarget;
-        }
-        if (_setup == true) {
-            //adjust cards that were selected to go back to the hand
-            if (card.gameObject.GetComponent<Card>().CardData.Position == Position.Hand)
-            {
-                if (_activeTable == 0)
-                {
-                    //card.position = firstTarget + new Vector3(0, -0.0091f, -0.035f);
-                    //card.position -= card.transform.up * (0.035f + 0.015f);
-                }
-                else
-                {
-                    card.position = firstTarget + new Vector3(-0.035f, -0.0091f, 0);
-                }
-            }
-            else
-            {
-                if (_activeTable == 0)
-                {
-                    //card.position = firstTarget + new Vector3(0, 0.0091f, 0.035f);
-                }
-                else
-                {
-                    card.position = firstTarget + new Vector3(0.035f, 0.0091f, 0);
-                }
-            }
-        }
- 
-        if (card.gameObject.GetComponent<Card>().CardData.Position == Position.Discard)
-        {
-            card.transform.rotation = Quaternion.AngleAxis(90, Vector3.left);
-            if (_activeTable > 0) {
-                card.transform.Rotate(0, 0, 90);
-                card.transform.localPosition = card.transform.localPosition + new Vector3(-0.15f, 0, 0.15f);
-            }
-        }
 
-        card.gameObject.GetComponent<Card>()._canInteract = true;
-        //Cursor.visible = true;
-        //Cursor.lockState = CursorLockMode.None;
+        cardScript._canInteract = true;
     }
 
-    //DRAWING MECHANICS
-    // ADD LERP FOR MOVING CARDS LATER ON
-    public void DrawCard(Vector3 pos, Vector3 movementVector = default)  
+    public void DrawCard(Vector3 position, Vector3 movementVector = default)  
     {
         _hand.Add(_deck.ElementAt(0));
-        StartCoroutine(Lerp(_deck.ElementAt(0).gameObject.transform, pos, movementVector));
-        //_deck.ElementAt(0).gameObject.transform.position = pos;
+        StartCoroutine(Lerp(_deck.ElementAt(0).gameObject.transform, position, movementVector));
 
         UpdatePosition(_deck.ElementAt(0), Position.Hand);
         _deck.RemoveAt(0);
     }
     public void DiscardCard(Card card)
     {
-        Debug.Log("card.transform.up: " + card.transform.up);
         _discards.Add(card);
         _hand.Remove(card);
-        //DrawCard(card.transform.position);
+
         DrawCard(card.transform.position, card.transform.up);
         UpdatePosition(card, Position.Discard);
-        //StartCoroutine(Lerp(card.gameObject.transform, _discardsPos.transform.position + new Vector3(0, (float)0.001 * _discards.Count(), 0) + new Vector3(0, -0.05f, -0.15f)));
+        
         StartCoroutine(Lerp(card.gameObject.transform, _discardsPos.transform.position));
-        //card.gameObject.transform.position = _discardsPos.transform.position + new Vector3 (0, (float) 0.001*_discards.Count(),0);
     }
 
     public void ExchangeTavernCard(Card cardHand, Card cardTavern) 
     {
-        //add from deck to tavern
+        // From Deck to Tavern
         _tavern.Add(_deck.ElementAt(0));
-        //_deck.ElementAt(0).gameObject.transform.position = cardTavern.transform.position;
-        StartCoroutine(Lerp(_deck.ElementAt(0).gameObject.transform, cardTavern.transform.position, cardTavern.transform.forward));
 
+        StartCoroutine(Lerp(_deck.ElementAt(0).gameObject.transform, cardTavern.transform.position, cardTavern.transform.forward));
         UpdatePosition(_deck.ElementAt(0), Position.Tavern);
+
         _deck.RemoveAt(0);
 
-
-        //adds to hand from tavern
+        // From Tavern to Hand
         _hand.Add(cardTavern);
         _tavern.Remove(cardTavern);
-        //cardTavern.gameObject.transform.position = cardHand.transform.position;
+
         StartCoroutine(Lerp(cardTavern.gameObject.transform, cardHand.transform.position, cardHand.transform.up));
 
         UpdatePosition(cardTavern, Position.Hand);
 
-        //discards from hand
+        // From Hand to Discard
         _discards.Add(cardHand);
         _hand.Remove(cardHand);
-        //cardHand.gameObject.transform.position = _discardsPos.transform.position;
 
         UpdatePosition(cardHand, Position.Discard);
-        //StartCoroutine(Lerp(cardHand.gameObject.transform, _discardsPos.transform.position + new Vector3(0, -0.05f, -0.15f)));
+
         StartCoroutine(Lerp(cardHand.gameObject.transform, _discardsPos.transform.position));
 
     }
@@ -490,43 +330,24 @@ public class Board : MonoBehaviour
         {
             _discards.Add(card);
             _hand.Remove(card);
-            //StartCoroutine(Lerp(card.gameObject.transform, _discardsPos.transform.position));
+
             UpdatePosition(card, Position.Discard);
             StartCoroutine(Lerp(card.gameObject.transform, _discardsPos.transform.position));
-            //card.gameObject.transform.position = _discardsPos.transform.position;
         }
-
     }
 
-    public void FinishTurn(List<Vector3> cards, Vector3 movementVector)
+    public void FinishTurn(List<CardPositionAndNormal> cards)
     {
-        foreach (Vector3 card in cards)
+        foreach (var card in cards)
         {
-            DrawCard(card, movementVector);
+            DrawCard(card.cardPosition, card.cardNormal);
         }
     }
 
-    public void GameWonGoNextTable()
+    public void SetNextActiveTable()
     {
-        _activeTable = _activeTable + 1;
-        if (_activeTable == 1) { coinScript.MoveToTable2(); }
-        if (_activeTable == 2) { coinScript.MoveToTable3(); }
-
-    }
-
-    public Transform GetTavernPos()
-    {
-        return _tavernPos.transform;
-    }
-
-    public Transform GetDeckPos()
-    {
-        return _deckPos.transform;
-    }
-
-    public Transform GetDiscardPos()
-    {
-        return _discardsPos.transform;
+        _activeTable += 1;
+        _coinScript.MoveToTable(_activeTable);
     }
 
     public int GetActiveTable()

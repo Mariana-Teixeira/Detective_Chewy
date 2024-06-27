@@ -55,11 +55,9 @@ public class CardGameState : MonoBehaviour
         switch(currentGamePhase)
         {
             case GamePhase.First_Threshold:
-                Debug.Log("First Threshold Dialogue");
                 _invoker.SendDialogueBranch(_currentQuest.FirstThresholdDialogue);
                 break;
             case GamePhase.Second_Threshold:
-                Debug.Log("Second Threshold Dialogue");
                 _invoker.SendDialogueBranch(_currentQuest.SecondThresholdDialogue);
                 break;
             default:
