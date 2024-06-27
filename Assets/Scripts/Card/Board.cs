@@ -313,8 +313,10 @@ public class Board : MonoBehaviour
         {
             while (timeElapsed < lerpDuration)
             {
-                card.position = Vector3.Lerp(card.position, firstTarget + new Vector3(0, 0.08f,0), timeElapsed / lerpDuration);
-                card.transform.rotation = Quaternion.Lerp(card.transform.rotation, Quaternion.AngleAxis(180, Vector3.up), timeElapsed / lerpDuration);
+                //card.position = Vector3.Lerp(card.position, firstTarget + new Vector3(0, 0.08f,0), timeElapsed / lerpDuration);
+                card.position = Vector3.Lerp(card.position, firstTarget, timeElapsed / lerpDuration);
+                //card.transform.rotation = Quaternion.Lerp(card.transform.rotation, Quaternion.AngleAxis(180, Vector3.up), timeElapsed / lerpDuration);
+                card.transform.rotation = Quaternion.Lerp(card.transform.rotation, Quaternion.AngleAxis(90, Vector3.left), timeElapsed / lerpDuration);
                 timeElapsed += Time.deltaTime;
                 yield return null;
             }
@@ -325,12 +327,10 @@ public class Board : MonoBehaviour
             {
                 if (movementVector.y > 0)
                 {
-                    Debug.Log("Hand MovementVector: " + movementVector);
                     firstTarget -= movementVector * 0.035f;
                 }
                 else if (movementVector.y < 0)
                 {
-                    Debug.Log("Other MovementVector: " + movementVector);
                     firstTarget += movementVector * 0.035f;
                 }
             }
