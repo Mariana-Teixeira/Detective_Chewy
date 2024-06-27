@@ -313,6 +313,8 @@ public class Board : MonoBehaviour
         {
             while (timeElapsed < lerpDuration)
             {
+                Debug.Log("Move to Discard");
+
                 //card.position = Vector3.Lerp(card.position, firstTarget + new Vector3(0, 0.08f,0), timeElapsed / lerpDuration);
                 card.position = Vector3.Lerp(card.position, firstTarget, timeElapsed / lerpDuration);
                 //card.transform.rotation = Quaternion.Lerp(card.transform.rotation, Quaternion.AngleAxis(180, Vector3.up), timeElapsed / lerpDuration);
@@ -435,7 +437,8 @@ public class Board : MonoBehaviour
         //DrawCard(card.transform.position);
         DrawCard(card.transform.position, card.transform.up);
         UpdatePosition(card, Position.Discard);
-        StartCoroutine(Lerp(card.gameObject.transform, _discardsPos.transform.position + new Vector3(0, (float)0.001 * _discards.Count(), 0) + new Vector3(0, -0.05f, -0.15f)));
+        //StartCoroutine(Lerp(card.gameObject.transform, _discardsPos.transform.position + new Vector3(0, (float)0.001 * _discards.Count(), 0) + new Vector3(0, -0.05f, -0.15f)));
+        StartCoroutine(Lerp(card.gameObject.transform, _discardsPos.transform.position));
         //card.gameObject.transform.position = _discardsPos.transform.position + new Vector3 (0, (float) 0.001*_discards.Count(),0);
     }
 
@@ -464,7 +467,8 @@ public class Board : MonoBehaviour
         //cardHand.gameObject.transform.position = _discardsPos.transform.position;
 
         UpdatePosition(cardHand, Position.Discard);
-        StartCoroutine(Lerp(cardHand.gameObject.transform, _discardsPos.transform.position + new Vector3(0, -0.05f, -0.15f)));
+        //StartCoroutine(Lerp(cardHand.gameObject.transform, _discardsPos.transform.position + new Vector3(0, -0.05f, -0.15f)));
+        StartCoroutine(Lerp(cardHand.gameObject.transform, _discardsPos.transform.position));
 
     }
 
@@ -474,8 +478,9 @@ public class Board : MonoBehaviour
         {
             _discards.Add(card);
             _hand.Remove(card);
-            StartCoroutine(Lerp(card.gameObject.transform, _discardsPos.transform.position));
+            //StartCoroutine(Lerp(card.gameObject.transform, _discardsPos.transform.position));
             UpdatePosition(card, Position.Discard);
+            StartCoroutine(Lerp(card.gameObject.transform, _discardsPos.transform.position));
             //card.gameObject.transform.position = _discardsPos.transform.position;
         }
 
