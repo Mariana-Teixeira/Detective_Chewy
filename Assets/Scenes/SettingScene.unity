@@ -2071,7 +2071,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4096336531650125810, guid: 4a526635ae604a14aa3a1755f78d5dbf, type: 3}
       propertyPath: MatchesScoreObjective.Array.data[0]
-      value: 20
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 4096336531650125810, guid: 4a526635ae604a14aa3a1755f78d5dbf, type: 3}
       propertyPath: MatchesScoreObjective.Array.data[1]

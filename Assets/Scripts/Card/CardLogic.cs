@@ -105,7 +105,7 @@ public class CardLogic : MonoBehaviour
 
             if (pointsCardsPositions.Count > 0)
             { 
-                _gameBoard.FinishTurn(pointsCardsPositions);
+                _gameBoard.FinishTurn(pointsCardsPositions, new Vector3(0.0f, 0.26f, 0.97f)); // HARD CODED VALUE!!
                 pointsCardsPositions.Clear();
             }
 

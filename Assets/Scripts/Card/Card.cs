@@ -11,14 +11,12 @@ public class Card : MonoBehaviour
 
     private CardLogic _cardLogic;
 
-    private bool _selected = false;
-
     [SerializeField] List<Material> materials;
     [SerializeField] GameObject mesh;
 
     public TurnPhase Phase;
 
-    public bool _canInteract;
+    public bool _isSelected, _canInteract, _isHovered;
 
     public CardData CardData
     {
@@ -76,22 +74,34 @@ public class Card : MonoBehaviour
 
     void OnMouseOver()
     {
-        if(!_canInteract) return;
+        if(!_canInteract || _isHovered) return;
 
-        if(_cardData.Position == Position.Hand || _cardData.Position == Position.Tavern)
-        { 
-            _outline.enabled = true;
+        if(_cardData.Position == Position.Hand)
+        {
+            _isHovered = true;
+            this.transform.localPosition += this.transform.up * 0.015f;
         }
+
+        //if (_cardData.Position == Position.Hand || _cardData.Position == Position.Tavern)
+        //{
+        //_outline.enabled = true;
+        //}
     }
 
     void OnMouseExit()
     {
-        if (!_canInteract) return;
+        if (!_canInteract || !_isHovered) return;
 
-        if (!_selected)
+        if (_cardData.Position == Position.Hand && !_isSelected)
         {
-            _outline.enabled = false;
+            _isHovered = false;
+            this.transform.localPosition -= this.transform.up * 0.015f;
         }
+
+        //if (!_selected)
+        //{
+        //    _outline.enabled = false;
+        //}
     }
 
     private void OnMouseDown()
@@ -102,14 +112,14 @@ public class Card : MonoBehaviour
         {
             if ((_cardLogic.SelectedCardsLength() < 1) && this.CardData.Position == Position.Hand)
             {
-                if (!_selected)
+                if (!_isSelected)
                 {
                     SelectCard();
                 }
             }
             else if (this.CardData.Position == Position.Hand)
             {
-                if (_selected)
+                if (_isSelected)
                 {
                     UnselectCard();
                 }
@@ -119,7 +129,7 @@ public class Card : MonoBehaviour
         {
             if (_cardLogic.IsHandCardSelectedBuyPhase() == true && this.CardData.Position == Position.Hand)
             {
-                if (_selected)
+                if (_isSelected)
                 {
                     UnselectCard();
                     _cardLogic.UnSelectHandCardBuyPhase();
@@ -127,7 +137,7 @@ public class Card : MonoBehaviour
             }
             else if (_cardLogic.IsTavernCardSelectedBuyPhase() == true && this.CardData.Position == Position.Tavern)
             {
-                if (_selected)
+                if (_isSelected)
                 {
                     UnselectCard();
                     _cardLogic.UnSelectTavernCardBuyPhase();
@@ -149,18 +159,18 @@ public class Card : MonoBehaviour
         { 
             if (_cardLogic.SelectedCardsLength() == 3)
             {
-                if (_selected) 
+                if (_isSelected) 
                 {
                     UnselectCard();
                 }
             }
             else
             { 
-                if (!_selected && this.CardData.Position == Position.Hand) 
+                if (!_isSelected && this.CardData.Position == Position.Hand) 
                 {
                     SelectCard();
                 }
-                else if (_selected)
+                else if (_isSelected)
                 {
                     UnselectCard();
                 }
@@ -170,14 +180,15 @@ public class Card : MonoBehaviour
 
     public void UnselectCard()
     {
-        _selected = false;
-        _outline.OutlineColor = Color.yellow;
+        _isSelected = false;
+        //_outline.OutlineColor = Color.yellow;
         if (this.CardData.Position == Position.Hand)
         {
 
             if (_cardLogic.GetActiveTable() == 0)
             {
-                this.transform.localPosition = this.transform.localPosition + new Vector3(0, -0.0091f, -0.035f);
+                //this.transform.localPosition = this.transform.localPosition + new Vector3(0, -0.0091f, -0.035f);
+                this.transform.localPosition -= this.transform.up * 0.035f;
             }
             else
             {
@@ -196,18 +207,19 @@ public class Card : MonoBehaviour
             }
         }
         _cardLogic.UnselectCard(this);
-        _outline.enabled = false;
+        //_outline.enabled = false;
     }
 
     public void SelectCard()
     {
-        _selected = true;
-        _outline.OutlineColor = Color.green;
+        _isSelected = true;
+        //_outline.OutlineColor = Color.green;
         if (this.CardData.Position == Position.Hand)
         {
             if (_cardLogic.GetActiveTable() == 0)
             {
-                this.transform.localPosition = this.transform.localPosition + new Vector3(0, 0.0091f, 0.035f);
+                //this.transform.localPosition = this.transform.localPosition + new Vector3(0, 0.0091f, 0.035f);
+                this.transform.localPosition += this.transform.up * 0.035f;
             }
             else
             {
@@ -225,6 +237,6 @@ public class Card : MonoBehaviour
             }
         }
         _cardLogic.SelectCard(this);
-        _outline.enabled = true;
+        //_outline.enabled = true;
     }
 }

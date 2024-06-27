@@ -288,11 +288,11 @@ public class Board : MonoBehaviour
         _setup = true;
 
     }
-    public void PublicLerp(Transform card, Vector3 target) {
-        StartCoroutine(Lerp(card, target));
+    public void PublicLerp(Transform card, Vector3 target, Vector3 movementVector) {
+        StartCoroutine(Lerp(card, target, movementVector));
     }
     //LERP FUNCTION OF CARDS
-    IEnumerator Lerp(Transform card, Vector3 target)
+    IEnumerator Lerp(Transform card, Vector3 target, Vector3 movementVector = default)
     {
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
@@ -315,6 +315,11 @@ public class Board : MonoBehaviour
         }
         else
         {
+            if (movementVector != Vector3.zero)
+            {
+                Debug.Log("First Target: " + firstTarget + " || Movement Vector: " + movementVector);
+                firstTarget -= movementVector * (0.035f + 0.015f);
+            }
 
             while (timeElapsed < lerpDuration)
             {
@@ -353,7 +358,7 @@ public class Board : MonoBehaviour
         }
         if (card.gameObject.GetComponent<Card>().CardData.Position == Position.Hand)
         {
-            card.position = firstTarget + new Vector3(0, 0.1f,0);
+            card.position = firstTarget + new Vector3(0, 0.1f, 0);
         }
         card.position = firstTarget;
         if (_setup == true) {
@@ -362,7 +367,8 @@ public class Board : MonoBehaviour
             {
                 if (_activeTable == 0)
                 {
-                    card.position = firstTarget + new Vector3(0, -0.0091f, -0.035f);
+                    //card.position = firstTarget + new Vector3(0, -0.0091f, -0.035f);
+                    //card.position -= card.transform.up * (0.035f + 0.015f);
                 }
                 else
                 {
@@ -375,7 +381,8 @@ public class Board : MonoBehaviour
                 {
                     card.position = firstTarget + new Vector3(0, 0.0091f, 0.035f);
                 }
-                else {
+                else
+                {
                     card.position = firstTarget + new Vector3(0.035f, 0.0091f, 0);
                 }
             }
@@ -399,10 +406,10 @@ public class Board : MonoBehaviour
 
     //DRAWING MECHANICS
     // ADD LERP FOR MOVING CARDS LATER ON
-    public void DrawCard(Vector3 pos)  
+    public void DrawCard(Vector3 pos, Vector3 movementVector = default)  
     {
         _hand.Add(_deck.ElementAt(0));
-        StartCoroutine(Lerp(_deck.ElementAt(0).gameObject.transform, pos));
+        StartCoroutine(Lerp(_deck.ElementAt(0).gameObject.transform, pos, movementVector));
         //_deck.ElementAt(0).gameObject.transform.position = pos;
 
         UpdatePosition(_deck.ElementAt(0), Position.Hand);
@@ -410,14 +417,14 @@ public class Board : MonoBehaviour
     }
     public void DiscardCard(Card card)
     {
+        Debug.Log("card.transform.up: " + card.transform.up);
         _discards.Add(card);
         _hand.Remove(card);
-        DrawCard(card.transform.position);
+        //DrawCard(card.transform.position);
+        DrawCard(card.transform.position, card.transform.up);
         UpdatePosition(card, Position.Discard);
         StartCoroutine(Lerp(card.gameObject.transform, _discardsPos.transform.position + new Vector3(0, (float)0.001 * _discards.Count(), 0) + new Vector3(0, -0.05f, -0.15f)));
         //card.gameObject.transform.position = _discardsPos.transform.position + new Vector3 (0, (float) 0.001*_discards.Count(),0);
-
- 
     }
 
     public void ExchangeTavernCard(Card cardHand, Card cardTavern) 
@@ -435,7 +442,7 @@ public class Board : MonoBehaviour
         _hand.Add(cardTavern);
         _tavern.Remove(cardTavern);
         //cardTavern.gameObject.transform.position = cardHand.transform.position;
-        StartCoroutine(Lerp(cardTavern.gameObject.transform, cardHand.transform.position));
+        StartCoroutine(Lerp(cardTavern.gameObject.transform, cardHand.transform.position, cardHand.transform.up));
 
         UpdatePosition(cardTavern, Position.Hand);
 
@@ -462,11 +469,11 @@ public class Board : MonoBehaviour
 
     }
 
-    public void FinishTurn(List<Vector3> cards)
+    public void FinishTurn(List<Vector3> cards, Vector3 movementVector)
     {
         foreach (Vector3 card in cards)
         {
-            DrawCard(card);
+            DrawCard(card, movementVector);
         }
     }
 
