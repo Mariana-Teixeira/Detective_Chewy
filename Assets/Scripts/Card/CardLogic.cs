@@ -8,9 +8,9 @@ using UnityEngine.UI;
 public class CardLogic : MonoBehaviour
 {
     #region PhaseText
-    string PlayCards = "Play";
-    string TradeCards = "Trade";
-    string DiscardCard = "Discard";
+    string PlayText = "Play";
+    string TradeText = "Trade";
+    string DiscardText = "Discard";
     #endregion
 
     #region UI Elements
@@ -52,7 +52,7 @@ public class CardLogic : MonoBehaviour
         _nextPhaseButton.onClick.AddListener(ChangeToNextPhase);
         _confirmButton.onClick.AddListener(Confirm);
 
-        _turnPhaseText.text = "DISCARD PHASE";
+        _turnPhaseText.text = DiscardText;
         _nextPhaseButton.interactable = false;
         #endregion
 
@@ -90,7 +90,7 @@ public class CardLogic : MonoBehaviour
             UnSelectTavernCardBuyPhase();
             UnSelectHandCardBuyPhase();
             currentTurnPhase = TurnPhase.Play;
-            _turnPhaseText.text = PlayCards;
+            _turnPhaseText.text = PlayText;
             ChangeTurnPhase(TurnPhase.Play);
             _coinScript.FlipTheCoin("sell");
 
@@ -99,7 +99,7 @@ public class CardLogic : MonoBehaviour
         else if (currentTurnPhase == TurnPhase.Play)
         {
             currentTurnPhase = TurnPhase.Discard;
-            _turnPhaseText.text = DiscardCard;
+            _turnPhaseText.text = DiscardText;
             ChangeTurnPhase(TurnPhase.Discard);
             _coinScript.FlipTheCoin("discard");
 
@@ -131,7 +131,7 @@ public class CardLogic : MonoBehaviour
             {
                 _gameBoard.DiscardCard(cards[0]);
                 currentTurnPhase = TurnPhase.Trade;
-                _turnPhaseText.text = TradeCards;
+                _turnPhaseText.text = TradeText;
                 ChangeTurnPhase(TurnPhase.Trade);
                 _coinScript.FlipTheCoin("buy");
                 _nextPhaseButton.interactable = true;
@@ -166,7 +166,7 @@ public class CardLogic : MonoBehaviour
                     UnSelectTavernCardBuyPhase();
                     UnSelectHandCardBuyPhase();
                     currentTurnPhase = TurnPhase.Play;
-                    _turnPhaseText.text = PlayCards;
+                    _turnPhaseText.text = PlayText;
                     ChangeTurnPhase(TurnPhase.Play);
 
                     _coinScript.FlipTheCoin("sell");
@@ -331,7 +331,7 @@ public class CardLogic : MonoBehaviour
         _pointsSlider.value = _boardPointsCollected;
 
         currentTurnPhase = TurnPhase.Discard;
-        _turnPhaseText.text = DiscardCard;
+        _turnPhaseText.text = DiscardText;
         _coinScript.FlipTheCoin("discard");
 
         _objectivePoints.text = MatchesScoreObjective[_gameBoard.GetActiveTable()].ToString();
