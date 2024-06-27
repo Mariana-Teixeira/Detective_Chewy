@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Test_Gemy_Game
   m_EditorClassIdentifier: 
   QuestDescription: 'Test_Quest: Gemy'
-  Game: Gemy_Table
+  Game: Gemy_Game
   FirstThresholdDialogue: {fileID: 11400000, guid: 4efa2f7476b0e934b8ab1108b0c1096b, type: 2}
   SecondThresholdDialogue: {fileID: 11400000, guid: 4efa2f7476b0e934b8ab1108b0c1096b, type: 2}

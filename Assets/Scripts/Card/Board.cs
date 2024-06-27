@@ -172,7 +172,7 @@ public class Board : MonoBehaviour
             card.transform.position = _deckPos.transform.position;
         }
 
-
+        #region Not the First Table
         if (num >= 1)
         {
             foreach (var card in _deck)
@@ -183,6 +183,7 @@ public class Board : MonoBehaviour
             moveStep = 0.65f;
             moveStepY = 0.02f;
             moveStepZ = 0.01f;
+
             foreach (var card in _hand)
             {
                 StartCoroutine(Lerp(card.transform, _handPos.transform.position + new Vector3(moveStepY, moveStepZ, moveStep)));
@@ -207,7 +208,7 @@ public class Board : MonoBehaviour
                 moveStep = moveStep - 0.05f;
                 counter++;
 
-                //card.transform.Rotate(0, 0, 90);
+                card.transform.Rotate(0, 0, 90);
             }
             moveStep = -0.15f;
             foreach (var card in _tavern)
@@ -227,20 +228,22 @@ public class Board : MonoBehaviour
             }
 
         }
-
+        #endregion
         //----------------------------------------------------
         else
         {
 
             foreach (var card in _deck)
             {
-                StartCoroutine(Lerp(card.transform, _deckPos.transform.position));
-                //card.transform.position = _deckPos.transform.position;
+                //StartCoroutine(Lerp(card.transform, _deckPos.transform.position));
+                card.transform.position = _deckPos.transform.position;
                 card.transform.Rotate(90, 0, 0);
             }
+
             moveStep = -0.2f;
-            moveStepY = 0.07f;
-            moveStepZ = 0.01f;
+            moveStepY = 0.0f; //0.07f
+            moveStepZ = 0.0f; //0.01f
+
             foreach (var card in _hand)
             {
                 StartCoroutine(Lerp(card.transform, _handPos.transform.position + new Vector3(moveStep, moveStepZ, moveStepY)));
@@ -264,7 +267,8 @@ public class Board : MonoBehaviour
                 moveStep = moveStep - 0.05f;
                 counter++;
 
-                card.transform.Rotate(0, 0, 90);
+                card.transform.Rotate(90, 0, 0);
+                //card.transform.Rotate(0, 0, 90);
             }
             moveStep = -0.15f;
             foreach (var card in _tavern)
@@ -282,12 +286,12 @@ public class Board : MonoBehaviour
             }
             foreach (var card in _discards)
             {
-                StartCoroutine(Lerp(card.transform, (_discardsPos.transform.position + new Vector3(0, 0.4f, -0.35f)))); 
-                card.transform.Rotate(90, 0, 0);
+                //StartCoroutine(Lerp(card.transform, (_discardsPos.transform.position + new Vector3(0, 0.4f, -0.35f))));
+                StartCoroutine(Lerp(card.transform, _discardsPos.transform.position));
+                //card.transform.Rotate(90, 0, 0);
             }
         }
         _setup = true;
-
     }
     public void PublicLerp(Transform card, Vector3 target, Vector3 movementVector) {
         StartCoroutine(Lerp(card, target, movementVector));
@@ -322,6 +326,7 @@ public class Board : MonoBehaviour
                 timeElapsed += Time.deltaTime;
                 yield return null;
             }
+
         }
         else
         {
@@ -342,9 +347,11 @@ public class Board : MonoBehaviour
                 //adjust 25%
                 if (card.gameObject.GetComponent<Card>().CardData.Position == Position.Hand)
                 {
+                    Debug.Log("Placing Hand");
                     if (ActiveTable == 0)
                     {
                         card.transform.rotation = Quaternion.Lerp(card.transform.rotation, Quaternion.AngleAxis(-75, Vector3.left), timeElapsed / lerpDuration);
+                        card.position = Vector3.Lerp(card.position, firstTarget, timeElapsed / lerpDuration);
                     }
                     else
                     {
@@ -352,20 +359,22 @@ public class Board : MonoBehaviour
                         card.transform.Rotate(0, 90, 0);
                         card.transform.Rotate(75, 0, 0);
                     }
-
-
-                //card.transform.rotation = Quaternion.AngleAxis(-75, Vector3.left);
-                }
-            //
-
-                if (timeElapsed < lerpDuration / 2)
-                {
-                    card.position = Vector3.Lerp(card.position, target, timeElapsed / (lerpDuration * 2));
+                    //card.transform.rotation = Quaternion.AngleAxis(-75, Vector3.left);
                 }
                 else
                 {
+                                            Debug.Log("Placing Tavern");
                     card.position = Vector3.Lerp(card.position, firstTarget, (timeElapsed - 1) / (lerpDuration * 2));
                 }
+
+                //if (timeElapsed < lerpDuration / 2)
+                //{
+                //    card.position = Vector3.Lerp(card.position, target, timeElapsed / (lerpDuration * 2));
+                //}
+                //else
+                //{
+                //    card.position = Vector3.Lerp(card.position, firstTarget, (timeElapsed - 1) / (lerpDuration * 2));
+                //}
 
                 timeElapsed += Time.deltaTime;
 
@@ -374,9 +383,12 @@ public class Board : MonoBehaviour
         }
         if (card.gameObject.GetComponent<Card>().CardData.Position == Position.Hand)
         {
-            card.position = firstTarget + new Vector3(0, 0.1f, 0);
+            card.position = firstTarget; // + new Vector3(0, 0.1f, 0)
         }
-        card.position = firstTarget;
+        else
+        {
+            card.position = firstTarget;
+        }
         if (_setup == true) {
             //adjust cards that were selected to go back to the hand
             if (card.gameObject.GetComponent<Card>().CardData.Position == Position.Hand)
