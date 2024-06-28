@@ -13,7 +13,7 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Atlas_Color.002
-    second: {fileID: 3349687807552292601, guid: ee0da767f850d4341b0c6de70fa6aa04, type: 3}
+    second: {fileID: 2100000, guid: c2de6a8dc8d689849a145588951d7bc1, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule

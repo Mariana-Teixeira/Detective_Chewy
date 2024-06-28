@@ -7,6 +7,16 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: Atlas_Color
+    second: {fileID: 2100000, guid: 7cba042d7a008764fbe1a8c2e169dd09, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Emissive.001
+    second: {fileID: -1561865803494292474, guid: 46c9fc49125d83148b5706fdbfe38468, type: 3}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: Metalic
     second: {fileID: 2100000, guid: 0fc2e033be2d545408804499c201ce85, type: 2}
   materials:

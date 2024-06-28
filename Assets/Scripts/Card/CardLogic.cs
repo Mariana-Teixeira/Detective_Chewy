@@ -77,6 +77,12 @@ public class CardLogic : MonoBehaviour
         StartNewBoard();
     }
 
+    private void Start()
+    {
+        this.transform.position = _gameBoard.GetActiveTableObject().transform.position;
+        this.transform.position += Vector3.up * 0.81f;
+    }
+
     public void SelectCard(Card card) 
     {
         cards.Add(card);
@@ -302,11 +308,12 @@ public class CardLogic : MonoBehaviour
 
     public void GameWon() 
     {
-        PlayerStates.ChangeState?.Invoke(GameState.SITTING);
+        UnselectAllCards();
         _gameBoard.SetNextActiveTable();
         _gameBoard.ResetDeck();
-        UnselectAllCards();
         StartNewBoard();
+        QuestManager.CompleteQuest?.Invoke();
+        PlayerStates.ChangeState?.Invoke(GameState.SITTING);
     }
 
     public void GameOver() 

@@ -47,6 +47,6 @@ public class Deck : MonoBehaviour
 
     public void OnRandomOnNewBoard()
     {
-        board.OnCreateNewVersionOfDeck();
+        board.CreateNewVersionOfDeck();
     }
 }

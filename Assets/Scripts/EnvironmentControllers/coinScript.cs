@@ -9,9 +9,7 @@ public class CoinScript : MonoBehaviour
     [SerializeField] GameObject Sell;
 
     [SerializeField] GameObject[] Tables;
-
     [SerializeField] Animator _animator;
-
 
     public void FlipTheCoin(string s) 
     {

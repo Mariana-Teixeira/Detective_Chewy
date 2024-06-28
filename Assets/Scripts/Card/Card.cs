@@ -69,8 +69,6 @@ public class Card : MonoBehaviour
 
         ind = ind + CardData.Value * 4 - 4;
         mesh.GetComponent<MeshRenderer>().material = materials.ElementAt(ind);
-        float indF = ind / 100000f;
-        mesh.transform.position = new Vector3 (mesh.transform.position.x, mesh.transform.position.y + indF, mesh.transform.position.z );
     }
 
     void OnMouseOver()

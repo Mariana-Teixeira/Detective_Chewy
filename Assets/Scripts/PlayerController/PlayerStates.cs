@@ -17,6 +17,8 @@ public class PlayerStates : MonoBehaviour
 
     bool _currentlyPlaying;
 
+    [SerializeField] Board _board;
+
     private void Awake()
     {
         PreviousState += OnPreviousChange;
@@ -89,7 +91,7 @@ public class PlayerStates : MonoBehaviour
                 _cameraLook.ToggleCursor(true);
                 CardGameCanvasScript.ToggleVisibility?.Invoke(true);
                 DialogueCanvasScript.ToggleVisibility?.Invoke(false);
-                if (!_currentlyPlaying) { Board.CreateNewVersionOfDeck?.Invoke(); _currentlyPlaying = true; }
+                if (!_currentlyPlaying) { _board.CreateNewVersionOfDeck(); _currentlyPlaying = true; }
                 break;
             default:
                 Debug.LogError("Player State not found.");

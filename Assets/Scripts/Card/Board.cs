@@ -7,8 +7,6 @@ using Random = System.Random;
 
 public class Board : MonoBehaviour
 {
-    public static Action CreateNewVersionOfDeck;
-
     [SerializeField] GameObject cardPrefab;
     [SerializeField] GameObject deck;
     [SerializeField] GameObject hand;
@@ -52,12 +50,6 @@ public class Board : MonoBehaviour
         _activeTable = 0;
     }
 
-    // I haven't figured out why this doesn't work when placed on Awaken! Maybe never will~ uuhh~
-    private void Start()
-    {
-        CreateNewVersionOfDeck += OnCreateNewVersionOfDeck;
-    }
-
     //CREATE CARDS
     public void InstantiateCards(List<CardData> cards)
     {
@@ -83,7 +75,7 @@ public class Board : MonoBehaviour
         }
     }
 
-    public void OnCreateNewVersionOfDeck()
+    public void CreateNewVersionOfDeck()
     {
         _deck.Clear();
         _hand.Clear();
@@ -344,5 +336,10 @@ public class Board : MonoBehaviour
     public int GetActiveTable()
     {
         return _activeTable;
+    }
+
+    public GameObject GetActiveTableObject()
+    {
+        return tables[_activeTable];
     }
 }

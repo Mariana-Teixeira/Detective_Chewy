@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 3275196555233170351}
   - component: {fileID: 4096336531650125810}
+  - component: {fileID: 5683912741135958002}
+  - component: {fileID: 6446904851086513471}
   m_Layer: 0
   m_Name: CardLogic
   m_TagString: Untagged
@@ -48,14 +50,42 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 756c490e160b7724fb6230797e4098b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pointsList: 64000000c80000002c010000
-  phaseText: {fileID: 0}
-  pointsText: {fileID: 0}
-  _turnCounter: 0
+  MatchesScoreObjective: 010000003200000005000000
+  _turnPhaseText: {fileID: 0}
+  _pointsSlider: {fileID: 0}
+  _objectivePoints: {fileID: 0}
+  _pointsText: {fileID: 0}
+  _errorText: {fileID: 0}
   cardGameCanvas: {fileID: 0}
-  nextPhaseBtn: {fileID: 0}
-  confirmBtn: {fileID: 0}
+  _nextPhaseButton: {fileID: 0}
+  _confirmButton: {fileID: 0}
   _gameBoard: {fileID: 7874689010637183828}
+  _coinScript: {fileID: 0}
+  _turnCounter: 0
+--- !u!114 &5683912741135958002
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4845576717928872556}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c75ab72369474e742bc22fad17785130, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6446904851086513471
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4845576717928872556}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 825f5ae0c6766ba42a30af520f708bd3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8834179776333051812
 GameObject:
   m_ObjectHideFlags: 0
@@ -119,8 +149,14 @@ MonoBehaviour:
   hand: {fileID: 8999822424933014463}
   tavern: {fileID: 8879968875294975903}
   discards: {fileID: 9031920616098694232}
+  _DeckStartPosition: {fileID: 0}
+  _coinScript: {fileID: 0}
+  _interactWith: {fileID: 0}
   tables:
   - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  _activeTable: 1
 --- !u!1 &8879968875294975903
 GameObject:
   m_ObjectHideFlags: 0
