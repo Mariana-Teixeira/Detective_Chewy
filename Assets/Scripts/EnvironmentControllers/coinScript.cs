@@ -11,6 +11,11 @@ public class CoinScript : MonoBehaviour
     [SerializeField] GameObject[] Tables;
     [SerializeField] Animator _animator;
 
+    private void Start()
+    {
+        this.gameObject.SetActive(false);
+    }
+
     public void FlipTheCoin(string s) 
     {
         StartCoroutine(ChangeCoinType(s));
@@ -44,7 +49,7 @@ public class CoinScript : MonoBehaviour
 
     public void MoveToTable(int number)
     {
-        this.transform.parent.SetParent(Tables[number].gameObject.transform, false);
+        this.transform.SetParent(Tables[number].gameObject.transform, false);
         this.transform.rotation = Tables[number].transform.rotation;
     }
 }

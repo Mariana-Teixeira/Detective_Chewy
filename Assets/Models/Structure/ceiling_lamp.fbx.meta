@@ -17,6 +17,11 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: Emissive.002
+    second: {fileID: 2100000, guid: 0a5defc15b065804ebb8fb5dfed47a83, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: Metalic
     second: {fileID: 2100000, guid: 0fc2e033be2d545408804499c201ce85, type: 2}
   - first:

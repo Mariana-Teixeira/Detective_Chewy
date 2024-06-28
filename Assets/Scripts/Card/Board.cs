@@ -7,12 +7,11 @@ using Random = System.Random;
 
 public class Board : MonoBehaviour
 {
+    bool hasSpawnedCards = false;
+
     [SerializeField] GameObject cardPrefab;
+    [SerializeField] GameObject _deckStartPosition;
     [SerializeField] GameObject deck;
-    [SerializeField] GameObject hand;
-    [SerializeField] GameObject tavern;
-    [SerializeField] GameObject discards;
-    [SerializeField] GameObject _DeckStartPosition;
 
     [SerializeField] CoinScript _coinScript;
 
@@ -61,7 +60,7 @@ public class Board : MonoBehaviour
             _deck.Add(cardComponent);
             _allCardsList.Add(cardComponent);
         }
-        _DeckStartPosition.transform.position = _deck.ElementAt(0).gameObject.transform.position;
+        _deckStartPosition.transform.position = _deck.ElementAt(0).gameObject.transform.position;
         ResetDeck();
     }
 
@@ -69,14 +68,25 @@ public class Board : MonoBehaviour
     {
         foreach (Card card in _allCardsList)
         {
-            card.transform.position = _DeckStartPosition.transform.position;
-            card.transform.rotation = _DeckStartPosition.transform.rotation;
+            card.transform.position = _deckStartPosition.transform.position;
+            card.transform.rotation = _deckStartPosition.transform.rotation;
             card.transform.Rotate(90, 90, 0);
         }
     }
 
     public void CreateNewVersionOfDeck()
     {
+        if (!hasSpawnedCards)
+        {
+            var deck = GetComponent<Deck>();
+            deck.InitDeck();
+            hasSpawnedCards = true;
+
+            _coinScript.gameObject.SetActive(true);
+        }
+        
+        _coinScript.FlipTheCoin("discard");
+
         _deck.Clear();
         _hand.Clear();
         _tavern.Clear();
@@ -126,14 +136,14 @@ public class Board : MonoBehaviour
         foreach (var card in _hand)
         {
             card.CardData.SetPosition(Position.Hand);
-            card.transform.parent = hand.transform;
+            card.transform.parent = deck.transform;
             card.transform.transform.localPosition = Vector3.zero;
         }
 
         foreach (var card in _tavern)
         {
             card.CardData.SetPosition(Position.Tavern);
-            card.transform.parent = tavern.transform;
+            card.transform.parent = deck.transform;
             card.transform.transform.localPosition = Vector3.zero;
         }
     }
@@ -219,15 +229,16 @@ public class Board : MonoBehaviour
         var DiscardRotation = 180f - HandRotation;
         var DiscardRotateTo = card.transform.rotation * Quaternion.Euler(DiscardRotation, 0f, 0f);
 
+        var amount = cardScript.CardHoverAmount + cardScript.CardSelectAmount;
         if (movementVector != Vector3.zero)
         {
             if (movementVector.y > 0)
             {
-                target -= movementVector * 0.035f;
+                target -= movementVector * amount;
             }
             else if (movementVector.y < 0)
             {
-                target += movementVector * 0.035f;
+                target += movementVector * amount;
             }
         }
 

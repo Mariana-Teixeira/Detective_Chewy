@@ -14,12 +14,7 @@ public class Deck : MonoBehaviour
         _deck = new List<CardData>();
     }
 
-    private void Start()
-    {
-        InitDeck();
-    }
-
-    private void InitDeck()
+    public void InitDeck()
     {
         for (int i = 0; i < 4; i++)
         {

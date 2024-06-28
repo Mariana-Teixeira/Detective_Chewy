@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Sockets;
 using TMPro;
 using UnityEngine;
 
@@ -11,13 +12,32 @@ public class Card : MonoBehaviour
     private CardLogic _cardLogic;
 
     [SerializeField] List<Material> materials;
-    [SerializeField] GameObject mesh;
+    [SerializeField] GameObject face;
 
     public TurnPhase Phase;
 
     public bool _isSelected, _canInteract, _isHovered;
 
     Animator _animator;
+
+    float cardHoverAmount;
+    float cardSelectAmount;
+
+    public float CardHoverAmount
+    {
+        get
+        {
+            return cardHoverAmount;
+        }
+    }
+
+    public float CardSelectAmount
+    {
+        get
+        {
+            return cardSelectAmount;
+        }
+    }
 
     public CardData CardData
     {
@@ -34,6 +54,10 @@ public class Card : MonoBehaviour
     {
         _animator = GetComponent<Animator>();
         _cardLogic = FindFirstObjectByType<CardLogic>();
+
+        face = transform.transform.GetChild(0).GetChild(0).gameObject;
+        cardHoverAmount = 0.005f;
+        cardSelectAmount = 0.01f;
     }
 
     private void Start()
@@ -68,42 +92,38 @@ public class Card : MonoBehaviour
         }
 
         ind = ind + CardData.Value * 4 - 4;
-        mesh.GetComponent<MeshRenderer>().material = materials.ElementAt(ind);
+        face.GetComponent<MeshRenderer>().material = materials.ElementAt(ind);
     }
 
     void OnMouseOver()
     {
-        float amount = 0.015f;
-
         if(!_canInteract || _isHovered) return;
 
         if(_cardData.Position == Position.Hand)
         {
             _isHovered = true;
-            if (!_isSelected) this.transform.localPosition += this.transform.up * amount;
+            if (!_isSelected) this.transform.localPosition += this.transform.up * cardHoverAmount;
         }
         else if (_cardData.Position == Position.Tavern)
         {
             _isHovered = true;
-            if (!_isSelected) this.transform.localPosition -= this.transform.forward * amount;
+            if (!_isSelected) this.transform.localPosition -= this.transform.forward * cardHoverAmount;
         }
     }
 
     void OnMouseExit()
     {
-        float amount = 0.015f;
-
         if (!_canInteract || !_isHovered) return;
 
         if (_cardData.Position == Position.Hand)
         {
             _isHovered = false;
-            if (!_isSelected) this.transform.localPosition -= this.transform.up * amount;
+            if (!_isSelected) this.transform.localPosition -= this.transform.up * cardHoverAmount;
         }
         else if (_cardData.Position == Position.Tavern)
         {
             _isHovered = false;
-            if (!_isSelected) this.transform.localPosition += this.transform.forward * amount;
+            if (!_isSelected) this.transform.localPosition += this.transform.forward * cardHoverAmount;
         }
     }
 
@@ -183,8 +203,8 @@ public class Card : MonoBehaviour
 
     public void UnselectCard()
     {
-        float amount = 0.020f;
-        if (!_isHovered) amount += 0.015f;
+        var amount = cardSelectAmount;
+        if (!_isHovered) amount = cardSelectAmount + cardHoverAmount;
 
         _isSelected = false;
         if (this.CardData.Position == Position.Hand)
@@ -201,7 +221,8 @@ public class Card : MonoBehaviour
 
     public void SelectCard()
     {
-        float amount = 0.020f;
+        var amount = cardSelectAmount;
+        if (!_isHovered) amount = cardSelectAmount + cardHoverAmount;
 
         _isSelected = true;
         if (this.CardData.Position == Position.Hand)

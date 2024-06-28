@@ -184,11 +184,13 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 5ee8a93036ba48e41b1ba3e362d3c436, type: 2}
   - {fileID: 2100000, guid: 98c6fad5faf85734b9b5d907162f1f6e, type: 2}
   - {fileID: 2100000, guid: 99daa0d1a636f204ea91cd223eeb51d1, type: 2}
-  mesh: {fileID: 1486911374288128185}
+  face: {fileID: 0}
   Phase: 0
   _isSelected: 0
   _canInteract: 0
   _isHovered: 0
+  cardHoverAmount: 0
+  cardSelectamount: 0
 --- !u!65 &5471345473436345086
 BoxCollider:
   m_ObjectHideFlags: 0

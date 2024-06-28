@@ -5,9 +5,12 @@ public class CameraLook : MonoBehaviour
 {
     Camera _camera;
 
-    [SerializeField] float _mouseSensitivity = 400.0f;
+    [SerializeField] float xRotationSensitivity = 45.0f, yRotationSensitivity = 100.0f;
+    [SerializeField] float xUpperClamp = 10f, xLowerClamp = -10f;
+    float rotationX, rotationY;
+
     [SerializeField] float fovWalking = 60, fovPlaying = 35;
-    [SerializeField] float sittingDuration = 2.0f, zoomingDuration = 1.0f; // was 5, 2
+    [SerializeField] float sittingDuration = 2.0f, zoomingDuration = 1.0f;
     [SerializeField] InteractWith interactWith;
 
     private Vector3 GameBodyPosition, GameCameraPosition;
@@ -17,10 +20,14 @@ public class CameraLook : MonoBehaviour
     private bool _isSitting;
     private bool _seenTutorial;
 
+    private Quaternion _beforeSittingCameraAngle;
+
     void Start()
     {
         _camera = GetComponentInChildren<Camera>();
         _camera.fieldOfView = fovWalking;
+
+        _camera.transform.rotation = Quaternion.Euler(Vector3.zero);
     }
 
     public void ToggleCursor(bool visible)
@@ -39,18 +46,20 @@ public class CameraLook : MonoBehaviour
 
     public void RotateWithMouse()
     {
-        float mouseX = Input.GetAxis("Mouse X") * Time.deltaTime * _mouseSensitivity;
-        float mouseY = Input.GetAxis("Mouse Y") * Time.deltaTime * _mouseSensitivity;
-
-        transform.Rotate(Vector3.up * mouseX);
-        _camera.transform.Rotate(Vector3.left * mouseY);
+        rotationX -= Input.GetAxis("Mouse Y") * xRotationSensitivity;
+        rotationX = Mathf.Clamp(rotationX, xLowerClamp, xUpperClamp);
+        _camera.transform.localRotation = Quaternion.Euler(rotationX, 0f, 0f);
+        
+        rotationY = Input.GetAxis("Mouse X") * yRotationSensitivity;
+        transform.rotation *= Quaternion.Euler(0f, rotationY, 0f);
     }
     public IEnumerator ToggleSitting()
     {
-        if (_isSitting) // Sit Player
+        if (_isSitting) // Get Up
         {
             // Set Variables
-            var lookAtRotation = Quaternion.LookRotation(LookAtTarget.position - GameCameraPosition);
+            var lookAtRotation = _beforeSittingCameraAngle;
+            
 
             // Call Coroutines
             yield return StartCoroutine(ZoomAnimation(fovPlaying, fovWalking));
@@ -60,11 +69,12 @@ public class CameraLook : MonoBehaviour
             _isSitting = !_isSitting;
             PlayerStates.ChangeState?.Invoke(GameState.WALKING);
         }
-        else // Get Up
+        else // Sit Down
         {
             // Set Variables
             GameBodyPosition = transform.position;
             GameCameraPosition = _camera.transform.position;
+            _beforeSittingCameraAngle = this.transform.rotation;
             var lookAtRotation = Quaternion.LookRotation(LookAtTarget.position - CardCameraTransform.position);
 
             // Call Coroutines

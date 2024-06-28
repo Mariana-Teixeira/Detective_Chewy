@@ -28,6 +28,12 @@ public class CardLogic : MonoBehaviour
     bool reachedSecondThreshold;
     #endregion
 
+    #region Turns
+    bool _canLose = false;
+    int _maxTurns = 5;
+    int _turnCounter;
+    #endregion
+
     #region UI Elements
     [SerializeField] TextMeshProUGUI _turnPhaseText;
     [SerializeField] Slider _pointsSlider;
@@ -53,7 +59,6 @@ public class CardLogic : MonoBehaviour
 
     private bool _gotSetThisTurn = false;
     private int lastAddedPoints = 0;
-    public int _turnCounter;
 
     private bool tavernCardSelectedBuyPhase = false;
     private bool handCardSelectedBuyPhase = false;
@@ -73,14 +78,14 @@ public class CardLogic : MonoBehaviour
 
         _turnCounter = 1;
         currentTurnPhase = TurnPhase.Discard;
-
-        StartNewBoard();
     }
 
     private void Start()
     {
         this.transform.position = _gameBoard.GetActiveTableObject().transform.position;
         this.transform.position += Vector3.up * 0.81f;
+
+        StartNewBoard();
     }
 
     public void SelectCard(Card card) 
@@ -126,7 +131,7 @@ public class CardLogic : MonoBehaviour
             _errorText.gameObject.SetActive(false);
             _gotSetThisTurn = false;
 
-            if (_turnCounter > 5)
+            if (_canLose && _turnCounter > _maxTurns)
             {
                 GameOver();
             }
@@ -348,7 +353,6 @@ public class CardLogic : MonoBehaviour
 
         currentTurnPhase = TurnPhase.Discard;
         _turnPhaseText.text = DiscardText;
-        _coinScript.FlipTheCoin("discard");
 
         _objectivePoints.text = MatchesScoreObjective[_gameBoard.GetActiveTable()].ToString();
         _pointsSlider.maxValue = MatchesScoreObjective[_gameBoard.GetActiveTable()];
