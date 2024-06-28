@@ -11,11 +11,18 @@ public class QuestManager : MonoBehaviour
     public Quest[] Quests;
     private int QuestsIndex;
 
-    private void Awake()
+    private void OnEnable()
     {
         CompleteQuest += OnCompleteQuest;
         CurrentQuest += OnCurrentQuest;
     }
+
+    private void OnDisable()
+    {
+        CompleteQuest -= OnCompleteQuest;
+        CurrentQuest -= OnCurrentQuest;
+    }
+
 
     private void Start()
     {

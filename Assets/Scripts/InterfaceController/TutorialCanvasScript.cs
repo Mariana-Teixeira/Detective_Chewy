@@ -10,15 +10,13 @@ public class TutorialCanvasScript : MonoBehaviour
     public Sprite[] TutorialImages;
     private int ImageIndex = 0;
 
-    private void Awake()
-    {
-        ToggleVisibility += OnToggleVisibility;
-        ClickToNext += OnClickToNext;
-    }
-
     private void Start()
     {
         _tutorialCanvas = GetComponent<Canvas>();
+
+        ToggleVisibility += OnToggleVisibility;
+        ClickToNext += OnClickToNext;
+
         UpdateImage();
     }
 

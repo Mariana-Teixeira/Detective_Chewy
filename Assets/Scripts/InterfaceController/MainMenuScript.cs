@@ -34,9 +34,9 @@ public class MainMenuScript : MonoBehaviour
         _inputPanel.SetActive(false);
     }
 
-        public void PlayGame()
+    public void PlayGame()
     {
-        StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex + 2));
+        StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex + 1));
     }
 
     void OpenAudioSettings() {

@@ -25,8 +25,9 @@ public class TableScript : MonoBehaviour
 
     private void Start()
     {
-        ToggleExclamation();
         QuestManager.CompleteQuest += ToggleExclamation;
+
+        ToggleExclamation();
     }
 
     // I know, I know. I just need it to work for Friday!

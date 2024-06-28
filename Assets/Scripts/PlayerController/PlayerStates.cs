@@ -19,17 +19,14 @@ public class PlayerStates : MonoBehaviour
 
     [SerializeField] Board _board;
 
-    private void Awake()
-    {
-        PreviousState += OnPreviousChange;
-        ChangeState += OnChangeState;
-    }
-
     private void Start()
     {
         _cameraLook = GetComponent<CameraLook>();
         _playerMove = GetComponent<PlayerMove>();
         _interactWith = GetComponent<InteractWith>();
+
+        PreviousState += OnPreviousChange;
+        ChangeState += OnChangeState;
 
         OnChangeState(GameState.WALKING);
     }

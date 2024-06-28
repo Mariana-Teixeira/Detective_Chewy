@@ -66,9 +66,6 @@ public class CardLogic : MonoBehaviour
     private void Awake()
     {
         #region UI Elements
-        _nextPhaseButton.onClick.AddListener(ChangeToNextPhase);
-        _confirmButton.onClick.AddListener(Confirm);
-
         _turnPhaseText.text = DiscardText;
         _nextPhaseButton.interactable = false;
         #endregion
@@ -82,6 +79,9 @@ public class CardLogic : MonoBehaviour
 
     private void Start()
     {
+        _nextPhaseButton.onClick.AddListener(ChangeToNextPhase);
+        _confirmButton.onClick.AddListener(Confirm);
+
         this.transform.position = _gameBoard.GetActiveTableObject().transform.position;
         this.transform.position += Vector3.up * 0.81f;
 
@@ -298,17 +298,17 @@ public class CardLogic : MonoBehaviour
 
         foreach (var card in cards)
         {
-            card.DenyCard();
+            card.DenyAnimation();
         }
 
         _errorText.text = message;
-        _errorText.enabled = true;
+        _errorText.gameObject.SetActive(true);
         while (timeElapsed < displayTime)
         {
             timeElapsed += Time.deltaTime;
             yield return null;
         }
-        _errorText.enabled = false;
+        _errorText.gameObject.SetActive(false);
     }
 
     public void GameWon() 

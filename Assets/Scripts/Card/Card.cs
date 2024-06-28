@@ -237,7 +237,7 @@ public class Card : MonoBehaviour
         _cardLogic.SelectCard(this);
     }
 
-    public void DenyCard()
+    public void DenyAnimation()
     {
         _animator.SetTrigger("denied");
     }

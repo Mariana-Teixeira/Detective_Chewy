@@ -22,15 +22,12 @@ public class DialogueCanvasScript : MonoBehaviour
     private WaitForSeconds _typeWait;
     private string _currentText;
 
-    private void Awake()
-    {
-        ToggleVisibility += OnToggleVisibility;
-    }
-
     private void Start()
     {
         _dialogueCanvas = GetComponent<Canvas>();
         _typeWait = new WaitForSeconds(TypeSpeed);
+
+        ToggleVisibility += OnToggleVisibility;
     }
 
     public void OnToggleVisibility(bool isVisible)

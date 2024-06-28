@@ -14,10 +14,13 @@ public class ClueManager : MonoBehaviour
 
     private void Awake()
     {
+        _invoker = GetComponent<DialogueInvoker>();
+    }
+
+    private void Start()
+    {
         FindClue += OnFindClue;
         InitQueue += OnInitQueue;
-
-        _invoker = GetComponent<DialogueInvoker>();
     }
 
     public void OnFindClue(Thing thing)

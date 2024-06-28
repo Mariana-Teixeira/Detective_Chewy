@@ -2,12 +2,16 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UIElements;
+using static UnityEngine.Rendering.DebugUI;
 using Random = System.Random;
 
 public class Board : MonoBehaviour
 {
     bool hasSpawnedCards = false;
+    public float duration = 5.0f;
 
     [SerializeField] GameObject cardPrefab;
     [SerializeField] GameObject _deckStartPosition;
@@ -31,6 +35,9 @@ public class Board : MonoBehaviour
     private GameObject _tavernPos;
     private GameObject _discardsPos;
 
+    WaitForSeconds _cardWaitTime;
+    float _waitTime = 0.05f;
+
     public int ActiveTable
     {
         get
@@ -47,6 +54,8 @@ public class Board : MonoBehaviour
         _tavern = new List<Card>();
         _discards = new List<Card>();
         _activeTable = 0;
+
+        _cardWaitTime = new WaitForSeconds(_waitTime);
     }
 
     //CREATE CARDS
@@ -165,51 +174,45 @@ public class Board : MonoBehaviour
         float moveStep = 0f;
         float moveStepZ = 0f;
 
-        int counter = 0;
-
         foreach (Card card in _allCardsList)
         {
             card.transform.position = _deckPos.transform.position;
-        }
-
-        foreach (var card in _deck)
-        {
             card.transform.rotation = table.transform.rotation;
             card.transform.Rotate(90, 0, 0);
-            card.transform.position = _deckPos.transform.position;
         }
 
         moveStep = -0.2f;
         moveStepZ = 0.01f;
 
-        foreach (var card in _hand)
-        {
-            card.transform.rotation = table.transform.rotation;
-            card.transform.Rotate(90, 0, 0);
-
-            var newHandPosition = _handPos.transform.position +
-                card.transform.right * moveStep + card.transform.forward * moveStepZ + card.transform.up * 0.0f;
-
-            StartCoroutine(Lerp(card.transform, newHandPosition));
-
-            moveStepZ += 0.001f;
-            moveStep -= 0.05f;
-            counter++;
-        }
+        // Place Cards in Hand
+        StartCoroutine(LerpCardToHand(table, moveStep, moveStepZ));
 
         moveStep = -0.15f;
 
+        // Place Cards on Tavern
         foreach (var card in _tavern)
         {
-            card.transform.rotation = table.transform.rotation;
-            card.transform.Rotate(90, 0, 0);
-
             var newTavernPosition = _tavernPos.transform.position +
                 card.transform.right * moveStep + card.transform.forward * 0.0f + card.transform.up * 0.0f;
 
             StartCoroutine(Lerp(card.transform, newTavernPosition));
 
             moveStep = moveStep + 0.1f;
+        }
+    }
+
+    IEnumerator LerpCardToHand(GameObject table, float moveStep, float moveStepZ)
+    {
+        foreach (var card in _hand)
+        {
+            var newHandPosition = _handPos.transform.position +
+                card.transform.right * moveStep + card.transform.forward * moveStepZ + card.transform.up * 0.0f;
+
+            StartCoroutine(Lerp(card.transform, newHandPosition));
+            yield return _cardWaitTime;
+
+            moveStepZ += 0.001f;
+            moveStep -= 0.05f;
         }
     }
 
@@ -220,9 +223,6 @@ public class Board : MonoBehaviour
         cardScript._isSelected = false;
         cardScript._isHovered = false;
 
-        float timeElapsed = 0;
-        float lerpDuration = 2;
-
         var HandRotation = -10f;
         var HandRotateTo = card.transform.rotation * Quaternion.Euler(HandRotation, 0f, 0f);
 
@@ -230,6 +230,8 @@ public class Board : MonoBehaviour
         var DiscardRotateTo = card.transform.rotation * Quaternion.Euler(DiscardRotation, 0f, 0f);
 
         var amount = cardScript.CardHoverAmount + cardScript.CardSelectAmount;
+
+        // This one can also be refactor to make mor sense, but I'll keep it for now.
         if (movementVector != Vector3.zero)
         {
             if (movementVector.y > 0)
@@ -242,32 +244,41 @@ public class Board : MonoBehaviour
             }
         }
 
-        while (timeElapsed < lerpDuration)
+        // I mostly changed this function, because it was easier to do math if I lerped between fixed values.
+        Vector3 initialPosition = card.position;
+        Quaternion initialRotation = card.rotation;
+        float timeElapsed = 0;
+        var t = 0f;
+        do
         {
+            t = Mathf.Lerp(0, 1, LerpSmooth(timeElapsed));
+
             if (cardScript.CardData.Position == Position.Discard)
             {
-                card.transform.rotation = Quaternion.Lerp(card.transform.rotation, DiscardRotateTo, timeElapsed / lerpDuration);
-                card.position = Vector3.Lerp(card.position, target, timeElapsed / lerpDuration);
-
-                timeElapsed += Time.deltaTime;
-                yield return null;
+                card.rotation = Quaternion.Lerp(initialRotation, DiscardRotateTo, t);
             }
             else if (cardScript.CardData.Position == Position.Hand)
             {
-                card.transform.rotation = Quaternion.Lerp(card.transform.rotation, HandRotateTo, timeElapsed / lerpDuration);
-                card.position = Vector3.Lerp(card.position, target, timeElapsed / lerpDuration);
-            }
-            else
-            {
-                card.position = Vector3.Lerp(card.position, target, (timeElapsed - 1) / (lerpDuration * 2));
+                card.rotation = Quaternion.Lerp(initialRotation, HandRotateTo, t);
             }
 
+            card.position = Vector3.Lerp(initialPosition, target, t);
             timeElapsed += Time.deltaTime;
 
             yield return null;
-        }
+        } while (timeElapsed < duration);
 
         cardScript._canInteract = true;
+    }
+
+    // This make total sense, I hope it makes sense later.
+    float LerpSmooth(float time)
+    {
+        var apex = duration;
+        var maxValue = apex * (duration * 2 - apex);
+
+        var t = time * (duration * 2 - time);
+        return t / maxValue;
     }
 
     public void DrawCard(Vector3 position, Vector3 movementVector = default)  

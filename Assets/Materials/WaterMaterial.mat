@@ -41,7 +41,7 @@ Material:
     - _Metalic: 1
     - _NoiseScale: 5
     - _NormalStrength: 0.01
-    - _OuterVibe: 0.3
+    - _OuterVibe: 0.06
     - _QueueControl: 0
     - _QueueOffset: 0
     - _ReflectionStrength: 1

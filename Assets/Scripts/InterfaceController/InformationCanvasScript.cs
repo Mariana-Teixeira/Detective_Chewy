@@ -11,15 +11,12 @@ public class InformationCanvasScript : MonoBehaviour
     public QuestManager QuestManager;
     public TMP_Text QuestText;
 
-    private void Awake()
-    {
-        UpdateQuestInformation += OnUpdateQuestInformation;
-        ToggleVisibility += OnToggleVisibility;
-    }
-
     private void Start()
     {
         informationCanvas = GetComponent<Canvas>();
+
+        UpdateQuestInformation += OnUpdateQuestInformation;
+        ToggleVisibility += OnToggleVisibility;
     }
 
     public void OnUpdateQuestInformation(Quest Q)

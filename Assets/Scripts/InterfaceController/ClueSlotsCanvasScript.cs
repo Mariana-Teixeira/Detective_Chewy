@@ -7,15 +7,12 @@ public class ClueSlotsCanvasScript : MonoBehaviour
     public static Action<bool> ToggleVisibility;
     private CanvasGroup _canvasGroup;
 
-    private void Awake()
-    {
-        ToggleVisibility += OnToggleVisibility;
-        ToggleIcon += OnToggleIcon;
-    }
-
     private void Start()
     {
-        _canvasGroup = GetComponent<CanvasGroup>();    
+        _canvasGroup = GetComponent<CanvasGroup>();
+
+        ToggleVisibility += OnToggleVisibility;
+        ToggleIcon += OnToggleIcon;
     }
 
     public void OnToggleVisibility(bool isVisible)

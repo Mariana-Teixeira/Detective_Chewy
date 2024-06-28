@@ -28,15 +28,12 @@ public class CardGameState : MonoBehaviour
     private PlayGameQuest _currentQuest;
     private DialogueInvoker _invoker;
 
-    private void Awake()
-    {
-        ChangeGamePhase += ChangeState;
-        UpdateQuest += OnUpdateQuest;
-    }
-
     private void Start()
     {
         _invoker = GetComponent<DialogueInvoker>();
+
+        ChangeGamePhase += OnChangeState;
+        UpdateQuest += OnUpdateQuest;
     }
 
     public void OnUpdateQuest(PlayGameQuest quest)
@@ -44,7 +41,7 @@ public class CardGameState : MonoBehaviour
         _currentQuest = quest;
     }
 
-    public void ChangeState(GamePhase gamephase)
+    public void OnChangeState(GamePhase gamephase)
     {
         if (gamephase == currentGamePhase) return;
         currentGamePhase = gamephase;
