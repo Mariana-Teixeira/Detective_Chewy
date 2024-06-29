@@ -12,9 +12,9 @@ public enum TurnPhase
 public enum GamePhase
 {
     Null,
-    First_Threshold,
-    Second_Threshold,
-    Win_Condition
+    Start,
+    Win,
+    Lose
 }
 
 // This one has something special... like milk gone bad.
@@ -25,20 +25,17 @@ public class CardGameState : MonoBehaviour
     public static Action<PlayGameQuest> UpdateQuest;
     private GamePhase currentGamePhase;
 
-    private PlayGameQuest _currentQuest;
-    private DialogueInvoker _invoker;
+    private CardLogic _logic;
+    private Board _board;
+    private Deck _deck;
 
     private void Start()
     {
-        _invoker = GetComponent<DialogueInvoker>();
-
         ChangeGamePhase += OnChangeState;
-        UpdateQuest += OnUpdateQuest;
-    }
 
-    public void OnUpdateQuest(PlayGameQuest quest)
-    {
-        _currentQuest = quest;
+        _logic = GetComponent<CardLogic>();
+        _board = GetComponentInChildren<Board>();
+        _deck = GetComponentInChildren<Deck>();
     }
 
     public void OnChangeState(GamePhase gamephase)
@@ -52,14 +49,24 @@ public class CardGameState : MonoBehaviour
     {
         switch(currentGamePhase)
         {
-            case GamePhase.First_Threshold:
-                _invoker.SendDialogueBranch(_currentQuest.FirstThresholdDialogue);
+            case GamePhase.Start:
+                _deck.gameObject.SetActive(true);
+                _logic.Reposition();
+                _logic.StartNewBoard();
+                _board.CreateNewVersionOfDeck();
+                StartCoroutine(_logic.StartTimer(_logic.CurrentMatchTime));
                 break;
-            case GamePhase.Second_Threshold:
-                _invoker.SendDialogueBranch(_currentQuest.SecondThresholdDialogue);
+            case GamePhase.Win:
+                _logic.GameWon();
+                _deck.gameObject.SetActive(false);
+                QuestManager.CompleteQuest?.Invoke();
+                PlayerStates.ChangeState?.Invoke(GameState.SITTING);
                 break;
-            case GamePhase.Win_Condition:
-                _invoker.SendDialogueBranch(_currentQuest.SecondThresholdDialogue, true);
+            case GamePhase.Lose:
+                Debug.Log(_deck.gameObject);
+                _logic.GameOver();
+                _deck.gameObject.SetActive(false);
+                PlayerStates.ChangeState?.Invoke(GameState.SITTING);
                 break;
             default:
                 break;

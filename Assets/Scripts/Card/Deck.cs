@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -9,13 +8,10 @@ public class Deck : MonoBehaviour
     [SerializeField] Board board;
     private List<CardData> _deck;
 
-    private void Awake()
+    public void InitializeDeck()
     {
         _deck = new List<CardData>();
-    }
 
-    public void InitDeck()
-    {
         for (int i = 0; i < 4; i++)
         {
             var suit = (Suit)i;
@@ -29,11 +25,10 @@ public class Deck : MonoBehaviour
             }
         }
 
-        //Randomize position of card in deck
-        RandomInitOnBoard();
+        RandomPositionOnBoard();
     }
 
-    public void RandomInitOnBoard()
+    public void RandomPositionOnBoard()
     {
         Random random = new Random();
         _deck = _deck.OrderBy(x => random.Next()).ToList();

@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -21,17 +20,26 @@ public class CardLogic : MonoBehaviour
     #endregion
 
     #region Scores
-    public int[] MatchesScoreObjective;
-    float firstThresholdPercentage = 0.4f;
-    float secondThresholdPercentage = 0.7f;
-    bool reachedFirstThreshold;
-    bool reachedSecondThreshold;
+    public int[] MatchesObjective;
+    public float[] MatchesTime;
+    public int CurrentMatchObjective
+    {
+        get
+        {
+            return MatchesObjective[_gameBoard.GetActiveTable()];
+        }
+    }
+    public float CurrentMatchTime
+    {
+        get
+        {
+            return MatchesTime[_gameBoard.GetActiveTable()];
+        }
+    }
     #endregion
 
-    #region Turns
-    bool _canLose = false;
-    int _maxTurns = 5;
-    int _turnCounter;
+    #region Timer
+    float currentTime;
     #endregion
 
     #region UI Elements
@@ -39,6 +47,8 @@ public class CardLogic : MonoBehaviour
     [SerializeField] Slider _pointsSlider;
     [SerializeField] TextMeshProUGUI _objectivePoints;
     [SerializeField] TextMeshProUGUI _pointsText;
+    [SerializeField] TextMeshProUGUI _timerText;
+    [SerializeField] TextMeshProUGUI _scoreText;
     [SerializeField] TextMeshProUGUI _errorText;
 
     [SerializeField] Canvas cardGameCanvas;
@@ -53,27 +63,22 @@ public class CardLogic : MonoBehaviour
     [SerializeField] CoinScript _coinScript;
     private List<Card> cards;
 
-
-    private List<CardPositionAndDirection> pointsCardsPositions;
-    private int _boardPointsCollected;
+    private List<CardPositionAndDirection> playCardPositions;
 
     private bool _gotSetThisTurn = false;
-    private int lastAddedPoints = 0;
+    private int _boardPointsCollected;
+    private int _lastAddedPoints = 0;
 
     private bool tavernCardSelectedBuyPhase = false;
     private bool handCardSelectedBuyPhase = false;
 
+    private Animator _animator;
+
     private void Awake()
     {
-        #region UI Elements
-        _turnPhaseText.text = DiscardText;
-        _nextPhaseButton.interactable = false;
-        #endregion
-
         cards = new List<Card> ();
-        pointsCardsPositions = new List<CardPositionAndDirection>();
+        playCardPositions = new List<CardPositionAndDirection>();
 
-        _turnCounter = 1;
         currentTurnPhase = TurnPhase.Discard;
     }
 
@@ -82,10 +87,14 @@ public class CardLogic : MonoBehaviour
         _nextPhaseButton.onClick.AddListener(ChangeToNextPhase);
         _confirmButton.onClick.AddListener(Confirm);
 
+        _animator = GetComponent<Animator>();
+    }
+
+    public void Reposition()
+    {
         this.transform.position = _gameBoard.GetActiveTableObject().transform.position;
         this.transform.position += Vector3.up * 0.81f;
-
-        StartNewBoard();
+        UnselectAllCards();
     }
 
     public void SelectCard(Card card) 
@@ -104,36 +113,29 @@ public class CardLogic : MonoBehaviour
         {
             UnSelectTavernCardBuyPhase();
             UnSelectHandCardBuyPhase();
+
             currentTurnPhase = TurnPhase.Play;
             _turnPhaseText.text = PlayText;
             ChangeTurnPhase(TurnPhase.Play);
-            _coinScript.FlipTheCoin("sell");
 
-            _errorText.gameObject.SetActive(false);
+            _coinScript.FlipTheCoin("sell");
         }
 
         else if (currentTurnPhase == TurnPhase.Play)
         {
+            _nextPhaseButton.interactable = false;
+            _gotSetThisTurn = false;
+
             currentTurnPhase = TurnPhase.Discard;
             _turnPhaseText.text = DiscardText;
             ChangeTurnPhase(TurnPhase.Discard);
+
             _coinScript.FlipTheCoin("discard");
 
-            if (pointsCardsPositions.Count > 0)
+            if (playCardPositions.Count > 0)
             {
-                _gameBoard.FinishTurn(pointsCardsPositions);
-                pointsCardsPositions.Clear();
-            }
-
-            _turnCounter++;
-            Debug.Log("Current Turn: " + _turnCounter);
-            _nextPhaseButton.interactable = false;
-            _errorText.gameObject.SetActive(false);
-            _gotSetThisTurn = false;
-
-            if (_canLose && _turnCounter > _maxTurns)
-            {
-                GameOver();
+                _gameBoard.FinishTurn(playCardPositions);
+                playCardPositions.Clear();
             }
         }
 
@@ -144,151 +146,180 @@ public class CardLogic : MonoBehaviour
     {
         if (currentTurnPhase == TurnPhase.Discard)
         {
-            if (cards.Count == 1)
-            {
-                _gameBoard.DiscardCard(cards[0]);
-                currentTurnPhase = TurnPhase.Trade;
-                _turnPhaseText.text = TradeText;
-                ChangeTurnPhase(TurnPhase.Trade);
-                _coinScript.FlipTheCoin("buy");
-                _nextPhaseButton.interactable = true;
-                UnselectAllCards();
-            }
-            else
-            {
-                // Didn't select enough cards.
-                StartCoroutine(ErrorAppeared(InvalidSelectionByNumber, _errorMessageDuration));
-            }
+            DiscardCards();
         }
 
         else if (currentTurnPhase == TurnPhase.Trade)
         {
-            if (cards.Count == 2)
-            {
-                if (cards[0].CardData.Position == Position.Tavern)
-                {
-                    _gameBoard.ExchangeTavernCard(cards[1], cards[0]);
-                }
-                else
-                {
-                    _gameBoard.ExchangeTavernCard(cards[0], cards[1]);
-                }
-                    
-                UnSelectTavernCardBuyPhase();
-                UnSelectHandCardBuyPhase();
-                currentTurnPhase = TurnPhase.Play;
-                _turnPhaseText.text = PlayText;
-                ChangeTurnPhase(TurnPhase.Play);
-
-                _coinScript.FlipTheCoin("sell");
-
-                UnselectAllCards();
-            }
-            else
-            {
-                // Didn't select enough cards.
-                StartCoroutine(ErrorAppeared(InvalidSelectionByNumber, _errorMessageDuration));
-            }
+            TradeCards();
         }
+
         else if (currentTurnPhase == TurnPhase.Play)
         {
-            int collectedPoints = 0;
-            float multiScore = 1;
-            List<int>  tmpNumList = new List<int>();
+            PlayCards();
+        }
 
-            if (cards.Count == 3)
+        UnselectAllCards();
+    }
+
+    private void DiscardCards()
+    {
+        if (!CheckSelectionNumber(1)) return;
+
+        _nextPhaseButton.interactable = true;
+
+        _gameBoard.DiscardCard(cards[0]);
+
+        currentTurnPhase = TurnPhase.Trade;
+        _turnPhaseText.text = TradeText;
+        ChangeTurnPhase(TurnPhase.Trade);
+
+        _coinScript.FlipTheCoin("buy");
+    }
+
+    private void TradeCards()
+    {
+        if (!CheckSelectionNumber(2)) return;
+
+        if (cards[0].CardData.Position == Position.Tavern)
+        {
+            _gameBoard.ExchangeTavernCard(cards[1], cards[0]);
+        }
+        else
+        {
+            _gameBoard.ExchangeTavernCard(cards[0], cards[1]);
+        }
+
+        UnSelectTavernCardBuyPhase();
+        UnSelectHandCardBuyPhase();
+
+        currentTurnPhase = TurnPhase.Play;
+        _turnPhaseText.text = PlayText;
+        ChangeTurnPhase(TurnPhase.Play);
+
+        _coinScript.FlipTheCoin("sell");
+    }
+
+    private void PlayCards()
+    {
+        if (!CheckSelectionNumber(3)) return;
+
+        #region Calculating Values
+        var card1 = cards[0].CardData;
+        var card2 = cards[1].CardData;
+        var card3 = cards[2].CardData;
+        bool equalSuit = card1.Suit == card2.Suit && card2.Suit == card3.Suit;
+        bool differentSuit = card1.Suit != card2.Suit && card2.Suit != card3.Suit;
+        bool equalValue = card1.Value == card2.Value && card2.Value == card3.Value;
+        bool runValue = AreTheyInOrder(card1.Value, card2.Value, card3.Value);
+        bool set = equalValue;
+        bool run = equalSuit && runValue;
+
+        int collectedPoints = 0;
+        float multiplier;
+        string score = "";
+        #endregion
+
+        if (!set && !run)
+        {
+            StartCoroutine(ErrorAppeared(InvalidSelectionByType, _errorMessageDuration));
+            return;
+        }
+
+        if (set || run)
+        {
+            if (set && _gotSetThisTurn)
             {
-                tmpNumList.Add(cards[0].CardData.Value);
-                tmpNumList.Add(cards[1].CardData.Value);
-                tmpNumList.Add(cards[2].CardData.Value);
-                tmpNumList.Sort();
-
-                //CHECK IF 3 CARDS CAN BE USED FOR POINTS
-                //CALCULATE POINTS AND GIVE THEM TO THE USER
-                if (((cards[0].CardData.Value == cards[1].CardData.Value) && (cards[1].CardData.Value == cards[2].CardData.Value))
-                    ||
-                    (((cards[0].CardData.Suit == cards[1].CardData.Suit) && (cards[1].CardData.Suit == cards[2].CardData.Suit))
-                    &&
-                    (((tmpNumList.ElementAt(0) == tmpNumList.ElementAt(1) - 1) && (tmpNumList.ElementAt(0) == tmpNumList.ElementAt(2) - 2))
-                    ||
-                    ((tmpNumList.ElementAt(0) == tmpNumList.ElementAt(1) - 11) && (tmpNumList.ElementAt(0) == tmpNumList.ElementAt(2) - 12))
-                    ||
-                    ((tmpNumList.ElementAt(0) == tmpNumList.ElementAt(1) - 1) && (tmpNumList.ElementAt(0) == tmpNumList.ElementAt(2) - 12)))))
-                {
-                    //Add flag that SET was converted to points this turn, if another is converted, set score to 2x
-                    if (((cards[0].CardData.Value == cards[1].CardData.Value) && (cards[1].CardData.Value == cards[2].CardData.Value)))
-                    {
-                        multiScore = 1;
-
-                        if (_gotSetThisTurn == true)
-                        {
-                            multiScore = 2;
-                        }
-
-                        if (_gotSetThisTurn == false)
-                        {
-                            _gotSetThisTurn = true;
-                        }
-                    }
-                    //Otherwise set score to 1.5f for RUNS
-                    else
-                    {
-                        multiScore = 1.5f;
-                    }
-
-                    //Add points of all cards
-                    foreach (Card card in cards)
-                    {
-                        collectedPoints = collectedPoints + card.CardData.Score;
-                        Vector3 cardPosition = card.transform.position;
-                        Vector3 cardDirection = card.transform.up;
-                        pointsCardsPositions.Add(new CardPositionAndDirection(cardPosition, cardDirection));
-                    }
-
-                    _gameBoard.CollectPoints(cards);
-
-                    UnselectAllCards();
-
-                    //add points from previous SET if second SET was used during these turn
-                    if (multiScore == 2)
-                    {
-                        _boardPointsCollected = _boardPointsCollected + lastAddedPoints;
-                    }
-
-                    _boardPointsCollected = _boardPointsCollected + Convert.ToInt32(Math.Floor(collectedPoints * multiScore));
-                    lastAddedPoints = Convert.ToInt32(Math.Floor(collectedPoints * multiScore));
-
-                    // Update Score UI
-                    _pointsText.text = _boardPointsCollected.ToString();
-                    _pointsSlider.value = _boardPointsCollected;
-
-                    #region Thresholds
-                    var currentMatchScores = MatchesScoreObjective[_gameBoard.GetActiveTable()];
-                    if (_boardPointsCollected >= (currentMatchScores * firstThresholdPercentage) && !reachedFirstThreshold)
-                    {
-                        reachedFirstThreshold = true;
-                    };
-                    if (_boardPointsCollected >= (currentMatchScores * secondThresholdPercentage) && !reachedSecondThreshold)
-                    {
-                        reachedSecondThreshold = true;
-                    };
-                    if (_boardPointsCollected >= currentMatchScores)
-                    {
-                        GameWon();
-                    };
-                    #endregion
-                }
-                else
-                {
-                    // Selected wrong cards to score.
-                    StartCoroutine(ErrorAppeared(InvalidSelectionByType, _errorMessageDuration));
-                }
+                multiplier = 2;
+                _boardPointsCollected = _boardPointsCollected + _lastAddedPoints;
+            }
+            else if (set && !_gotSetThisTurn)
+            {
+                multiplier = 1;
+                _gotSetThisTurn = true;
             }
             else
             {
-                // Didn't select enough cards.
-                StartCoroutine(ErrorAppeared(InvalidSelectionByNumber, _errorMessageDuration));
-            } 
+                multiplier = 1.5f;
+            }
+
+            foreach (Card card in cards)
+            {
+                collectedPoints += card.CardData.Score;
+                playCardPositions.Add(new CardPositionAndDirection(card.transform.position, card.transform.up));
+            }
+
+            _gameBoard.CollectPoints(cards);
+
+            // Collect Points
+            _boardPointsCollected += + (int)(collectedPoints * multiplier);
+            _lastAddedPoints = (int)(collectedPoints * multiplier);
+            score += multiplier.ToString("0.0") + " x " + collectedPoints.ToString();
+            AnimateScore(score);
+
+            #region Update UI
+            _pointsText.text = _boardPointsCollected.ToString();
+            _pointsSlider.value = _boardPointsCollected;
+            #endregion
+
+            #region Thresholds
+            if (_boardPointsCollected >= CurrentMatchObjective) CardGameState.ChangeGamePhase(GamePhase.Win);
+            #endregion
+        }
+    }
+
+    private void AnimateScore(string s)
+    {
+        _scoreText.text = s;
+        _animator.SetTrigger("score");
+    }
+
+    private bool AreTheyInOrder(params int[] values)
+    {
+        values = BubbleSort(values);
+
+        if (NextToEachOther(values[0], values[1], values[2]))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    private int[] BubbleSort(int[] values)
+    {
+        for (int i = 0; i < values.Length - 1; i++)
+        {
+            for (int j = 0; j < values.Length - i - 1; j++)
+            {
+                if (values[j] > values[j + 1])
+                {
+                    var v = values[j];
+                    values[j] = values[j + 1];
+                    values[j + 1] = v;
+                }
+            }
+        }
+        return values;
+    }
+
+    private bool NextToEachOther(int a, int b, int c)
+    {
+        return MathF.Abs(a - b) == 1 && MathF.Abs(b - c) == 1;
+    }
+
+    public bool CheckSelectionNumber(int checkTo)
+    {
+        if (cards.Count == checkTo)
+        {
+            return true;
+        }
+        else
+        {
+            StartCoroutine(ErrorAppeared(InvalidSelectionByNumber, _errorMessageDuration));
+            return false;
         }
     }
 
@@ -311,21 +342,36 @@ public class CardLogic : MonoBehaviour
         _errorText.gameObject.SetActive(false);
     }
 
+    public IEnumerator StartTimer(float t)
+    {
+        currentTime = t;
+
+        while (currentTime > 0)
+        {
+            _timerText.text = currentTime.ToString("000");
+            currentTime -= Time.deltaTime;
+            yield return null;
+        }
+
+        CardGameState.ChangeGamePhase(GamePhase.Lose);
+    }
+
     public void GameWon() 
     {
-        UnselectAllCards();
+        StopCoroutine("StartTimer");
+        ResetGame();
         _gameBoard.SetNextActiveTable();
-        _gameBoard.ResetDeck();
-        StartNewBoard();
-        QuestManager.CompleteQuest?.Invoke();
-        PlayerStates.ChangeState?.Invoke(GameState.SITTING);
     }
 
     public void GameOver() 
     {
-        PlayerStates.ChangeState?.Invoke(GameState.SITTING);
-        _gameBoard.ResetDeck();
+        ResetGame();
+    }
+
+    public void ResetGame()
+    {
         UnselectAllCards();
+        _gameBoard.ResetDeck();
         StartNewBoard();
     }
 
@@ -346,7 +392,6 @@ public class CardLogic : MonoBehaviour
     public void StartNewBoard()
     {
         _boardPointsCollected = 0;
-        _turnCounter = 1;
 
         _pointsText.text = _boardPointsCollected.ToString();
         _pointsSlider.value = _boardPointsCollected;
@@ -354,10 +399,15 @@ public class CardLogic : MonoBehaviour
         currentTurnPhase = TurnPhase.Discard;
         _turnPhaseText.text = DiscardText;
 
-        _objectivePoints.text = MatchesScoreObjective[_gameBoard.GetActiveTable()].ToString();
-        _pointsSlider.maxValue = MatchesScoreObjective[_gameBoard.GetActiveTable()];
+        _objectivePoints.text = CurrentMatchObjective.ToString();
+        _pointsSlider.maxValue = CurrentMatchObjective;
 
-        pointsCardsPositions.Clear();
+        _turnPhaseText.text = DiscardText;
+        _nextPhaseButton.interactable = false;
+
+        _timerText.text = "0.00";
+
+        playCardPositions.Clear();
     }
 
     public void SelectHandCardBuyPhase()
@@ -389,7 +439,6 @@ public class CardLogic : MonoBehaviour
     {
         return tavernCardSelectedBuyPhase;
     }
-
 }
 
 public struct CardPositionAndDirection

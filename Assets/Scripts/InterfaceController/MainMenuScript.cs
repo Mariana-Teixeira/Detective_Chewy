@@ -70,7 +70,8 @@ public class MainMenuScript : MonoBehaviour
 
     public void Continue()
     {
-        if (SceneManager.GetActiveScene().buildIndex == 0) {
+        if (SceneManager.GetActiveScene().buildIndex == 0)
+        {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
 
@@ -93,8 +94,8 @@ public class MainMenuScript : MonoBehaviour
         {
             Application.Quit();
         }
-        else { 
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+        else {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
         }
     }
 

@@ -12,10 +12,7 @@ public class PlayerStates : MonoBehaviour
     CameraLook _cameraLook;
     PlayerMove _playerMove;
     InteractWith _interactWith;
-    GameState _previousState;
     GameState _currentState;
-
-    bool _currentlyPlaying;
 
     [SerializeField] Board _board;
 
@@ -25,7 +22,6 @@ public class PlayerStates : MonoBehaviour
         _playerMove = GetComponent<PlayerMove>();
         _interactWith = GetComponent<InteractWith>();
 
-        PreviousState += OnPreviousChange;
         ChangeState += OnChangeState;
 
         OnChangeState(GameState.WALKING);
@@ -34,16 +30,6 @@ public class PlayerStates : MonoBehaviour
     public GameState GetGameState() 
     {
         return _currentState;
-    }
-
-    // It's a temporary function, to avoid changing the current ChangeState Action.
-    public void OnPreviousChange()
-    {
-        // I don't like this variable, but I also don't like this function, so...
-        var previousState = _previousState;
-        ExitState();
-        _currentState = previousState;
-        EnterState();
     }
 
     public void OnChangeState(GameState newState)
@@ -77,7 +63,6 @@ public class PlayerStates : MonoBehaviour
                 ClueSlotsCanvasScript.ToggleVisibility?.Invoke(true);
                 break;
             case GameState.SITTING:
-                _currentlyPlaying = false;
                 StartCoroutine(_cameraLook.ToggleSitting());
                 InformationCanvasScript.ToggleVisibility?.Invoke(false);
                 break;
@@ -87,8 +72,7 @@ public class PlayerStates : MonoBehaviour
             case GameState.PLAYING:
                 _cameraLook.ToggleCursor(true);
                 CardGameCanvasScript.ToggleVisibility?.Invoke(true);
-                DialogueCanvasScript.ToggleVisibility?.Invoke(false);
-                if (!_currentlyPlaying) { _board.CreateNewVersionOfDeck(); _currentlyPlaying = true; }
+                CardGameState.ChangeGamePhase(GamePhase.Start);
                 break;
             default:
                 Debug.LogError("Player State not found.");
@@ -124,7 +108,6 @@ public class PlayerStates : MonoBehaviour
         {
             case GameState.WALKING:
                 InformationCanvasScript.ToggleVisibility?.Invoke(false);
-                _previousState = GameState.WALKING;
                 break;
             case GameState.TUTORIAL:
                 TutorialCanvasScript.ToggleVisibility?.Invoke(false);
@@ -135,7 +118,6 @@ public class PlayerStates : MonoBehaviour
                 break;
             case GameState.PLAYING:
                 CardGameCanvasScript.ToggleVisibility?.Invoke(false);
-                _previousState = GameState.PLAYING;
                 break;
             default:
                 break;

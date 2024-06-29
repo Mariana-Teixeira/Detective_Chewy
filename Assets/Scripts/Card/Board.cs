@@ -1,11 +1,7 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.UIElements;
-using static UnityEngine.Rendering.DebugUI;
 using Random = System.Random;
 
 public class Board : MonoBehaviour
@@ -58,7 +54,6 @@ public class Board : MonoBehaviour
         _cardWaitTime = new WaitForSeconds(_waitTime);
     }
 
-    //CREATE CARDS
     public void InstantiateCards(List<CardData> cards)
     {
         foreach (var card in cards)
@@ -85,34 +80,46 @@ public class Board : MonoBehaviour
 
     public void CreateNewVersionOfDeck()
     {
-        if (!hasSpawnedCards)
-        {
-            var deck = GetComponent<Deck>();
-            deck.InitDeck();
-            hasSpawnedCards = true;
-
-            _coinScript.gameObject.SetActive(true);
-        }
+        // Not a clean way to do code. If the cards have not been spawned, I spawn them here.
+        if (!hasSpawnedCards) SpawnCards();
         
         _coinScript.FlipTheCoin("discard");
 
+        ResetLists();
+        AddCardsToDeck();
+
+        CreateHand();
+        CreateTavern();
+        UpdateFirstPositions();
+        PlaceCardsInitial(_activeTable);
+    }
+
+    public void SpawnCards()
+    {
+        var deck = this.transform.parent.GetComponentInChildren<Deck>();
+        deck.InitializeDeck();
+        hasSpawnedCards = true;
+
+        _coinScript.gameObject.SetActive(true);
+    }
+
+    public void ResetLists()
+    {
         _deck.Clear();
         _hand.Clear();
         _tavern.Clear();
         _discards.Clear();
         Random random = new Random();
         _allCardsList = _allCardsList.OrderBy(x => random.Next()).ToList();
-        
+    }
+
+    public void AddCardsToDeck()
+    {
         foreach (Card card in _allCardsList)
         {
             _deck.Add(card);
             card.transform.rotation = Quaternion.identity;
         }
-
-        CreateHand();
-        CreateTavern();
-        UpdateFirstPositions();
-        PlaceCardsInitial(_activeTable);
     }
 
     public void CreateHand()

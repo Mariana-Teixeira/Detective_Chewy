@@ -1,37 +1,40 @@
 using System;
 using UnityEngine;
-using UnityEngine.UI;
+using UnityEngine.Video;
 
 public class TutorialCanvasScript : MonoBehaviour
 {
     public static Action<bool> ToggleVisibility;
     public static Action ClickToNext;
     private Canvas _tutorialCanvas;
-    public Sprite[] TutorialImages;
-    private int ImageIndex = 0;
+    private VideoPlayer _videoPlayer;
+    public VideoClip[] TutorialVideos;
+    private int VideoIndex = 0;
 
     private void Start()
     {
         _tutorialCanvas = GetComponent<Canvas>();
+        _videoPlayer = GetComponentInChildren<VideoPlayer>();
 
         ToggleVisibility += OnToggleVisibility;
         ClickToNext += OnClickToNext;
 
-        UpdateImage();
+        UpdateVideo();
     }
 
     public void OnToggleVisibility(bool isVisible)
     {
+        if (isVisible) _videoPlayer.Play(); else _videoPlayer.Stop();
         _tutorialCanvas.enabled = isVisible;
     }
 
     public void OnClickToNext()
     {
-        ImageIndex++;
+        VideoIndex++;
 
-        if(ImageIndex < TutorialImages.Length)
+        if(VideoIndex < TutorialVideos.Length)
         {
-            UpdateImage();
+            UpdateVideo();
         }
         else
         {
@@ -39,9 +42,8 @@ public class TutorialCanvasScript : MonoBehaviour
         }
     }
 
-    public void UpdateImage()
+    public void UpdateVideo()
     {
-        var child = this.transform.GetChild(1).GetComponent<Image>();
-        child.sprite = TutorialImages[ImageIndex];
+        _videoPlayer.clip = TutorialVideos[VideoIndex];
     }
 }
