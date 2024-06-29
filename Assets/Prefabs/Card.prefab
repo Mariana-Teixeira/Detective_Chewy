@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5831423212303761368}
   - component: {fileID: 8135648704086164609}
   - component: {fileID: 7763888510671291943}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Face
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 6052869157401807416}
   - component: {fileID: 5471345473436345086}
   - component: {fileID: 4245792739649960854}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Card
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -239,7 +239,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7493077896046023086}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Mesh
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -274,7 +274,7 @@ GameObject:
   - component: {fileID: 5835766611465454973}
   - component: {fileID: 4123533250774070426}
   - component: {fileID: 5898216846687525779}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cover
   m_TagString: Untagged
   m_Icon: {fileID: 0}
