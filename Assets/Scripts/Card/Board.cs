@@ -7,15 +7,13 @@ using Random = System.Random;
 public class Board : MonoBehaviour
 {
     bool hasSpawnedCards = false;
-    public float duration = 5.0f;
+    public float duration = 1.0f;
 
     [SerializeField] GameObject cardPrefab;
     [SerializeField] GameObject _deckStartPosition;
     [SerializeField] GameObject deck;
 
     [SerializeField] CoinScript _coinScript;
-
-    [SerializeField] InteractWith _interactWith;
 
     [SerializeField] List<GameObject> tables;
     [SerializeField] int _activeTable;
@@ -192,7 +190,7 @@ public class Board : MonoBehaviour
         moveStepZ = 0.01f;
 
         // Place Cards in Hand
-        StartCoroutine(LerpCardToHand(table, moveStep, moveStepZ));
+        StartCoroutine(LerpCardToHand(moveStep, moveStepZ));
 
         moveStep = -0.15f;
 
@@ -208,7 +206,7 @@ public class Board : MonoBehaviour
         }
     }
 
-    IEnumerator LerpCardToHand(GameObject table, float moveStep, float moveStepZ)
+    IEnumerator LerpCardToHand(float moveStep, float moveStepZ)
     {
         foreach (var card in _hand)
         {
@@ -218,7 +216,7 @@ public class Board : MonoBehaviour
             StartCoroutine(Lerp(card.transform, newHandPosition));
             yield return _cardWaitTime;
 
-            moveStepZ += 0.001f;
+            moveStepZ += 0.0005f;
             moveStep -= 0.05f;
         }
     }
