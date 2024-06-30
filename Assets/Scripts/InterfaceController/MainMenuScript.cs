@@ -6,7 +6,6 @@ using UnityEngine.UI;
 public class MainMenuScript : MonoBehaviour
 {
     [SerializeField] GameObject _menuPanel;
-    //[SerializeField] CameraTransition _cameraTransition;
     [SerializeField] Animator _animator;
 
     [SerializeField] Button backToGameBtn;
@@ -39,12 +38,14 @@ public class MainMenuScript : MonoBehaviour
         StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex + 1));
     }
 
-    void OpenAudioSettings() {
+    void OpenAudioSettings()
+    {
         _audioPanel.SetActive(true);
         this.gameObject.SetActive(false);
     }
 
-    void OpenInputSettings() {
+    void OpenInputSettings()
+    {
         _inputPanel.SetActive(true);
         this.gameObject.SetActive(false);
     }
@@ -58,11 +59,16 @@ public class MainMenuScript : MonoBehaviour
     public void Pause()
     {
         _menuPanel.SetActive(true);
+
         if (Cursor.lockState == CursorLockMode.Confined)
         {
             state1 = 1;
         }
-        else { state1 = 0; }
+        else
+        {
+            state1 = 0;
+        }
+
         Cursor.lockState = CursorLockMode.Confined;
         Cursor.visible = true;
         Time.timeScale = 0;
@@ -75,16 +81,19 @@ public class MainMenuScript : MonoBehaviour
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
 
-        else { 
-        if (state1 == 1) { }
         else
-        {
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
-        }
+        { 
+            if (state1 == 1)
+            {
+            }
+            else
+            {
+                Cursor.lockState = CursorLockMode.Locked;
+                Cursor.visible = false;
+            }
+
         Time.timeScale = 1;
         _menuPanel.SetActive(false);
-        //_cameraTransition.DisableCursor();
         }
     }
 
@@ -94,7 +103,8 @@ public class MainMenuScript : MonoBehaviour
         {
             Application.Quit();
         }
-        else {
+        else
+        {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
         }
     }
@@ -107,6 +117,4 @@ public class MainMenuScript : MonoBehaviour
 
         SceneManager.LoadScene(LevelIndex);
     }
-
-
 }

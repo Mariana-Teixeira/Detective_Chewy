@@ -256,7 +256,7 @@ public class Board : MonoBehaviour
         var t = 0f;
         do
         {
-            t = Mathf.Lerp(0, 1, LerpSmooth(timeElapsed));
+            t = Mathf.Lerp(0, 1, BadMath.LerpOutSmooth(timeElapsed, duration));
 
             if (cardScript.CardData.Position == Position.Discard)
             {
@@ -274,16 +274,6 @@ public class Board : MonoBehaviour
         } while (timeElapsed < duration);
 
         cardScript._canInteract = true;
-    }
-
-    // This make total sense, I hope it makes sense later.
-    float LerpSmooth(float time)
-    {
-        var apex = duration;
-        var maxValue = apex * (duration * 2 - apex);
-
-        var t = time * (duration * 2 - time);
-        return t / maxValue;
     }
 
     public void DrawCard(Vector3 position, Vector3 movementVector = default)  

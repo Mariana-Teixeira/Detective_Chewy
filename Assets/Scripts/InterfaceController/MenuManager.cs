@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class MenuManager : MonoBehaviour
@@ -8,7 +6,6 @@ public class MenuManager : MonoBehaviour
     [SerializeField] AudioSettings audioSettings;
     [SerializeField] InputSettings inputSettings;
 
-    // Update is called once per frame
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -24,12 +21,10 @@ public class MenuManager : MonoBehaviour
         StaticData.AmbienceVolume = audioSettings.GetAmbienceVolume();
         StaticData.EffectsVolume = audioSettings.GetEffectsVolume();
         StaticData.VoicesVolume = audioSettings.GetVoicesVolume();
-
     }
 
     public void OpenPauseMenu() 
     {
         menuPanel.GetComponent<MainMenuScript>().Pause();
     }
-
 }

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -9,7 +7,6 @@ public class InputSettings : MonoBehaviour
     [SerializeField] Button backBtn;
 
     [SerializeField] GameObject menuPanel;
-
     [SerializeField] MenuManager menuManager;
 
     [SerializeField] TextMeshProUGUI text;
@@ -29,10 +26,9 @@ public class InputSettings : MonoBehaviour
         this.gameObject.SetActive(false);
     }
 
-    void WaitForInput() {
+    void WaitForInput()
+    {
         RebindButton.gameObject.SetActive(false);
         WaitForInputButton.SetActive(true);
-
-
     }
 }
