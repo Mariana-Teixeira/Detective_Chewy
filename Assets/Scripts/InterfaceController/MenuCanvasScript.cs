@@ -14,7 +14,7 @@ public class MenuCanvasScript : MonoBehaviour
     {
         _videoPlayer = GetComponentInChildren<VideoPlayer>();
         _animator = GetComponent<Animator>();
-        _cutscene = this.transform.GetChild(4).GetComponent<RawImage>();
+        _cutscene = this.transform.GetChild(3).GetComponent<RawImage>();
     }
 
     public void StartLoading()

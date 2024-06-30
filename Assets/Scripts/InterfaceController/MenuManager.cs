@@ -1,6 +1,4 @@
-using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 public enum MenuStates
 {
@@ -22,18 +20,11 @@ public class MenuManager : MonoBehaviour
 
     private void Awake()
     {
-        _mainCanvas = _menu.transform.GetChild(1).gameObject;
-        _audioCanvas = _menu.transform.GetChild(2).gameObject;
-        _inputCanvas = _menu.transform.GetChild(3).gameObject;
+        _mainCanvas = _menu.transform.GetChild(0).gameObject;
+        _audioCanvas = _menu.transform.GetChild(1).gameObject;
+        _inputCanvas = _menu.transform.GetChild(2).gameObject;
 
         _audioSettings = _audioCanvas.GetComponent<AudioSettings>();
-    }
-
-    private void Start()
-    {
-        _mainCanvas.SetActive(true);
-        _audioCanvas.SetActive(false);
-        _inputCanvas.SetActive(false);
     }
 
     // I know casting isn't great, but you're only doing this a few times.

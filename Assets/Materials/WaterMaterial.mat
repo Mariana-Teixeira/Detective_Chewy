@@ -45,10 +45,10 @@ Material:
     - _QueueControl: 0
     - _QueueOffset: 0
     - _ReflectionStrength: 1
-    - _ReflectionVibe: 0.05
+    - _ReflectionVibe: 0.04
     - _Smoothness: 1
     m_Colors:
-    - _ColorVibe: {r: 0.07040857, g: 0.20431218, b: 0.25157225, a: 0}
+    - _ColorVibe: {r: 0.06950873, g: 0.116735265, b: 0.20754719, a: 0}
     - _GlassColor: {r: 1, g: 1, b: 1, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &6671517112200758249
