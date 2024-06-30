@@ -72,7 +72,7 @@ public class CardLogic : MonoBehaviour
     private bool tavernCardSelectedBuyPhase = false;
     private bool handCardSelectedBuyPhase = false;
 
-    private Animator _animator;
+    public Animator _animator;
 
     private void Awake()
     {
@@ -86,8 +86,6 @@ public class CardLogic : MonoBehaviour
     {
         _nextPhaseButton.onClick.AddListener(ChangeToNextPhase);
         _confirmButton.onClick.AddListener(Confirm);
-
-        _animator = GetComponent<Animator>();
     }
 
     public void Reposition()

@@ -27,7 +27,6 @@ public class MenuManager : MonoBehaviour
         _audioSettings = _audioCanvas.GetComponent<AudioSettings>();
     }
 
-    // I know casting isn't great, but you're only doing this a few times.
     public void ChangeCanvas(int i)
     {
         switch(i)

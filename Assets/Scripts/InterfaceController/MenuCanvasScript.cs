@@ -62,7 +62,6 @@ public class MenuCanvasScript : MonoBehaviour
         while (!loadOperation.isDone)
         {
             float progressValue = Mathf.Clamp01(loadOperation.progress / 0.9f);
-            Debug.Log(progressValue);
             yield return null;
         }
     }
