@@ -11,13 +11,10 @@ public class TutorialCanvasScript : MonoBehaviour
     public VideoClip[] TutorialVideos;
     private int VideoIndex = 0;
 
-    private Animator _animator;
-
     private void Start()
     {
         _tutorialCanvas = GetComponent<Canvas>();
         _videoPlayer = GetComponentInChildren<VideoPlayer>();
-        _animator = GetComponentInChildren<Animator>();
 
         ToggleVisibility += OnToggleVisibility;
         ClickToNext += OnClickToNext;
@@ -31,23 +28,12 @@ public class TutorialCanvasScript : MonoBehaviour
         {
             _tutorialCanvas.enabled = true;
             _videoPlayer.Play();
-            _animator.SetTrigger("fadein");
         }
         else
         {
+            _tutorialCanvas.enabled = false;
             _videoPlayer.Stop();
-            _animator.SetTrigger("fadeout");
         }
-    }
-
-    public void ActivateCanvas()
-    {
-        _tutorialCanvas.enabled = true;
-    }
-
-    public void DeactivateCanvas()
-    {
-        _tutorialCanvas.enabled = false;
     }
 
     public void OnClickToNext()
