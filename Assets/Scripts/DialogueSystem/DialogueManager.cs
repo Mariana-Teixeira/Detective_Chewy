@@ -112,6 +112,6 @@ public class DialogueManager : MonoBehaviour
         CurrentBranch = null;
         DialogueForQuest = false;
 
-        PlayerStates.PreviousState?.Invoke();
+        PlayerStates.ChangeState?.Invoke(GameState.WALKING);
     }
 }

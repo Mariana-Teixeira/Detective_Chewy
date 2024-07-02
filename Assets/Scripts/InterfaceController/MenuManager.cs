@@ -1,30 +1,60 @@
 using UnityEngine;
 
+public enum MenuStates
+{
+    MainMenu = 0,
+    AudioSettings = 1,
+    InputSettings = 2
+}
+
 public class MenuManager : MonoBehaviour
 {
-    [SerializeField] GameObject menuPanel;
-    [SerializeField] AudioSettings audioSettings;
-    [SerializeField] InputSettings inputSettings;
 
-    void Update()
+    [SerializeField] GameObject _menu;
+
+    GameObject _mainCanvas;
+    GameObject _audioCanvas;
+    GameObject _inputCanvas;
+
+    AudioSettings _audioSettings;
+
+    private void Awake()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        _mainCanvas = _menu.transform.GetChild(0).gameObject;
+        _audioCanvas = _menu.transform.GetChild(1).gameObject;
+        _inputCanvas = _menu.transform.GetChild(2).gameObject;
+
+        _audioSettings = _audioCanvas.GetComponent<AudioSettings>();
+    }
+
+    public void ChangeCanvas(int i)
+    {
+        switch(i)
         {
-            OpenPauseMenu();
+            case (int)MenuStates.MainMenu:
+                _mainCanvas.SetActive(true);
+                _audioCanvas.SetActive(false);
+                _inputCanvas.SetActive(false);
+                break;
+            case (int)MenuStates.AudioSettings:
+                _mainCanvas.SetActive(false);
+                _audioCanvas.SetActive(true);
+                _inputCanvas.SetActive(false);
+                break;
+            case (int)MenuStates.InputSettings:
+                _mainCanvas.SetActive(false);
+                _audioCanvas.SetActive(false);
+                _inputCanvas.SetActive(true);
+                break;
         }
     }
 
     public void StoreValues() 
     {
-        StaticData.MasterVolume = audioSettings.GetMasterVolume();
-        StaticData.MusicVolume = audioSettings.GetMusicVolume();
-        StaticData.AmbienceVolume = audioSettings.GetAmbienceVolume();
-        StaticData.EffectsVolume = audioSettings.GetEffectsVolume();
-        StaticData.VoicesVolume = audioSettings.GetVoicesVolume();
-    }
-
-    public void OpenPauseMenu() 
-    {
-        menuPanel.GetComponent<MainMenuScript>().Pause();
+        StaticData.MasterVolume = _audioSettings.GetMasterVolume();
+        StaticData.MusicVolume = _audioSettings.GetMusicVolume();
+        StaticData.AmbienceVolume = _audioSettings.GetAmbienceVolume();
+        StaticData.EffectsVolume = _audioSettings.GetEffectsVolume();
+        StaticData.VoicesVolume = _audioSettings.GetVoicesVolume();
     }
 }
