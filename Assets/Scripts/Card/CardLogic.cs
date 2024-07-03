@@ -115,11 +115,16 @@ public class CardLogic : MonoBehaviour
         cards.Remove(card);
     }
 
+    // Garantee tutorials only appear at the end of a lerp.
     int temp_tradeCards = 0;
     int temp_playCards = 0;
-    public void ShowTutorial(Card card)
+    public void ShowTutorial(Card card = null)
     {
-        if (_hasSeenTutorial) { card._canInteract = true; return; }
+        if (_hasSeenTutorial)
+        {
+            if (card != null) card._canInteract = true;
+            return;
+        }
 
         if (currentTurnPhase == TurnPhase.Trade)
         {
@@ -196,6 +201,9 @@ public class CardLogic : MonoBehaviour
         {
             ChangeTurnPhase?.Invoke(TurnPhase.Play);
             EnterPlay();
+
+            temp_playCards = 2;
+            ShowTutorial();
         }
         else // Play
         {
