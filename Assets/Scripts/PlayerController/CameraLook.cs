@@ -77,7 +77,6 @@ public class CameraLook : MonoBehaviour
             _beforeSittingCameraAngle = this.transform.rotation;
             var lookAtRotation = Quaternion.LookRotation(LookAtTarget.position - CardCameraTransform.position);
 
-            // Call Coroutines
             yield return StartCoroutine(SittingAnimation(lookAtRotation, CardBodyTransform.position, CardCameraTransform.position));
             yield return StartCoroutine(ZoomAnimation(fovWalking, fovPlaying));
 
@@ -98,7 +97,7 @@ public class CameraLook : MonoBehaviour
 
         while (timeElapsed < sittingDuration)
         {
-            var t = Mathf.Lerp(0, 1, BadMath.LerpOutSmooth(timeElapsed, sittingDuration));
+            var t = Mathf.Lerp(0, 1, BadMath.LerpInSmooth(timeElapsed, sittingDuration));
             transform.position = Vector3.Lerp(initialBodyPosition, targetBodyPosition, t);
             _camera.transform.position = Vector3.Lerp(initialCameraPosition, targetCameraPosition, t);
             _camera.transform.rotation = Quaternion.Lerp(initialCameraRotation, lookRotation, t);
@@ -114,7 +113,7 @@ public class CameraLook : MonoBehaviour
 
         while (timeElapsed < zoomingDuration)
         {
-            var t = BadMath.LerpInSmooth(timeElapsed, zoomingDuration);
+            var t = BadMath.LerpOutSmooth(timeElapsed, zoomingDuration);
             _camera.fieldOfView = Mathf.Lerp(fovStart, fovEnd, t);
             timeElapsed += Time.deltaTime;
 
