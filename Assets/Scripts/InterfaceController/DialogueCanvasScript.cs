@@ -15,11 +15,11 @@ public class DialogueCanvasScript : MonoBehaviour
     public TMP_Text DialogueBox;
 
     [HideInInspector] public bool IsTyping;
-    public float TypeSpeed;
     private Coroutine _typewritterCoroutine;
-
     private WaitForSeconds _typeWait;
+    public float TypeSpeed;
     private string _currentText;
+
 
     private void Start()
     {
@@ -38,14 +38,20 @@ public class DialogueCanvasScript : MonoBehaviour
 
     public void StartTypeWritterEffect(string text)
     {
-        _currentText = text; // helper variable
-        _typewritterCoroutine = StartCoroutine(CharByCharTypewritter(_currentText));
+        DialogueBox.text = string.Empty;
+        _currentText = text;
+        _typewritterCoroutine = StartCoroutine(TypewritterEffect(text));
+
+        //_typewritterCoroutine = StartCoroutine(CharByCharTypewritter(_currentText));
     }
 
     public void EndTypeWritterEffect()
     {
         StopCoroutine(_typewritterCoroutine);
-        SavingDialogue(_currentText);
+        DialogueBox.text = _currentText;
+        IsTyping = false;
+
+        //SavingDialogue(_currentText);
     }
 
     private string FullConversation;
@@ -56,7 +62,6 @@ public class DialogueCanvasScript : MonoBehaviour
 
         int charIndex = 0;
         int tagLength;
-        //charIndex = Mathf.Clamp(charIndex, 0, text.Length);
 
         while (charIndex < text.Length)
         {
@@ -71,37 +76,33 @@ public class DialogueCanvasScript : MonoBehaviour
         SavingDialogue(text);
     }
 
+    public IEnumerator TypewritterEffect(string text)
+    {
+        IsTyping = true;
+
+        int charIndex = 0;
+        int tagLength;
+
+        while (charIndex < text.Length)
+        {
+            tagLength = CheckForTag(charIndex, text);
+            charIndex += tagLength;
+
+            DialogueBox.text = text.Substring(0, charIndex);
+            charIndex++;
+
+            yield return _typeWait;
+        }
+
+        IsTyping = false;
+    }
+
     public void SavingDialogue(string text)
     {
         FullConversation += text;
         DialogueBox.text = FullConversation;
         IsTyping = false;
     }
-
-    //private IEnumerator FullTextTypewritter(string text)
-    //{
-    //    IsTyping = true;
-
-    //    string originalText = text;
-    //    string displayedText;
-    //    int tagLength;
-    //    int alphaIndex = 0;
-
-    //    while (alphaIndex < originalText.Length)
-    //    {
-    //        tagLength = CheckForTag(alphaIndex, text);
-    //        alphaIndex += tagLength;
-
-    //        DialogueBox.text = originalText;
-    //        displayedText = text.Insert(alphaIndex, ALPHA_CHAR);
-    //        DialogueBox.text = displayedText;
-
-    //        alphaIndex++;
-    //        yield return TypeWait;
-    //    }
-
-    //    IsTyping = false;
-    //}
 
     private int CheckForTag(int endIndex, string text)
     {

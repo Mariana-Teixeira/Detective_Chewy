@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -5,7 +6,6 @@ public class DialogueManager : MonoBehaviour
 {
     public DialogueCanvasScript DialogueCanvas;
 
-    private Queue<DialogueNode[]> BranchQueue;
     private DialogueNode[] CurrentBranch;
     private DialogueNode CurrentNode;
     private int DialogueIndex;
@@ -14,15 +14,13 @@ public class DialogueManager : MonoBehaviour
 
     private void Start()
     {
-        BranchQueue = new Queue<DialogueNode[]>();
-
         DialogueInvoker.SendDialogue += OnSendDialogue;
     }
 
     public void OnSendDialogue(DialogueNode[] nodes, bool isQuest)
     {
         DialogueForQuest = isQuest;
-        BranchQueue.Enqueue(nodes);
+        CurrentBranch = nodes;
 
         if (!_isTalking)
         {
@@ -34,31 +32,22 @@ public class DialogueManager : MonoBehaviour
     public void StartDialogue()
     {
         _isTalking = true;
-        CurrentBranch = BranchQueue.Dequeue();
-        IterateDialogue();
+        IterateDialogueForward();
     }
 
-    public void ListenForNextDialogue()
+    public void IterateDialogueBackward()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (!DialogueCanvas.IsTyping)
         {
-            IterateDialogue();
-        }
-    }
-
-    public void ListenForClueSelect(string evidence)
-    {
-        if (evidence == CurrentNode.Evidence)
-        {
-            IterateDialogue();
+            MoveToPreviousNode();
         }
         else
         {
-            EndDialogue();
+            DialogueCanvas.EndTypeWritterEffect();
         }
     }
 
-    public void IterateDialogue()
+    public void IterateDialogueForward()
     {
         if (!DialogueCanvas.IsTyping)
         {
@@ -76,34 +65,23 @@ public class DialogueManager : MonoBehaviour
 
         if (DialogueIndex >= CurrentBranch.Length)
         {
-            if (BranchQueue.Count > 0)
-            {
-                CurrentBranch = BranchQueue.Dequeue();
-                DialogueIndex = 0;
-            }
-            else
-            {
-                if (DialogueForQuest) QuestManager.CompleteQuest?.Invoke();
-                EndDialogue();
-                return;
-            }
+            if (DialogueForQuest) QuestManager.CompleteQuest?.Invoke();
+            EndDialogue();
+            return;
         }
 
         CurrentNode = CurrentBranch[DialogueIndex];
         DialogueCanvas.StartTypeWritterEffect(CurrentNode.DialogueText);
-        CheckForNewTalkingState();
     }
 
-    private void CheckForNewTalkingState()
+    public void MoveToPreviousNode()
     {
-        if (CurrentNode.Evidence != string.Empty)
-        {
-            PlayerStates.ChangeState?.Invoke(GameState.DEBATING);
-        }
-        else
-        {
-            PlayerStates.ChangeState?.Invoke(GameState.TALKING);
-        }
+        DialogueIndex--;
+
+        if (DialogueIndex < 0) { DialogueIndex = 0; return; }
+
+        CurrentNode = CurrentBranch[DialogueIndex];
+        DialogueCanvas.StartTypeWritterEffect(CurrentNode.DialogueText);
     }
 
     public void EndDialogue()

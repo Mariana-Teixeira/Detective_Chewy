@@ -1,13 +1,11 @@
 using System;
 using UnityEngine;
 
-public enum GameState { NULL, WALKING, SITTING, PLAYING, DEBATING, TALKING };
+public enum GameState { NULL, WALKING, SITTING, PLAYING, INTERROGATING, TALKING };
 public class PlayerStates : MonoBehaviour
 {
     public static Action PreviousState;
     public static Action<GameState> ChangeState;
-
-    [SerializeField] DialogueManager _dialogueManager;
 
     CameraLook _cameraLook;
     PlayerMove _playerMove;
@@ -53,14 +51,15 @@ public class PlayerStates : MonoBehaviour
             case GameState.WALKING:
                 _cameraLook.ToggleCursor(false);
                 InformationCanvasScript.ToggleVisibility?.Invoke(true);
-                DialogueCanvasScript.ToggleVisibility?.Invoke(false);
                 break;
             case GameState.TALKING:
+                _cameraLook.ToggleCursor(true);
                 DialogueCanvasScript.ToggleVisibility?.Invoke(true);
                 break;
-            case GameState.DEBATING:
+            case GameState.INTERROGATING:
                 _cameraLook.ToggleCursor(true);
-                ClueSlotsCanvasScript.ToggleVisibility?.Invoke(true);
+                DialogueCanvasScript.ToggleVisibility?.Invoke(true);
+                InterrogationCanvasScript.ToggleVisibility?.Invoke(true);
                 break;
             case GameState.SITTING:
                 StartCoroutine(_cameraLook.ToggleSitting());
@@ -87,9 +86,6 @@ public class PlayerStates : MonoBehaviour
                 _interactWith.CastCursorRays();
                 _playerMove.Move();
                 break;
-            case GameState.TALKING:
-                _dialogueManager.ListenForNextDialogue();
-                break;
             default:
                 break;
         }
@@ -103,9 +99,12 @@ public class PlayerStates : MonoBehaviour
             case GameState.WALKING:
                 InformationCanvasScript.ToggleVisibility?.Invoke(false);
                 break;
-            case GameState.DEBATING:
-                _cameraLook.ToggleCursor(false);
-                ClueSlotsCanvasScript.ToggleVisibility?.Invoke(false);
+            case GameState.TALKING:
+                DialogueCanvasScript.ToggleVisibility?.Invoke(false);
+                break;
+            case GameState.INTERROGATING:
+                DialogueCanvasScript.ToggleVisibility?.Invoke(false);
+                InterrogationCanvasScript.ToggleVisibility?.Invoke(false);
                 break;
             case GameState.PLAYING:
                 CardGameCanvasScript.ToggleVisibility?.Invoke(false);

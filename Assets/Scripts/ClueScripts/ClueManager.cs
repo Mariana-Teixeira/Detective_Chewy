@@ -33,6 +33,7 @@ public class ClueManager : MonoBehaviour
     {
         if (Clues.Count <= 0)
         {
+            PlayerStates.ChangeState?.Invoke(GameState.TALKING);
             _invoker.SendDialogueBranch(FinishedCollectingItems, true);
         }
     }

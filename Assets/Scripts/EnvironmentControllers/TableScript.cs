@@ -55,6 +55,7 @@ public class TableScript : MonoBehaviour
         }
         else
         {
+            PlayerStates.ChangeState?.Invoke(GameState.TALKING);
             _invoker.SendDialogueBranch(nonQuestDialogue);
             return false;
         }

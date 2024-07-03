@@ -24,8 +24,10 @@ public class CharacterScript : MonoBehaviour
 
     public void ToggleExclamation()
     {
-        var Quest = ReturnQuest();
-        if (Quest != null)
+        var TalkTo = ReturnTalkToQuest();
+        var Interrogate = ReturnInterrogateQuest();
+
+        if (TalkTo || Interrogate != null)
         {
             Exclamation.SetActive(true);
         }
@@ -37,18 +39,28 @@ public class CharacterScript : MonoBehaviour
 
     public void TalkToCharacter()
     {
-        var Quest = ReturnQuest();
-        if (Quest != null)
+        var TalkTo = ReturnTalkToQuest();
+        var Interrogate = ReturnInterrogateQuest();
+
+        if (TalkTo != null)
         {
-            _invoker.SendDialogueBranch(Quest.Dialogue, true);
+            PlayerStates.ChangeState?.Invoke(GameState.TALKING);
+            _invoker.SendDialogueBranch(TalkTo.Dialogue, true);
+        }
+        else if (Interrogate != null)
+        {
+            PlayerStates.ChangeState?.Invoke(GameState.INTERROGATING);
+            _invoker.SendDialogueBranch(Interrogate.Branch, false);
+            Debug.Log("Interrogation Time");
         }
         else
         {
+            PlayerStates.ChangeState?.Invoke(GameState.TALKING);
             _invoker.SendDialogueBranch(nonQuestDialogue);
         }
     }
 
-    public TalkToQuest ReturnQuest()
+    public TalkToQuest ReturnTalkToQuest()
     {
         var Q = QuestManager.CurrentQuest?.Invoke();
         var TTQ = Q as TalkToQuest;
@@ -59,6 +71,26 @@ public class CharacterScript : MonoBehaviour
         {
             return TTQ;
         }
-        return null;
+        else
+        {
+            return null;
+        }
+    }
+
+    public InterrogateQuest ReturnInterrogateQuest()
+    {
+        var Q = QuestManager.CurrentQuest?.Invoke();
+        var IQ = Q as InterrogateQuest;
+
+        if (IQ == null) { return null; }
+
+        if (IQ.Character == this.Character)
+        {
+            return IQ;
+        }
+        else
+        {
+            return null;
+        }
     }
 }
