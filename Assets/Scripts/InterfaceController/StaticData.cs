@@ -10,6 +10,7 @@ public class StaticData : MonoBehaviour
     public static float EffectsVolume = 100;
     public static float VoicesVolume = 100;
     public static string InteractBtn = "";
+    public static bool InteractHelp = false;
 
 
     private void Start()
@@ -20,6 +21,7 @@ public class StaticData : MonoBehaviour
         EffectsVolume = 100;
         VoicesVolume = 100;
         InteractBtn = "";
+        InteractHelp = false
 
     }
 }

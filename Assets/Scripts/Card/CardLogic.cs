@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class CardLogic : MonoBehaviour
@@ -76,12 +77,26 @@ public class CardLogic : MonoBehaviour
     public Animator _animator;
     private bool _hasSeenTutorial;
 
+    public GameObject _lastHovered;
+
     private void Awake()
     {
         cards = new List<Card> ();
         playCardPositions = new List<CardPositionAndDirection>();
 
         currentTurnPhase = TurnPhase.Discard;
+    }
+
+    private void Update()
+    {
+        if(Gamepad.current != null) { 
+        //test for controller click
+        if ((Input.GetButtonDown("Fire2") || Gamepad.current.rightTrigger.isPressed) && _lastHovered!=null)
+        {
+         _lastHovered.GetComponent<Card>().OnMouseDown();
+        }
+        }
+
     }
 
     private void OnEnable()
@@ -500,3 +515,5 @@ public struct CardPositionAndDirection
     public Vector3 cardPosition;
     public Vector3 cardNormal;
 }
+
+

@@ -1,5 +1,7 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.UIElements;
 
 public class CameraLook : MonoBehaviour
 {
@@ -34,13 +36,13 @@ public class CameraLook : MonoBehaviour
     {
         if (visible)
         {
-            Cursor.lockState = CursorLockMode.Confined;
-            Cursor.visible = true;
+            UnityEngine.Cursor.lockState = CursorLockMode.Confined;
+            UnityEngine.Cursor.visible = true;
         }
         else
         {
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
+            UnityEngine.Cursor.lockState = CursorLockMode.Locked;
+            UnityEngine.Cursor.visible = false;
         }
     }
 
@@ -53,6 +55,7 @@ public class CameraLook : MonoBehaviour
         rotationY = Input.GetAxis("Mouse X") * yRotationSensitivity;
         transform.rotation *= Quaternion.Euler(0f, rotationY, 0f);
     }
+
     public IEnumerator ToggleSitting()
     {
         if (_isSitting) // Get Up

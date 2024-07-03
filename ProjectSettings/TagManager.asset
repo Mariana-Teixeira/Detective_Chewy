@@ -8,6 +8,7 @@ TagManager:
   - Character
   - Clue
   - Object
+  - Card
   layers:
   - Default
   - TransparentFX

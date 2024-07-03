@@ -57,6 +57,9 @@ public class Card : MonoBehaviour
         cardHoverAmount = 0.005f;
         cardSelectAmount = 0.01f;
     }
+    //test
+
+
 
     private void OnEnable()
     {
@@ -118,6 +121,7 @@ public class Card : MonoBehaviour
             _isHovered = true;
             if (!_isSelected) this.transform.localPosition -= this.transform.forward * cardHoverAmount;
         }
+        _cardLogic._lastHovered = this.gameObject;
     }
 
     public void UnhoverCard()
@@ -132,6 +136,7 @@ public class Card : MonoBehaviour
             _isHovered = false;
             if (!_isSelected) this.transform.localPosition += this.transform.forward * cardHoverAmount;
         }
+        _cardLogic._lastHovered = null;
     }
 
     void OnMouseExit()
@@ -140,7 +145,7 @@ public class Card : MonoBehaviour
         UnhoverCard();
     }
 
-    private void OnMouseDown()
+    public void OnMouseDown()
     {
         if (!_canInteract) return;
 
@@ -215,6 +220,8 @@ public class Card : MonoBehaviour
             }
         }
     }
+
+
 
     public void UnselectCard()
     {

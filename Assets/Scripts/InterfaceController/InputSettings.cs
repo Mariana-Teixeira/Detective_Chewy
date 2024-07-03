@@ -13,7 +13,13 @@ public class InputSettings : MonoBehaviour
 
     public void EnhanceCursor()
     {
-        if (cursor.gameObject.activeInHierarchy) { cursor.gameObject.SetActive(false); }
-        else { cursor.gameObject.SetActive(true); }
+        if (StaticData.InteractHelp == true) { 
+            cursor.gameObject.SetActive(false);
+            StaticData.InteractHelp = false;
+        }
+        else { 
+            cursor.gameObject.SetActive(true);
+            StaticData.InteractHelp = true;
+        }
     }
 }
