@@ -115,11 +115,16 @@ public class CardLogic : MonoBehaviour
         cards.Remove(card);
     }
 
+    // Garantee tutorials only appear at the end of a lerp.
     int temp_tradeCards = 0;
     int temp_playCards = 0;
-    public void ShowTutorial(Card card)
+    public void ShowTutorial(Card card = null)
     {
-        if (_hasSeenTutorial) { card._canInteract = true; return; }
+        if (_hasSeenTutorial)
+        {
+            if (card != null) card._canInteract = true;
+            return;
+        }
 
         if (currentTurnPhase == TurnPhase.Trade)
         {
@@ -196,6 +201,9 @@ public class CardLogic : MonoBehaviour
         {
             ChangeTurnPhase?.Invoke(TurnPhase.Play);
             EnterPlay();
+
+            temp_playCards = 2;
+            ShowTutorial();
         }
         else // Play
         {
@@ -211,12 +219,10 @@ public class CardLogic : MonoBehaviour
         if (currentTurnPhase == TurnPhase.Discard)
         {
             DiscardCards();
-            OnChangeTurnPhase();
         }
         else if (currentTurnPhase == TurnPhase.Trade)
         {
             TradeCards();
-            OnChangeTurnPhase();
         }
         else // Play
         {
@@ -233,6 +239,8 @@ public class CardLogic : MonoBehaviour
         _nextPhaseButton.interactable = true;
 
         _gameBoard.DiscardCard(cards[0]);
+
+        OnChangeTurnPhase();
     }
 
     private void TradeCards()
@@ -250,6 +258,8 @@ public class CardLogic : MonoBehaviour
 
         UnSelectTavernCardBuyPhase();
         UnSelectHandCardBuyPhase();
+
+        OnChangeTurnPhase();
     }
 
     private void PlayCards()
