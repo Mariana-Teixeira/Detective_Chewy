@@ -12,12 +12,14 @@ public enum TurnPhase
 public enum GamePhase
 {
     Null,
+    BoardSetup,
+    Play,
+    Tutorial,
     Start,
     Win,
     Lose
 }
 
-// This one has something special... like milk gone bad.
 [RequireComponent(typeof(DialogueInvoker))]
 public class CardGameState : MonoBehaviour
 {
@@ -29,6 +31,8 @@ public class CardGameState : MonoBehaviour
     private Board _board;
     private Deck _deck;
 
+    public TutorialCanvasScript Tutorial;
+
     private void Start()
     {
         ChangeGamePhase += OnChangeState;
@@ -36,6 +40,11 @@ public class CardGameState : MonoBehaviour
         _logic = GetComponent<CardLogic>();
         _board = GetComponentInChildren<Board>();
         _deck = GetComponentInChildren<Deck>();
+    }
+
+    private void Update()
+    {
+        TickState();
     }
 
     public void OnChangeState(GamePhase gamephase)
@@ -49,12 +58,19 @@ public class CardGameState : MonoBehaviour
     {
         switch(currentGamePhase)
         {
-            case GamePhase.Start:
+            case GamePhase.BoardSetup:
                 _deck.gameObject.SetActive(true);
                 _logic.Reposition();
                 _logic.StartNewBoard();
                 _board.CreateNewVersionOfDeck();
-                StartCoroutine(_logic.StartTimer(_logic.CurrentMatchTime));
+                break;
+            case GamePhase.Play:
+                Tutorial.ToggleVisibility(false);
+                if (_board.ActiveTable == 1) StartCoroutine(_logic.StartTimer(_logic.CurrentMatchTime)); // Flushy Table
+                break;
+            case GamePhase.Tutorial:
+                Tutorial.SetTutorial();
+                Tutorial.ToggleVisibility(true);
                 break;
             case GamePhase.Win:
                 _logic.GameWon();
@@ -69,6 +85,16 @@ public class CardGameState : MonoBehaviour
                 PlayerStates.ChangeState?.Invoke(GameState.SITTING);
                 break;
             default:
+                break;
+        }
+    }
+
+    public void TickState()
+    {
+        switch(currentGamePhase)
+        {
+            case GamePhase.Tutorial:
+                if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.E)) Tutorial.NextTutorialScreen();
                 break;
         }
     }

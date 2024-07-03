@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -73,6 +74,7 @@ public class CardLogic : MonoBehaviour
     private bool handCardSelectedBuyPhase = false;
 
     public Animator _animator;
+    private bool _hasSeenTutorial;
 
     private void Awake()
     {
@@ -82,10 +84,18 @@ public class CardLogic : MonoBehaviour
         currentTurnPhase = TurnPhase.Discard;
     }
 
-    private void Start()
+    private void OnEnable()
     {
-        _nextPhaseButton.onClick.AddListener(ChangeToNextPhase);
-        _confirmButton.onClick.AddListener(Confirm);
+        _nextPhaseButton.onClick.AddListener(OnChangeTurnPhase);
+        _confirmButton.onClick.AddListener(OnConfirm);
+        Board.LerpFinished += ShowTutorial;
+    }
+
+    private void OnDisable()
+    {
+        _nextPhaseButton.onClick.RemoveListener(OnChangeTurnPhase);
+        _confirmButton.onClick.RemoveListener(OnConfirm);
+        Board.LerpFinished -= ShowTutorial;
     }
 
     public void Reposition()
@@ -105,54 +115,110 @@ public class CardLogic : MonoBehaviour
         cards.Remove(card);
     }
 
-    public void ChangeToNextPhase() 
+    int temp_tradeCards = 0;
+    int temp_playCards = 0;
+    public void ShowTutorial(Card card)
     {
+        if (_hasSeenTutorial) { card._canInteract = true; return; }
+
         if (currentTurnPhase == TurnPhase.Trade)
         {
-            UnSelectTavernCardBuyPhase();
-            UnSelectHandCardBuyPhase();
-
-            currentTurnPhase = TurnPhase.Play;
-            _turnPhaseText.text = PlayText;
-            ChangeTurnPhase(TurnPhase.Play);
-
-            _coinScript.FlipTheCoin("sell");
+            if (temp_tradeCards == 1)
+            {
+                CardGameState.ChangeGamePhase?.Invoke(GamePhase.Tutorial);
+                temp_tradeCards = 0;
+            }
+            else
+            {
+                temp_tradeCards++;
+            }
         }
-
         else if (currentTurnPhase == TurnPhase.Play)
         {
-            _nextPhaseButton.interactable = false;
-            _gotSetThisTurn = false;
-
-            currentTurnPhase = TurnPhase.Discard;
-            _turnPhaseText.text = DiscardText;
-            ChangeTurnPhase(TurnPhase.Discard);
-
-            _coinScript.FlipTheCoin("discard");
-
-            if (playCardPositions.Count > 0)
+            if (temp_playCards == 2)
             {
-                _gameBoard.FinishTurn(playCardPositions);
-                playCardPositions.Clear();
+                CardGameState.ChangeGamePhase?.Invoke(GamePhase.Tutorial);
+                _hasSeenTutorial = true;
+                temp_playCards = 0;
             }
+            else
+            {
+                temp_playCards++;
+            }
+        }
+    }
+
+    public void EnterDiscard()
+    {
+        _coinScript.FlipTheCoin("discard");
+
+        currentTurnPhase = TurnPhase.Discard;
+        _turnPhaseText.text = DiscardText;
+
+        _nextPhaseButton.interactable = false;
+        _gotSetThisTurn = false;
+
+        if (playCardPositions.Count > 0)
+        {
+            _gameBoard.FinishTurn(playCardPositions);
+            playCardPositions.Clear();
+        }
+    }
+
+    public void EnterTrade()
+    {
+        UnSelectTavernCardBuyPhase();
+        UnSelectHandCardBuyPhase();
+
+        _coinScript.FlipTheCoin("sell");
+
+        currentTurnPhase = TurnPhase.Trade;
+        _turnPhaseText.text = TradeText;
+
+    }
+
+    public void EnterPlay()
+    {
+        _coinScript.FlipTheCoin("buy");
+
+        currentTurnPhase = TurnPhase.Play;
+        _turnPhaseText.text = PlayText;
+    }
+
+    public void OnChangeTurnPhase() 
+    {
+        if (currentTurnPhase == TurnPhase.Discard)
+        {
+            ChangeTurnPhase?.Invoke(TurnPhase.Trade);
+            EnterTrade();
+        }
+        else if (currentTurnPhase == TurnPhase.Trade)
+        {
+            ChangeTurnPhase?.Invoke(TurnPhase.Play);
+            EnterPlay();
+        }
+        else // Play
+        {
+            ChangeTurnPhase?.Invoke(TurnPhase.Discard);
+            EnterDiscard();
         }
 
         UnselectAllCards();
     }
 
-    public void Confirm() 
+    public void OnConfirm() 
     {
         if (currentTurnPhase == TurnPhase.Discard)
         {
             DiscardCards();
+            OnChangeTurnPhase();
         }
-
         else if (currentTurnPhase == TurnPhase.Trade)
         {
             TradeCards();
+            OnChangeTurnPhase();
         }
-
-        else if (currentTurnPhase == TurnPhase.Play)
+        else // Play
         {
             PlayCards();
         }
@@ -167,12 +233,6 @@ public class CardLogic : MonoBehaviour
         _nextPhaseButton.interactable = true;
 
         _gameBoard.DiscardCard(cards[0]);
-
-        currentTurnPhase = TurnPhase.Trade;
-        _turnPhaseText.text = TradeText;
-        ChangeTurnPhase(TurnPhase.Trade);
-
-        _coinScript.FlipTheCoin("buy");
     }
 
     private void TradeCards()
@@ -190,12 +250,6 @@ public class CardLogic : MonoBehaviour
 
         UnSelectTavernCardBuyPhase();
         UnSelectHandCardBuyPhase();
-
-        currentTurnPhase = TurnPhase.Play;
-        _turnPhaseText.text = PlayText;
-        ChangeTurnPhase(TurnPhase.Play);
-
-        _coinScript.FlipTheCoin("sell");
     }
 
     private void PlayCards()
@@ -255,14 +309,10 @@ public class CardLogic : MonoBehaviour
             score += multiplier.ToString("0.0") + " x " + collectedPoints.ToString();
             AnimateScore(score);
 
-            #region Update UI
             _pointsText.text = _boardPointsCollected.ToString();
             _pointsSlider.value = _boardPointsCollected;
-            #endregion
 
-            #region Thresholds
             if (_boardPointsCollected >= CurrentMatchObjective) CardGameState.ChangeGamePhase(GamePhase.Win);
-            #endregion
         }
     }
 

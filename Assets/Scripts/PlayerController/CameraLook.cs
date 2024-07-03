@@ -83,8 +83,7 @@ public class CameraLook : MonoBehaviour
 
             // Change State
             _isSitting = !_isSitting;
-            if (_seenTutorial) PlayerStates.ChangeState?.Invoke(GameState.PLAYING);
-            else { PlayerStates.ChangeState?.Invoke(GameState.TUTORIAL); _seenTutorial = !_seenTutorial; }
+            PlayerStates.ChangeState?.Invoke(GameState.PLAYING);
         }
     }
 
@@ -121,6 +120,6 @@ public class CameraLook : MonoBehaviour
 
             yield return null;
         }
-        _camera.fieldOfView = 35f;
+        _camera.fieldOfView = fovEnd;
     }
 }

@@ -18,7 +18,6 @@ public class DialogueCanvasScript : MonoBehaviour
     public float TypeSpeed;
     private Coroutine _typewritterCoroutine;
 
-    //private readonly string ALPHA_CHAR = "<color=#00000000>";
     private WaitForSeconds _typeWait;
     private string _currentText;
 

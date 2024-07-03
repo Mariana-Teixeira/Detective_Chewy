@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Card : MonoBehaviour
@@ -11,7 +12,7 @@ public class Card : MonoBehaviour
     [SerializeField] List<Material> materials;
     [SerializeField] GameObject face;
 
-    public TurnPhase Phase;
+    public TurnPhase TurnPhase;
 
     public bool _isSelected, _canInteract, _isHovered;
 
@@ -57,14 +58,14 @@ public class Card : MonoBehaviour
         cardSelectAmount = 0.01f;
     }
 
-    private void Start()
+    private void OnEnable()
     {
-        CardLogic.ChangeTurnPhase += OnChangePhase;
-    }
-
-    public void OnChangePhase(TurnPhase phase)
-    {
-        this.Phase = phase;
+        CardLogic.ChangeTurnPhase += phase => this.TurnPhase = phase;
+        CardGameState.ChangeGamePhase += phase =>
+        {
+            if (phase == GamePhase.Play) { _canInteract = true; }
+            else { _canInteract = false; ResetCardLocal(); }
+        };
     }
 
     public void UpdateUI()
@@ -96,7 +97,18 @@ public class Card : MonoBehaviour
     {
         if(!_canInteract || _isHovered) return;
 
-        if(_cardData.Position == Position.Hand)
+        HoverCard();
+    }
+
+    public void ResetCardLocal()
+    {
+        if (_isHovered) UnhoverCard();
+        if (_isSelected) UnselectCard();
+    }
+
+    public void HoverCard()
+    {
+        if (_cardData.Position == Position.Hand)
         {
             _isHovered = true;
             if (!_isSelected) this.transform.localPosition += this.transform.up * cardHoverAmount;
@@ -108,10 +120,8 @@ public class Card : MonoBehaviour
         }
     }
 
-    void OnMouseExit()
+    public void UnhoverCard()
     {
-        if (!_canInteract || !_isHovered) return;
-
         if (_cardData.Position == Position.Hand)
         {
             _isHovered = false;
@@ -124,11 +134,17 @@ public class Card : MonoBehaviour
         }
     }
 
+    void OnMouseExit()
+    {
+        if (!_canInteract || !_isHovered) return;
+        UnhoverCard();
+    }
+
     private void OnMouseDown()
     {
         if (!_canInteract) return;
 
-        if (Phase == TurnPhase.Discard)
+        if (TurnPhase == TurnPhase.Discard)
         {
             if ((_cardLogic.SelectedCardsLength() < 1) && this.CardData.Position == Position.Hand)
             {
@@ -145,7 +161,8 @@ public class Card : MonoBehaviour
                 }
             }
         }
-        else if (Phase == TurnPhase.Trade) 
+
+        else if (TurnPhase == TurnPhase.Trade) 
         {
             if (_cardLogic.IsHandCardSelectedBuyPhase() == true && this.CardData.Position == Position.Hand)
             {
@@ -175,6 +192,7 @@ public class Card : MonoBehaviour
                 _cardLogic.SelectTavernCardBuyPhase();
             }
         }
+
         else
         { 
             if (_cardLogic.SelectedCardsLength() == 3)

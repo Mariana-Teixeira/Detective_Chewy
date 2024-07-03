@@ -1,28 +1,29 @@
 using System;
+using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.Video;
 
 public class TutorialCanvasScript : MonoBehaviour
 {
-    public static Action<bool> ToggleVisibility;
     public static Action ClickToNext;
     private Canvas _tutorialCanvas;
+    private TMP_Text  _tutorialText;
     private VideoPlayer _videoPlayer;
-    public VideoClip[] TutorialVideos;
-    private int VideoIndex = 0;
+
+    public TutorialScreen[] TutorialVideos;
+    TutorialScreen _currentTutorial;
+
+    private int TutorialIndex = 0;
 
     private void Start()
     {
         _tutorialCanvas = GetComponent<Canvas>();
         _videoPlayer = GetComponentInChildren<VideoPlayer>();
-
-        ToggleVisibility += OnToggleVisibility;
-        ClickToNext += OnClickToNext;
-
-        UpdateVideo();
+        _tutorialText  = GetComponentInChildren<TMP_Text>();
     }
 
-    public void OnToggleVisibility(bool isVisible)
+    public void ToggleVisibility(bool isVisible)
     {
         if (isVisible)
         {
@@ -36,22 +37,34 @@ public class TutorialCanvasScript : MonoBehaviour
         }
     }
 
-    public void OnClickToNext()
+    public void SetTutorial()
     {
-        VideoIndex++;
+        _currentTutorial = TutorialVideos[TutorialIndex];
+        _tutorialText.text = _currentTutorial.texts[_currentTutorial.index];
+        _videoPlayer.clip = _currentTutorial.clips[_currentTutorial.index];
+    }
 
-        if(VideoIndex < TutorialVideos.Length)
+    public void NextTutorialScreen()
+    {
+        _currentTutorial.index++;
+
+        if (_currentTutorial.index < _currentTutorial.clips.Length)
         {
-            UpdateVideo();
+            _tutorialText.text = _currentTutorial.texts[_currentTutorial.index];
+            _videoPlayer.clip = _currentTutorial.clips[_currentTutorial.index];
         }
         else
         {
-            PlayerStates.ChangeState?.Invoke(GameState.PLAYING);
+            TutorialIndex++;
+            CardGameState.ChangeGamePhase?.Invoke(GamePhase.Play);
         }
     }
+}
 
-    public void UpdateVideo()
-    {
-        _videoPlayer.clip = TutorialVideos[VideoIndex];
-    }
+[Serializable]
+public struct TutorialScreen
+{
+    public VideoClip[] clips;
+    public string[] texts;
+    public int index;
 }

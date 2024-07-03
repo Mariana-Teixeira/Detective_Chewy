@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public enum GameState { NULL, WALKING, SITTING, TUTORIAL, PLAYING, DEBATING, TALKING };
+public enum GameState { NULL, WALKING, SITTING, PLAYING, DEBATING, TALKING };
 public class PlayerStates : MonoBehaviour
 {
     public static Action PreviousState;
@@ -66,13 +66,10 @@ public class PlayerStates : MonoBehaviour
                 StartCoroutine(_cameraLook.ToggleSitting());
                 InformationCanvasScript.ToggleVisibility?.Invoke(false);
                 break;
-            case GameState.TUTORIAL:
-                TutorialCanvasScript.ToggleVisibility?.Invoke(true);
-                break;
             case GameState.PLAYING:
                 _cameraLook.ToggleCursor(true);
                 CardGameCanvasScript.ToggleVisibility?.Invoke(true);
-                CardGameState.ChangeGamePhase(GamePhase.Start);
+                CardGameState.ChangeGamePhase(GamePhase.BoardSetup);
                 break;
             default:
                 Debug.LogError("Player State not found.");
@@ -90,9 +87,6 @@ public class PlayerStates : MonoBehaviour
                 _interactWith.CastCursorRays();
                 _playerMove.Move();
                 break;
-            case GameState.TUTORIAL:
-                _interactWith.ListenForTutorial();
-                break;
             case GameState.TALKING:
                 _dialogueManager.ListenForNextDialogue();
                 break;
@@ -108,9 +102,6 @@ public class PlayerStates : MonoBehaviour
         {
             case GameState.WALKING:
                 InformationCanvasScript.ToggleVisibility?.Invoke(false);
-                break;
-            case GameState.TUTORIAL:
-                TutorialCanvasScript.ToggleVisibility?.Invoke(false);
                 break;
             case GameState.DEBATING:
                 _cameraLook.ToggleCursor(false);

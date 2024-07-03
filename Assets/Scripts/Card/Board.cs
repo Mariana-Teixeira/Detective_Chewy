@@ -1,7 +1,10 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Events;
 using Random = System.Random;
 
 public class Board : MonoBehaviour
@@ -29,8 +32,14 @@ public class Board : MonoBehaviour
     private GameObject _tavernPos;
     private GameObject _discardsPos;
 
-    WaitForSeconds _cardWaitTime;
-    float _waitTime = 0.05f;
+    WaitForSeconds _cardHandWaitTime;
+    WaitForSeconds _cardTableWaitTime;
+    float _handWaitTime = 0.05f;
+    float _tableWaitTime = 0.02f;
+
+    public static Action<Card> LerpFinished;
+
+    private bool[] _seenTutorialsByTable;
 
     public int ActiveTable
     {
@@ -47,9 +56,11 @@ public class Board : MonoBehaviour
         _hand = new List<Card>();
         _tavern = new List<Card>();
         _discards = new List<Card>();
+        _seenTutorialsByTable = new bool[tables.Count];
         _activeTable = 0;
 
-        _cardWaitTime = new WaitForSeconds(_waitTime);
+        _cardHandWaitTime = new WaitForSeconds(_handWaitTime);
+        _cardTableWaitTime = new WaitForSeconds(_tableWaitTime);
     }
 
     public void InstantiateCards(List<CardData> cards)
@@ -80,8 +91,6 @@ public class Board : MonoBehaviour
     {
         // Not a clean way to do code. If the cards have not been spawned, I spawn them here.
         if (!hasSpawnedCards) SpawnCards();
-        
-        _coinScript.FlipTheCoin("discard");
 
         ResetLists();
         AddCardsToDeck();
@@ -89,7 +98,7 @@ public class Board : MonoBehaviour
         CreateHand();
         CreateTavern();
         UpdateFirstPositions();
-        PlaceCardsInitial(_activeTable);
+        StartCoroutine(PlaceCards());
     }
 
     public void SpawnCards()
@@ -168,9 +177,9 @@ public class Board : MonoBehaviour
     }
 
     //PLACE CARDS ON TABLE NUM
-    public void PlaceCardsInitial(int num)
+    IEnumerator PlaceCards()
     {
-        GameObject table = tables.ElementAt(num);
+        GameObject table = tables.ElementAt(_activeTable);
         _deckPos = table.transform.GetChild(1).GetChild(0).gameObject;
         _handPos = table.transform.GetChild(1).GetChild(1).gameObject;
         _tavernPos = table.transform.GetChild(1).GetChild(2).gameObject;
@@ -190,19 +199,31 @@ public class Board : MonoBehaviour
         moveStepZ = 0.01f;
 
         // Place Cards in Hand
-        StartCoroutine(LerpCardToHand(moveStep, moveStepZ));
+        yield return StartCoroutine(LerpCardToHand(moveStep, moveStepZ));
 
         moveStep = -0.15f;
 
         // Place Cards on Tavern
-        foreach (var card in _tavern)
+        yield return StartCoroutine(LerpCardToTavern(moveStep));
+
+        // Waiting Time For Cards to Be Positioned
+        var waitTime = _handWaitTime * 10f + _tableWaitTime * 4f;
+        yield return new WaitForSeconds(waitTime);
+
+        // Display Proper Tutorial
+        DisplayTutorial();
+    }
+
+    public void DisplayTutorial()
+    {
+        if (!_seenTutorialsByTable[ActiveTable])
         {
-            var newTavernPosition = _tavernPos.transform.position +
-                card.transform.right * moveStep + card.transform.forward * 0.0f + card.transform.up * 0.0f;
-
-            StartCoroutine(Lerp(card.transform, newTavernPosition));
-
-            moveStep = moveStep + 0.1f;
+            CardGameState.ChangeGamePhase?.Invoke(GamePhase.Tutorial);
+            _seenTutorialsByTable[ActiveTable] = true;
+        }
+        else
+        {
+            CardGameState.ChangeGamePhase?.Invoke(GamePhase.Play);
         }
     }
 
@@ -214,10 +235,24 @@ public class Board : MonoBehaviour
                 card.transform.right * moveStep + card.transform.forward * moveStepZ + card.transform.up * 0.0f;
 
             StartCoroutine(Lerp(card.transform, newHandPosition));
-            yield return _cardWaitTime;
+            yield return _cardHandWaitTime;
 
             moveStepZ += 0.0005f;
             moveStep -= 0.05f;
+        }
+    }
+
+    IEnumerator LerpCardToTavern(float moveStep)
+    {
+        foreach (var card in _tavern)
+        {
+            var newTavernPosition = _tavernPos.transform.position +
+                card.transform.right * moveStep + card.transform.forward * 0.0f + card.transform.up * 0.0f;
+
+            StartCoroutine(Lerp(card.transform, newTavernPosition));
+            yield return _cardTableWaitTime;
+
+            moveStep = moveStep + 0.1f;
         }
     }
 
@@ -231,8 +266,8 @@ public class Board : MonoBehaviour
         var HandRotation = -10f;
         var HandRotateTo = card.transform.rotation * Quaternion.Euler(HandRotation, 0f, 0f);
 
-        var DiscardRotation = 180f - HandRotation;
-        var DiscardRotateTo = card.transform.rotation * Quaternion.Euler(DiscardRotation, 0f, 0f);
+        var DiscardRotation = 0f + HandRotation;
+        var DiscardRotateTo = card.transform.rotation * Quaternion.Euler(DiscardRotation, 180f, 0f);
 
         var amount = cardScript.CardHoverAmount + cardScript.CardSelectAmount;
 
@@ -273,7 +308,11 @@ public class Board : MonoBehaviour
             yield return null;
         } while (timeElapsed < duration);
 
-        cardScript._canInteract = true;
+        if (cardScript.CardData.Position == Position.Discard) card.rotation = DiscardRotateTo;
+        else if (cardScript.CardData.Position == Position.Hand) card.rotation = HandRotateTo;
+        card.position = target;
+
+        LerpFinished?.Invoke(cardScript);
     }
 
     public void DrawCard(Vector3 position, Vector3 movementVector = default)  
