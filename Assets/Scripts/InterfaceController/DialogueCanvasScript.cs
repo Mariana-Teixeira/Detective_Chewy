@@ -61,8 +61,8 @@ public class DialogueCanvasScript : MonoBehaviour
             tagLength = CheckForTag(charIndex, text);
             charIndex += tagLength;
 
-            charIndex++;
             DialogueBox.text = text.Substring(0, charIndex);
+            charIndex++;
 
             yield return _typeWait;
         }
@@ -72,8 +72,6 @@ public class DialogueCanvasScript : MonoBehaviour
     private int CheckForTag(int endIndex, string text)
     {
         if (text[endIndex] != '<') return 0;
-
-        Debug.Log("Checking Length");
 
         var length = 1;
         do

@@ -88,14 +88,12 @@ public class CardLogic : MonoBehaviour
     {
         _nextPhaseButton.onClick.AddListener(OnChangeTurnPhase);
         _confirmButton.onClick.AddListener(OnConfirm);
-        Board.LerpFinished += ShowTutorial;
     }
 
     private void OnDisable()
     {
         _nextPhaseButton.onClick.RemoveListener(OnChangeTurnPhase);
         _confirmButton.onClick.RemoveListener(OnConfirm);
-        Board.LerpFinished -= ShowTutorial;
     }
 
     public void Reposition()
@@ -115,41 +113,18 @@ public class CardLogic : MonoBehaviour
         cards.Remove(card);
     }
 
-    // Garantee tutorials only appear at the end of a lerp.
-    int temp_tradeCards = 0;
-    int temp_playCards = 0;
-    public void ShowTutorial(Card card = null)
+    public void ShowTutorial()
     {
-        if (_hasSeenTutorial)
-        {
-            if (card != null) card._canInteract = true;
-            return;
-        }
+        if (_hasSeenTutorial) return;
 
         if (currentTurnPhase == TurnPhase.Trade)
         {
-            if (temp_tradeCards == 1)
-            {
-                CardGameState.ChangeGamePhase?.Invoke(GamePhase.Tutorial);
-                temp_tradeCards = 0;
-            }
-            else
-            {
-                temp_tradeCards++;
-            }
+            CardGameState.ChangeGamePhase?.Invoke(GamePhase.Tutorial);
         }
         else if (currentTurnPhase == TurnPhase.Play)
         {
-            if (temp_playCards == 2)
-            {
-                CardGameState.ChangeGamePhase?.Invoke(GamePhase.Tutorial);
-                _hasSeenTutorial = true;
-                temp_playCards = 0;
-            }
-            else
-            {
-                temp_playCards++;
-            }
+            CardGameState.ChangeGamePhase?.Invoke(GamePhase.Tutorial);
+            _hasSeenTutorial = true;
         }
     }
 
@@ -196,13 +171,12 @@ public class CardLogic : MonoBehaviour
         {
             ChangeTurnPhase?.Invoke(TurnPhase.Trade);
             EnterTrade();
+            ShowTutorial();
         }
         else if (currentTurnPhase == TurnPhase.Trade)
         {
             ChangeTurnPhase?.Invoke(TurnPhase.Play);
             EnterPlay();
-
-            temp_playCards = 2;
             ShowTutorial();
         }
         else // Play

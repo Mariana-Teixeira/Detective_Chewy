@@ -21545,11 +21545,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Quests:
-  - {fileID: 11400000, guid: 07066e43374658e4e8d8637fa1e43787, type: 2}
   - {fileID: 11400000, guid: 077e89e1405517d4e9dd830e9db7850f, type: 2}
   - {fileID: 11400000, guid: 8553c915d71581e4b9bdaf17561dd837, type: 2}
   - {fileID: 11400000, guid: 89c516c183781e2458d6b186b9198ad7, type: 2}
   - {fileID: 11400000, guid: 8598cdac388406e4292117ad030067c4, type: 2}
+  - {fileID: 11400000, guid: 07066e43374658e4e8d8637fa1e43787, type: 2}
 --- !u!4 &1986138781
 Transform:
   m_ObjectHideFlags: 0
