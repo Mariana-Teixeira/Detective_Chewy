@@ -17,6 +17,7 @@ public class MenuManager : MonoBehaviour
     GameObject _inputCanvas;
 
     AudioSettings _audioSettings;
+    InputSettings _inputSettings;
 
     private void Awake()
     {
@@ -25,6 +26,7 @@ public class MenuManager : MonoBehaviour
         _inputCanvas = _menu.transform.GetChild(2).gameObject;
 
         _audioSettings = _audioCanvas.GetComponent<AudioSettings>();
+        _inputSettings = _inputCanvas.GetComponent<InputSettings>();
     }
 
     public void ChangeCanvas(int i)
@@ -56,5 +58,6 @@ public class MenuManager : MonoBehaviour
         StaticData.AmbienceVolume = _audioSettings.GetAmbienceVolume();
         StaticData.EffectsVolume = _audioSettings.GetEffectsVolume();
         StaticData.VoicesVolume = _audioSettings.GetVoicesVolume();
+        StaticData.InteractHelp = _inputSettings.GetToggle();
     }
 }

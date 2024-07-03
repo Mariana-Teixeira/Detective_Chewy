@@ -21,7 +21,7 @@ public class StaticData : MonoBehaviour
         EffectsVolume = 100;
         VoicesVolume = 100;
         InteractBtn = "";
-        InteractHelp = false
+        InteractHelp = false;
 
     }
 }
