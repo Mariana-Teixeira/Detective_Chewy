@@ -112,7 +112,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.128, y: 0.178, z: 0.15}
+  m_LocalScale: {x: 0.16, y: 0.22249998, z: 0.18749999}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7493077896046023086}
@@ -184,7 +184,7 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 98c6fad5faf85734b9b5d907162f1f6e, type: 2}
   - {fileID: 2100000, guid: 99daa0d1a636f204ea91cd223eeb51d1, type: 2}
   face: {fileID: 0}
-  Phase: 0
+  TurnPhase: 0
   _isSelected: 0
   _canInteract: 0
   _isHovered: 0
@@ -207,8 +207,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.5999999, y: 0.87035036, z: 0.015000001}
-  m_Center: {x: -0, y: 0.00017994408, z: -0}
+  m_Size: {x: 0.52908546, y: 0.713847, z: 0.08896081}
+  m_Center: {x: -0.001313252, y: -0.002524868, z: -0.0011206046}
 --- !u!95 &4245792739649960854
 Animator:
   serializedVersion: 5
@@ -256,7 +256,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.54, y: 0.74, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.7, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5831423212303761368}
