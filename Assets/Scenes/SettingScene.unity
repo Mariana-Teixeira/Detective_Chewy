@@ -14533,6 +14533,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MainMenuCanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 7984168659524719984, guid: d8b369f261187d646b2870c53bd0699c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8228203681640268412, guid: d8b369f261187d646b2870c53bd0699c, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -21707,6 +21711,18 @@ PrefabInstance:
     - target: {fileID: 1230474219479029949, guid: a30f92ba56638314cb3450eaa4d1197c, type: 3}
       propertyPath: m_Lightmapping
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1235344358346271043, guid: a30f92ba56638314cb3450eaa4d1197c, type: 3}
+      propertyPath: m_Intensity
+      value: 1.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1251583983808706230, guid: a30f92ba56638314cb3450eaa4d1197c, type: 3}
+      propertyPath: m_Intensity
+      value: 1.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1721568283742522084, guid: a30f92ba56638314cb3450eaa4d1197c, type: 3}
+      propertyPath: m_Intensity
+      value: 1.6
       objectReference: {fileID: 0}
     - target: {fileID: 5310245210645823219, guid: a30f92ba56638314cb3450eaa4d1197c, type: 3}
       propertyPath: m_Name
