@@ -592,7 +592,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4845576717928872556, guid: 4a526635ae604a14aa3a1755f78d5dbf, type: 3}
       propertyPath: m_Name
-      value: CardLogic
+      value: CardManager
       objectReference: {fileID: 0}
     - target: {fileID: 6446904851086513471, guid: 4a526635ae604a14aa3a1755f78d5dbf, type: 3}
       propertyPath: Tutorial
