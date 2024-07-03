@@ -211,12 +211,10 @@ public class CardLogic : MonoBehaviour
         if (currentTurnPhase == TurnPhase.Discard)
         {
             DiscardCards();
-            OnChangeTurnPhase();
         }
         else if (currentTurnPhase == TurnPhase.Trade)
         {
             TradeCards();
-            OnChangeTurnPhase();
         }
         else // Play
         {
@@ -233,6 +231,8 @@ public class CardLogic : MonoBehaviour
         _nextPhaseButton.interactable = true;
 
         _gameBoard.DiscardCard(cards[0]);
+
+        OnChangeTurnPhase();
     }
 
     private void TradeCards()
@@ -250,6 +250,8 @@ public class CardLogic : MonoBehaviour
 
         UnSelectTavernCardBuyPhase();
         UnSelectHandCardBuyPhase();
+
+        OnChangeTurnPhase();
     }
 
     private void PlayCards()
