@@ -86,9 +86,6 @@ public class PlayerStates : MonoBehaviour
                 _interactWith.CastCursorRays();
                 _playerMove.Move();
                 break;
-            case GameState.TALKING:
-                DialogueManager.ListenForNextDialogue();
-                break;
             default:
                 break;
         }

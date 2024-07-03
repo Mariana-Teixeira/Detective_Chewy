@@ -6,7 +6,8 @@ public class TalkToQuest : Quest
 {
     public string Character;
     public DialogueBranch Dialogue;
-    [Space]
+    [Space(50)]
     public bool Interrogate;
+    public DialogueBranch ContinuingDialogue;
     public Clue[] Items;
 }

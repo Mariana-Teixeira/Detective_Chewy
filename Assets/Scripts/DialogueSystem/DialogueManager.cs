@@ -46,13 +46,30 @@ public class DialogueManager : MonoBehaviour
     public void OnSendDialogue(DialogueNode[] nodes, bool isQuest)
     {
         DialogueForQuest = isQuest;
-        _currentBranch = nodes;
 
         if (!_isTalking)
         {
+            _currentBranch = nodes;
             DialogueIndex = -1;
             StartDialogue();
         }
+        else
+        {
+            Debug.Log("Merge Dialogue");
+            MergeDialogue(nodes);
+        }
+    }
+
+    // Assumes we won't stop the dialogue by the end of a interrogation.
+    private void MergeDialogue(DialogueNode[] mergeNodes)
+    {
+        _stopDialogueEnd = false;
+
+        var newBranch = new DialogueNode[_currentBranch.Length + mergeNodes.Length];
+        _currentBranch.CopyTo(newBranch, 0);
+        mergeNodes.CopyTo(newBranch, _currentBranch.Length);
+
+        _currentBranch = newBranch;
     }
 
     public void ListenForNextDialogue()
@@ -61,7 +78,7 @@ public class DialogueManager : MonoBehaviour
         {
             IterateDialogueForward();
         }
-        if (Input.GetMouseButton(1))
+        else if (Input.GetMouseButton(1))
         {
             IterateDialogueBackward();
         }
@@ -122,7 +139,7 @@ public class DialogueManager : MonoBehaviour
     {
         if (_stopDialogueEnd)
         {
-            DialogueIndex = _currentBranch.Length;
+            DialogueIndex = _currentBranch.Length - 1;
         }
         else
         {

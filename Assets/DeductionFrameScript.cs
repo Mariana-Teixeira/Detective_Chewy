@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+[RequireComponent(typeof(DialogueInvoker))]
 public class DeductionFrameScript : MonoBehaviour
 {
     public static Action<TalkToQuest> GetQuest;
@@ -12,7 +13,10 @@ public class DeductionFrameScript : MonoBehaviour
     private Image _image;
 
     public DialogueManager _dialogueManager;    
+    private DialogueInvoker _invoker;
     private DialogueNode _currentNode;
+
+    private TalkToQuest _quest;
 
     private Clue[] _clues;
     private List<string> _clueChecker;
@@ -21,6 +25,7 @@ public class DeductionFrameScript : MonoBehaviour
 
     private void Awake()
     {
+        _invoker = GetComponent<DialogueInvoker>();
         _image = GetComponent<Image>();
         _nullClue = new Clue();
     }
@@ -33,6 +38,7 @@ public class DeductionFrameScript : MonoBehaviour
 
     public void SetupClues(TalkToQuest quest)
     {
+        _quest = quest;
         _clues = quest.Items;
 
         foreach (var item in _clues)
@@ -91,6 +97,8 @@ public class DeductionFrameScript : MonoBehaviour
 
     private void FinishInterrogation()
     {
+        Debug.Log("Finish Interrogation");
+        _invoker.SendDialogueBranch(_quest.ContinuingDialogue, true);
         PlayerStates.ChangeState?.Invoke(GameState.TALKING);
     }
 }
