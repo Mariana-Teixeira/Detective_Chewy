@@ -6,21 +6,47 @@ public class DialogueManager : MonoBehaviour
 {
     public DialogueCanvasScript DialogueCanvas;
 
-    private DialogueNode[] CurrentBranch;
-    private DialogueNode CurrentNode;
+    private DialogueNode[] _currentBranch;
     private int DialogueIndex;
     private bool DialogueForQuest;
     private bool _isTalking;
 
+    private bool _stopDialogueEnd;
+
+    public DialogueNode CurrentNode
+    {
+        get
+        {
+            return _currentBranch[DialogueIndex];
+        }
+        set
+        {
+            _currentBranch[DialogueIndex] = value;
+        }
+    }
+
     private void Start()
     {
         DialogueInvoker.SendDialogue += OnSendDialogue;
+        PlayerStates.ChangeState += OnChangeState;
+    }
+
+    private void OnChangeState(GameState state)
+    {
+        if (state == GameState.INTERROGATING)
+        {
+            _stopDialogueEnd = true;
+        }
+        else
+        {
+            _stopDialogueEnd = false;
+        }
     }
 
     public void OnSendDialogue(DialogueNode[] nodes, bool isQuest)
     {
         DialogueForQuest = isQuest;
-        CurrentBranch = nodes;
+        _currentBranch = nodes;
 
         if (!_isTalking)
         {
@@ -59,19 +85,38 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
+    public void UpdateNode(DialogueNode node)
+    {
+        CurrentNode = node;
+        DialogueCanvas.EndTypeWritterEffect();
+        DialogueCanvas.StartTypeWritterEffect(CurrentNode.DialogueText);
+    }
+
     public void MoveToNextNode()
     {
         DialogueIndex++;
 
-        if (DialogueIndex >= CurrentBranch.Length)
+        if (DialogueIndex >= _currentBranch.Length)
         {
-            if (DialogueForQuest) QuestManager.CompleteQuest?.Invoke();
-            EndDialogue();
+            CheckDialogueEnd();
             return;
         }
 
-        CurrentNode = CurrentBranch[DialogueIndex];
+        CurrentNode = _currentBranch[DialogueIndex];
         DialogueCanvas.StartTypeWritterEffect(CurrentNode.DialogueText);
+    }
+
+    public void CheckDialogueEnd()
+    {
+        if (_stopDialogueEnd)
+        {
+            DialogueIndex = _currentBranch.Length;
+        }
+        else
+        {
+            if (DialogueForQuest) QuestManager.CompleteQuest?.Invoke();
+            EndDialogue();
+        }
     }
 
     public void MoveToPreviousNode()
@@ -80,14 +125,14 @@ public class DialogueManager : MonoBehaviour
 
         if (DialogueIndex < 0) { DialogueIndex = 0; return; }
 
-        CurrentNode = CurrentBranch[DialogueIndex];
+        CurrentNode = _currentBranch[DialogueIndex];
         DialogueCanvas.StartTypeWritterEffect(CurrentNode.DialogueText);
     }
 
     public void EndDialogue()
     {
         _isTalking = false;
-        CurrentBranch = null;
+        _currentBranch = null;
         DialogueForQuest = false;
 
         PlayerStates.ChangeState?.Invoke(GameState.WALKING);

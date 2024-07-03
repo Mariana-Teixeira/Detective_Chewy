@@ -24,10 +24,9 @@ public class CharacterScript : MonoBehaviour
 
     public void ToggleExclamation()
     {
-        var TalkTo = ReturnTalkToQuest();
-        var Interrogate = ReturnInterrogateQuest();
+        var TalkTo = ReturnQuest();
 
-        if (TalkTo || Interrogate != null)
+        if (TalkTo != null)
         {
             Exclamation.SetActive(true);
         }
@@ -39,19 +38,22 @@ public class CharacterScript : MonoBehaviour
 
     public void TalkToCharacter()
     {
-        var TalkTo = ReturnTalkToQuest();
-        var Interrogate = ReturnInterrogateQuest();
+        var TalkTo = ReturnQuest();
 
         if (TalkTo != null)
         {
-            PlayerStates.ChangeState?.Invoke(GameState.TALKING);
-            _invoker.SendDialogueBranch(TalkTo.Dialogue, true);
-        }
-        else if (Interrogate != null)
-        {
-            PlayerStates.ChangeState?.Invoke(GameState.INTERROGATING);
-            _invoker.SendDialogueBranch(Interrogate.Branch, false);
-            Debug.Log("Interrogation Time");
+            if (TalkTo.Interrogate)
+            {
+                PlayerStates.ChangeState?.Invoke(GameState.INTERROGATING);
+                DeductionFrameScript.GetQuest?.Invoke(TalkTo);
+                var instanceBranch = Instantiate(TalkTo.Dialogue);
+                _invoker.SendDialogueBranch(instanceBranch, false);
+            }
+            else
+            {
+                PlayerStates.ChangeState?.Invoke(GameState.TALKING);
+                _invoker.SendDialogueBranch(TalkTo.Dialogue, true);
+            }
         }
         else
         {
@@ -60,7 +62,7 @@ public class CharacterScript : MonoBehaviour
         }
     }
 
-    public TalkToQuest ReturnTalkToQuest()
+    public TalkToQuest ReturnQuest()
     {
         var Q = QuestManager.CurrentQuest?.Invoke();
         var TTQ = Q as TalkToQuest;
@@ -70,23 +72,6 @@ public class CharacterScript : MonoBehaviour
         if (TTQ.Character == this.Character)
         {
             return TTQ;
-        }
-        else
-        {
-            return null;
-        }
-    }
-
-    public InterrogateQuest ReturnInterrogateQuest()
-    {
-        var Q = QuestManager.CurrentQuest?.Invoke();
-        var IQ = Q as InterrogateQuest;
-
-        if (IQ == null) { return null; }
-
-        if (IQ.Character == this.Character)
-        {
-            return IQ;
         }
         else
         {

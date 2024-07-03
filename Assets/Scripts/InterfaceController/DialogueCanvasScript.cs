@@ -32,7 +32,6 @@ public class DialogueCanvasScript : MonoBehaviour
     public void OnToggleVisibility(bool isVisible)
     {
         DialogueBox.text = string.Empty;
-        FullConversation = string.Empty;
         _dialogueCanvas.enabled = isVisible;
     }
 
@@ -41,8 +40,6 @@ public class DialogueCanvasScript : MonoBehaviour
         DialogueBox.text = string.Empty;
         _currentText = text;
         _typewritterCoroutine = StartCoroutine(TypewritterEffect(text));
-
-        //_typewritterCoroutine = StartCoroutine(CharByCharTypewritter(_currentText));
     }
 
     public void EndTypeWritterEffect()
@@ -50,30 +47,6 @@ public class DialogueCanvasScript : MonoBehaviour
         StopCoroutine(_typewritterCoroutine);
         DialogueBox.text = _currentText;
         IsTyping = false;
-
-        //SavingDialogue(_currentText);
-    }
-
-    private string FullConversation;
-    public IEnumerator CharByCharTypewritter(string text)
-    {
-        if (FullConversation != string.Empty) FullConversation += "\n";
-        IsTyping = true;
-
-        int charIndex = 0;
-        int tagLength;
-
-        while (charIndex < text.Length)
-        {
-            tagLength = CheckForTag(charIndex, text);
-            charIndex += tagLength;
-
-            DialogueBox.text = FullConversation + text.Substring(0, charIndex);
-            charIndex++;
-            yield return _typeWait;
-        }
-
-        SavingDialogue(text);
     }
 
     public IEnumerator TypewritterEffect(string text)
@@ -88,25 +61,19 @@ public class DialogueCanvasScript : MonoBehaviour
             tagLength = CheckForTag(charIndex, text);
             charIndex += tagLength;
 
-            DialogueBox.text = text.Substring(0, charIndex);
             charIndex++;
+            DialogueBox.text = text.Substring(0, charIndex);
 
             yield return _typeWait;
         }
-
-        IsTyping = false;
-    }
-
-    public void SavingDialogue(string text)
-    {
-        FullConversation += text;
-        DialogueBox.text = FullConversation;
         IsTyping = false;
     }
 
     private int CheckForTag(int endIndex, string text)
     {
         if (text[endIndex] != '<') return 0;
+
+        Debug.Log("Checking Length");
 
         var length = 1;
         do
