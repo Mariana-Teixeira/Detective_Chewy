@@ -225,7 +225,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &44260082
 RectTransform:
   m_ObjectHideFlags: 0
@@ -898,7 +898,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &169945739
 RectTransform:
   m_ObjectHideFlags: 0
@@ -913,9 +913,9 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 44260082}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 375, y: -50}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &169945740
@@ -6012,7 +6012,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &332356501
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6027,9 +6027,9 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 44260082}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 125, y: -50}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &332356502
@@ -11916,7 +11916,11 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: A tutorial script.
+  m_text: 'A tutorial script.
+
+    With various lines.
+
+    Look at all those lines.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 4e5c859ee13f90b44a492e7b449d88e8, type: 2}
   m_sharedMaterial: {fileID: -7209439767547333583, guid: 4e5c859ee13f90b44a492e7b449d88e8, type: 2}
@@ -11943,8 +11947,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 64
-  m_fontSizeBase: 64
+  m_fontSize: 56
+  m_fontSizeBase: 56
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -11955,7 +11959,7 @@ MonoBehaviour:
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
-  m_lineSpacing: 0
+  m_lineSpacing: 50
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
@@ -12279,7 +12283,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &719320123
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12381,22 +12385,57 @@ MonoBehaviour:
   - clips:
     - {fileID: 32900000, guid: 09fb5053f51c518408fba9e689d2dce0, type: 3}
     texts:
-    - discard tutorial
+    - 'Each turn in Gim Rummy is composed of three phases:
+
+      1. discard phase,
+
+      2.
+      bartering phase,
+
+      3. the scoring phase.'
+    - 'Discard Phase
+
+
+      For now, choose a card to discard and you''ll get a
+      new card from the deck.'
     index: 0
   - clips:
     - {fileID: 32900000, guid: 09fb5053f51c518408fba9e689d2dce0, type: 3}
     texts:
-    - trade tutorial
+    - 'Bartering Phase
+
+
+      Choose a card from your hand to trade with one of
+      the four cards on the table.'
+    index: 0
+  - clips:
+    - {fileID: 32900000, guid: 09fb5053f51c518408fba9e689d2dce0, type: 3}
+    - {fileID: 32900000, guid: 09fb5053f51c518408fba9e689d2dce0, type: 3}
+    - {fileID: 32900000, guid: 09fb5053f51c518408fba9e689d2dce0, type: 3}
+    - {fileID: 32900000, guid: 09fb5053f51c518408fba9e689d2dce0, type: 3}
+    texts:
+    - 'Scoring Phase
+
+
+      Play three cards that form valid hands: sets or runs.
+
+      You
+      can play more than one hand during this phase.
+
+
+      You can press the ''Next
+      Phase'' button to skip this phase.'
+    - Sets are three cards of the same value.
+    - Runs are a sequence of three cards of neighbouring values of the same suit.
+    - You can press the 'Next Phase' button to skip the Bartering and Scoring Phases.
     index: 0
   - clips:
     - {fileID: 32900000, guid: 09fb5053f51c518408fba9e689d2dce0, type: 3}
     texts:
-    - play tutorial
-    index: 0
-  - clips:
-    - {fileID: 32900000, guid: 09fb5053f51c518408fba9e689d2dce0, type: 3}
-    texts:
-    - new table tutorial
+    - 'Servy doesn''t have much time to gamble. You''ll need to win this match before
+      time runs out.
+
+      At least they gave you a hip watch to keep track of time.'
     index: 0
 --- !u!1 &729380596
 GameObject:
@@ -12662,7 +12701,7 @@ Canvas:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 796715589}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_RenderMode: 0
   m_Camera: {fileID: 0}
@@ -14155,11 +14194,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2744947166934412790, guid: c1a82a2f7199a6d47b93dc753520324c, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0.3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2744947166934412790, guid: c1a82a2f7199a6d47b93dc753520324c, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2872980918251346511, guid: c1a82a2f7199a6d47b93dc753520324c, type: 3}
       propertyPath: m_AnchorMax.y
@@ -14207,7 +14246,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4845567808780866058, guid: c1a82a2f7199a6d47b93dc753520324c, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4880245006391421106, guid: c1a82a2f7199a6d47b93dc753520324c, type: 3}
       propertyPath: m_Name
@@ -21379,12 +21418,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Quests:
-  - {fileID: 11400000, guid: f84fa174678587a4eba4e911669ea6b8, type: 2}
-  - {fileID: 11400000, guid: 0f3bb1e54118c1e42b3c27af41039857, type: 2}
   - {fileID: 11400000, guid: 077e89e1405517d4e9dd830e9db7850f, type: 2}
   - {fileID: 11400000, guid: 8553c915d71581e4b9bdaf17561dd837, type: 2}
   - {fileID: 11400000, guid: 89c516c183781e2458d6b186b9198ad7, type: 2}
   - {fileID: 11400000, guid: 8598cdac388406e4292117ad030067c4, type: 2}
+  - {fileID: 11400000, guid: 0f3bb1e54118c1e42b3c27af41039857, type: 2}
+  - {fileID: 11400000, guid: f84fa174678587a4eba4e911669ea6b8, type: 2}
 --- !u!4 &1986138781
 Transform:
   m_ObjectHideFlags: 0
@@ -21538,7 +21577,7 @@ Canvas:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2113551037}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_RenderMode: 0
   m_Camera: {fileID: 0}

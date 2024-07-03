@@ -50,8 +50,12 @@ public class TutorialCanvasScript : MonoBehaviour
 
         if (_currentTutorial.index < _currentTutorial.clips.Length)
         {
-            _tutorialText.text = _currentTutorial.texts[_currentTutorial.index];
             _videoPlayer.clip = _currentTutorial.clips[_currentTutorial.index];
+        }
+
+        if (_currentTutorial.index < _currentTutorial.texts.Length)
+        {
+            _tutorialText.text = _currentTutorial.texts[_currentTutorial.index];
         }
         else
         {
@@ -65,6 +69,8 @@ public class TutorialCanvasScript : MonoBehaviour
 public struct TutorialScreen
 {
     public VideoClip[] clips;
+    [TextArea]
     public string[] texts;
+    [HideInInspector]
     public int index;
 }
