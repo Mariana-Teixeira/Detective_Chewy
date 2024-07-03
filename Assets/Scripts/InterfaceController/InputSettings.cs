@@ -4,19 +4,16 @@ using UnityEngine.UI;
 
 public class InputSettings : MonoBehaviour
 {
-    [SerializeField] TextMeshProUGUI text;
-    [SerializeField] Button RebindButton;
-
-    [SerializeField] GameObject WaitForInputButton;
-
+    [SerializeField] GameObject cursor;
+    [SerializeField] Toggle toggle;
     void Start()
     {
         //RebindButton.onClick.AddListener(WaitForInput);
     }
 
-    void WaitForInput()
+    public void EnhanceCursor()
     {
-        RebindButton.gameObject.SetActive(false);
-        WaitForInputButton.SetActive(true);
+        if (cursor.gameObject.activeInHierarchy) { cursor.gameObject.SetActive(false); }
+        else { cursor.gameObject.SetActive(true); }
     }
 }
