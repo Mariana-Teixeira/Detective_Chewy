@@ -426,6 +426,10 @@ PrefabInstance:
       value: 0.6
       objectReference: {fileID: 0}
     - target: {fileID: 878106981467220619, guid: 4a526635ae604a14aa3a1755f78d5dbf, type: 3}
+      propertyPath: _cardLogic
+      value: 
+      objectReference: {fileID: 1724222604}
+    - target: {fileID: 878106981467220619, guid: 4a526635ae604a14aa3a1755f78d5dbf, type: 3}
       propertyPath: _coinScript
       value: 
       objectReference: {fileID: 621279325}

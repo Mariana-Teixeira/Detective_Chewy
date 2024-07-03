@@ -5,7 +5,10 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.UI;
+using UnityEngine.XR;
+using Random = System.Random;
 
 public class CardLogic : MonoBehaviour
 {
@@ -78,6 +81,7 @@ public class CardLogic : MonoBehaviour
     private bool _hasSeenTutorial;
 
     public GameObject _lastHovered;
+    public int gimmickMulti = 1;
 
     private void Awake()
     {
@@ -320,6 +324,9 @@ public class CardLogic : MonoBehaviour
 
             _gameBoard.CollectPoints(cards);
 
+            collectedPoints = collectedPoints * gimmickMulti;
+            gimmickMulti = 1;
+
             // Collect Points
             _boardPointsCollected += + (int)(collectedPoints * multiplier);
             _lastAddedPoints = (int)(collectedPoints * multiplier);
@@ -504,6 +511,16 @@ public class CardLogic : MonoBehaviour
     {
         return tavernCardSelectedBuyPhase;
     }
+
+    public void AddGimmickPoints(int i) {
+        _boardPointsCollected = _boardPointsCollected + i;
+
+        _pointsText.text = _boardPointsCollected.ToString();
+        _pointsSlider.value = _boardPointsCollected;
+
+        if (_boardPointsCollected >= CurrentMatchObjective) CardGameState.ChangeGamePhase(GamePhase.Win);
+    }
+    public void setGimmickMulti(int i) { gimmickMulti = i; }
 }
 
 public struct CardPositionAndDirection
