@@ -7,12 +7,14 @@ public class DeductionFrameScript : MonoBehaviour
 {
     public static Action<TalkToQuest> GetQuest;
     
+    public Transform ClueGroup;
+    
     private Image _image;
 
     public DialogueManager _dialogueManager;    
     private DialogueNode _currentNode;
 
-    public Clue[] Clues;
+    private Clue[] _clues;
     private List<string> _clueChecker;
     private Clue _clue;
     private Clue _nullClue;
@@ -31,17 +33,18 @@ public class DeductionFrameScript : MonoBehaviour
 
     public void SetupClues(TalkToQuest quest)
     {
-        Clues = quest.Items;
+        _clues = quest.Items;
 
-        foreach (var item in Clues)
+        foreach (var item in _clues)
         {
             _clueChecker.Add(item.ClueName);
+            ClueGroup.Find(item.ClueName).gameObject.SetActive(true);
         }
     }
 
     public void OnClueChange(int i)
     {
-        _clue = Clues[i];
+        _clue = _clues[i];
         ChangeSprite();
     }
 

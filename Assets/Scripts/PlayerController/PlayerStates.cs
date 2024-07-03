@@ -12,7 +12,7 @@ public class PlayerStates : MonoBehaviour
     InteractWith _interactWith;
     GameState _currentState;
 
-    [SerializeField] Board _board;
+    [SerializeField] DialogueManager DialogueManager;
 
     private void Start()
     {
@@ -85,6 +85,9 @@ public class PlayerStates : MonoBehaviour
                 _interactWith.CastInteractionRays();
                 _interactWith.CastCursorRays();
                 _playerMove.Move();
+                break;
+            case GameState.TALKING:
+                DialogueManager.ListenForNextDialogue();
                 break;
             default:
                 break;

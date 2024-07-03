@@ -66,6 +66,7 @@ public class DialogueCanvasScript : MonoBehaviour
 
             yield return _typeWait;
         }
+        DialogueBox.text = text.Substring(0, text.Length);
         IsTyping = false;
     }
 

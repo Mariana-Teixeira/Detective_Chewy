@@ -55,6 +55,18 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
+    public void ListenForNextDialogue()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            IterateDialogueForward();
+        }
+        if (Input.GetMouseButton(1))
+        {
+            IterateDialogueBackward();
+        }
+    }
+
     public void StartDialogue()
     {
         _isTalking = true;
