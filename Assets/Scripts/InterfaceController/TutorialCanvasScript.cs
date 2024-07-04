@@ -1,7 +1,6 @@
 using System;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.Video;
 
 public class TutorialCanvasScript : MonoBehaviour

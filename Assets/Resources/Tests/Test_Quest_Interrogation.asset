@@ -16,7 +16,7 @@ MonoBehaviour:
   Character: Squeaky
   Dialogue: {fileID: 11400000, guid: 9fef81efaaaade3418a8f7b1b8ee698c, type: 2}
   Interrogate: 1
-  ContinuingDialogue: {fileID: 11400000, guid: 557e34225efde9b40bd524d2269efd6b, type: 2}
+  ContinuingDialogue: {fileID: 11400000, guid: 33205a008e0bbc94389bca7aabecb8e1, type: 2}
   Items:
   - ClueName: PokerChip
     ClueSprite: {fileID: 21300000, guid: 5d069ed402151cb489e382b29c4e7e10, type: 3}

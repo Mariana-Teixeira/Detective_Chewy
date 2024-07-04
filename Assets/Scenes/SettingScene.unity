@@ -723,7 +723,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4096336531650125810, guid: 4a526635ae604a14aa3a1755f78d5dbf, type: 3}
       propertyPath: MatchesObjective.Array.data[0]
-      value: 1
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 4096336531650125810, guid: 4a526635ae604a14aa3a1755f78d5dbf, type: 3}
       propertyPath: MatchesObjective.Array.data[3]
@@ -12498,7 +12498,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TutorialVideos:
   - clips:
-    - {fileID: 32900000, guid: 09fb5053f51c518408fba9e689d2dce0, type: 3}
+    - {fileID: 32900000, guid: 404c78020276982459a80b5badfa5709, type: 3}
     texts:
     - 'Each turn in Gim Rummy is composed of three phases:
 
@@ -12515,7 +12515,7 @@ MonoBehaviour:
       new card from the deck.'
     index: 0
   - clips:
-    - {fileID: 32900000, guid: 09fb5053f51c518408fba9e689d2dce0, type: 3}
+    - {fileID: 32900000, guid: a4c11151f42d030468062849bb9d1f6c, type: 3}
     texts:
     - 'Bartering Phase
 
@@ -12524,10 +12524,10 @@ MonoBehaviour:
       the four cards on the table.'
     index: 0
   - clips:
-    - {fileID: 32900000, guid: 09fb5053f51c518408fba9e689d2dce0, type: 3}
-    - {fileID: 32900000, guid: 09fb5053f51c518408fba9e689d2dce0, type: 3}
-    - {fileID: 32900000, guid: 09fb5053f51c518408fba9e689d2dce0, type: 3}
-    - {fileID: 32900000, guid: 09fb5053f51c518408fba9e689d2dce0, type: 3}
+    - {fileID: 32900000, guid: e3ff659f9a0fbf2499432c130985d3e3, type: 3}
+    - {fileID: 32900000, guid: 923727dbfdcf9cf4db43617002dce753, type: 3}
+    - {fileID: 32900000, guid: 278da762bc9539c4f844d1426321a468, type: 3}
+    - {fileID: 32900000, guid: eaa54f8b45df5d045963e300e4c91cc1, type: 3}
     texts:
     - 'Scoring Phase
 
@@ -12535,14 +12535,20 @@ MonoBehaviour:
       Play three cards that form valid hands: sets or runs.
 
       You
-      can play more than one hand during this phase.
-
-
-      You can press the ''Next
-      Phase'' button to skip this phase.'
+      can play more than one hand during this phase.'
     - Sets are three cards of the same value.
     - Runs are a sequence of three cards of neighbouring values of the same suit.
     - You can press the 'Next Phase' button to skip the Bartering and Scoring Phases.
+    index: 0
+  - clips:
+    - {fileID: 32900000, guid: 09fb5053f51c518408fba9e689d2dce0, type: 3}
+    texts:
+    - Flushy Gimmick.
+    index: 0
+  - clips:
+    - {fileID: 32900000, guid: 09fb5053f51c518408fba9e689d2dce0, type: 3}
+    texts:
+    - Gemy gimmick!
     index: 0
   - clips:
     - {fileID: 32900000, guid: 09fb5053f51c518408fba9e689d2dce0, type: 3}
@@ -21558,9 +21564,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Quests:
-  - {fileID: 11400000, guid: 07066e43374658e4e8d8637fa1e43787, type: 2}
-  - {fileID: 11400000, guid: 07066e43374658e4e8d8637fa1e43787, type: 2}
   - {fileID: 11400000, guid: 077e89e1405517d4e9dd830e9db7850f, type: 2}
+  - {fileID: 11400000, guid: 0f3bb1e54118c1e42b3c27af41039857, type: 2}
+  - {fileID: 11400000, guid: 98ffa56b59d91274f98742fa33b8b1cd, type: 2}
+  - {fileID: 11400000, guid: 314ca0fa96a4e664287252acaac5dc72, type: 2}
+  - {fileID: 11400000, guid: 07066e43374658e4e8d8637fa1e43787, type: 2}
   - {fileID: 11400000, guid: 8553c915d71581e4b9bdaf17561dd837, type: 2}
   - {fileID: 11400000, guid: 89c516c183781e2458d6b186b9198ad7, type: 2}
   - {fileID: 11400000, guid: 8598cdac388406e4292117ad030067c4, type: 2}

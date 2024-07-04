@@ -6,6 +6,7 @@ public class InterrogationCanvasScript : MonoBehaviour
     public static Action<bool> ToggleVisibility;
 
     private Canvas _canvas;
+    private bool _hasSeenTutorial;
 
     private void Awake()
     {
