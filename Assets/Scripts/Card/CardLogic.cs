@@ -147,9 +147,6 @@ public class CardLogic : MonoBehaviour
 
     public void EnterTrade()
     {
-        UnSelectTavernCardBuyPhase();
-        UnSelectHandCardBuyPhase();
-
         _coinScript.FlipTheCoin("sell");
 
         currentTurnPhase = TurnPhase.Trade;
@@ -203,6 +200,8 @@ public class CardLogic : MonoBehaviour
             PlayCards();
         }
 
+        UnSelectTavernCardBuyPhase();
+        UnSelectHandCardBuyPhase();
         UnselectAllCards();
     }
 
@@ -229,9 +228,6 @@ public class CardLogic : MonoBehaviour
         {
             _gameBoard.ExchangeTavernCard(cards[0], cards[1]);
         }
-
-        UnSelectTavernCardBuyPhase();
-        UnSelectHandCardBuyPhase();
 
         OnChangeTurnPhase();
     }
@@ -419,6 +415,9 @@ public class CardLogic : MonoBehaviour
         {
             c.UnselectCard();
         }
+
+        UnSelectTavernCardBuyPhase();
+        UnSelectHandCardBuyPhase();
     }
 
     public void StartNewBoard()
