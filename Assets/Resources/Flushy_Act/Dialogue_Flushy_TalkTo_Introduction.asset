@@ -1,0 +1,106 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 974d03248160ac84dad927547d7629eb, type: 3}
+  m_Name: Dialogue_Flushy_TalkTo_Introduction
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueBranch
+  Nodes:
+  - DialogueText: "<color=green>Hello, Sir! I haven\u2019t seen you around.</color>"
+    DialogueSound: 0
+    Evidence: 
+  - DialogueText: <color=green>You strike me as an adrenaline enthusiast.</color>
+    DialogueSound: 0
+    Evidence: 
+  - DialogueText: <color=green>Would you fancy a gamble?</color>
+    DialogueSound: 0
+    Evidence: 
+  - DialogueText: <color=green>A gambling game?</color>
+    DialogueSound: 0
+    Evidence: 
+  - DialogueText: <color=green>A gambling game of cards?</color>
+    DialogueSound: 0
+    Evidence: 
+  - DialogueText: <color=green>How much are you willing to bet?</color>
+    DialogueSound: 0
+    Evidence: 
+  - DialogueText: <color=green>I will bet it all!</color>
+    DialogueSound: 0
+    Evidence: 
+  - DialogueText: <color=green>You could win all I have!</color>
+    DialogueSound: 0
+    Evidence: 
+  - DialogueText: <color=yellow>(I see the rat padding his pockets frantically. A
+      measly display akin to a mouse desperate for his cookie.)</color>
+    DialogueSound: 0
+    Evidence: 
+  - DialogueText: <color=yellow>I'm Detective Chewy.</color>
+    DialogueSound: 0
+    Evidence: 
+  - DialogueText: "<color=yellow>(In contrast to the rat\u2019s fidgety demeanor,
+      I smoothly slip my paw in search of my business card.)</color>"
+    DialogueSound: 0
+    Evidence: 
+  - DialogueText: <color=yellow>(Unable to find its soft laminated rectangular shape,
+      I hand Flushy the first paper I can grab from my pocket.)</color>
+    DialogueSound: 0
+    Evidence: 
+  - DialogueText: "<color=yellow>(It\u2019s a 20% off coupon at Tony\u2019s Car Wash
+      & Pizzeria.)</color>"
+    DialogueSound: 0
+    Evidence: 
+  - DialogueText: <color=yellow>Are you Flushy?</color>
+    DialogueSound: 0
+    Evidence: 
+  - DialogueText: "<color=green>I am not acquainted with Flushy. Even if I was, I
+      would never reveal information regarding that refined rat\u2019s identity.</color>"
+    DialogueSound: 0
+    Evidence: 
+  - DialogueText: "<color=green>I would much rather focus on the cards, with all
+      due respect, \u201CDetective\u201D.</color>"
+    DialogueSound: 0
+    Evidence: 
+  - DialogueText: "<color=yellow>(\u201CWith all due respect\u201D... a phrase that
+      tends to be accompanied by a disrespectful statement.)</color>"
+    DialogueSound: 0
+    Evidence: 
+  - DialogueText: "<color=yellow>I\u2019m investigating the disappearance of Madame
+      Cheesy. Would you happen to know her?</color>"
+    DialogueSound: 0
+    Evidence: 
+  - DialogueText: "<color=green>We\u2019re both out of luck, Detective. I am not
+      well-acquainted with Mr. Cheesy, even if we both attended the same grandiose
+      events.</color>"
+    DialogueSound: 0
+    Evidence: 
+  - DialogueText: <color=yellow>What about his wife?</color>
+    DialogueSound: 0
+    Evidence: 
+  - DialogueText: "<color=green>And I am certainly not acquainted with his wife,
+      Madame Cheesy. I don\u2019t care for dames, I care for cards.</color>"
+    DialogueSound: 0
+    Evidence: 
+  - DialogueText: "<color=yellow>You\u2019re telling me you have no idea who Madame
+      Cheesy is?</color>"
+    DialogueSound: 0
+    Evidence: 
+  - DialogueText: <color=green>Do you expect me to remember every rat I might come
+      across? That would be preposterous. The only dames I have memorized are the
+      ones in my deck.</color>
+    DialogueSound: 0
+    Evidence: 
+  - DialogueText: "<color=green>I hold no qualms for the Cheesy\u2019s. And I hope
+      you find the Madame, Detective.</color>"
+    DialogueSound: 0
+    Evidence: 
+  - DialogueText: "<color=yellow>(This rat ain\u2019t nibbling. I should look around
+      for clues.)</color>"
+    DialogueSound: 0
+    Evidence: 

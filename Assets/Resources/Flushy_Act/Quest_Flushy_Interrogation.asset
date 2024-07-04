@@ -1,0 +1,46 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e53cb7ddd640534459c7609da8774468, type: 3}
+  m_Name: Quest_Flushy_Interrogation
+  m_EditorClassIdentifier: 
+  QuestDescription: Interrogate Flushy
+  Character: Flushy
+  Dialogue: {fileID: 11400000, guid: 33205a008e0bbc94389bca7aabecb8e1, type: 2}
+  Interrogate: 1
+  ContinuingDialogue: {fileID: 11400000, guid: cdb6d1af435b1794b96fd38f68e73e27, type: 2}
+  Items:
+  - ClueName: FlushyID
+    ClueDescription: 
+    ClueSprite: {fileID: 21300000, guid: d86ebf4784f9d664eaa8c05a23b31f64, type: 3}
+    DialogueNode:
+      DialogueText: I am Flushy, the youngest Marquis of Mice of recent rat history... 
+        although, now, most refer to me as just Flushy.
+      DialogueSound: 
+      Evidence: 
+  - ClueName: PokerChip
+    ClueDescription: 
+    ClueSprite: {fileID: 21300000, guid: 5d069ed402151cb489e382b29c4e7e10, type: 3}
+    DialogueNode:
+      DialogueText: "There was not a single night where the Madame\u2019s presence
+        did not grace the tables but her husband did not appreciate the time we spent
+        gambling."
+      DialogueSound: 
+      Evidence: 
+  - ClueName: Letter
+    ClueDescription: 
+    ClueSprite: {fileID: 21300000, guid: d2576875511c6ba4880792c6762b8cfe, type: 3}
+    DialogueNode:
+      DialogueText: I have lost it all, Detective. All because of that dame. Even
+        on my bad streak of luck, she kept pulling on my whiskers, persuading me
+        to spend more of my hard-earned inherited wealth.
+      DialogueSound: 
+      Evidence: 
