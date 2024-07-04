@@ -49,7 +49,9 @@ public class TutorialCanvasScript : MonoBehaviour
 
         if (_currentTutorial.index < _currentTutorial.clips.Length)
         {
+            _videoPlayer.Stop();
             _videoPlayer.clip = _currentTutorial.clips[_currentTutorial.index];
+            _videoPlayer.Play();
         }
 
         if (_currentTutorial.index < _currentTutorial.texts.Length)
