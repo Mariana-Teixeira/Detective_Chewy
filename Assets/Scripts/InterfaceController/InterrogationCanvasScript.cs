@@ -5,12 +5,11 @@ public class InterrogationCanvasScript : MonoBehaviour
 {
     public static Action<bool> ToggleVisibility;
 
-    private Canvas _canvas;
-    private bool _hasSeenTutorial;
+    private CanvasGroup _canvas;
 
     private void Awake()
     {
-        _canvas = GetComponent<Canvas>();
+        _canvas = GetComponent<CanvasGroup>();
     }
 
     private void Start()
@@ -20,6 +19,7 @@ public class InterrogationCanvasScript : MonoBehaviour
 
     public void OnToggleVisibility(bool isVisible)
     {
-        _canvas.enabled = isVisible;
+        if (isVisible) _canvas.alpha = 1f;
+        else _canvas.alpha = 0f;
     }
 }

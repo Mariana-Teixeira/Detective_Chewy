@@ -25,3 +25,9 @@ MonoBehaviour:
   - DialogueText: letter
     DialogueSound: 
     Evidence: Letter
+  - DialogueText: flushy
+    DialogueSound: 
+    Evidence: Flushy
+  - DialogueText: nothing
+    DialogueSound: 
+    Evidence: 

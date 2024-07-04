@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,7 +11,8 @@ public class DeductionFrameScript : MonoBehaviour
     
     public Transform ClueGroup;
     
-    private Image _image;
+    public Image _image;
+    public TextMeshProUGUI _description;
 
     public DialogueManager _dialogueManager;    
     private DialogueInvoker _invoker;
@@ -26,7 +28,6 @@ public class DeductionFrameScript : MonoBehaviour
     private void Awake()
     {
         _invoker = GetComponent<DialogueInvoker>();
-        _image = GetComponent<Image>();
         _nullClue = new Clue();
     }
 
@@ -51,12 +52,8 @@ public class DeductionFrameScript : MonoBehaviour
     public void OnClueChange(int i)
     {
         _clue = _clues[i];
-        ChangeSprite();
-    }
-
-    public void ChangeSprite()
-    {
         _image.sprite = _clue.ClueSprite;
+        _description.text = _clue.ClueDescription;
     }
 
     public void OnObjection()
@@ -93,6 +90,7 @@ public class DeductionFrameScript : MonoBehaviour
     {
         _clue = _nullClue;
         _image.sprite = null;
+        _description.text = string.Empty;
     }
 
     private void FinishInterrogation()
@@ -107,6 +105,7 @@ public class DeductionFrameScript : MonoBehaviour
 public struct Clue
 {
     public string ClueName;
+    public string ClueDescription;
     public Sprite ClueSprite;
     public DialogueNode DialogueNode;
 }

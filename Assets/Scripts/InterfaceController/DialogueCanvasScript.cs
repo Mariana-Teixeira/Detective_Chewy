@@ -1,11 +1,7 @@
 using System;
 using System.Collections;
 using TMPro;
-using UnityEditor;
-using UnityEditor.Rendering;
 using UnityEngine;
-using UnityEngine.Rendering;
-using UnityEngine.UIElements;
 
 public class DialogueCanvasScript : MonoBehaviour
 {
