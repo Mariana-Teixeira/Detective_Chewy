@@ -21,6 +21,8 @@ public class CardLogic : MonoBehaviour
     #endregion
 
     #region Scores
+    public bool[] UseMultiplier;
+    public bool[] UseTimer;
     public int[] MatchesObjective;
     public float[] MatchesTime;
     public int CurrentMatchObjective
@@ -264,6 +266,7 @@ public class CardLogic : MonoBehaviour
 
         if (set || run)
         {
+            #region Calculating Multiplers
             if (set && _gotSetThisTurn)
             {
                 multiplier = 2;
@@ -278,6 +281,7 @@ public class CardLogic : MonoBehaviour
             {
                 multiplier = 1.5f;
             }
+            #endregion
 
             foreach (Card card in cards)
             {
@@ -288,8 +292,17 @@ public class CardLogic : MonoBehaviour
             _gameBoard.CollectPoints(cards);
 
             // Collect Points
-            _boardPointsCollected += + (int)(collectedPoints * multiplier);
-            _lastAddedPoints = (int)(collectedPoints * multiplier);
+            if (UseMultiplier[_gameBoard.GetActiveTable()])
+            {
+                _boardPointsCollected += (int)(collectedPoints * multiplier);
+                _lastAddedPoints = (int)(collectedPoints * multiplier);
+            }
+            else
+            {
+                _boardPointsCollected += collectedPoints;
+                _lastAddedPoints = 0;
+            }
+
             score += multiplier.ToString("0.0") + " x " + collectedPoints.ToString();
             AnimateScore(score);
 

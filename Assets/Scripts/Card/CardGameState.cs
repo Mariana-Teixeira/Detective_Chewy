@@ -66,7 +66,12 @@ public class CardGameState : MonoBehaviour
                 break;
             case GamePhase.Play:
                 Tutorial.ToggleVisibility(false);
-                if (_board.ActiveTable == 1) StartCoroutine(_logic.StartTimer(_logic.CurrentMatchTime)); // Flushy Table
+
+                if (_logic.UseTimer[_board.GetActiveTable()])
+                {
+                    StartCoroutine(_logic.StartTimer(_logic.CurrentMatchTime));
+                }
+
                 break;
             case GamePhase.Tutorial:
                 Tutorial.SetTutorial();
