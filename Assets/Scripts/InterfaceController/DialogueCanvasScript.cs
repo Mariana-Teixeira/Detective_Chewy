@@ -16,7 +16,6 @@ public class DialogueCanvasScript : MonoBehaviour
     public float TypeSpeed;
     private string _currentText;
 
-
     private void Start()
     {
         _dialogueCanvas = GetComponent<Canvas>();
@@ -45,38 +44,100 @@ public class DialogueCanvasScript : MonoBehaviour
         IsTyping = false;
     }
 
+
     public IEnumerator TypewritterEffect(string text)
     {
+        text = AddParagraphsToString(text);
+
         IsTyping = true;
 
-        int charIndex = 0;
+        int index = 0;
         int tagLength;
-
-        while (charIndex < text.Length)
+        while (index < text.Length)
         {
-            tagLength = CheckForTag(charIndex, text);
-            charIndex += tagLength;
+            if (text[index] == '<')
+            {
+                tagLength = GetTagLength(index, text);
+                index += tagLength;
+            }
 
-            DialogueBox.text = text.Substring(0, charIndex);
-            charIndex++;
+            DialogueBox.text = text.Substring(0, index);
+            index++;
 
             yield return _typeWait;
         }
         DialogueBox.text = text.Substring(0, text.Length);
         IsTyping = false;
+        yield return null;
     }
 
-    private int CheckForTag(int endIndex, string text)
+    int maximumPerLine = 58;
+    private string AddParagraphsToString(string text)
     {
-        if (text[endIndex] != '<') return 0;
+        int index = 0;
+        int tagLen;
+        int lineTagsLen = 0;
+        int wordLen;
+        int phraseLen;
+        int paragraphs = 1;
+        char[] textArray = text.ToCharArray();
 
+        while (index < text.Length)
+        {
+            var current = textArray[index];
+
+            if (current == '<')
+            {
+                tagLen = GetTagLength(index, text);
+                lineTagsLen += tagLen;
+            }
+            else if (current == ' ')
+            {
+                wordLen = GetWordLength(index, text);
+                phraseLen = index - lineTagsLen;
+
+                if (phraseLen + wordLen > maximumPerLine * paragraphs)
+                {
+                    paragraphs++;
+                    textArray[index] = '\n';
+                }
+            }
+
+            index++;
+        }
+
+        return new string(textArray);
+    }
+
+    // Doesn't account for tags inside the word.
+    private int GetWordLength(int index, string text)
+    {
+        index++;
+
+        var length = 0;
+        while (index < text.Length)
+        {
+            if (text[index] == '<') index += GetTagLength(index, text);
+            if (index >= text.Length) return length;
+            if (text[index] == ' ') return length;
+
+            index++;
+            length++;
+        }
+
+        return length;
+    }
+
+    private int GetTagLength(int index, string text)
+    {
         var length = 1;
         do
         {
-            endIndex++;
+            index++;
             length++;
         }
-        while (text[endIndex] != '>');
+        while (text[index] != '>');
+
         return length;
     }
 }
