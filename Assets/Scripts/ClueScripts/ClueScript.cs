@@ -17,13 +17,12 @@ public class ClueScript : MonoBehaviour
     // I don't enjoy it either, let me live. I'm thinking!
     public void GatherClue()
     {
-        // putting this when player interacts
-        // or put on quest manager
         var Q = QuestManager.CurrentQuest?.Invoke();
         var CCQ = Q as CollectThingsQuest;
 
         if (CCQ == null)
         {
+            PlayerStates.ChangeState?.Invoke(GameState.TALKING);
             _invoker.SendDialogueBranch(nonQuestDialogue);
             return;
         }
@@ -40,9 +39,11 @@ public class ClueScript : MonoBehaviour
         if (item.ThingName == this.Clue)
         {
             this.gameObject.SetActive(false);
+
+            PlayerStates.ChangeState?.Invoke(GameState.TALKING);
             _invoker.SendDialogueBranch(item.Dialogue);
+
             ClueManager.FindClue?.Invoke(item);
-            ClueSlotsCanvasScript.ToggleIcon?.Invoke(item);
             return true;
         }
         else
@@ -51,5 +52,3 @@ public class ClueScript : MonoBehaviour
         }
     }
 }
-
-// data, functionally, visuals

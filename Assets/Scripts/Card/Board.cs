@@ -1,10 +1,7 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.Events;
 using Random = System.Random;
 
 public class Board : MonoBehaviour
@@ -37,8 +34,6 @@ public class Board : MonoBehaviour
     WaitForSeconds _cardTableWaitTime;
     float _handWaitTime = 0.05f;
     float _tableWaitTime = 0.02f;
-
-    public static Action<Card> LerpFinished;
 
     private bool[] _seenTutorialsByTable;
 
@@ -313,7 +308,7 @@ public class Board : MonoBehaviour
         else if (cardScript.CardData.Position == Position.Hand) card.rotation = HandRotateTo;
         card.position = target;
 
-        LerpFinished?.Invoke(cardScript);
+        cardScript._canInteract = true;
     }
 
     public void DrawCard(Vector3 position, Vector3 movementVector = default)  

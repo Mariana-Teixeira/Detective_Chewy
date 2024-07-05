@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SocialPlatforms.Impl;
@@ -25,6 +24,8 @@ public class CardLogic : MonoBehaviour
     #endregion
 
     #region Scores
+    public bool[] UseMultiplier;
+    public bool[] UseTimer;
     public int[] MatchesObjective;
     public float[] MatchesTime;
     public int CurrentMatchObjective
@@ -107,14 +108,12 @@ public class CardLogic : MonoBehaviour
     {
         _nextPhaseButton.onClick.AddListener(OnChangeTurnPhase);
         _confirmButton.onClick.AddListener(OnConfirm);
-        Board.LerpFinished += ShowTutorial;
     }
 
     private void OnDisable()
     {
         _nextPhaseButton.onClick.RemoveListener(OnChangeTurnPhase);
         _confirmButton.onClick.RemoveListener(OnConfirm);
-        Board.LerpFinished -= ShowTutorial;
     }
 
     public void Reposition()
@@ -134,36 +133,18 @@ public class CardLogic : MonoBehaviour
         cards.Remove(card);
     }
 
-    int temp_tradeCards = 0;
-    int temp_playCards = 0;
-    public void ShowTutorial(Card card)
+    public void ShowTutorial()
     {
-        if (_hasSeenTutorial) { card._canInteract = true; return; }
+        if (_hasSeenTutorial) return;
 
         if (currentTurnPhase == TurnPhase.Trade)
         {
-            if (temp_tradeCards == 1)
-            {
-                CardGameState.ChangeGamePhase?.Invoke(GamePhase.Tutorial);
-                temp_tradeCards = 0;
-            }
-            else
-            {
-                temp_tradeCards++;
-            }
+            CardGameState.ChangeGamePhase?.Invoke(GamePhase.Tutorial);
         }
         else if (currentTurnPhase == TurnPhase.Play)
         {
-            if (temp_playCards == 2)
-            {
-                CardGameState.ChangeGamePhase?.Invoke(GamePhase.Tutorial);
-                _hasSeenTutorial = true;
-                temp_playCards = 0;
-            }
-            else
-            {
-                temp_playCards++;
-            }
+            CardGameState.ChangeGamePhase?.Invoke(GamePhase.Tutorial);
+            _hasSeenTutorial = true;
         }
     }
 
@@ -186,9 +167,6 @@ public class CardLogic : MonoBehaviour
 
     public void EnterTrade()
     {
-        UnSelectTavernCardBuyPhase();
-        UnSelectHandCardBuyPhase();
-
         _coinScript.FlipTheCoin("sell");
 
         currentTurnPhase = TurnPhase.Trade;
@@ -210,11 +188,13 @@ public class CardLogic : MonoBehaviour
         {
             ChangeTurnPhase?.Invoke(TurnPhase.Trade);
             EnterTrade();
+            ShowTutorial();
         }
         else if (currentTurnPhase == TurnPhase.Trade)
         {
             ChangeTurnPhase?.Invoke(TurnPhase.Play);
             EnterPlay();
+            ShowTutorial();
         }
         else // Play
         {
@@ -240,6 +220,8 @@ public class CardLogic : MonoBehaviour
             PlayCards();
         }
 
+        UnSelectTavernCardBuyPhase();
+        UnSelectHandCardBuyPhase();
         UnselectAllCards();
     }
 
@@ -266,9 +248,6 @@ public class CardLogic : MonoBehaviour
         {
             _gameBoard.ExchangeTavernCard(cards[0], cards[1]);
         }
-
-        UnSelectTavernCardBuyPhase();
-        UnSelectHandCardBuyPhase();
 
         OnChangeTurnPhase();
     }
@@ -301,6 +280,7 @@ public class CardLogic : MonoBehaviour
 
         if (set || run)
         {
+            #region Calculating Multiplers
             if (set && _gotSetThisTurn)
             {
                 multiplier = 2;
@@ -315,6 +295,7 @@ public class CardLogic : MonoBehaviour
             {
                 multiplier = 1.5f;
             }
+            #endregion
 
             foreach (Card card in cards)
             {
@@ -328,8 +309,17 @@ public class CardLogic : MonoBehaviour
             gimmickMulti = 1;
 
             // Collect Points
-            _boardPointsCollected += + (int)(collectedPoints * multiplier);
-            _lastAddedPoints = (int)(collectedPoints * multiplier);
+            if (UseMultiplier[_gameBoard.GetActiveTable()])
+            {
+                _boardPointsCollected += (int)(collectedPoints * multiplier);
+                _lastAddedPoints = (int)(collectedPoints * multiplier);
+            }
+            else
+            {
+                _boardPointsCollected += collectedPoints;
+                _lastAddedPoints = 0;
+            }
+
             score += multiplier.ToString("0.0") + " x " + collectedPoints.ToString();
             AnimateScore(score);
 
@@ -459,6 +449,9 @@ public class CardLogic : MonoBehaviour
         {
             c.UnselectCard();
         }
+
+        UnSelectTavernCardBuyPhase();
+        UnSelectHandCardBuyPhase();
     }
 
     public void StartNewBoard()

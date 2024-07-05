@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd6417f4c42247045971c89c30acf537, type: 3}
   m_Name: Quest_Flushy_CollectThings
   m_EditorClassIdentifier: 
-  QuestDescription: Collect Clues about Flushy.
+  QuestDescription: Collect Clues about Flushy
   Things:
   - ThingName: PokerChip
     Dialogue: {fileID: 11400000, guid: ff2cac0ab07ec014fb2202abbaf555b0, type: 2}

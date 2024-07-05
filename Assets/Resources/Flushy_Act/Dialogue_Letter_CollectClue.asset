@@ -17,15 +17,11 @@ MonoBehaviour:
       the Cheesy Estate.)</color>
     DialogueSound: 0
     Evidence: 
-  - DialogueText: <color=yellow>(It accuses Mr. Cheesy of owing the sender an exuberant
-      amount of money.)</color>
+  - DialogueText: <color=yellow>(It accuses the Cheesy's of swindling the sender
+      out of an exuberant amount of cheese.)</color>
     DialogueSound: 0
     Evidence: 
-  - DialogueText: <color=yellow>(I was told Flushy often talks about being owed money,
-      this might be valuable evidence.)</color>
-    DialogueSound: 0
-    Evidence: 
-  - DialogueText: "<color=yellow>(I\u2019m keeping this <color=white>letter</color>
-      with me.)</color>"
+  - DialogueText: "<color=yellow>(This might be valuable evidence, I\u2019m keeping
+      this <color=white>letter</color> with me.)</color>"
     DialogueSound: 0
     Evidence: 

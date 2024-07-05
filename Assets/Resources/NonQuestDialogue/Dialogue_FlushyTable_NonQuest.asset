@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Dialogue_FlushyTable_NonQuest
   m_EditorClassIdentifier: Assembly-CSharp::DialogueBranch
   Nodes:
-  - DialogueText: <color=yellow>I shouldn't be look at this table for so long.</color>
+  - DialogueText: <color=yellow>I shouldn't be looking at this table for so long.</color>
     DialogueSound: 0
     Evidence: 
   - DialogueText: <color=yellow>It's disrespectful.</color>

@@ -9,9 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e53cb7ddd640534459c7609da8774468, type: 3}
-  m_Name: Quest_Flushy_TalkTo
+  m_Script: {fileID: 11500000, guid: 293d5574715f0a241a16010c2138f9fe, type: 3}
+  m_Name: Quest_Squeaky_PlayGame_Tutorial
   m_EditorClassIdentifier: 
-  QuestDescription: Talk To Flushy.
-  Character: Flushy
-  Dialogue: {fileID: 11400000, guid: 88c4bf3b0a5531648b9caa5488edceaf, type: 2}
+  QuestDescription: Play a Game with the Bartender
+  Game: Squeaky_Game

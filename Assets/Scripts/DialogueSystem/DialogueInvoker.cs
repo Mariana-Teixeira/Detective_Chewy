@@ -9,7 +9,6 @@ public class DialogueInvoker : MonoBehaviour
     public void SendDialogueBranch(DialogueBranch branch, bool isQuest = false)
     {
         if (branch == null) Debug.LogError("Branch is Null");
-        PlayerStates.ChangeState?.Invoke(GameState.TALKING);
         SendDialogue?.Invoke(branch.Nodes, isQuest);
     }
 }

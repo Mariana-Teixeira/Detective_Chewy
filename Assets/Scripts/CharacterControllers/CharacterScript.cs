@@ -24,8 +24,9 @@ public class CharacterScript : MonoBehaviour
 
     public void ToggleExclamation()
     {
-        var Quest = ReturnQuest();
-        if (Quest != null)
+        var TalkTo = ReturnQuest();
+
+        if (TalkTo != null)
         {
             Exclamation.SetActive(true);
         }
@@ -37,13 +38,26 @@ public class CharacterScript : MonoBehaviour
 
     public void TalkToCharacter()
     {
-        var Quest = ReturnQuest();
-        if (Quest != null)
+        var TalkTo = ReturnQuest();
+
+        if (TalkTo != null)
         {
-            _invoker.SendDialogueBranch(Quest.Dialogue, true);
+            if (TalkTo.Interrogate)
+            {
+                PlayerStates.ChangeState?.Invoke(GameState.INTERROGATING);
+                DeductionFrameScript.GetQuest?.Invoke(TalkTo);
+                var instanceBranch = Instantiate(TalkTo.Dialogue);
+                _invoker.SendDialogueBranch(instanceBranch, false);
+            }
+            else
+            {
+                PlayerStates.ChangeState?.Invoke(GameState.TALKING);
+                _invoker.SendDialogueBranch(TalkTo.Dialogue, true);
+            }
         }
         else
         {
+            PlayerStates.ChangeState?.Invoke(GameState.TALKING);
             _invoker.SendDialogueBranch(nonQuestDialogue);
         }
     }
@@ -59,6 +73,9 @@ public class CharacterScript : MonoBehaviour
         {
             return TTQ;
         }
-        return null;
+        else
+        {
+            return null;
+        }
     }
 }

@@ -20,6 +20,13 @@ MonoBehaviour:
       <color=white>chip</color>. I wonder who it belongs to?)</color>
     DialogueSound: 0
     Evidence: 
+  - DialogueText: <color=yellow>(Instinctively, I lick the chip.)</color>
+    DialogueSound: 0
+    Evidence: 
+  - DialogueText: "<color=yellow>(Memories start flooding back of me of the Madame
+      at the sewer\u2019s pier.)</color>"
+    DialogueSound: 0
+    Evidence: 
   - DialogueText: "<color=yellow>(This is someone\u2019s special <color=white>gambling
       chip</color>. I should pocket it.)</color>"
     DialogueSound: 0
