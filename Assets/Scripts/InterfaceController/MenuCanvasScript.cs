@@ -18,6 +18,11 @@ public class MenuCanvasScript : MonoBehaviour
     public Animator _animator;
     public RawImage _cutscene;
 
+    private void Awake()
+    {
+        ChangeCanvas(0);
+    }
+
     public void EnableCanvas()
     {
         MenuCanvas.enabled = true;
@@ -39,13 +44,14 @@ public class MenuCanvasScript : MonoBehaviour
                 EnableCanvas(_mainCanvas);
                 DisableCanvas(_audioCanvas);
                 DisableCanvas(_inputCanvas);
-
                 break;
+
             case (int)MenuStates.AudioSettings:
                 DisableCanvas(_mainCanvas);
                 EnableCanvas(_audioCanvas);
                 DisableCanvas(_inputCanvas);
                 break;
+
             case (int)MenuStates.InputSettings:
                 DisableCanvas(_mainCanvas);
                 DisableCanvas(_audioCanvas);
@@ -68,11 +74,6 @@ public class MenuCanvasScript : MonoBehaviour
         group.blocksRaycasts = false;
     }
 
-    public void StartLoading()
-    {
-        StartCoroutine(LoadLevelAsync(1));
-    }
-
     public void StartGame()
     {
         StartCoroutine(StartAnimation());
@@ -91,7 +92,7 @@ public class MenuCanvasScript : MonoBehaviour
     public IEnumerator StartAnimation()
     {
         yield return StartCoroutine(VideoPlaying());
-        _animator.SetTrigger("card_start");
+        _animator.SetTrigger("transition");
     }
 
     IEnumerator VideoPlaying()
@@ -108,16 +109,6 @@ public class MenuCanvasScript : MonoBehaviour
 
         while (_videoPlayer.isPlaying)
         {
-            yield return null;
-        }
-    }
-
-    IEnumerator LoadLevelAsync(int loadScene)
-    {
-        AsyncOperation loadOperation = SceneManager.LoadSceneAsync(loadScene);
-        while (!loadOperation.isDone)
-        {
-            float progressValue = Mathf.Clamp01(loadOperation.progress / 0.9f);
             yield return null;
         }
     }
