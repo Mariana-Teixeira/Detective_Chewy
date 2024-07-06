@@ -69,22 +69,11 @@ public class DialogueManager : MonoBehaviour
         _currentBranch = newBranch;
     }
 
-    public void ListenForNextDialogue()
-    {
-        if (Input.GetMouseButtonDown(0))
-        {
-            IterateDialogueForward();
-        }
-        else if (Input.GetMouseButton(1))
-        {
-            IterateDialogueBackward();
-        }
-    }
-
     public void StartDialogue()
     {
         _isTalking = true;
         IterateDialogueForward();
+        DialogueCanvas.UpdateArrows(_currentBranch, DialogueIndex, _stopDialogueEnd);
     }
 
     public void IterateDialogueBackward()
@@ -92,6 +81,7 @@ public class DialogueManager : MonoBehaviour
         if (!DialogueCanvas.IsTyping)
         {
             MoveToPreviousNode();
+            DialogueCanvas.UpdateArrows(_currentBranch, DialogueIndex, _stopDialogueEnd);
         }
         else
         {
@@ -104,6 +94,7 @@ public class DialogueManager : MonoBehaviour
         if (!DialogueCanvas.IsTyping)
         {
             MoveToNextNode();
+            DialogueCanvas.UpdateArrows(_currentBranch, DialogueIndex, _stopDialogueEnd);
         }
         else
         {

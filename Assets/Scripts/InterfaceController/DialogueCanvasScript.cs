@@ -2,6 +2,8 @@ using System;
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
+using static System.Net.Mime.MediaTypeNames;
 
 public class DialogueCanvasScript : MonoBehaviour
 {
@@ -10,6 +12,9 @@ public class DialogueCanvasScript : MonoBehaviour
     private Canvas _dialogueCanvas;
     public TMP_Text DialogueBox;
     public AudioSource AudioSource;
+
+    public Button NextNodeButton;
+    public Button BackNodeButton;
 
     [HideInInspector] public bool IsTyping;
     private Coroutine _typewritterCoroutine;
@@ -45,6 +50,16 @@ public class DialogueCanvasScript : MonoBehaviour
         AudioSource.clip = null;
     }
 
+    public void UpdateArrows(DialogueNode[] branch, int index, bool stopDialogue)
+    {
+        if (index <= 0) BackNodeButton.interactable = false;
+        else BackNodeButton.interactable = true;
+
+        if (index >= branch.Length) NextNodeButton.interactable = false;
+        else if (stopDialogue && index == branch.Length - 1) NextNodeButton.interactable = false;
+        else NextNodeButton.interactable = true;
+    }
+
     public void StartTypeWritterEffect(string text)
     {
         DialogueBox.text = string.Empty;
@@ -55,6 +70,7 @@ public class DialogueCanvasScript : MonoBehaviour
     public void EndTypeWritterEffect()
     {
         StopCoroutine(_typewritterCoroutine);
+        _currentText = AddParagraphsToString(_currentText);
         DialogueBox.text = _currentText;
         IsTyping = false;
     }

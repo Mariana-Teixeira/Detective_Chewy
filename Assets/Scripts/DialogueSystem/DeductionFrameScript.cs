@@ -21,14 +21,18 @@ public class DeductionFrameScript : MonoBehaviour
     private TalkToQuest _quest;
 
     private Clue[] _clues;
+    private int _clueIndex;
     private List<string> _clueChecker;
     private Clue _clue;
-    private Clue _nullClue;
+    public Clue _nullClue;
+
+    private Image[] _dots;
+    public Transform DotParent;
+    public GameObject Dot;
 
     private void Awake()
     {
         _invoker = GetComponent<DialogueInvoker>();
-        _nullClue = new Clue();
     }
 
     private void Start()
@@ -42,6 +46,14 @@ public class DeductionFrameScript : MonoBehaviour
         _quest = quest;
         _clues = quest.Items;
 
+        // Instatiate Dot and Dots Array
+        _dots = new Image[quest.Items.Length];
+        for (int i = 0; i < _dots.Length; i++)
+        {
+            _dots[i] = Instantiate(Dot, DotParent).GetComponent<Image>();
+            _dots[i].color = Color.green;
+        }
+
         foreach (var item in _clues)
         {
             _clueChecker.Add(item.ClueName);
@@ -51,6 +63,7 @@ public class DeductionFrameScript : MonoBehaviour
 
     public void OnClueChange(int i)
     {
+        _clueIndex = i;
         _clue = _clues[i];
         _image.sprite = _clue.ClueSprite;
         _description.text = _clue.ClueDescription;
@@ -58,6 +71,8 @@ public class DeductionFrameScript : MonoBehaviour
 
     public void OnObjection()
     {
+        if (_clue.ClueName == "Null_Clue") return;
+
         _currentNode = _dialogueManager.CurrentNode;
 
         if (_currentNode.Evidence == string.Empty)
@@ -72,6 +87,8 @@ public class DeductionFrameScript : MonoBehaviour
 
             _clueChecker.Remove(_clue.ClueName);
             _dialogueManager.UpdateNode(_clue.DialogueNode);
+
+            _dots[_clueIndex].color = Color.white;
 
             if (_clueChecker.Count <= 0)
             {
@@ -89,7 +106,7 @@ public class DeductionFrameScript : MonoBehaviour
     public void OnResetSelection()
     {
         _clue = _nullClue;
-        _image.sprite = null;
+        _image.sprite = _nullClue.ClueSprite;
         _description.text = string.Empty;
     }
 

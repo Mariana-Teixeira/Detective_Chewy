@@ -19,28 +19,28 @@ MonoBehaviour:
   ContinuingDialogue: {fileID: 11400000, guid: cdb6d1af435b1794b96fd38f68e73e27, type: 2}
   Items:
   - ClueName: FlushyID
-    ClueDescription: 
-    ClueSprite: {fileID: 21300000, guid: d86ebf4784f9d664eaa8c05a23b31f64, type: 3}
+    ClueDescription: Bertender said Flooshy.
+    ClueSprite: {fileID: 21300000, guid: 7b53cfbb648e31946a2efb76a932e986, type: 3}
     DialogueNode:
       DialogueText: I am Flushy, the youngest Marquis of Mice of recent rat history... 
         although, now, most refer to me as just Flushy.
-      DialogueSound: 
+      DialogueSound: {fileID: 0}
       Evidence: 
   - ClueName: PokerChip
-    ClueDescription: 
+    ClueDescription: POOKAH CHEEP.
     ClueSprite: {fileID: 21300000, guid: 5d069ed402151cb489e382b29c4e7e10, type: 3}
     DialogueNode:
       DialogueText: "There was not a single night where the Madame\u2019s presence
         did not grace the tables but her husband did not appreciate the time we spent
         gambling."
-      DialogueSound: 
+      DialogueSound: {fileID: 0}
       Evidence: 
   - ClueName: Letter
-    ClueDescription: 
+    ClueDescription: As a rat, I can't read.
     ClueSprite: {fileID: 21300000, guid: d2576875511c6ba4880792c6762b8cfe, type: 3}
     DialogueNode:
       DialogueText: I have lost it all, Detective. All because of that dame. Even
         on my bad streak of luck, she kept pulling on my whiskers, persuading me
         to spend more of my hard-earned inherited wealth.
-      DialogueSound: 
+      DialogueSound: {fileID: 0}
       Evidence: 
