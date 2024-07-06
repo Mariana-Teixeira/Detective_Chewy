@@ -530,6 +530,10 @@ PrefabInstance:
       value: 0.6
       objectReference: {fileID: 0}
     - target: {fileID: 878106981467220619, guid: 4a526635ae604a14aa3a1755f78d5dbf, type: 3}
+      propertyPath: _cardLogic
+      value: 
+      objectReference: {fileID: 1724222604}
+    - target: {fileID: 878106981467220619, guid: 4a526635ae604a14aa3a1755f78d5dbf, type: 3}
       propertyPath: _coinScript
       value: 
       objectReference: {fileID: 621279325}
@@ -540,7 +544,7 @@ PrefabInstance:
     - target: {fileID: 878106981467220619, guid: 4a526635ae604a14aa3a1755f78d5dbf, type: 3}
       propertyPath: tables.Array.data[0]
       value: 
-      objectReference: {fileID: 463126162}
+      objectReference: {fileID: 595976747}
     - target: {fileID: 878106981467220619, guid: 4a526635ae604a14aa3a1755f78d5dbf, type: 3}
       propertyPath: tables.Array.data[1]
       value: 
@@ -548,11 +552,11 @@ PrefabInstance:
     - target: {fileID: 878106981467220619, guid: 4a526635ae604a14aa3a1755f78d5dbf, type: 3}
       propertyPath: tables.Array.data[2]
       value: 
-      objectReference: {fileID: 2044276745}
+      objectReference: {fileID: 595976747}
     - target: {fileID: 878106981467220619, guid: 4a526635ae604a14aa3a1755f78d5dbf, type: 3}
       propertyPath: tables.Array.data[3]
       value: 
-      objectReference: {fileID: 1636159711}
+      objectReference: {fileID: 595976747}
     - target: {fileID: 878106981467220619, guid: 4a526635ae604a14aa3a1755f78d5dbf, type: 3}
       propertyPath: LerpFinished.m_PersistentCalls.m_Calls.Array.size
       value: 1
@@ -21907,6 +21911,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Quests:
+  - {fileID: 11400000, guid: 33c4783105f91bc4f9823af829b0129c, type: 2}
+  - {fileID: 11400000, guid: dafa46823ab1f0e47921d18c20653b43, type: 2}
+  - {fileID: 11400000, guid: 77ec04d9be9272e4ca3aa4972888d2c1, type: 2}
+  - {fileID: 11400000, guid: 7e7fd778813930244a1dd25d0aeb17d0, type: 2}
   - {fileID: 11400000, guid: 0f3bb1e54118c1e42b3c27af41039857, type: 2}
   - {fileID: 11400000, guid: 62079b18214b6fa4d82eb92dbfbf7a70, type: 2}
   - {fileID: 11400000, guid: 5ad25becd242f6b48a985bfa02e0d6f5, type: 2}

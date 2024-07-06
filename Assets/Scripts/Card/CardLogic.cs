@@ -4,10 +4,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.SocialPlatforms.Impl;
 using UnityEngine.UI;
-using UnityEngine.XR;
-using Random = System.Random;
 
 public class CardLogic : MonoBehaviour
 {
@@ -71,10 +68,6 @@ public class CardLogic : MonoBehaviour
 
     private List<CardPositionAndDirection> playCardPositions;
 
-    private bool _gotSetThisTurn = false;
-    private int _boardPointsCollected;
-    private int _lastAddedPoints = 0;
-
     private bool tavernCardSelectedBuyPhase = false;
     private bool handCardSelectedBuyPhase = false;
 
@@ -82,7 +75,15 @@ public class CardLogic : MonoBehaviour
     private bool _hasSeenTutorial;
 
     public GameObject _lastHovered;
-    public int gimmickMulti = 1;
+
+    #region Multipliers
+    private int _boardPointsCollected;
+    private int NumberOfSetsThisTurn;
+    private float BaseValue;
+    public float DiscardMultiplier = 1f;
+    public float RunMultiplier = 1.5f;
+    public float SetMultiplier = 1f;
+    #endregion
 
     private void Awake()
     {
@@ -94,14 +95,14 @@ public class CardLogic : MonoBehaviour
 
     private void Update()
     {
-        if(Gamepad.current != null) { 
-        //test for controller click
-        if ((Input.GetButtonDown("Fire2") || Gamepad.current.rightTrigger.isPressed) && _lastHovered!=null)
-        {
-         _lastHovered.GetComponent<Card>().OnMouseDown();
+        if(Gamepad.current != null)
+        { 
+            //test for controller click
+            if ((Input.GetButtonDown("Fire2") || Gamepad.current.rightTrigger.isPressed) && _lastHovered!=null)
+            {
+             _lastHovered.GetComponent<Card>().OnMouseDown();
+            }
         }
-        }
-
     }
 
     private void OnEnable()
@@ -156,7 +157,6 @@ public class CardLogic : MonoBehaviour
         _turnPhaseText.text = DiscardText;
 
         _nextPhaseButton.interactable = false;
-        _gotSetThisTurn = false;
 
         if (playCardPositions.Count > 0)
         {
@@ -225,12 +225,20 @@ public class CardLogic : MonoBehaviour
         UnselectAllCards();
     }
 
+    public void ResetMultiplier()
+    {
+        NumberOfSetsThisTurn = 0;
+        BaseValue = 0f;
+        DiscardMultiplier = 0f;
+    }
+
     private void DiscardCards()
     {
         if (!CheckSelectionNumber(1)) return;
-
         _nextPhaseButton.interactable = true;
 
+        ResetMultiplier();
+        DiscardMultiplier = cards[0].CardData.Value;
         _gameBoard.DiscardCard(cards[0]);
 
         OnChangeTurnPhase();
@@ -267,8 +275,9 @@ public class CardLogic : MonoBehaviour
         bool set = equalValue;
         bool run = equalSuit && runValue;
 
-        int collectedPoints = 0;
-        float multiplier;
+        int basePoints = 0;
+        float setPoints= 0;
+        float runPoints = 0;
         string score = "";
         #endregion
 
@@ -280,47 +289,28 @@ public class CardLogic : MonoBehaviour
 
         if (set || run)
         {
-            #region Calculating Multiplers
-            if (set && _gotSetThisTurn)
-            {
-                multiplier = 2;
-                _boardPointsCollected = _boardPointsCollected + _lastAddedPoints;
-            }
-            else if (set && !_gotSetThisTurn)
-            {
-                multiplier = 1;
-                _gotSetThisTurn = true;
-            }
-            else
-            {
-                multiplier = 1.5f;
-            }
-            #endregion
-
             foreach (Card card in cards)
             {
-                collectedPoints += card.CardData.Score;
+                basePoints += card.CardData.Score;
                 playCardPositions.Add(new CardPositionAndDirection(card.transform.position, card.transform.up));
             }
+            _gameBoard.MoveCardsFromPlay(cards);
 
-            _gameBoard.CollectPoints(cards);
-
-            collectedPoints = collectedPoints * gimmickMulti;
-            gimmickMulti = 1;
+            if (set) { NumberOfSetsThisTurn++; setPoints = BaseValue * (NumberOfSetsThisTurn * SetMultiplier); }
+            if (run) runPoints = BaseValue * RunMultiplier;
 
             // Collect Points
             if (UseMultiplier[_gameBoard.GetActiveTable()])
             {
-                _boardPointsCollected += (int)(collectedPoints * multiplier);
-                _lastAddedPoints = (int)(collectedPoints * multiplier);
+                float points = (DiscardMultiplier * basePoints) + setPoints + runPoints;
+                _boardPointsCollected += (int)points;
             }
             else
             {
-                _boardPointsCollected += collectedPoints;
-                _lastAddedPoints = 0;
+                _boardPointsCollected += basePoints;
             }
 
-            score += multiplier.ToString("0.0") + " x " + collectedPoints.ToString();
+            score += basePoints.ToString();
             AnimateScore(score);
 
             _pointsText.text = _boardPointsCollected.ToString();
@@ -340,14 +330,12 @@ public class CardLogic : MonoBehaviour
     {
         values = BubbleSort(values);
 
-        if (NextToEachOther(values[0], values[1], values[2]))
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
+        // Looping "EdgeCase"
+        if (values[0] == 1 && values[1] == 2 && values[2] == 13 ||
+            values[0] == 1 && values[1] == 12 && values[2] == 13) return true;
+
+        if (NextToEachOther(values[0], values[1], values[2])) return true;
+        else return false;
     }
 
     private int[] BubbleSort(int[] values)
@@ -504,16 +492,6 @@ public class CardLogic : MonoBehaviour
     {
         return tavernCardSelectedBuyPhase;
     }
-
-    public void AddGimmickPoints(int i) {
-        _boardPointsCollected = _boardPointsCollected + i;
-
-        _pointsText.text = _boardPointsCollected.ToString();
-        _pointsSlider.value = _boardPointsCollected;
-
-        if (_boardPointsCollected >= CurrentMatchObjective) CardGameState.ChangeGamePhase(GamePhase.Win);
-    }
-    public void setGimmickMulti(int i) { gimmickMulti = i; }
 }
 
 public struct CardPositionAndDirection
@@ -527,5 +505,3 @@ public struct CardPositionAndDirection
     public Vector3 cardPosition;
     public Vector3 cardNormal;
 }
-
-

@@ -325,8 +325,6 @@ public class Board : MonoBehaviour
         _discards.Add(card);
         _hand.Remove(card);
 
-        GimmicksEffect(card);
-
         DrawCard(card.transform.position, card.transform.up);
         UpdatePosition(card, Position.Discard);
         
@@ -361,7 +359,7 @@ public class Board : MonoBehaviour
 
     }
 
-    public void CollectPoints(List<Card> cards) 
+    public void MoveCardsFromPlay(List<Card> cards) 
     {
         foreach (Card card in cards) 
         {
@@ -395,27 +393,5 @@ public class Board : MonoBehaviour
     public GameObject GetActiveTableObject()
     {
         return tables[_activeTable];
-    }
-
-    public void GimmicksEffect(Card card) {
-        if (ActiveTable == 1) {
-            //add -x or x to the score where x is the score of the Card
-            Random rand = new Random();
-            int i = card.CardData.Score;
-            if (rand.NextDouble() >= 0.5) { i = i * -1; }
-            _cardLogic.AddGimmickPoints(i);
-        }
-        else if (ActiveTable == 2) 
-        {
-            //multiplayer for next score
-            _cardLogic.setGimmickMulti(card.CardData.Score);
-
-        }
-        else if (ActiveTable == 3)
-        {
-        //time settings    
-        }
-
-
     }
 }
