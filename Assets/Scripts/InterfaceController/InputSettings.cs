@@ -9,20 +9,22 @@ public class InputSettings : MonoBehaviour
     void Start()
     {
         //RebindButton.onClick.AddListener(WaitForInput);
-        //toggle.isOn = StaticData.InteractHelp;
+        toggle.isOn = StaticData.InteractHelp;
+
     }
 
     public void EnhanceCursor()
     {
-        if (toggle.isOn) { 
-            cursor.gameObject.SetActive(false);
-            StaticData.InteractHelp = false;
-            toggle.isOn = false;
-        }
-        else { 
+        if (toggle.isOn) {
             cursor.gameObject.SetActive(true);
             StaticData.InteractHelp = true;
-            toggle.isOn = true;
+            //toggle.isOn = false;
+        }
+        else { 
+           
+            cursor.gameObject.SetActive(false);
+            StaticData.InteractHelp = false;
+            //toggle.isOn = true;
         }
     }
 
