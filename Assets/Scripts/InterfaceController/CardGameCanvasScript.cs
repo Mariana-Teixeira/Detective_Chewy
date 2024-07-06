@@ -80,17 +80,17 @@ public class CardGameCanvasScript : MonoBehaviour
         _turnPhaseText.text = DiscardText;
         _nextPhaseButton.interactable = false;
 
-        _timerText.text = "0.00";
+        _timerText.text = "00";
 
         ResetPointDisplay();
     }
 
     public void ResetPointDisplay()
     {
-        _baseScoreText.text = "0";
-        _discardMultiplierText.text = "0";
-        _setMultiplierText.text = "0";
-        _runMultiplierText.text = "0";
+        _baseScoreText.text = "BP: ";
+        _discardMultiplierText.text = "DP: ";
+        _setMultiplierText.text = "SP: ";
+        _runMultiplierText.text = "RP: ";
     }
 
     public void TickTimerText(string time)
@@ -106,22 +106,22 @@ public class CardGameCanvasScript : MonoBehaviour
 
     public void UpdateBaseScore(float score)
     {
-        _baseScoreText.text = score.ToString();
+        _baseScoreText.text = "BP: " + score.ToString();
     }
 
     public void UpdateDiscardMultiplier(float score)
     {
-        _discardMultiplierText.text = score.ToString();
+        _discardMultiplierText.text = "DP:" + score.ToString();
     }
 
     public void UpdateSetMultiplier(float score)
     {
-        _setMultiplierText.text = score.ToString();
+        _setMultiplierText.text = "SP: " + score.ToString();
     }
 
     public void UpdateRunMultiplier(float score)
     {
-        _runMultiplierText.text = score.ToString();
+        _runMultiplierText.text = "RP: " + score.ToString();
     }
 
     public void OnToggleVisibility(bool isVisible)

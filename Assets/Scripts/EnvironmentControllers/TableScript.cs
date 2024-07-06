@@ -13,7 +13,7 @@ public class TableScript : MonoBehaviour
     public DialogueBranch nonQuestDialogue;
     private DialogueInvoker _invoker;
 
-    public GameObject Exclamation;
+    public GameObject QuestMarker;
 
     private void Awake()
     {
@@ -30,17 +30,17 @@ public class TableScript : MonoBehaviour
         ToggleExclamation();
     }
 
-    // I know, I know. I just need it to work for Friday!
+    // I sin. I keep sinning.
     public void ToggleExclamation()
     {
         var Quest = ReturnQuest();
         if(Quest != null)
         {
-            Exclamation.SetActive(true);
+            QuestMarker.SetActive(true);
         }
         else
         {
-            Exclamation.SetActive(false);
+            QuestMarker.SetActive(false);
         }
     }
 
@@ -70,6 +70,7 @@ public class TableScript : MonoBehaviour
 
         if (PGQ.Game == this.Game)
         {
+            QuestMarker.SetActive(false);
             return PGQ;
         }
         return null;

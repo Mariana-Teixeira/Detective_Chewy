@@ -14,91 +14,91 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Nodes:
   - DialogueText: <color=yellow>(For now, my hat is safe.)</color>
-    DialogueSound: 
+    DialogueSound: {fileID: 0}
     Evidence: 
   - DialogueText: <color=yellow> It's over Flushy. It's time for you to give me answers.
       Where is Madame Cheesy?</color>
-    DialogueSound: 
+    DialogueSound: {fileID: 0}
     Evidence: 
   - DialogueText: <color=green>I do not know, Detective. Her whereabouts puzzle me
       as much as they puzzle you.</color>
-    DialogueSound: 
+    DialogueSound: {fileID: 0}
     Evidence: 
   - DialogueText: <color=green>The last time we met, she seemed rather joyful.</color>
-    DialogueSound: 
+    DialogueSound: {fileID: 0}
     Evidence: 
   - DialogueText: <color=yellow>How so?</color>
-    DialogueSound: 
+    DialogueSound: {fileID: 0}
     Evidence: 
   - DialogueText: <color=green>It was my last day at the casino, before Chippy banned
       me from her establishment.  Wrongfully banned, mind you!</color>
-    DialogueSound: 
+    DialogueSound: {fileID: 0}
     Evidence: 
   - DialogueText: "<color=green>Madame Cheesy accompanied my losses that day, as
       she would normally do. After I was \u201Cescorted\u201D out of the premises,
       the Madame offered to drive me home, and I have not seen her since.</color>"
-    DialogueSound: 
+    DialogueSound: {fileID: 0}
     Evidence: 
   - DialogueText: <color=yellow>I need you to dig deeper, Flushy!</color>
-    DialogueSound: 
+    DialogueSound: {fileID: 0}
     Evidence: 
   - DialogueText: <color=yellow>Was she acting erratic or perhaps paranoid that someone
       was out to get her?</color>
-    DialogueSound: 
+    DialogueSound: {fileID: 0}
     Evidence: 
   - DialogueText: <color=green>I would not say that, Detective. She acted the same
       as always, with a smile on her face, almost as if ridiculing my banishment
       from the casino.</color>
-    DialogueSound: 
+    DialogueSound: {fileID: 0}
     Evidence: 
   - DialogueText: <color=green>She did ask me about a local underground jeweler.
-      Perhaps to flaunt her wealth, but why someone of her status needed a <color=blue>criminal
+      Perhaps to flaunt her wealth, but why someone of her status needed a <color=#03cffc>criminal
       jeweler</color> surpasses me.</color>
-    DialogueSound: 
+    DialogueSound: {fileID: 0}
     Evidence: 
-  - DialogueText: <color=yellow>Who is this <color=blue>underground jeweler</color>?</color>
-    DialogueSound: 
+  - DialogueText: <color=yellow>Who is this <color=#03cffc>underground jeweler</color>?</color>
+    DialogueSound: {fileID: 0}
     Evidence: 
-  - DialogueText: <color=green>Her name is <color=blue>Gemy</color>. I have sold
-      some of my jewelry to them when I was in need of funds. I have never met them
-      personally, but I have always dealt with their associates.</color>
-    DialogueSound: 
+  - DialogueText: <color=green>Their name is <color=#03cffc>Gemy</color>. I have
+      sold some of my jewelry to them when I was in need of funds. I have never met
+      them personally, but I have always dealt with their associates.</color>
+    DialogueSound: {fileID: 0}
     Evidence: 
   - DialogueText: <color=green>Proceed with caution, Detective, I have heard that
       they are a strange rat, and few rats know of their true identity.</color>
-    DialogueSound: 
+    DialogueSound: {fileID: 0}
     Evidence: 
   - DialogueText: <color=yellow>Don't underestimate me Flushy, these whiskers have
       been in hundreds of cases, and they have never been burnt.</color>
-    DialogueSound: 
+    DialogueSound: {fileID: 0}
     Evidence: 
   - DialogueText: <color=yellow>(Except for the case of the missing furnace, but
       that was an exception.)</color>
-    DialogueSound: 
+    DialogueSound: {fileID: 0}
     Evidence: 
   - DialogueText: <color=yellow>Thank you for the information Flushy.</color>
-    DialogueSound: 
+    DialogueSound: {fileID: 0}
     Evidence: 
   - DialogueText: <color=green>Before you go Detective, there is one final request
       that I must make.</color>
-    DialogueSound: 
+    DialogueSound: {fileID: 0}
     Evidence: 
   - DialogueText: <color=yellow>What do you need?</color>
-    DialogueSound: 
+    DialogueSound: {fileID: 0}
     Evidence: 
   - DialogueText: "<color=green>Would you\u2026</color>"
-    DialogueSound: 
+    DialogueSound: {fileID: 0}
     Evidence: 
   - DialogueText: "<color=green>like to play a gambling game of cards? I can feel
       it in my bones, the next one I\u2019m sure to win!</color>"
-    DialogueSound: 
+    DialogueSound: {fileID: 0}
     Evidence: 
   - DialogueText: <color=green>I just need one more game to make it back, I know
       it! I can smell it in the sewer, under all this second-grade cheese.</color>
-    DialogueSound: 
+    DialogueSound: {fileID: 0}
     Evidence: 
   - DialogueText: "<color=yellow>(The gambler\u2019s impulsive comments start to
       muffle as I head towards the bartender with a newfound goal - find out who
       this Gemy rat is and question them.)</color>"
-    DialogueSound: 
+    DialogueSound: {fileID: 0}
     Evidence: 

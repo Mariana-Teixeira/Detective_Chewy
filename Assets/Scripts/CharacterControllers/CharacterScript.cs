@@ -8,7 +8,7 @@ public class CharacterScript : MonoBehaviour
     public DialogueBranch nonQuestDialogue;
     private DialogueInvoker _invoker;
 
-    public GameObject Exclamation;
+    public GameObject QuestMarker;
 
     private void Awake()
     {
@@ -22,18 +22,12 @@ public class CharacterScript : MonoBehaviour
         QuestManager.CompleteQuest += ToggleExclamation;
     }
 
+    // You have to admit... this is code.
     public void ToggleExclamation()
     {
         var TalkTo = ReturnQuest();
-
-        if (TalkTo != null)
-        {
-            Exclamation.SetActive(true);
-        }
-        else
-        {
-            Exclamation.SetActive(false);
-        }
+        if (TalkTo != null) QuestMarker.SetActive(true);
+        else QuestMarker.SetActive(false);
     }
 
     public void TalkToCharacter()
@@ -71,6 +65,7 @@ public class CharacterScript : MonoBehaviour
 
         if (TTQ.Character == this.Character)
         {
+            QuestMarker.SetActive(false);
             return TTQ;
         }
         else
