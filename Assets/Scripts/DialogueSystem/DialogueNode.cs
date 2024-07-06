@@ -6,6 +6,6 @@ public struct DialogueNode
 {
     [TextArea(2, 10)]
     public string DialogueText;
-    public string DialogueSound;
+    public AudioClip DialogueSound;
     public string Evidence;
 }

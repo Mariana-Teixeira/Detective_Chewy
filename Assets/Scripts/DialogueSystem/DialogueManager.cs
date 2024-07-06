@@ -1,5 +1,3 @@
-using System;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class DialogueManager : MonoBehaviour
@@ -55,7 +53,6 @@ public class DialogueManager : MonoBehaviour
         }
         else
         {
-            Debug.Log("Merge Dialogue");
             MergeDialogue(nodes);
         }
     }
@@ -119,6 +116,8 @@ public class DialogueManager : MonoBehaviour
         CurrentNode = node;
         DialogueCanvas.EndTypeWritterEffect();
         DialogueCanvas.StartTypeWritterEffect(CurrentNode.DialogueText);
+        DialogueCanvas.EndSound();
+        DialogueCanvas.StartSound(CurrentNode.DialogueSound);
     }
 
     public void MoveToNextNode()
@@ -133,6 +132,8 @@ public class DialogueManager : MonoBehaviour
 
         CurrentNode = _currentBranch[DialogueIndex];
         DialogueCanvas.StartTypeWritterEffect(CurrentNode.DialogueText);
+        DialogueCanvas.EndSound();
+        DialogueCanvas.StartSound(CurrentNode.DialogueSound);
     }
 
     public void CheckDialogueEnd()
@@ -156,6 +157,8 @@ public class DialogueManager : MonoBehaviour
 
         CurrentNode = _currentBranch[DialogueIndex];
         DialogueCanvas.StartTypeWritterEffect(CurrentNode.DialogueText);
+        DialogueCanvas.EndSound();
+        DialogueCanvas.StartSound(CurrentNode.DialogueSound);
     }
 
     public void EndDialogue()

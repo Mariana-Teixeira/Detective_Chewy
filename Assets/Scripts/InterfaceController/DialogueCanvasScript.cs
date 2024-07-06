@@ -9,6 +9,7 @@ public class DialogueCanvasScript : MonoBehaviour
 
     private Canvas _dialogueCanvas;
     public TMP_Text DialogueBox;
+    public AudioSource AudioSource;
 
     [HideInInspector] public bool IsTyping;
     private Coroutine _typewritterCoroutine;
@@ -28,6 +29,20 @@ public class DialogueCanvasScript : MonoBehaviour
     {
         DialogueBox.text = string.Empty;
         _dialogueCanvas.enabled = isVisible;
+    }
+
+    public void StartSound(AudioClip clip)
+    {
+        if (clip == null) return;
+
+        AudioSource.clip = clip;
+        AudioSource.Play();
+    }
+
+    public void EndSound()
+    {
+        AudioSource.Stop();
+        AudioSource.clip = null;
     }
 
     public void StartTypeWritterEffect(string text)

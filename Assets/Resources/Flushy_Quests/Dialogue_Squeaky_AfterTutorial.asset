@@ -20,7 +20,7 @@ MonoBehaviour:
     DialogueSound: 
     Evidence: 
   - DialogueText: <color=orange>Well, Flushy was one of the richest aristorats in
-      the city, until Lady Luck Frowned upon him.</color>
+      the city, until Lady Luck frowned upon him.</color>
     DialogueSound: 
     Evidence: 
   - DialogueText: <color=orange>It was only a matter of time until he stumbled upon

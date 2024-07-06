@@ -20,7 +20,7 @@ MonoBehaviour:
   - DialogueText: <color=green>I am not well-acquainted with Mr. Cheesy, even if
       we both attended high society events.</color>
     DialogueSound: 
-    Evidence: FlushyID
+    Evidence: 
   - DialogueText: "<color=green>And I am certainly not acquainted with his wife,
       Madame Cheesy. I don\u2019t care for dames, I care for cards.</color>"
     DialogueSound: 
