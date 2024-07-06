@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public enum GameState { NULL, WALKING, SITTING, PLAYING, INTERROGATING, TALKING };
+public enum GameState { NULL, WALKING, SITTING, PLAYING, INTERROGATING, TALKING, MENU };
 public class PlayerStates : MonoBehaviour
 {
     public static Action PreviousState;
@@ -13,6 +13,7 @@ public class PlayerStates : MonoBehaviour
     GameState _currentState;
 
     [SerializeField] DialogueManager DialogueManager;
+    [SerializeField] MenuManager MenuManager;
 
     private void Start()
     {
@@ -70,6 +71,9 @@ public class PlayerStates : MonoBehaviour
                 CardGameCanvasScript.ToggleVisibility?.Invoke(true);
                 CardGameState.ChangeGamePhase(GamePhase.BoardSetup);
                 break;
+            case GameState.MENU:
+                _cameraLook.ToggleCursor(true);
+                break;
             default:
                 Debug.LogError("Player State not found.");
                 break;
@@ -85,13 +89,16 @@ public class PlayerStates : MonoBehaviour
                 _interactWith.CastInteractionRays();
                 _interactWith.CastCursorRays();
                 _playerMove.Move();
+                if (MenuManager.ListenForToggleMenu) MenuManager.ToggleCanvas(_currentState);
+                break;
+            case GameState.MENU:
+                if (MenuManager.ListenForToggleMenu) MenuManager.ToggleCanvas(_currentState);
                 break;
             default:
                 break;
         }
     }
 
-    // Debating shouldn't become previous state, as to not confuse the dialogue state.
     private void ExitState()
     {
         switch (_currentState)
@@ -108,6 +115,9 @@ public class PlayerStates : MonoBehaviour
                 break;
             case GameState.PLAYING:
                 CardGameCanvasScript.ToggleVisibility?.Invoke(false);
+                break;
+            case GameState.MENU:
+                _cameraLook.ToggleCursor(false);
                 break;
             default:
                 break;

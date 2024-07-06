@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -6,15 +7,65 @@ using UnityEngine.Video;
 
 public class MenuCanvasScript : MonoBehaviour
 {
-    VideoPlayer _videoPlayer;
-    Animator _animator;
-    RawImage _cutscene;
+    public MenuManager MenuManager;
 
-    private void Awake()
+    public Canvas MenuCanvas;
+    public CanvasGroup _mainCanvas;
+    public CanvasGroup _audioCanvas;
+    public CanvasGroup _inputCanvas;
+
+    public VideoPlayer _videoPlayer;
+    public Animator _animator;
+    public RawImage _cutscene;
+
+    public void EnableCanvas()
     {
-        _videoPlayer = GetComponentInChildren<VideoPlayer>();
-        _animator = GetComponent<Animator>();
-        _cutscene = this.transform.GetChild(3).GetComponent<RawImage>();
+        MenuCanvas.enabled = true;
+        PlayerStates.ChangeState?.Invoke(GameState.MENU);
+    }
+
+    public void DisableCanvas(GameState state)
+    {
+        MenuCanvas.enabled = false;
+        ChangeCanvas(0);
+        PlayerStates.ChangeState?.Invoke(state);
+    }
+
+    public void ChangeCanvas(int i)
+    {
+        switch (i)
+        {
+            case (int)MenuStates.MainMenu:
+                EnableCanvas(_mainCanvas);
+                DisableCanvas(_audioCanvas);
+                DisableCanvas(_inputCanvas);
+
+                break;
+            case (int)MenuStates.AudioSettings:
+                DisableCanvas(_mainCanvas);
+                EnableCanvas(_audioCanvas);
+                DisableCanvas(_inputCanvas);
+                break;
+            case (int)MenuStates.InputSettings:
+                DisableCanvas(_mainCanvas);
+                DisableCanvas(_audioCanvas);
+                EnableCanvas(_inputCanvas);
+                break;
+        }
+    }
+
+    public void EnableCanvas(CanvasGroup group)
+    {
+        group.alpha = 1;
+        group.interactable = true;
+        group.blocksRaycasts = true;
+    }
+
+    public void DisableCanvas(CanvasGroup group)
+    {
+        group.alpha = 0;
+        group.interactable = false;
+        group.blocksRaycasts = false;
     }
 
     public void StartLoading()
@@ -25,6 +76,11 @@ public class MenuCanvasScript : MonoBehaviour
     public void StartGame()
     {
         StartCoroutine(StartAnimation());
+    }
+
+    public void ResumeGame()
+    {
+        MenuManager.ToggleCanvas();
     }
 
     public void ExitGame()

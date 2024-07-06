@@ -9,7 +9,7 @@ public class InputSettings : MonoBehaviour
     void Start()
     {
         //RebindButton.onClick.AddListener(WaitForInput);
-        toggle.isOn = StaticData.InteractHelp;
+        //toggle.isOn = StaticData.InteractHelp;
     }
 
     public void EnhanceCursor()

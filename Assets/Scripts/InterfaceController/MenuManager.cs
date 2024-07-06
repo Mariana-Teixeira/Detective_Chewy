@@ -9,46 +9,56 @@ public enum MenuStates
 
 public class MenuManager : MonoBehaviour
 {
+    public GameObject MenuComponent;
+    public MenuCanvasScript MenuCanvas;
 
-    [SerializeField] GameObject _menu;
-
-    GameObject _mainCanvas;
-    GameObject _audioCanvas;
-    GameObject _inputCanvas;
+    GameObject _audioComponent;
+    GameObject _inputComponent;
 
     AudioSettings _audioSettings;
     InputSettings _inputSettings;
 
-    private void Awake()
-    {
-        _mainCanvas = _menu.transform.GetChild(0).gameObject;
-        _audioCanvas = _menu.transform.GetChild(1).gameObject;
-        _inputCanvas = _menu.transform.GetChild(2).gameObject;
+    GameState _previousState;
+    bool _isVisible;
 
-        _audioSettings = _audioCanvas.GetComponent<AudioSettings>();
-        _inputSettings = _inputCanvas.GetComponent<InputSettings>();
+    public bool ListenForToggleMenu
+    {
+        get
+        {
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 
-    public void ChangeCanvas(int i)
+    private void Awake()
     {
-        switch(i)
+        _audioComponent = MenuComponent.transform.GetChild(1).gameObject;
+        _inputComponent = MenuComponent.transform.GetChild(2).gameObject;
+
+        _audioSettings = _audioComponent.GetComponent<AudioSettings>();
+        _inputSettings = _inputComponent.GetComponent<InputSettings>();
+    }
+
+    public void ToggleCanvas(GameState state = GameState.NULL)
+    {
+        if (_isVisible)
         {
-            case (int)MenuStates.MainMenu:
-                _mainCanvas.SetActive(true);
-                _audioCanvas.SetActive(false);
-                _inputCanvas.SetActive(false);
-                break;
-            case (int)MenuStates.AudioSettings:
-                _mainCanvas.SetActive(false);
-                _audioCanvas.SetActive(true);
-                _inputCanvas.SetActive(false);
-                break;
-            case (int)MenuStates.InputSettings:
-                _mainCanvas.SetActive(false);
-                _audioCanvas.SetActive(false);
-                _inputCanvas.SetActive(true);
-                break;
+            _isVisible = false;
+            MenuCanvas.DisableCanvas(_previousState);
         }
+        else
+        {
+            _isVisible = true;
+            _previousState = state;
+            MenuCanvas.EnableCanvas();
+        }
+
     }
 
     public void StoreValues() 

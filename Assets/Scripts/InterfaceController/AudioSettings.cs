@@ -9,7 +9,6 @@ public class AudioSettings : MonoBehaviour
     [SerializeField] Slider sliderEffectsVolume;
     [SerializeField] Slider sliderVoicesVolume;
 
-
     private void Start()
     {
         sliderMasterVolume.value = StaticData.MasterVolume;
@@ -38,7 +37,6 @@ public class AudioSettings : MonoBehaviour
     {
         return sliderEffectsVolume.value;
     }
-
     public float GetVoicesVolume()
     {
         return sliderVoicesVolume.value;
