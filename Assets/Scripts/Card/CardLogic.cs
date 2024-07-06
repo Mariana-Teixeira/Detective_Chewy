@@ -1,10 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.UI;
 
 public class CardLogic : MonoBehaviour
 {
@@ -294,14 +292,8 @@ public class CardLogic : MonoBehaviour
             GameCanvas.UpdateTotalPoints(BoardPointsCollected);
             ResetMultiplier();
 
-            StartCoroutine(PlayIEnumeratorSection());
+            if (BoardPointsCollected >= CurrentMatchObjective) GameCanvas.CallStatusWindow(true, 3f);
         }
-    }
-
-    IEnumerator PlayIEnumeratorSection()
-    {
-        yield return new WaitForSeconds(2.5f);
-        if (BoardPointsCollected >= CurrentMatchObjective) CardGameState.ChangeGamePhase(GamePhase.Win);
     }
 
     private bool AreTheyInOrder(params int[] values)
@@ -407,7 +399,7 @@ public class CardLogic : MonoBehaviour
             yield return null;
         }
 
-        CardGameState.ChangeGamePhase(GamePhase.Lose);
+        GameCanvas.CallStatusWindow(false, 3f);
     }
 
     public void SelectHandCardBuyPhase()

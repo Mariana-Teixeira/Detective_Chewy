@@ -48,7 +48,20 @@ public class CardGameCanvasScript : MonoBehaviour
 
     [SerializeField] Button _nextPhaseButton;
     [SerializeField] Button _confirmButton;
+
+    [SerializeField] CanvasGroup StatusWindow;
+    TextMeshProUGUI _statusText;
+
+    AudioSource _audioSource;
+    [SerializeField] AudioClip _winningGame;
+    [SerializeField] AudioClip _loosingGame;
     #endregion
+
+    private void Awake()
+    {
+        _statusText = StatusWindow.GetComponentInChildren<TextMeshProUGUI>();
+        _audioSource = GetComponent<AudioSource>();
+    }
 
     private void Start()
     {
@@ -111,7 +124,7 @@ public class CardGameCanvasScript : MonoBehaviour
 
     public void UpdateDiscardMultiplier(float score)
     {
-        _discardMultiplierText.text = "DP:" + score.ToString();
+        _discardMultiplierText.text = "DP: " + score.ToString();
     }
 
     public void UpdateSetMultiplier(float score)
@@ -144,6 +157,52 @@ public class CardGameCanvasScript : MonoBehaviour
             case TurnPhase.Play:
                 _turnPhaseText.text = PlayText;
                 break;
+        }
+    }
+
+    public void CallStatusWindow(bool winGame, float t)
+    {
+        StartCoroutine(ShowStatusWindow(winGame, t));
+    }
+
+    IEnumerator ShowStatusWindow(bool winGame, float t)
+    {
+        yield return new WaitForSeconds(0.5f);
+
+        if (winGame)
+        {
+            _audioSource.clip = _winningGame;
+            _statusText.text = "Win!";
+        }
+        else
+        {
+            _audioSource.clip = _loosingGame;
+            _statusText.text = "Lost.";
+        }
+
+        _audioSource.Play();
+
+        ToggleStatusWindows(true);
+        yield return new WaitForSeconds(t);
+        ToggleStatusWindows(false);
+
+        if (winGame) CardGameState.ChangeGamePhase(GamePhase.Win);
+        else CardGameState.ChangeGamePhase(GamePhase.Lose);
+    }
+
+    public void ToggleStatusWindows(bool visible)
+    {
+        if (visible)
+        {
+            StatusWindow.alpha = 1;
+            StatusWindow.interactable = true;
+            StatusWindow.blocksRaycasts = true;
+        }
+        else
+        {
+            StatusWindow.alpha = 0;
+            StatusWindow.interactable = false;
+            StatusWindow.blocksRaycasts = false;
         }
     }
 

@@ -14,20 +14,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueBranch
   Nodes:
   - DialogueText: <color=yellow>(Seems like a standard <color=white>gambling chip</color>.)</color>
-    DialogueSound: 0
+    DialogueSound: {fileID: 8300000, guid: ddc4ed69b82d10a49b0d028aef6af3c6, type: 3}
     Evidence: 
   - DialogueText: <color=yellow>(On closer inspection, I see lipstick stains on the
       <color=white>chip</color>. I wonder who it belongs to?)</color>
-    DialogueSound: 0
+    DialogueSound: {fileID: 8300000, guid: aa397d83af22b844cb999dd3957eb61b, type: 3}
     Evidence: 
   - DialogueText: <color=yellow>(Instinctively, I lick the chip.)</color>
-    DialogueSound: 0
+    DialogueSound: {fileID: 8300000, guid: c939e6a04973a2e4db54dcfb71034d22, type: 3}
     Evidence: 
   - DialogueText: "<color=yellow>(Memories start flooding back of me of the Madame
       at the sewer\u2019s pier.)</color>"
-    DialogueSound: 0
+    DialogueSound: {fileID: 8300000, guid: ce338a988dd0fad4d99d64f2730112b5, type: 3}
     Evidence: 
   - DialogueText: "<color=yellow>(This is someone\u2019s special <color=white>gambling
       chip</color>. I should pocket it.)</color>"
-    DialogueSound: 0
+    DialogueSound: {fileID: 8300000, guid: 448543d36882b244a9c2e19af1791f25, type: 3}
     Evidence: 

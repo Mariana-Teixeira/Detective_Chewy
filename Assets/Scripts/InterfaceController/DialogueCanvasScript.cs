@@ -74,8 +74,6 @@ public class DialogueCanvasScript : MonoBehaviour
         DialogueBox.text = _currentText;
         IsTyping = false;
     }
-
-
     public IEnumerator TypewritterEffect(string text)
     {
         text = AddParagraphsToString(text);

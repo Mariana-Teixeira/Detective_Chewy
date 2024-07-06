@@ -79,7 +79,7 @@ MonoBehaviour:
     Evidence: 
   - DialogueText: <color=yellow>(I down my moss-wine in one swig and feel my fur
       spring up.)</color>
-    DialogueSound: {fileID: 0}
+    DialogueSound: {fileID: 8300000, guid: 65f5d7d995d1a714eb3cdc5bf7ed0f1b, type: 3}
     Evidence: 
   - DialogueText: <color=yellow>I'll nibble, Bartender.</color>
     DialogueSound: {fileID: 0}

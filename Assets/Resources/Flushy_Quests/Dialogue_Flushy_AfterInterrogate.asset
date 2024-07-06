@@ -14,18 +14,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Nodes:
   - DialogueText: <color=yellow>Do you want to tell me where Madame Cheesy is?</color>
-    DialogueSound: 
+    DialogueSound: {fileID: 0}
     Evidence: 
   - DialogueText: <color=green>Detective, I refuse to talk any further.</color>
-    DialogueSound: 
+    DialogueSound: {fileID: 0}
     Evidence: 
   - DialogueText: <color=yellow>In that case, I challenge you to a card gamble. If
       I win, you must tell me all you know.</color>
-    DialogueSound: 
+    DialogueSound: {fileID: 0}
     Evidence: 
   - DialogueText: <color=green>And when I win, you have to hand me your hat.</color>
-    DialogueSound: 
+    DialogueSound: {fileID: 0}
     Evidence: 
   - DialogueText: <color=yellow> (A high-stakes gamble, but I accept the challenge.)</color>
-    DialogueSound: 
+    DialogueSound: {fileID: 8300000, guid: 2380e0ba53f189c438a9faea1ec0dbe0, type: 3}
     Evidence: 

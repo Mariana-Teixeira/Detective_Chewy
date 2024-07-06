@@ -15,13 +15,13 @@ MonoBehaviour:
   Nodes:
   - DialogueText: <color=yellow>(This <color=white>letter</color> is addressed to
       the Cheesy Estate.)</color>
-    DialogueSound: 0
+    DialogueSound: {fileID: 8300000, guid: 0be126479161dd144acee2e8489ca65e, type: 3}
     Evidence: 
   - DialogueText: <color=yellow>(It accuses the Cheesy's of swindling the sender
       out of an exuberant amount of cheese.)</color>
-    DialogueSound: 0
+    DialogueSound: {fileID: 8300000, guid: 57affb4b16df0834b9d9c219d2067fc2, type: 3}
     Evidence: 
   - DialogueText: "<color=yellow>(This might be valuable evidence, I\u2019m keeping
       this <color=white>letter</color> with me.)</color>"
-    DialogueSound: 0
+    DialogueSound: {fileID: 8300000, guid: ddf6ccd9b4f9e5640b33f28a5482eb03, type: 3}
     Evidence: 

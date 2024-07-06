@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Nodes:
   - DialogueText: <color=yellow>(For now, my hat is safe.)</color>
-    DialogueSound: {fileID: 0}
+    DialogueSound: {fileID: 8300000, guid: d2991e6c7ac8ee242a9692a223f909b5, type: 3}
     Evidence: 
   - DialogueText: <color=yellow> It's over Flushy. It's time for you to give me answers.
       Where is Madame Cheesy?</color>
@@ -74,7 +74,7 @@ MonoBehaviour:
     Evidence: 
   - DialogueText: <color=yellow>(Except for the case of the missing furnace, but
       that was an exception.)</color>
-    DialogueSound: {fileID: 0}
+    DialogueSound: {fileID: 8300000, guid: 073f96bbaeecb5f4a8eccfb9e71a3145, type: 3}
     Evidence: 
   - DialogueText: <color=yellow>Thank you for the information Flushy.</color>
     DialogueSound: {fileID: 0}
@@ -100,5 +100,5 @@ MonoBehaviour:
   - DialogueText: "<color=yellow>(The gambler\u2019s impulsive comments start to
       muffle as I head towards the bartender with a newfound goal - find out who
       this Gemy rat is and question them.)</color>"
-    DialogueSound: {fileID: 0}
+    DialogueSound: {fileID: 8300000, guid: c8bf5cdfc7e706f4ea9bc830076f436e, type: 3}
     Evidence: 
