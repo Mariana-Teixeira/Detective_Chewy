@@ -44,15 +44,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 980c2ef5e4f16c94f8c84df1858e7c2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  duration: 5
+  duration: 0.6
   cardPrefab: {fileID: 1508826861117293785, guid: c9720e621a49c2c4c8ff59cfc1eff882, type: 3}
   _deckStartPosition: {fileID: 8834179776333051812}
   deck: {fileID: 8834179776333051812}
   _coinScript: {fileID: 0}
+  _cardLogic: {fileID: 4096336531650125810}
   tables:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - _tableObject: {fileID: 0}
+    UseMultiplier: 1
+    UseTimer: 0
+    MatchPoints: 200
+    MatchTime: 0
+  - _tableObject: {fileID: 0}
+    UseMultiplier: 1
+    UseTimer: 0
+    MatchPoints: 300
+    MatchTime: 0
+  - _tableObject: {fileID: 0}
+    UseMultiplier: 0
+    UseTimer: 1
+    MatchPoints: 100
+    MatchTime: 0
+  - _tableObject: {fileID: 0}
+    UseMultiplier: 1
+    UseTimer: 1
+    MatchPoints: 300
+    MatchTime: 0
   _activeTable: 0
 --- !u!1 &4845576717928872556
 GameObject:
@@ -67,7 +85,7 @@ GameObject:
   - component: {fileID: 5683912741135958002}
   - component: {fileID: 6446904851086513471}
   m_Layer: 0
-  m_Name: CardLogic
+  m_Name: CardManager
   m_TagString: Untagged
   m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -102,23 +120,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 756c490e160b7724fb6230797e4098b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MatchesObjective: 0a00000032000000c8000000
-  MatchesTime:
-  - 120
-  - 180
-  - 240
-  _turnPhaseText: {fileID: 0}
-  _pointsSlider: {fileID: 0}
-  _objectivePoints: {fileID: 0}
-  _pointsText: {fileID: 0}
-  _timerText: {fileID: 0}
-  _scoreText: {fileID: 0}
-  _errorText: {fileID: 0}
-  cardGameCanvas: {fileID: 0}
-  _nextPhaseButton: {fileID: 0}
-  _confirmButton: {fileID: 0}
+  GameCanvas: {fileID: 0}
   _gameBoard: {fileID: 878106981467220619}
   _coinScript: {fileID: 0}
+  _animator: {fileID: 0}
+  _lastHovered: {fileID: 0}
+  BoardPointsCollected: 0
+  NumberOfSetsThisTurn: 0
+  BaseValue: 0
+  DiscardMultiplier: 1
+  RunMultiplier: 1.5
+  SetMultiplier: 1
 --- !u!114 &5683912741135958002
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -143,6 +155,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 825f5ae0c6766ba42a30af520f708bd3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Tutorial: {fileID: 0}
 --- !u!1 &8834179776333051812
 GameObject:
   m_ObjectHideFlags: 0

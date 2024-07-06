@@ -19,7 +19,17 @@ public class InterrogationCanvasScript : MonoBehaviour
 
     public void OnToggleVisibility(bool isVisible)
     {
-        if (isVisible) _canvas.alpha = 1f;
-        else _canvas.alpha = 0f;
+        if (isVisible)
+        {
+            _canvas.alpha = 1f;
+            _canvas.interactable = true;
+            _canvas.blocksRaycasts = true;
+        }
+        else
+        {
+            _canvas.alpha = 0f;
+            _canvas.interactable = false;
+            _canvas.blocksRaycasts = false;
+        }
     }
 }

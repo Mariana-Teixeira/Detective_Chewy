@@ -8,8 +8,18 @@ public class CoinScript : MonoBehaviour
     [SerializeField] GameObject Buy;
     [SerializeField] GameObject Sell;
 
-    [SerializeField] GameObject[] Tables;
+    [SerializeField] Board _board;
+    [SerializeField] GameObject[] _tables;
     [SerializeField] Animator _animator;
+
+    private void Awake()
+    {
+        _tables = new GameObject[_board.Tables.Length];
+        for (int i = 0; i < _tables.Length; i++)
+        {
+            _tables[i] = _board.Tables[i]._tableObject;
+        }
+    }
 
     private void Start()
     {
@@ -49,7 +59,7 @@ public class CoinScript : MonoBehaviour
 
     public void MoveToTable(int number)
     {
-        this.transform.SetParent(Tables[number].gameObject.transform, false);
-        this.transform.rotation = Tables[number].transform.rotation;
+        this.transform.SetParent(_tables[number].gameObject.transform, false);
+        this.transform.rotation = _tables[number].transform.rotation;
     }
 }

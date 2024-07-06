@@ -8,55 +8,50 @@ using UnityEngine.UI;
 
 public class CardLogic : MonoBehaviour
 {
-    #region PhaseText
-    const string PlayText = "Play";
-    const string TradeText = "Trade";
-    const string DiscardText = "Discard";
-    #endregion
-
-    #region ErrorMessages
-    float _errorMessageDuration = 3.0f;
-    const string InvalidSelectionByType = "Your selection is invalid.";
-    const string InvalidSelectionByNumber = "Wrong number of cards selected";
-    #endregion
+    public CardGameCanvasScript GameCanvas;
 
     #region Scores
-    public bool[] UseMultiplier;
-    public bool[] UseTimer;
-    public int[] MatchesObjective;
-    public float[] MatchesTime;
+    public bool UseMultiplier
+    {
+        get
+        {
+            return _gameBoard.GetActiveTableLogic.UseMultiplier;
+        }
+    }
+    public bool UseTimer
+    {
+        get
+        {
+            return _gameBoard.GetActiveTableLogic.UseTimer;
+        }
+    }
     public int CurrentMatchObjective
     {
         get
         {
-            return MatchesObjective[_gameBoard.GetActiveTable()];
+            return _gameBoard.GetActiveTableLogic.MatchPoints;
         }
     }
     public float CurrentMatchTime
     {
         get
         {
-            return MatchesTime[_gameBoard.GetActiveTable()];
+            return _gameBoard.GetActiveTableLogic.MatchTime;
         }
     }
     #endregion
 
-    #region Timer
-    float currentTime;
+    #region Multipliers
+    public int BoardPointsCollected;
+    public int NumberOfSetsThisTurn;
+    public float BaseValue;
+    public float DiscardMultiplier = 1f;
+    public float RunMultiplier = 1.5f;
+    public float SetMultiplier = 1f;
     #endregion
 
-    #region UI Elements
-    [SerializeField] TextMeshProUGUI _turnPhaseText;
-    [SerializeField] Slider _pointsSlider;
-    [SerializeField] TextMeshProUGUI _objectivePoints;
-    [SerializeField] TextMeshProUGUI _pointsText;
-    [SerializeField] TextMeshProUGUI _timerText;
-    [SerializeField] TextMeshProUGUI _scoreText;
-    [SerializeField] TextMeshProUGUI _errorText;
-
-    [SerializeField] Canvas cardGameCanvas;
-    [SerializeField] Button _nextPhaseButton;
-    [SerializeField] Button _confirmButton;
+    #region Timer
+    float currentTime;
     #endregion
 
     public static Action<TurnPhase> ChangeTurnPhase;
@@ -75,15 +70,6 @@ public class CardLogic : MonoBehaviour
     private bool _hasSeenTutorial;
 
     public GameObject _lastHovered;
-
-    #region Multipliers
-    private int _boardPointsCollected;
-    private int NumberOfSetsThisTurn;
-    private float BaseValue;
-    public float DiscardMultiplier = 1f;
-    public float RunMultiplier = 1.5f;
-    public float SetMultiplier = 1f;
-    #endregion
 
     private void Awake()
     {
@@ -105,21 +91,10 @@ public class CardLogic : MonoBehaviour
         }
     }
 
-    private void OnEnable()
-    {
-        _nextPhaseButton.onClick.AddListener(OnChangeTurnPhase);
-        _confirmButton.onClick.AddListener(OnConfirm);
-    }
-
-    private void OnDisable()
-    {
-        _nextPhaseButton.onClick.RemoveListener(OnChangeTurnPhase);
-        _confirmButton.onClick.RemoveListener(OnConfirm);
-    }
-
     public void Reposition()
     {
-        this.transform.position = _gameBoard.GetActiveTableObject().transform.position;
+        var currentTable = _gameBoard.GetActiveTableLogic._tableObject;
+        this.transform.position = currentTable.transform.position;
         this.transform.position += Vector3.up * 0.81f;
         UnselectAllCards();
     }
@@ -154,9 +129,7 @@ public class CardLogic : MonoBehaviour
         _coinScript.FlipTheCoin("discard");
 
         currentTurnPhase = TurnPhase.Discard;
-        _turnPhaseText.text = DiscardText;
-
-        _nextPhaseButton.interactable = false;
+        GameCanvas.ChangeTurn(TurnPhase.Discard);
 
         if (playCardPositions.Count > 0)
         {
@@ -170,7 +143,7 @@ public class CardLogic : MonoBehaviour
         _coinScript.FlipTheCoin("sell");
 
         currentTurnPhase = TurnPhase.Trade;
-        _turnPhaseText.text = TradeText;
+        GameCanvas.ChangeTurn(TurnPhase.Trade);
 
     }
 
@@ -179,7 +152,7 @@ public class CardLogic : MonoBehaviour
         _coinScript.FlipTheCoin("buy");
 
         currentTurnPhase = TurnPhase.Play;
-        _turnPhaseText.text = PlayText;
+        GameCanvas.ChangeTurn(TurnPhase.Play);
     }
 
     public void OnChangeTurnPhase() 
@@ -230,15 +203,15 @@ public class CardLogic : MonoBehaviour
         NumberOfSetsThisTurn = 0;
         BaseValue = 0f;
         DiscardMultiplier = 0f;
+        GameCanvas.ResetPointDisplay();
     }
 
     private void DiscardCards()
     {
         if (!CheckSelectionNumber(1)) return;
-        _nextPhaseButton.interactable = true;
 
-        ResetMultiplier();
         DiscardMultiplier = cards[0].CardData.Value;
+        GameCanvas.UpdateDiscardMultiplier(DiscardMultiplier);
         _gameBoard.DiscardCard(cards[0]);
 
         OnChangeTurnPhase();
@@ -275,15 +248,13 @@ public class CardLogic : MonoBehaviour
         bool set = equalValue;
         bool run = equalSuit && runValue;
 
-        int basePoints = 0;
         float setPoints= 0;
         float runPoints = 0;
-        string score = "";
         #endregion
 
         if (!set && !run)
         {
-            StartCoroutine(ErrorAppeared(InvalidSelectionByType, _errorMessageDuration));
+            // Error by type
             return;
         }
 
@@ -291,39 +262,46 @@ public class CardLogic : MonoBehaviour
         {
             foreach (Card card in cards)
             {
-                basePoints += card.CardData.Score;
+                BaseValue += card.CardData.Score;
                 playCardPositions.Add(new CardPositionAndDirection(card.transform.position, card.transform.up));
             }
             _gameBoard.MoveCardsFromPlay(cards);
 
-            if (set) { NumberOfSetsThisTurn++; setPoints = BaseValue * (NumberOfSetsThisTurn * SetMultiplier); }
-            if (run) runPoints = BaseValue * RunMultiplier;
+            if (set)
+            {
+                setPoints = BaseValue * (NumberOfSetsThisTurn * SetMultiplier);
+                GameCanvas.UpdateSetMultiplier(setPoints);
+                NumberOfSetsThisTurn++;
+            }
+
+            if (run)
+            {
+                runPoints = BaseValue * RunMultiplier;
+                GameCanvas.UpdateRunMultiplier(runPoints);
+            }
 
             // Collect Points
-            if (UseMultiplier[_gameBoard.GetActiveTable()])
+            if (_gameBoard.GetActiveTableLogic.UseMultiplier)
             {
-                float points = (DiscardMultiplier * basePoints) + setPoints + runPoints;
-                _boardPointsCollected += (int)points;
+                float points = (DiscardMultiplier * BaseValue) + setPoints + runPoints;
+                BoardPointsCollected += (int)points;
             }
             else
             {
-                _boardPointsCollected += basePoints;
+                BoardPointsCollected += (int)BaseValue;
             }
 
-            score += basePoints.ToString();
-            AnimateScore(score);
+            GameCanvas.UpdateTotalPoints(BoardPointsCollected);
+            ResetMultiplier();
 
-            _pointsText.text = _boardPointsCollected.ToString();
-            _pointsSlider.value = _boardPointsCollected;
-
-            if (_boardPointsCollected >= CurrentMatchObjective) CardGameState.ChangeGamePhase(GamePhase.Win);
+            StartCoroutine(PlayIEnumeratorSection());
         }
     }
 
-    private void AnimateScore(string s)
+    IEnumerator PlayIEnumeratorSection()
     {
-        _scoreText.text = s;
-        _animator.SetTrigger("score");
+        yield return new WaitForSeconds(2.5f);
+        if (BoardPointsCollected >= CurrentMatchObjective) CardGameState.ChangeGamePhase(GamePhase.Win);
     }
 
     private bool AreTheyInOrder(params int[] values)
@@ -368,42 +346,9 @@ public class CardLogic : MonoBehaviour
         }
         else
         {
-            StartCoroutine(ErrorAppeared(InvalidSelectionByNumber, _errorMessageDuration));
+            GameCanvas.CallError(ErrorType.WrongNumber, cards);
             return false;
         }
-    }
-
-    IEnumerator ErrorAppeared (string message, float displayTime)
-    {
-        var timeElapsed = 0f;
-
-        foreach (var card in cards)
-        {
-            card.DenyAnimation();
-        }
-
-        _errorText.text = message;
-        _errorText.gameObject.SetActive(true);
-        while (timeElapsed < displayTime)
-        {
-            timeElapsed += Time.deltaTime;
-            yield return null;
-        }
-        _errorText.gameObject.SetActive(false);
-    }
-
-    public IEnumerator StartTimer(float t)
-    {
-        currentTime = t;
-
-        while (currentTime > 0)
-        {
-            _timerText.text = currentTime.ToString("000");
-            currentTime -= Time.deltaTime;
-            yield return null;
-        }
-
-        CardGameState.ChangeGamePhase(GamePhase.Lose);
     }
 
     public void GameWon() 
@@ -444,23 +389,25 @@ public class CardLogic : MonoBehaviour
 
     public void StartNewBoard()
     {
-        _boardPointsCollected = 0;
-
-        _pointsText.text = _boardPointsCollected.ToString();
-        _pointsSlider.value = _boardPointsCollected;
-
+        BoardPointsCollected = 0;
         currentTurnPhase = TurnPhase.Discard;
-        _turnPhaseText.text = DiscardText;
 
-        _objectivePoints.text = CurrentMatchObjective.ToString();
-        _pointsSlider.maxValue = CurrentMatchObjective;
-
-        _turnPhaseText.text = DiscardText;
-        _nextPhaseButton.interactable = false;
-
-        _timerText.text = "0.00";
-
+        GameCanvas.ResetCanvas();
         playCardPositions.Clear();
+    }
+
+    public IEnumerator StartTimer(float t)
+    {
+        currentTime = t;
+
+        while (currentTime > 0)
+        {
+            GameCanvas.TickTimerText(currentTime.ToString("000"));
+            currentTime -= Time.deltaTime;
+            yield return null;
+        }
+
+        CardGameState.ChangeGamePhase(GamePhase.Lose);
     }
 
     public void SelectHandCardBuyPhase()

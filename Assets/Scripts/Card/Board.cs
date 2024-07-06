@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,6 +7,16 @@ using Random = System.Random;
 
 public class Board : MonoBehaviour
 {
+    [Serializable]
+    public struct TableLogic
+    {
+        public GameObject _tableObject;
+        public bool UseMultiplier;
+        public bool UseTimer;
+        public int MatchPoints;
+        public int MatchTime;
+    }
+
     bool hasSpawnedCards = false;
     public float duration = 1.0f;
 
@@ -16,7 +27,7 @@ public class Board : MonoBehaviour
     [SerializeField] CoinScript _coinScript;
     [SerializeField] CardLogic _cardLogic;
 
-    [SerializeField] List<GameObject> tables;
+    [SerializeField] TableLogic[] tables;
     [SerializeField] int _activeTable;
 
     private List<Card> _allCardsList;
@@ -37,11 +48,27 @@ public class Board : MonoBehaviour
 
     private bool[] _seenTutorialsByTable;
 
+    public TableLogic[] Tables
+    {
+        get
+        {
+            return tables;
+        }
+    }
+
     public int ActiveTable
     {
         get
         {
             return _activeTable;
+        }
+    }
+
+    public TableLogic GetActiveTableLogic
+    {
+        get
+        {
+            return tables[_activeTable];
         }
     }
 
@@ -52,7 +79,7 @@ public class Board : MonoBehaviour
         _hand = new List<Card>();
         _tavern = new List<Card>();
         _discards = new List<Card>();
-        _seenTutorialsByTable = new bool[tables.Count];
+        _seenTutorialsByTable = new bool[tables.Length];
         _activeTable = 0;
 
         _cardHandWaitTime = new WaitForSeconds(_handWaitTime);
@@ -175,7 +202,7 @@ public class Board : MonoBehaviour
     //PLACE CARDS ON TABLE NUM
     IEnumerator PlaceCards()
     {
-        GameObject table = tables.ElementAt(_activeTable);
+        GameObject table = GetActiveTableLogic._tableObject;
         _deckPos = table.transform.GetChild(1).GetChild(0).gameObject;
         _handPos = table.transform.GetChild(1).GetChild(1).gameObject;
         _tavernPos = table.transform.GetChild(1).GetChild(2).gameObject;
@@ -383,15 +410,5 @@ public class Board : MonoBehaviour
     {
         _activeTable += 1;
         _coinScript.MoveToTable(_activeTable);
-    }
-
-    public int GetActiveTable()
-    {
-        return _activeTable;
-    }
-
-    public GameObject GetActiveTableObject()
-    {
-        return tables[_activeTable];
     }
 }
