@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Rendering.Universal;
 
 public class CardLogic : MonoBehaviour
 {
@@ -23,11 +24,16 @@ public class CardLogic : MonoBehaviour
             return _gameBoard.GetActiveTableLogic.UseTimer;
         }
     }
+    private int _matchPoint;
     public int CurrentMatchObjective
     {
         get
         {
-            return _gameBoard.GetActiveTableLogic.MatchPoints;
+            return _matchPoint;
+        }
+        set
+        {
+            _matchPoint = value;
         }
     }
     public float CurrentMatchTime
@@ -43,12 +49,13 @@ public class CardLogic : MonoBehaviour
     public int BoardPointsCollected;
     public int NumberOfSetsThisTurn;
     public float BaseValue;
-    public float DiscardMultiplier = 1f;
+    public float Multiplier = 1f;
     public float RunMultiplier = 1.5f;
-    public float SetMultiplier = 1f;
+    public int DebtMultiplier = 10;
     #endregion
 
     #region Timer
+    public bool TimerOn;
     float currentTime;
     #endregion
 
@@ -58,6 +65,14 @@ public class CardLogic : MonoBehaviour
     [SerializeField] Board _gameBoard;
     [SerializeField] CoinScript _coinScript;
     private List<Card> cards;
+
+    public int DeckNumber
+    {
+        get
+        {
+            return _gameBoard.DeckNumber;
+        }
+    }
 
     private List<CardPositionAndDirection> playCardPositions;
 
@@ -200,7 +215,7 @@ public class CardLogic : MonoBehaviour
     {
         NumberOfSetsThisTurn = 0;
         BaseValue = 0f;
-        DiscardMultiplier = 0f;
+        Multiplier = 0f;
         GameCanvas.ResetPointDisplay();
     }
 
@@ -208,8 +223,22 @@ public class CardLogic : MonoBehaviour
     {
         if (!CheckSelectionNumber(1)) return;
 
-        DiscardMultiplier = cards[0].CardData.Value;
-        GameCanvas.UpdateDiscardMultiplier(DiscardMultiplier);
+        // Discard Multiplier
+        if (_gameBoard.GetActiveTableLogic.UseMultiplier)
+        {
+            Multiplier = cards[0].CardData.Value;
+            GameCanvas.UpdateDiscardMultiplier(Multiplier);
+        }
+
+        // Debt Multiplier
+        if (_gameBoard.GetActiveTableLogic.UseDiscardDebt)
+        {
+            int acumulatedDebt = cards[0].CardData.Value * DebtMultiplier;
+            _matchPoint += acumulatedDebt;
+
+            GameCanvas.UpdateMatchPoints();
+        }
+
         _gameBoard.DiscardCard(cards[0]);
 
         OnChangeTurnPhase();
@@ -245,9 +274,6 @@ public class CardLogic : MonoBehaviour
         bool runValue = AreTheyInOrder(card1.Value, card2.Value, card3.Value);
         bool set = equalValue;
         bool run = equalSuit && runValue;
-
-        float setPoints= 0;
-        float runPoints = 0;
         #endregion
 
         if (!set && !run)
@@ -267,21 +293,21 @@ public class CardLogic : MonoBehaviour
 
             if (set)
             {
-                setPoints = BaseValue * (NumberOfSetsThisTurn * SetMultiplier);
-                GameCanvas.UpdateSetMultiplier(setPoints);
                 NumberOfSetsThisTurn++;
+                Multiplier *= NumberOfSetsThisTurn;
+                GameCanvas.UpdateDiscardMultiplier(Multiplier);
             }
 
             if (run)
             {
-                runPoints = BaseValue * RunMultiplier;
-                GameCanvas.UpdateRunMultiplier(runPoints);
+                Multiplier *= RunMultiplier;
+                GameCanvas.UpdateDiscardMultiplier(Multiplier);
             }
 
             // Collect Points
             if (_gameBoard.GetActiveTableLogic.UseMultiplier)
             {
-                float points = (DiscardMultiplier * BaseValue) + setPoints + runPoints;
+                float points = Multiplier * BaseValue;
                 BoardPointsCollected += (int)points;
             }
             else
@@ -292,7 +318,7 @@ public class CardLogic : MonoBehaviour
             GameCanvas.UpdateTotalPoints(BoardPointsCollected);
             ResetMultiplier();
 
-            if (BoardPointsCollected >= CurrentMatchObjective) GameCanvas.CallStatusWindow(true, 3f);
+            if (BoardPointsCollected >= _matchPoint) GameCanvas.CallStatusWindow(true, 3f);
         }
     }
 
@@ -346,12 +372,15 @@ public class CardLogic : MonoBehaviour
     public void GameWon() 
     {
         StopCoroutine("StartTimer");
+        TimerOn = false;
         ResetGame();
         _gameBoard.SetNextActiveTable();
     }
 
     public void GameOver() 
     {
+        StopCoroutine("StartTimer");
+        TimerOn = false;
         ResetGame();
     }
 
@@ -390,6 +419,7 @@ public class CardLogic : MonoBehaviour
 
     public IEnumerator StartTimer(float t)
     {
+        TimerOn = true;
         currentTime = t;
 
         while (currentTime > 0)

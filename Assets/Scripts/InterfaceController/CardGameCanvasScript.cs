@@ -42,9 +42,8 @@ public class CardGameCanvasScript : MonoBehaviour
     
     [SerializeField] TextMeshProUGUI _timerText;
     [SerializeField] TextMeshProUGUI _baseScoreText;
-    [SerializeField] TextMeshProUGUI _discardMultiplierText;
-    [SerializeField] TextMeshProUGUI _setMultiplierText;
-    [SerializeField] TextMeshProUGUI _runMultiplierText;
+    [SerializeField] TextMeshProUGUI _multiplierText;
+    [SerializeField] TextMeshProUGUI _deckNumberText;
 
     [SerializeField] Button _nextPhaseButton;
     [SerializeField] Button _confirmButton;
@@ -84,6 +83,8 @@ public class CardGameCanvasScript : MonoBehaviour
 
     public void ResetCanvas()
     {
+        _deckNumberText.text = _logic.DeckNumber.ToString();
+
         _currentPointsText.text = _logic.BoardPointsCollected.ToString();
         _pointsSlider.value = _logic.BoardPointsCollected;
 
@@ -100,15 +101,23 @@ public class CardGameCanvasScript : MonoBehaviour
 
     public void ResetPointDisplay()
     {
-        _baseScoreText.text = "BP: ";
-        _discardMultiplierText.text = "DP: ";
-        _setMultiplierText.text = "SP: ";
-        _runMultiplierText.text = "RP: ";
+        _baseScoreText.text = "Base Score: ";
+        _multiplierText.text = "Multiplier: ";
     }
 
     public void TickTimerText(string time)
     {
         _timerText.text = time;
+    }
+
+    public void UpdateDeckNumber(int n)
+    {
+        _deckNumberText.text = n.ToString();
+    }
+
+    public void UpdateMatchPoints()
+    {
+        _objectivePoints.text = _logic.CurrentMatchObjective.ToString();
     }
 
     public void UpdateTotalPoints(int points)
@@ -119,22 +128,12 @@ public class CardGameCanvasScript : MonoBehaviour
 
     public void UpdateBaseScore(float score)
     {
-        _baseScoreText.text = "BP: " + score.ToString();
+        _baseScoreText.text = "Base Score: " + score.ToString();
     }
 
     public void UpdateDiscardMultiplier(float score)
     {
-        _discardMultiplierText.text = "DP: " + score.ToString();
-    }
-
-    public void UpdateSetMultiplier(float score)
-    {
-        _setMultiplierText.text = "SP: " + score.ToString();
-    }
-
-    public void UpdateRunMultiplier(float score)
-    {
-        _runMultiplierText.text = "RP: " + score.ToString();
+        _multiplierText.text = "Multiplier: " + score.ToString();
     }
 
     public void OnToggleVisibility(bool isVisible)

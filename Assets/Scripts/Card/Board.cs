@@ -5,6 +5,7 @@ using System.Linq;
 using UnityEngine;
 using Random = System.Random;
 
+// TODO: Number Display of Deck is Hard-Coded
 public class Board : MonoBehaviour
 {
     [Serializable]
@@ -13,6 +14,7 @@ public class Board : MonoBehaviour
         public GameObject _tableObject;
         public bool UseMultiplier;
         public bool UseTimer;
+        public bool UseDiscardDebt;
         public int MatchPoints;
         public int MatchTime;
     }
@@ -72,6 +74,14 @@ public class Board : MonoBehaviour
         }
     }
 
+    public int DeckNumber
+    {
+        get
+        {
+            return _deck.Count;
+        }
+    }
+
     private void Awake()
     {
         _allCardsList = new List<Card>();
@@ -122,6 +132,14 @@ public class Board : MonoBehaviour
         CreateTavern();
         UpdateFirstPositions();
         StartCoroutine(PlaceCards());
+
+        _cardLogic.CurrentMatchObjective = GetActiveTableLogic.MatchPoints;
+        UpdateCanvas();
+    }
+
+    private void UpdateCanvas()
+    {
+        _cardLogic.GameCanvas.ResetCanvas();
     }
 
     public void SpawnCards()
@@ -349,6 +367,16 @@ public class Board : MonoBehaviour
 
     public void DiscardCard(Card card)
     {
+        if (_deck.Count - 1 <= 0)
+        {
+            _cardLogic.GameCanvas.UpdateDeckNumber(0);
+            _cardLogic.GameCanvas.CallStatusWindow(false, 2.0f);
+        }
+        else
+        {
+            _cardLogic.GameCanvas.UpdateDeckNumber(_deck.Count - 1);
+        }
+
         _discards.Add(card);
         _hand.Remove(card);
 
@@ -360,6 +388,16 @@ public class Board : MonoBehaviour
 
     public void ExchangeTavernCard(Card cardHand, Card cardTavern) 
     {
+        if (_deck.Count - 1 <= 0)
+        {
+            _cardLogic.GameCanvas.UpdateDeckNumber(0);
+            _cardLogic.GameCanvas.CallStatusWindow(false, 2.0f);
+        }
+        else
+        {
+            _cardLogic.GameCanvas.UpdateDeckNumber(_deck.Count - 1);
+        }
+
         // From Deck to Tavern
         _tavern.Add(_deck.ElementAt(0));
 
@@ -388,6 +426,16 @@ public class Board : MonoBehaviour
 
     public void MoveCardsFromPlay(List<Card> cards) 
     {
+        if (_deck.Count - 3 <= 0)
+        {
+            _cardLogic.GameCanvas.UpdateDeckNumber(0);
+            _cardLogic.GameCanvas.CallStatusWindow(false, 2.0f);
+        }
+        else
+        {
+            _cardLogic.GameCanvas.UpdateDeckNumber(_deck.Count - 3);
+        }
+
         foreach (Card card in cards) 
         {
             _discards.Add(card);

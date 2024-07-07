@@ -1,3 +1,5 @@
+using System;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class DialogueManager : MonoBehaviour
@@ -48,13 +50,14 @@ public class DialogueManager : MonoBehaviour
         if (!_isTalking)
         {
             _currentBranch = nodes;
-            DialogueIndex = -1;
             StartDialogue();
         }
         else
         {
             MergeDialogue(nodes);
         }
+
+        DialogueCanvas.UpdateArrows(_currentBranch, DialogueIndex, _stopDialogueEnd);
     }
 
     // Assumes we won't stop the dialogue by the end of a interrogation.
@@ -72,8 +75,8 @@ public class DialogueManager : MonoBehaviour
     public void StartDialogue()
     {
         _isTalking = true;
-        IterateDialogueForward();
-        DialogueCanvas.UpdateArrows(_currentBranch, DialogueIndex, _stopDialogueEnd);
+        DialogueIndex = 0;
+        UpdateNode();
     }
 
     public void IterateDialogueBackward()
@@ -121,6 +124,11 @@ public class DialogueManager : MonoBehaviour
             return;
         }
 
+        UpdateNode();
+    }
+
+    public void UpdateNode()
+    {
         CurrentNode = _currentBranch[DialogueIndex];
         DialogueCanvas.StartTypeWritterEffect(CurrentNode.DialogueText);
         DialogueCanvas.EndSound();
@@ -136,6 +144,7 @@ public class DialogueManager : MonoBehaviour
         else
         {
             if (DialogueForQuest) QuestManager.CompleteQuest?.Invoke();
+            DialogueCanvas.EndSound();
             EndDialogue();
         }
     }
@@ -146,10 +155,7 @@ public class DialogueManager : MonoBehaviour
 
         if (DialogueIndex < 0) { DialogueIndex = 0; return; }
 
-        CurrentNode = _currentBranch[DialogueIndex];
-        DialogueCanvas.StartTypeWritterEffect(CurrentNode.DialogueText);
-        DialogueCanvas.EndSound();
-        DialogueCanvas.StartSound(CurrentNode.DialogueSound);
+        UpdateNode();
     }
 
     public void EndDialogue()

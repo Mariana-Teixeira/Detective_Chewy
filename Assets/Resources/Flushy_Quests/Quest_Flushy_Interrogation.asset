@@ -19,7 +19,8 @@ MonoBehaviour:
   ContinuingDialogue: {fileID: 11400000, guid: cdb6d1af435b1794b96fd38f68e73e27, type: 2}
   Items:
   - ClueName: FlushyID
-    ClueDescription: Bertender said Flooshy.
+    ClueDescription: The Bartender gave me a detailed description of Flushy the Rat,
+      a fallen-from-grace aristorat.
     ClueSprite: {fileID: 21300000, guid: 7b53cfbb648e31946a2efb76a932e986, type: 3}
     DialogueNode:
       DialogueText: I am Flushy, the youngest Marquis of Mice of recent rat history... 
@@ -27,7 +28,8 @@ MonoBehaviour:
       DialogueSound: {fileID: 0}
       Evidence: 
   - ClueName: PokerChip
-    ClueDescription: POOKAH CHEEP.
+    ClueDescription: A standard gambling chip at first glance, this red chip seems
+      to have been kissed by Madame Cheesy.
     ClueSprite: {fileID: 21300000, guid: 5d069ed402151cb489e382b29c4e7e10, type: 3}
     DialogueNode:
       DialogueText: "There was not a single night where the Madame\u2019s presence
@@ -36,7 +38,8 @@ MonoBehaviour:
       DialogueSound: {fileID: 0}
       Evidence: 
   - ClueName: Letter
-    ClueDescription: As a rat, I can't read.
+    ClueDescription: A letter detailing an unknown rat demanding compensation from
+      the Cheesy Estate.
     ClueSprite: {fileID: 21300000, guid: d2576875511c6ba4880792c6762b8cfe, type: 3}
     DialogueNode:
       DialogueText: I have lost it all, Detective. All because of that dame. Even

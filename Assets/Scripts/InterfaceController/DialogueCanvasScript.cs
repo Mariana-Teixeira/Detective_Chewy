@@ -52,11 +52,13 @@ public class DialogueCanvasScript : MonoBehaviour
 
     public void UpdateArrows(DialogueNode[] branch, int index, bool stopDialogue)
     {
+        if (branch == null) return;
+
         if (index <= 0) BackNodeButton.interactable = false;
         else BackNodeButton.interactable = true;
 
-        if (index >= branch.Length) NextNodeButton.interactable = false;
-        else if (stopDialogue && index == branch.Length - 1) NextNodeButton.interactable = false;
+        if (index >= branch.Length ||
+            index == (branch.Length - 1) && stopDialogue) NextNodeButton.interactable = false;
         else NextNodeButton.interactable = true;
     }
 

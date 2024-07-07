@@ -122,6 +122,7 @@ public class DeductionFrameScript : MonoBehaviour
 public struct Clue
 {
     public string ClueName;
+    [TextArea]
     public string ClueDescription;
     public Sprite ClueSprite;
     public DialogueNode DialogueNode;

@@ -15,5 +15,9 @@ MonoBehaviour:
   Nodes:
   - DialogueText: <color=yellow>(I found every clue I need. I should interrogate
       the suspect.)</color>
-    DialogueSound: 0
+    DialogueSound: {fileID: 0}
+    Evidence: 
+  - DialogueText: <color=yellow>(I can smell discrepancies in their statement and
+      these clues are what I need to make them talk.)</color>
+    DialogueSound: {fileID: 0}
     Evidence: 

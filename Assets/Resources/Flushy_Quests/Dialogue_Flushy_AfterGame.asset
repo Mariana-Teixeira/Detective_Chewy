@@ -36,7 +36,7 @@ MonoBehaviour:
     Evidence: 
   - DialogueText: "<color=green>Madame Cheesy accompanied my losses that day, as
       she would normally do. After I was \u201Cescorted\u201D out of the premises,
-      the Madame offered to drive me home, and I have not seen her since.</color>"
+      she offered to drive me home. I have not seen her since.</color>"
     DialogueSound: {fileID: 0}
     Evidence: 
   - DialogueText: <color=yellow>I need you to dig deeper, Flushy!</color>
@@ -52,16 +52,16 @@ MonoBehaviour:
     DialogueSound: {fileID: 0}
     Evidence: 
   - DialogueText: <color=green>She did ask me about a local underground jeweler.
-      Perhaps to flaunt her wealth, but why someone of her status needed a <color=#03cffc>criminal
+      Perhaps to flaunt her wealth, but why someone of her status needed a <color=red>criminal
       jeweler</color> surpasses me.</color>
     DialogueSound: {fileID: 0}
     Evidence: 
-  - DialogueText: <color=yellow>Who is this <color=#03cffc>underground jeweler</color>?</color>
+  - DialogueText: <color=yellow>Who is this <color=red>underground jeweler</color>?</color>
     DialogueSound: {fileID: 0}
     Evidence: 
-  - DialogueText: <color=green>Their name is <color=#03cffc>Gemy</color>. I have
-      sold some of my jewelry to them when I was in need of funds. I have never met
-      them personally, but I have always dealt with their associates.</color>
+  - DialogueText: <color=green>Their name is <color=red>Gemy</color>. I have sold
+      some of my jewelry to them when I was in need of funds. I have never met them
+      personally, I have only dealt with their associates.</color>
     DialogueSound: {fileID: 0}
     Evidence: 
   - DialogueText: <color=green>Proceed with caution, Detective, I have heard that

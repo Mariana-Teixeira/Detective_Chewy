@@ -66,9 +66,7 @@ public class CardGameState : MonoBehaviour
                 break;
             case GamePhase.Play:
                 Tutorial.ToggleVisibility(false);
-
-                if (_board.GetActiveTableLogic.UseTimer) StartCoroutine(_logic.StartTimer(_logic.CurrentMatchTime));
-
+                if (!_logic.TimerOn && _board.GetActiveTableLogic.UseTimer) StartCoroutine(_logic.StartTimer(_logic.CurrentMatchTime));
                 break;
             case GamePhase.Tutorial:
                 Tutorial.SetTutorial();

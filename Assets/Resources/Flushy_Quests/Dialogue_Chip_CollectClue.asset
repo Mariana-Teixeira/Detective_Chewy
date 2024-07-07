@@ -17,7 +17,7 @@ MonoBehaviour:
     DialogueSound: {fileID: 8300000, guid: ddc4ed69b82d10a49b0d028aef6af3c6, type: 3}
     Evidence: 
   - DialogueText: <color=yellow>(On closer inspection, I see lipstick stains on the
-      <color=white>chip</color>. I wonder who it belongs to?)</color>
+      <color=white>chip</color>.)</color>
     DialogueSound: {fileID: 8300000, guid: aa397d83af22b844cb999dd3957eb61b, type: 3}
     Evidence: 
   - DialogueText: <color=yellow>(Instinctively, I lick the chip.)</color>
