@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class StaticData : MonoBehaviour
 {
+    public static StaticData instance;
+
     public static float MasterVolume = 100;
     public static float MusicVolume = 100;
     public static float AmbienceVolume = 100;
@@ -12,9 +14,16 @@ public class StaticData : MonoBehaviour
     public static string InteractBtn = "";
     public static bool InteractHelp = false;
 
+    private void Awake()
+    {
+        instance = this;
+
+        DontDestroyOnLoad(this.gameObject);
+    }
 
     private void Start()
     {
+        
         MasterVolume = 100;
         MusicVolume = 100;
         AmbienceVolume = 100;

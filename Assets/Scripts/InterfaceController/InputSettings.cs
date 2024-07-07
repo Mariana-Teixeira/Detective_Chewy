@@ -30,6 +30,6 @@ public class InputSettings : MonoBehaviour
 
     public bool GetToggle()
     {
-        return toggle;
+        return toggle.isOn;
     }
 }
