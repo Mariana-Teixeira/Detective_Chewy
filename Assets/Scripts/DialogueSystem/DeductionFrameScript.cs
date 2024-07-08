@@ -15,6 +15,7 @@ public class DeductionFrameScript : MonoBehaviour
     public TextMeshProUGUI _description;
     public TextMeshProUGUI _devDebug;
 
+    private InterrogationCanvasScript _canvasScript;
     public DialogueManager _dialogueManager;    
     private DialogueInvoker _invoker;
     private DialogueNode _currentNode;
@@ -34,6 +35,7 @@ public class DeductionFrameScript : MonoBehaviour
     private void Awake()
     {
         _invoker = GetComponent<DialogueInvoker>();
+        _canvasScript = GetComponentInParent<InterrogationCanvasScript>();
     }
 
     private void Start()
@@ -78,12 +80,14 @@ public class DeductionFrameScript : MonoBehaviour
 
         if (_currentNode.Evidence == string.Empty)
         {
+            _canvasScript.ReactToClue(ClueState.WrongStatement);
             _devDebug.text = "Not a lie.";
             return;
         }
 
         if (_currentNode.Evidence == _clue.ClueName)
         {
+            _canvasScript.ReactToClue(ClueState.RightClue);
             _devDebug.text = "You chose the correct clue!";
 
             _clueChecker.Remove(_clue.ClueName);
@@ -98,6 +102,7 @@ public class DeductionFrameScript : MonoBehaviour
         }
         else
         {
+            _canvasScript.ReactToClue(ClueState.WrongClue);
             _devDebug.text = "That's the wrong clue.";
         }
 

@@ -66,7 +66,7 @@ public class DialogueCanvasScript : MonoBehaviour
     {
         DialogueBox.text = string.Empty;
         _currentText = text;
-        _typewritterCoroutine = StartCoroutine(TypewritterEffect(text));
+        _typewritterCoroutine = StartCoroutine(AlphaTypewritter(text));
     }
 
     public void EndTypeWritterEffect()
@@ -75,12 +75,15 @@ public class DialogueCanvasScript : MonoBehaviour
         DialogueBox.text = _currentText;
         IsTyping = false;
     }
-    public IEnumerator TypewritterEffect(string text)
+
+    const string ALPHATAG = "<color=#00000000>";
+    public IEnumerator AlphaTypewritter(string text)
     {
         IsTyping = true;
 
         int index = 0;
-        int tagLength;
+        int tagLength = 0;
+
         while (index < text.Length)
         {
             if (text[index] == '<')
@@ -89,30 +92,11 @@ public class DialogueCanvasScript : MonoBehaviour
                 index += tagLength;
             }
 
-            DialogueBox.text = text.Substring(0, index);
+            Debug.Log(index);
+            Debug.Log(tagLength);
+
+            DialogueBox.text = text.Substring(0, index) + ALPHATAG + text.Substring(index) + "</color>";
             index++;
-
-            yield return _typeWait;
-        }
-        DialogueBox.text = text.Substring(0, text.Length);
-        IsTyping = false;
-        yield return null;
-    }
-
-    public IEnumerator CharByCharTypewritter(string text)
-    {
-        IsTyping = true;
-
-        int charIndex = 0;
-        int tagLength;
-
-        while (charIndex < text.Length)
-        {
-            tagLength = GetTagLength(charIndex, text);
-            charIndex += tagLength;
-
-            DialogueBox.text = text.Substring(0, charIndex);
-            charIndex++;
             yield return _typeWait;
         }
 
