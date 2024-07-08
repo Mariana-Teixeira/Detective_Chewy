@@ -327,7 +327,7 @@ public class CardLogic : MonoBehaviour
             BaseValue = 0f;
             GameCanvas.UpdateTotalPoints(BoardPointsCollected);
 
-            if (BoardPointsCollected >= _matchPoint) CardGameState.ChangeGamePhase?.Invoke(GamePhase.Win);
+            if (BoardPointsCollected >= _matchPoint) { CardGameState.ChangeGamePhase?.Invoke(GamePhase.Win); }
             else if (DeckNumber - PlayCardPositions.Count <= 0) CardGameState.ChangeGamePhase?.Invoke(GamePhase.Lose);
         }
     }
@@ -381,6 +381,7 @@ public class CardLogic : MonoBehaviour
 
     public void ResetGame()
     {
+        ResetMultiplier();
         UnselectAllCards();
         _gameBoard.ResetDeck();
         StartNewBoard();

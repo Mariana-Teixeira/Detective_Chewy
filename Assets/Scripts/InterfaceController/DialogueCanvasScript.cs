@@ -72,14 +72,11 @@ public class DialogueCanvasScript : MonoBehaviour
     public void EndTypeWritterEffect()
     {
         StopCoroutine(_typewritterCoroutine);
-        _currentText = AddParagraphsToString(_currentText);
         DialogueBox.text = _currentText;
         IsTyping = false;
     }
     public IEnumerator TypewritterEffect(string text)
     {
-        text = AddParagraphsToString(text);
-
         IsTyping = true;
 
         int index = 0;
@@ -102,61 +99,24 @@ public class DialogueCanvasScript : MonoBehaviour
         yield return null;
     }
 
-    int maximumPerLine = 64;
-    private string AddParagraphsToString(string text)
+    public IEnumerator CharByCharTypewritter(string text)
     {
-        int index = 0;
-        int tagLen;
-        int lineTagsLen = 0;
-        int wordLen;
-        int phraseLen;
-        int paragraphs = 1;
-        char[] textArray = text.ToCharArray();
+        IsTyping = true;
 
-        while (index < text.Length)
+        int charIndex = 0;
+        int tagLength;
+
+        while (charIndex < text.Length)
         {
-            var current = textArray[index];
+            tagLength = GetTagLength(charIndex, text);
+            charIndex += tagLength;
 
-            if (current == '<')
-            {
-                tagLen = GetTagLength(index, text);
-                lineTagsLen += tagLen;
-            }
-            else if (current == ' ')
-            {
-                wordLen = GetWordLength(index, text);
-                phraseLen = index - lineTagsLen;
-
-                if (phraseLen + wordLen > maximumPerLine * paragraphs)
-                {
-                    paragraphs++;
-                    textArray[index] = '\n';
-                }
-            }
-
-            index++;
+            DialogueBox.text = text.Substring(0, charIndex);
+            charIndex++;
+            yield return _typeWait;
         }
 
-        return new string(textArray);
-    }
-
-    // Doesn't account for tags inside the word.
-    private int GetWordLength(int index, string text)
-    {
-        index++;
-
-        var length = 0;
-        while (index < text.Length)
-        {
-            if (text[index] == '<') index += GetTagLength(index, text);
-            if (index >= text.Length) return length;
-            if (text[index] == ' ') return length;
-
-            index++;
-            length++;
-        }
-
-        return length;
+        IsTyping = false;
     }
 
     private int GetTagLength(int index, string text)

@@ -140,11 +140,6 @@ public class Board : MonoBehaviour
         StartCoroutine(PlaceCards());
 
         _cardLogic.CurrentMatchObjective = GetActiveTableLogic.MatchPoints;
-        UpdateCanvas();
-    }
-
-    private void UpdateCanvas()
-    {
         _cardLogic.GameCanvas.ResetCanvas();
     }
 
