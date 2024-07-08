@@ -51,9 +51,9 @@ MonoBehaviour:
       from the casino.</color>
     DialogueSound: {fileID: 0}
     Evidence: 
-  - DialogueText: <color=green>She did ask me about a local underground jeweler.
-      Perhaps to flaunt her wealth, but why someone of her status needed a <color=red>criminal
-      jeweler</color> surpasses me.</color>
+  - DialogueText: <color=green>She did ask me about a <color=red>local underground
+      jeweler</color>. Perhaps to flaunt her wealth, but why someone of her status
+      needed a <color=red>criminal jeweler</color> surpasses me.</color>
     DialogueSound: {fileID: 0}
     Evidence: 
   - DialogueText: <color=yellow>Who is this <color=red>underground jeweler</color>?</color>
@@ -99,6 +99,6 @@ MonoBehaviour:
     Evidence: 
   - DialogueText: "<color=yellow>(The gambler\u2019s impulsive comments start to
       muffle as I head towards the bartender with a newfound goal - find out who
-      this Gemy rat is and question them.)</color>"
+      this <color=red>Gemy</color> rat is and question them.)</color>"
     DialogueSound: {fileID: 8300000, guid: c8bf5cdfc7e706f4ea9bc830076f436e, type: 3}
     Evidence: 

@@ -76,7 +76,7 @@ public class DialogueCanvasScript : MonoBehaviour
         IsTyping = false;
     }
 
-    const string ALPHATAG = "<color=#00000000>";
+    const string ALPHATAG = "<mark=#000000>";
     public IEnumerator AlphaTypewritter(string text)
     {
         IsTyping = true;
@@ -92,10 +92,7 @@ public class DialogueCanvasScript : MonoBehaviour
                 index += tagLength;
             }
 
-            Debug.Log(index);
-            Debug.Log(tagLength);
-
-            DialogueBox.text = text.Substring(0, index) + ALPHATAG + text.Substring(index) + "</color>";
+            DialogueBox.text = text.Substring(0, index) + ALPHATAG + text.Substring(index) + "</mark>";
             index++;
             yield return _typeWait;
         }

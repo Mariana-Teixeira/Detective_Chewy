@@ -366,6 +366,7 @@ public class Board : MonoBehaviour
     {
         if (_deck.Count - 1 <= 0)
         {
+            Debug.Log("Deck Count: " + _deck.Count);
             _cardLogic.GameCanvas.UpdateDeckNumber(0);
             return;
         }

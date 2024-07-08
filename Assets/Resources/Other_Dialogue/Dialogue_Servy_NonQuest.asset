@@ -10,12 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 974d03248160ac84dad927547d7629eb, type: 3}
-  m_Name: Dialogue_Gemy_NonQuest
+  m_Name: Dialogue_Servy_NonQuest
   m_EditorClassIdentifier: 
   Nodes:
-  - DialogueText: <color=red>Oh! Hello! I haven't seen you around here.</color>
-    DialogueSound: {fileID: 0}
-    Evidence: 
-  - DialogueText: <color=red>Stay out of trouble, Mister~</color>
+  - DialogueText: <color=blue>Have some respect for the elderly and let me drink
+      in peace.</color>
     DialogueSound: {fileID: 0}
     Evidence: 

@@ -81,19 +81,21 @@ public class DeductionFrameScript : MonoBehaviour
         if (_currentNode.Evidence == string.Empty)
         {
             _canvasScript.ReactToClue(ClueState.WrongStatement);
-            _devDebug.text = "Not a lie.";
-            return;
+            _devDebug.text = "You can't contradict the truth...";
+            OnResetSelection();
         }
 
         if (_currentNode.Evidence == _clue.ClueName)
         {
             _canvasScript.ReactToClue(ClueState.RightClue);
-            _devDebug.text = "You chose the correct clue!";
+            _devDebug.text = "You caught me lying, Detective.";
 
             _clueChecker.Remove(_clue.ClueName);
             _dialogueManager.UpdateNode(_clue.DialogueNode);
 
             _dots[_clueIndex].color = Color.white;
+
+            OnResetSelection();
 
             if (_clueChecker.Count <= 0)
             {
@@ -103,10 +105,9 @@ public class DeductionFrameScript : MonoBehaviour
         else
         {
             _canvasScript.ReactToClue(ClueState.WrongClue);
-            _devDebug.text = "That's the wrong clue.";
+            _devDebug.text = "I would never... lie.";
+            OnResetSelection();
         }
-
-        OnResetSelection();
     }
 
     public void OnResetSelection()

@@ -68,18 +68,6 @@ public class CardGameCanvasScript : MonoBehaviour
         ToggleVisibility += OnToggleVisibility;
     }
 
-    private void OnEnable()
-    {
-        _nextPhaseButton.onClick.AddListener(_logic.OnChangeTurnPhase);
-        _confirmButton.onClick.AddListener(_logic.OnConfirm);
-    }
-
-    private void OnDisable()
-    {
-        _nextPhaseButton.onClick.RemoveListener(_logic.OnChangeTurnPhase);
-        _confirmButton.onClick.RemoveListener(_logic.OnConfirm);
-    }
-
     public void ResetCanvas()
     {
         _deckNumberText.text = _logic.DeckNumber.ToString();
