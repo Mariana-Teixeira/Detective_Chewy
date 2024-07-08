@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 public enum TurnPhase
@@ -32,6 +33,9 @@ public class CardGameState : MonoBehaviour
     private Deck _deck;
 
     public TutorialCanvasScript Tutorial;
+    public CardGameCanvasScript CardCanvas;
+
+    public float _pauseTime = 2.0f;
 
     private void Start()
     {
@@ -66,37 +70,61 @@ public class CardGameState : MonoBehaviour
                 break;
             case GamePhase.Play:
                 Tutorial.ToggleVisibility(false);
-
-                if (_board.GetActiveTableLogic.UseTimer) StartCoroutine(_logic.StartTimer(_logic.CurrentMatchTime));
-
+                if (!_logic.TimerOn && _board.GetActiveTableLogic.UseTimer) _logic.StartTimer();
                 break;
             case GamePhase.Tutorial:
                 Tutorial.SetTutorial();
                 Tutorial.ToggleVisibility(true);
                 break;
             case GamePhase.Win:
-                _logic.GameWon();
-                _deck.gameObject.SetActive(false);
-                QuestManager.CompleteQuest?.Invoke();
-                PlayerStates.ChangeState?.Invoke(GameState.SITTING);
+                StartCoroutine("WinGameCoroutine");
                 break;
             case GamePhase.Lose:
-                Debug.Log(_deck.gameObject);
-                _logic.GameOver();
-                _deck.gameObject.SetActive(false);
-                PlayerStates.ChangeState?.Invoke(GameState.SITTING);
+                StartCoroutine("LoseGameCoroutine");
                 break;
             default:
                 break;
         }
     }
 
+    public IEnumerator LoseGameCoroutine()
+    {
+        CardCanvas.CallLoseCanvas();
+        CardCanvas.ToggleStatusWindows(true);
+        _deck.gameObject.SetActive(false);
+
+        _logic.StopTimer();
+        _logic.ResetGame();
+
+        yield return new WaitForSeconds(_pauseTime);
+
+        CardCanvas.ToggleStatusWindows(false);
+        PlayerStates.ChangeState?.Invoke(GameState.SITTING);
+    }
+
+    public IEnumerator WinGameCoroutine()
+    {
+        _logic.StopTimer();
+
+        CardCanvas.CallWinCanvas();
+        CardCanvas.ToggleStatusWindows(true);
+        _deck.gameObject.SetActive(false);
+
+        yield return new WaitForSeconds(_pauseTime);
+
+        _logic.ResetGame();
+        _board.SetNextActiveTable();
+        CardCanvas.ToggleStatusWindows(false);
+        QuestManager.CompleteQuest?.Invoke();
+        PlayerStates.ChangeState?.Invoke(GameState.SITTING);
+    }
+
     public void TickState()
     {
         switch(currentGamePhase)
         {
-            case GamePhase.Tutorial:
-                if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.E)) Tutorial.NextTutorialScreen();
+            case GamePhase.Play:
+                if (_board.GetActiveTableLogic.UseTimer) _logic.TickTimer();
                 break;
         }
     }

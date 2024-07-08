@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 974d03248160ac84dad927547d7629eb, type: 3}
+  m_Name: Dialogue_DemoOver
+  m_EditorClassIdentifier: 
+  Nodes:
+  - DialogueText: Thank you for trying our game! We really do appreciate it.
+    DialogueSound: {fileID: 0}
+    Evidence: 
+  - DialogueText: 'We don''t have an ending yet, so you are stuck in this dialogue.
+      (:
+
+      Alt + F4 is your friend and I will never judge you.'
+    DialogueSound: {fileID: 0}
+    Evidence: 

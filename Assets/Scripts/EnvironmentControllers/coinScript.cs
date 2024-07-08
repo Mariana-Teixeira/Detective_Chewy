@@ -15,6 +15,7 @@ public class CoinScript : MonoBehaviour
     private void Awake()
     {
         _tables = new GameObject[_board.Tables.Length];
+
         for (int i = 0; i < _tables.Length; i++)
         {
             _tables[i] = _board.Tables[i]._tableObject;
@@ -28,14 +29,12 @@ public class CoinScript : MonoBehaviour
 
     public void FlipTheCoin(string s) 
     {
-        StartCoroutine(ChangeCoinType(s));
         _animator.SetTrigger("flip_coin");
+        ChangeCoinType(s);
     }
 
-    private IEnumerator ChangeCoinType(string s) {
-
-        yield return new WaitForSeconds(0.3f);
-
+    private void ChangeCoinType(string s)
+    {
         if (s == "discard")
         {
             //discard mesh of the coin
@@ -59,6 +58,8 @@ public class CoinScript : MonoBehaviour
 
     public void MoveToTable(int number)
     {
+        if (number >= _tables.Length) return;
+
         this.transform.SetParent(_tables[number].gameObject.transform, false);
         this.transform.rotation = _tables[number].transform.rotation;
     }

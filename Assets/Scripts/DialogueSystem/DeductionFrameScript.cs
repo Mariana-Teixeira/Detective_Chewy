@@ -13,7 +13,9 @@ public class DeductionFrameScript : MonoBehaviour
     
     public Image _image;
     public TextMeshProUGUI _description;
+    public TextMeshProUGUI _devDebug;
 
+    private InterrogationCanvasScript _canvasScript;
     public DialogueManager _dialogueManager;    
     private DialogueInvoker _invoker;
     private DialogueNode _currentNode;
@@ -33,6 +35,7 @@ public class DeductionFrameScript : MonoBehaviour
     private void Awake()
     {
         _invoker = GetComponent<DialogueInvoker>();
+        _canvasScript = GetComponentInParent<InterrogationCanvasScript>();
     }
 
     private void Start()
@@ -77,13 +80,15 @@ public class DeductionFrameScript : MonoBehaviour
 
         if (_currentNode.Evidence == string.Empty)
         {
-            Debug.Log("No Evidence Needed");
+            _canvasScript.ReactToClue(ClueState.WrongStatement);
+            _devDebug.text = "Not a lie.";
             return;
         }
 
         if (_currentNode.Evidence == _clue.ClueName)
         {
-            Debug.Log("Correct");
+            _canvasScript.ReactToClue(ClueState.RightClue);
+            _devDebug.text = "You chose the correct clue!";
 
             _clueChecker.Remove(_clue.ClueName);
             _dialogueManager.UpdateNode(_clue.DialogueNode);
@@ -97,7 +102,8 @@ public class DeductionFrameScript : MonoBehaviour
         }
         else
         {
-            Debug.Log("Wrong Clue");
+            _canvasScript.ReactToClue(ClueState.WrongClue);
+            _devDebug.text = "That's the wrong clue.";
         }
 
         OnResetSelection();
@@ -112,7 +118,6 @@ public class DeductionFrameScript : MonoBehaviour
 
     private void FinishInterrogation()
     {
-        Debug.Log("Finish Interrogation");
         _invoker.SendDialogueBranch(_quest.ContinuingDialogue, true);
         PlayerStates.ChangeState?.Invoke(GameState.TALKING);
     }
@@ -122,6 +127,7 @@ public class DeductionFrameScript : MonoBehaviour
 public struct Clue
 {
     public string ClueName;
+    [TextArea]
     public string ClueDescription;
     public Sprite ClueSprite;
     public DialogueNode DialogueNode;
