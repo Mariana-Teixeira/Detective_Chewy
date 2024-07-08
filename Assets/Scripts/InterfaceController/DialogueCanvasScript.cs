@@ -102,7 +102,7 @@ public class DialogueCanvasScript : MonoBehaviour
         yield return null;
     }
 
-    int maximumPerLine = 58;
+    int maximumPerLine = 64;
     private string AddParagraphsToString(string text)
     {
         int index = 0;

@@ -104,20 +104,19 @@ public class CardGameState : MonoBehaviour
 
     public IEnumerator WinGameCoroutine()
     {
+        _logic.StopTimer();
+
         CardCanvas.CallWinCanvas();
         CardCanvas.ToggleStatusWindows(true);
         _deck.gameObject.SetActive(false);
 
-        _logic.StopTimer();
-        _logic.ResetGame();
-        _board.SetNextActiveTable();
-
         yield return new WaitForSeconds(_pauseTime);
 
+        _logic.ResetGame();
+        _board.SetNextActiveTable();
         CardCanvas.ToggleStatusWindows(false);
         QuestManager.CompleteQuest?.Invoke();
         PlayerStates.ChangeState?.Invoke(GameState.SITTING);
-
     }
 
     public void TickState()

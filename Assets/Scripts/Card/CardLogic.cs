@@ -75,7 +75,7 @@ public class CardLogic : MonoBehaviour
         }
     }
 
-    private List<CardPositionAndDirection> playCardPositions;
+    private List<CardPositionAndDirection> PlayCardPositions;
 
     private bool tavernCardSelectedBuyPhase = false;
     private bool handCardSelectedBuyPhase = false;
@@ -87,7 +87,7 @@ public class CardLogic : MonoBehaviour
     private void Awake()
     {
         cards = new List<Card> ();
-        playCardPositions = new List<CardPositionAndDirection>();
+        PlayCardPositions = new List<CardPositionAndDirection>();
 
         currentTurnPhase = TurnPhase.Discard;
 
@@ -150,10 +150,10 @@ public class CardLogic : MonoBehaviour
         currentTurnPhase = TurnPhase.Discard;
         GameCanvas.ChangeTurn(TurnPhase.Discard);
 
-        if (playCardPositions.Count > 0)
+        if (PlayCardPositions.Count > 0)
         {
-            _gameBoard.FinishTurn(playCardPositions);
-            playCardPositions.Clear();
+            _gameBoard.FinishTurn(PlayCardPositions);
+            PlayCardPositions.Clear();
         }
     }
 
@@ -178,8 +178,6 @@ public class CardLogic : MonoBehaviour
     {
         if (currentTurnPhase == TurnPhase.Discard)
         {
-            if (_gameBoard.DeckNumber <= 0) CardGameState.ChangeGamePhase?.Invoke(GamePhase.Lose);
-
             ChangeTurnPhase?.Invoke(TurnPhase.Trade);
             EnterTrade();
             ShowTutorial();
@@ -193,6 +191,7 @@ public class CardLogic : MonoBehaviour
         else // Play
         {
             ResetMultiplier();
+
             ChangeTurnPhase?.Invoke(TurnPhase.Discard);
             EnterDiscard();
         }
@@ -235,7 +234,7 @@ public class CardLogic : MonoBehaviour
         if (_gameBoard.GetActiveTableLogic.UseMultiplier)
         {
             Multiplier = cards[0].CardData.Value;
-            GameCanvas.UpdateDiscardMultiplier(Multiplier);
+            GameCanvas.UpdateMultiplier(Multiplier);
         }
 
         // Debt Multiplier
@@ -295,21 +294,23 @@ public class CardLogic : MonoBehaviour
             foreach (Card card in cards)
             {
                 BaseValue += card.CardData.Score;
-                playCardPositions.Add(new CardPositionAndDirection(card.transform.position, card.transform.up));
+                PlayCardPositions.Add(new CardPositionAndDirection(card.transform.position, card.transform.up));
             }
             _gameBoard.MoveCardsFromPlay(cards);
+
+            GameCanvas.UpdateBaseScore(BaseValue);
 
             if (set)
             {
                 NumberOfSetsThisTurn++;
                 Multiplier *= NumberOfSetsThisTurn;
-                GameCanvas.UpdateDiscardMultiplier(Multiplier);
+                GameCanvas.UpdateMultiplier(Multiplier);
             }
 
             if (run)
             {
                 Multiplier *= RunMultiplier;
-                GameCanvas.UpdateDiscardMultiplier(Multiplier);
+                GameCanvas.UpdateMultiplier(Multiplier);
             }
 
             // Collect Points
@@ -327,7 +328,7 @@ public class CardLogic : MonoBehaviour
             GameCanvas.UpdateTotalPoints(BoardPointsCollected);
 
             if (BoardPointsCollected >= _matchPoint) CardGameState.ChangeGamePhase?.Invoke(GamePhase.Win);
-            else if (_gameBoard.DeckNumber <= 0) CardGameState.ChangeGamePhase?.Invoke(GamePhase.Lose);
+            else if (DeckNumber - PlayCardPositions.Count <= 0) CardGameState.ChangeGamePhase?.Invoke(GamePhase.Lose);
         }
     }
 
@@ -408,7 +409,7 @@ public class CardLogic : MonoBehaviour
         currentTurnPhase = TurnPhase.Discard;
 
         GameCanvas.ResetCanvas();
-        playCardPositions.Clear();
+        PlayCardPositions.Clear();
     }
 
     public void StartTimer()

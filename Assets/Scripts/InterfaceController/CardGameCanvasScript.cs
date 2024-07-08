@@ -101,7 +101,7 @@ public class CardGameCanvasScript : MonoBehaviour
     public void ResetPointDisplay()
     {
         _multiplierText.text = "1";
-        _baseScoreText.text = "";
+        _baseScoreText.text = "0";
     }
 
     public void TickTimerText(string time)
@@ -131,7 +131,7 @@ public class CardGameCanvasScript : MonoBehaviour
         _baseScoreText.text = score.ToString();
     }
 
-    public void UpdateDiscardMultiplier(float score)
+    public void UpdateMultiplier(float score)
     {
         _multiplierText.text = score.ToString();
     }
