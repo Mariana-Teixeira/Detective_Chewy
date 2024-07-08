@@ -370,7 +370,8 @@ public class Board : MonoBehaviour
         if (_deck.Count - 1 <= 0)
         {
             _cardLogic.GameCanvas.UpdateDeckNumber(0);
-            _cardLogic.GameCanvas.CallStatusWindow(false, 2.0f);
+            CardGameState.ChangeGamePhase(GamePhase.Lose);
+            return;
         }
         else
         {
@@ -391,7 +392,8 @@ public class Board : MonoBehaviour
         if (_deck.Count - 1 <= 0)
         {
             _cardLogic.GameCanvas.UpdateDeckNumber(0);
-            _cardLogic.GameCanvas.CallStatusWindow(false, 2.0f);
+            CardGameState.ChangeGamePhase(GamePhase.Lose);
+            return;
         }
         else
         {
@@ -429,7 +431,8 @@ public class Board : MonoBehaviour
         if (_deck.Count - 3 <= 0)
         {
             _cardLogic.GameCanvas.UpdateDeckNumber(0);
-            _cardLogic.GameCanvas.CallStatusWindow(false, 2.0f);
+            CardGameState.ChangeGamePhase(GamePhase.Lose);
+            return;
         }
         else
         {

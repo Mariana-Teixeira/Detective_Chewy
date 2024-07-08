@@ -584,7 +584,7 @@ PrefabInstance:
       objectReference: {fileID: 621279325}
     - target: {fileID: 878106981467220619, guid: 4a526635ae604a14aa3a1755f78d5dbf, type: 3}
       propertyPath: tables.Array.data[0].UseTimer
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 878106981467220619, guid: 4a526635ae604a14aa3a1755f78d5dbf, type: 3}
       propertyPath: tables.Array.data[1].UseTimer
@@ -596,11 +596,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 878106981467220619, guid: 4a526635ae604a14aa3a1755f78d5dbf, type: 3}
       propertyPath: tables.Array.data[3].UseTimer
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 878106981467220619, guid: 4a526635ae604a14aa3a1755f78d5dbf, type: 3}
       propertyPath: tables.Array.data[0].MatchTime
-      value: 0
+      value: 120
       objectReference: {fileID: 0}
     - target: {fileID: 878106981467220619, guid: 4a526635ae604a14aa3a1755f78d5dbf, type: 3}
       propertyPath: tables.Array.data[1].MatchTime
@@ -612,11 +612,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 878106981467220619, guid: 4a526635ae604a14aa3a1755f78d5dbf, type: 3}
       propertyPath: tables.Array.data[3].MatchTime
-      value: 120
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 878106981467220619, guid: 4a526635ae604a14aa3a1755f78d5dbf, type: 3}
       propertyPath: tables.Array.data[0].MatchPoints
-      value: 50
+      value: 45
       objectReference: {fileID: 0}
     - target: {fileID: 878106981467220619, guid: 4a526635ae604a14aa3a1755f78d5dbf, type: 3}
       propertyPath: tables.Array.data[1].MatchPoints
@@ -628,12 +628,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 878106981467220619, guid: 4a526635ae604a14aa3a1755f78d5dbf, type: 3}
       propertyPath: tables.Array.data[3].MatchPoints
-      value: 45
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 878106981467220619, guid: 4a526635ae604a14aa3a1755f78d5dbf, type: 3}
       propertyPath: tables.Array.data[0]._tableObject
       value: 
-      objectReference: {fileID: 47512828}
+      objectReference: {fileID: 589989839}
     - target: {fileID: 878106981467220619, guid: 4a526635ae604a14aa3a1755f78d5dbf, type: 3}
       propertyPath: tables.Array.data[1]._tableObject
       value: 
@@ -645,7 +645,7 @@ PrefabInstance:
     - target: {fileID: 878106981467220619, guid: 4a526635ae604a14aa3a1755f78d5dbf, type: 3}
       propertyPath: tables.Array.data[3]._tableObject
       value: 
-      objectReference: {fileID: 589989839}
+      objectReference: {fileID: 47512828}
     - target: {fileID: 878106981467220619, guid: 4a526635ae604a14aa3a1755f78d5dbf, type: 3}
       propertyPath: tables.Array.data[0].UseMultiplier
       value: 0
@@ -664,7 +664,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 878106981467220619, guid: 4a526635ae604a14aa3a1755f78d5dbf, type: 3}
       propertyPath: tables.Array.data[0].UseDiscardDebt
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 878106981467220619, guid: 4a526635ae604a14aa3a1755f78d5dbf, type: 3}
       propertyPath: tables.Array.data[1].UseDiscardDebt
@@ -673,6 +673,10 @@ PrefabInstance:
     - target: {fileID: 878106981467220619, guid: 4a526635ae604a14aa3a1755f78d5dbf, type: 3}
       propertyPath: tables.Array.data[2].UseDiscardDebt
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 878106981467220619, guid: 4a526635ae604a14aa3a1755f78d5dbf, type: 3}
+      propertyPath: tables.Array.data[3].UseDiscardDebt
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3275196555233170351, guid: 4a526635ae604a14aa3a1755f78d5dbf, type: 3}
       propertyPath: m_LocalPosition.x
@@ -738,6 +742,10 @@ PrefabInstance:
       propertyPath: Tutorial
       value: 
       objectReference: {fileID: 719320127}
+    - target: {fileID: 6446904851086513471, guid: 4a526635ae604a14aa3a1755f78d5dbf, type: 3}
+      propertyPath: CardCanvas
+      value: 
+      objectReference: {fileID: 5628542976112318506}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -12994,7 +13002,7 @@ Transform:
   m_GameObject: {fileID: 621279323}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.13198395, z: -0, w: 0.9912518}
-  m_LocalPosition: {x: -0.298, y: 0.7948, z: -0.195}
+  m_LocalPosition: {x: -0.298, y: 0.804, z: -0.195}
   m_LocalScale: {x: 1.5000008, y: 1.5, z: 1.5000008}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -13771,7 +13779,7 @@ MonoBehaviour:
       the multiplier by the number of sets you play in a single turn.
 
       P.E
-      Playing two sets in one turn, duplicates the multiplier'
+      Playing two sets in one turn, duplicates the multiplier.'
     - 'Play runs to exponentially increase your <color=green>Multiplier</color>.
 
       Runs
@@ -14102,7 +14110,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.6
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -15159,7 +15167,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: 24.999634}
+  m_AnchoredPosition: {x: 0, y: 24.999695}
   m_SizeDelta: {x: 1000, y: 100}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1041111240
@@ -24450,16 +24458,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Quests:
+  - {fileID: 11400000, guid: 8598cdac388406e4292117ad030067c4, type: 2}
+  - {fileID: 11400000, guid: 62079b18214b6fa4d82eb92dbfbf7a70, type: 2}
+  - {fileID: 11400000, guid: 8553c915d71581e4b9bdaf17561dd837, type: 2}
   - {fileID: 11400000, guid: 89c516c183781e2458d6b186b9198ad7, type: 2}
   - {fileID: 11400000, guid: 0f3bb1e54118c1e42b3c27af41039857, type: 2}
-  - {fileID: 11400000, guid: 62079b18214b6fa4d82eb92dbfbf7a70, type: 2}
   - {fileID: 11400000, guid: 5ad25becd242f6b48a985bfa02e0d6f5, type: 2}
   - {fileID: 11400000, guid: 98ffa56b59d91274f98742fa33b8b1cd, type: 2}
   - {fileID: 11400000, guid: 314ca0fa96a4e664287252acaac5dc72, type: 2}
   - {fileID: 11400000, guid: 43faefe784bd056428ced512e489619b, type: 2}
-  - {fileID: 11400000, guid: 8553c915d71581e4b9bdaf17561dd837, type: 2}
   - {fileID: 11400000, guid: dbf3420ee0811384aa186371cc159ccc, type: 2}
-  - {fileID: 11400000, guid: 8598cdac388406e4292117ad030067c4, type: 2}
   - {fileID: 11400000, guid: 4e25fe3e3f82eb148ac45a476e6f8b1c, type: 2}
 --- !u!4 &1986138781
 Transform:

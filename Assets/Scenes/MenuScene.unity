@@ -10260,6 +10260,10 @@ PrefabInstance:
       propertyPath: m_SortingOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2863457524846598572, guid: 1a4488656d27a864ebef147af8d487b2, type: 3}
+      propertyPath: m_MatchWidthOrHeight
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6489475645634502598, guid: 1a4488656d27a864ebef147af8d487b2, type: 3}
       propertyPath: m_Pivot.x
       value: 0

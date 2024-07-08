@@ -1,9 +1,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.Rendering.Universal;
 
 public class CardLogic : MonoBehaviour
 {
@@ -55,6 +55,7 @@ public class CardLogic : MonoBehaviour
     #endregion
 
     #region Timer
+    Timer _timer;
     public bool TimerOn;
     float currentTime;
     #endregion
@@ -90,18 +91,24 @@ public class CardLogic : MonoBehaviour
         playCardPositions = new List<CardPositionAndDirection>();
 
         currentTurnPhase = TurnPhase.Discard;
+
+        _timer = new Timer();
     }
 
     private void Update()
     {
         if(Gamepad.current != null)
         { 
-            //test for controller click
             if ((Input.GetButtonDown("Fire2") || Gamepad.current.rightTrigger.isPressed) && _lastHovered!=null)
             {
              _lastHovered.GetComponent<Card>().OnMouseDown();
             }
         }
+    }
+
+    private void OnEnable()
+    {
+        _timer.TimerOver += OnTimeOver;
     }
 
     public void Reposition()
@@ -215,7 +222,7 @@ public class CardLogic : MonoBehaviour
     {
         NumberOfSetsThisTurn = 0;
         BaseValue = 0f;
-        Multiplier = 0f;
+        Multiplier = 1f;
         GameCanvas.ResetPointDisplay();
     }
 
@@ -236,7 +243,7 @@ public class CardLogic : MonoBehaviour
             int acumulatedDebt = cards[0].CardData.Value * DebtMultiplier;
             _matchPoint += acumulatedDebt;
 
-            GameCanvas.UpdateMatchPoints();
+            GameCanvas.UpdateObjectivePoints();
         }
 
         _gameBoard.DiscardCard(cards[0]);
@@ -278,7 +285,7 @@ public class CardLogic : MonoBehaviour
 
         if (!set && !run)
         {
-            // Error by type
+            GameCanvas.CallError(ErrorType.WrongSelection, cards);
             return;
         }
 
@@ -318,7 +325,7 @@ public class CardLogic : MonoBehaviour
             GameCanvas.UpdateTotalPoints(BoardPointsCollected);
             ResetMultiplier();
 
-            if (BoardPointsCollected >= _matchPoint) GameCanvas.CallStatusWindow(true, 3f);
+            if (BoardPointsCollected >= _matchPoint) CardGameState.ChangeGamePhase?.Invoke(GamePhase.Win);
         }
     }
 
@@ -369,21 +376,6 @@ public class CardLogic : MonoBehaviour
         }
     }
 
-    public void GameWon() 
-    {
-        StopCoroutine("StartTimer");
-        TimerOn = false;
-        ResetGame();
-        _gameBoard.SetNextActiveTable();
-    }
-
-    public void GameOver() 
-    {
-        StopCoroutine("StartTimer");
-        TimerOn = false;
-        ResetGame();
-    }
-
     public void ResetGame()
     {
         UnselectAllCards();
@@ -417,19 +409,27 @@ public class CardLogic : MonoBehaviour
         playCardPositions.Clear();
     }
 
-    public IEnumerator StartTimer(float t)
+    public void StartTimer()
     {
+        _timer.StartTimer(CurrentMatchTime);
         TimerOn = true;
-        currentTime = t;
+    }
 
-        while (currentTime > 0)
-        {
-            GameCanvas.TickTimerText(currentTime.ToString("000"));
-            currentTime -= Time.deltaTime;
-            yield return null;
-        }
+    public void TickTimer()
+    {
+        _timer.TickTime();
+        GameCanvas.TickTimerText(_timer.CurrentTime.ToString("000"));
+    }
 
-        GameCanvas.CallStatusWindow(false, 3f);
+    public void StopTimer()
+    {
+        _timer.StopTimer();
+        TimerOn = false;
+    }
+
+    public void OnTimeOver()
+    {
+        CardGameState.ChangeGamePhase?.Invoke(GamePhase.Lose);
     }
 
     public void SelectHandCardBuyPhase()

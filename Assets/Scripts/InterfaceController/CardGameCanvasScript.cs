@@ -65,7 +65,6 @@ public class CardGameCanvasScript : MonoBehaviour
     private void Start()
     {
         _cardGameCanvas = GetComponent<Canvas>();
-
         ToggleVisibility += OnToggleVisibility;
     }
 
@@ -94,7 +93,7 @@ public class CardGameCanvasScript : MonoBehaviour
         _turnPhaseText.text = DiscardText;
         _nextPhaseButton.interactable = false;
 
-        _timerText.text = "00";
+        _timerText.text = "000";
 
         ResetPointDisplay();
     }
@@ -115,9 +114,10 @@ public class CardGameCanvasScript : MonoBehaviour
         _deckNumberText.text = n.ToString();
     }
 
-    public void UpdateMatchPoints()
+    public void UpdateObjectivePoints()
     {
         _objectivePoints.text = _logic.CurrentMatchObjective.ToString();
+        _pointsSlider.maxValue = _logic.CurrentMatchObjective;
     }
 
     public void UpdateTotalPoints(int points)
@@ -159,34 +159,18 @@ public class CardGameCanvasScript : MonoBehaviour
         }
     }
 
-    public void CallStatusWindow(bool winGame, float t)
+    public void CallWinCanvas()
     {
-        StartCoroutine(ShowStatusWindow(winGame, t));
+        _audioSource.clip = _winningGame;
+        _statusText.text = "Win!";
+        _audioSource.Play();
     }
 
-    IEnumerator ShowStatusWindow(bool winGame, float t)
+    public void CallLoseCanvas()
     {
-        yield return new WaitForSeconds(0.5f);
-
-        if (winGame)
-        {
-            _audioSource.clip = _winningGame;
-            _statusText.text = "Win!";
-        }
-        else
-        {
-            _audioSource.clip = _loosingGame;
-            _statusText.text = "Lost.";
-        }
-
+        _audioSource.clip = _loosingGame;
+        _statusText.text = "Lost.";
         _audioSource.Play();
-
-        ToggleStatusWindows(true);
-        yield return new WaitForSeconds(t);
-        ToggleStatusWindows(false);
-
-        if (winGame) CardGameState.ChangeGamePhase(GamePhase.Win);
-        else CardGameState.ChangeGamePhase(GamePhase.Lose);
     }
 
     public void ToggleStatusWindows(bool visible)

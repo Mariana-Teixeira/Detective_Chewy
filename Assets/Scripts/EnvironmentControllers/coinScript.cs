@@ -15,6 +15,7 @@ public class CoinScript : MonoBehaviour
     private void Awake()
     {
         _tables = new GameObject[_board.Tables.Length];
+
         for (int i = 0; i < _tables.Length; i++)
         {
             _tables[i] = _board.Tables[i]._tableObject;
@@ -32,9 +33,10 @@ public class CoinScript : MonoBehaviour
         _animator.SetTrigger("flip_coin");
     }
 
-    private IEnumerator ChangeCoinType(string s) {
+    private IEnumerator ChangeCoinType(string s)
+    {
 
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(0.15f);
 
         if (s == "discard")
         {
