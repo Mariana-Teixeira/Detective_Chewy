@@ -124,9 +124,6 @@ public class CardGameState : MonoBehaviour
     {
         switch(currentGamePhase)
         {
-            case GamePhase.Tutorial:
-                if (Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.E)) Tutorial.NextTutorialScreen();
-                break;
             case GamePhase.Play:
                 if (_board.GetActiveTableLogic.UseTimer) _logic.TickTimer();
                 break;

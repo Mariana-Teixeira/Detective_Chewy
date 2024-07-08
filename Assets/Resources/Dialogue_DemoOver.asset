@@ -16,7 +16,9 @@ MonoBehaviour:
   - DialogueText: Thank you for trying our game! We really do appreciate it.
     DialogueSound: {fileID: 0}
     Evidence: 
-  - DialogueText: We don't have an ending yet, so you can just go to the menu and
-      quit!
+  - DialogueText: 'We don''t have an ending yet, so you are stuck in this dialogue.
+      (:
+
+      Alt + F4 is your friend and I will never judge you.'
     DialogueSound: {fileID: 0}
     Evidence: 

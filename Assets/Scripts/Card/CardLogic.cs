@@ -80,7 +80,6 @@ public class CardLogic : MonoBehaviour
     private bool tavernCardSelectedBuyPhase = false;
     private bool handCardSelectedBuyPhase = false;
 
-    public Animator _animator;
     private bool _hasSeenTutorial;
 
     public GameObject _lastHovered;
@@ -179,6 +178,8 @@ public class CardLogic : MonoBehaviour
     {
         if (currentTurnPhase == TurnPhase.Discard)
         {
+            if (_gameBoard.DeckNumber <= 0) CardGameState.ChangeGamePhase?.Invoke(GamePhase.Lose);
+
             ChangeTurnPhase?.Invoke(TurnPhase.Trade);
             EnterTrade();
             ShowTutorial();
@@ -191,6 +192,7 @@ public class CardLogic : MonoBehaviour
         }
         else // Play
         {
+            ResetMultiplier();
             ChangeTurnPhase?.Invoke(TurnPhase.Discard);
             EnterDiscard();
         }
@@ -221,7 +223,6 @@ public class CardLogic : MonoBehaviour
     public void ResetMultiplier()
     {
         NumberOfSetsThisTurn = 0;
-        BaseValue = 0f;
         Multiplier = 1f;
         GameCanvas.ResetPointDisplay();
     }
@@ -322,10 +323,11 @@ public class CardLogic : MonoBehaviour
                 BoardPointsCollected += (int)BaseValue;
             }
 
+            BaseValue = 0f;
             GameCanvas.UpdateTotalPoints(BoardPointsCollected);
-            ResetMultiplier();
 
             if (BoardPointsCollected >= _matchPoint) CardGameState.ChangeGamePhase?.Invoke(GamePhase.Win);
+            else if (_gameBoard.DeckNumber <= 0) CardGameState.ChangeGamePhase?.Invoke(GamePhase.Lose);
         }
     }
 

@@ -22,9 +22,12 @@ public class Board : MonoBehaviour
     bool hasSpawnedCards = false;
     public float duration = 1.0f;
 
-    [SerializeField] GameObject cardPrefab;
+    [SerializeField] GameObject _coverPrefab;
+    [SerializeField] GameObject _cardPrefab;
     [SerializeField] GameObject _deckStartPosition;
     [SerializeField] GameObject deck;
+
+    private GameObject _cardBack;
 
     [SerializeField] CoinScript _coinScript;
     [SerializeField] CardLogic _cardLogic;
@@ -100,12 +103,15 @@ public class Board : MonoBehaviour
     {
         foreach (var card in cards)
         {
-            Card cardComponent = Instantiate(cardPrefab, deck.transform).GetComponent<Card>();
+            Card cardComponent = Instantiate(_cardPrefab, deck.transform).GetComponent<Card>();
             cardComponent.CardData = card;
             cardComponent.UpdateUI();
             _deck.Add(cardComponent);
             _allCardsList.Add(cardComponent);
         }
+
+        _cardBack = Instantiate(_coverPrefab, deck.transform);
+
         _deckStartPosition.transform.position = _deck.ElementAt(0).gameObject.transform.position;
         ResetDeck();
     }
@@ -236,6 +242,11 @@ public class Board : MonoBehaviour
             card.transform.Rotate(90, 0, 0);
         }
 
+        // Spawn a Cover Card on Top
+        var coverPosition = _deckPos.transform.position + Vector3.up * 0.002f;
+        _cardBack.transform.position = coverPosition;
+        _cardBack.transform.rotation = table.transform.rotation;
+
         moveStep = -0.2f;
         moveStepZ = 0.01f;
 
@@ -358,6 +369,12 @@ public class Board : MonoBehaviour
 
     public void DrawCard(Vector3 position, Vector3 movementVector = default)  
     {
+        if (_deck.Count - 1 <= 0)
+        {
+            _cardLogic.GameCanvas.UpdateDeckNumber(0);
+            return;
+        }
+
         _hand.Add(_deck.ElementAt(0));
         StartCoroutine(Lerp(_deck.ElementAt(0).gameObject.transform, position, movementVector));
 
@@ -367,17 +384,6 @@ public class Board : MonoBehaviour
 
     public void DiscardCard(Card card)
     {
-        if (_deck.Count - 1 <= 0)
-        {
-            _cardLogic.GameCanvas.UpdateDeckNumber(0);
-            CardGameState.ChangeGamePhase(GamePhase.Lose);
-            return;
-        }
-        else
-        {
-            _cardLogic.GameCanvas.UpdateDeckNumber(_deck.Count - 1);
-        }
-
         _discards.Add(card);
         _hand.Remove(card);
 
@@ -385,19 +391,31 @@ public class Board : MonoBehaviour
         UpdatePosition(card, Position.Discard);
         
         StartCoroutine(Lerp(card.gameObject.transform, _discardsPos.transform.position));
+        
+        _cardLogic.GameCanvas.UpdateDeckNumber(_deck.Count);
     }
 
     public void ExchangeTavernCard(Card cardHand, Card cardTavern) 
     {
+        // From Tavern to Hand
+        _hand.Add(cardTavern);
+        _tavern.Remove(cardTavern);
+
+        StartCoroutine(Lerp(cardTavern.gameObject.transform, cardHand.transform.position, cardHand.transform.up));
+        UpdatePosition(cardTavern, Position.Hand);
+
+        // From Hand to Discard
+        _discards.Add(cardHand);
+        _hand.Remove(cardHand);
+
+        UpdatePosition(cardHand, Position.Discard);
+        StartCoroutine(Lerp(cardHand.gameObject.transform, _discardsPos.transform.position));
+
+        // If Deck is empty.
         if (_deck.Count - 1 <= 0)
         {
             _cardLogic.GameCanvas.UpdateDeckNumber(0);
-            CardGameState.ChangeGamePhase(GamePhase.Lose);
             return;
-        }
-        else
-        {
-            _cardLogic.GameCanvas.UpdateDeckNumber(_deck.Count - 1);
         }
 
         // From Deck to Tavern
@@ -408,37 +426,11 @@ public class Board : MonoBehaviour
 
         _deck.RemoveAt(0);
 
-        // From Tavern to Hand
-        _hand.Add(cardTavern);
-        _tavern.Remove(cardTavern);
-
-        StartCoroutine(Lerp(cardTavern.gameObject.transform, cardHand.transform.position, cardHand.transform.up));
-
-        UpdatePosition(cardTavern, Position.Hand);
-
-        // From Hand to Discard
-        _discards.Add(cardHand);
-        _hand.Remove(cardHand);
-
-        UpdatePosition(cardHand, Position.Discard);
-
-        StartCoroutine(Lerp(cardHand.gameObject.transform, _discardsPos.transform.position));
-
+        _cardLogic.GameCanvas.UpdateDeckNumber(_deck.Count);
     }
 
     public void MoveCardsFromPlay(List<Card> cards) 
     {
-        if (_deck.Count - 3 <= 0)
-        {
-            _cardLogic.GameCanvas.UpdateDeckNumber(0);
-            CardGameState.ChangeGamePhase(GamePhase.Lose);
-            return;
-        }
-        else
-        {
-            _cardLogic.GameCanvas.UpdateDeckNumber(_deck.Count - 3);
-        }
-
         foreach (Card card in cards) 
         {
             _discards.Add(card);
@@ -447,6 +439,8 @@ public class Board : MonoBehaviour
             UpdatePosition(card, Position.Discard);
             StartCoroutine(Lerp(card.gameObject.transform, _discardsPos.transform.position));
         }
+
+        _cardLogic.GameCanvas.UpdateDeckNumber(_deck.Count);
     }
 
     public void FinishTurn(List<CardPositionAndDirection> cards)
