@@ -13,6 +13,7 @@ public class DeductionFrameScript : MonoBehaviour
     
     public Image _image;
     public TextMeshProUGUI _description;
+    public TextMeshProUGUI _devDebug;
 
     public DialogueManager _dialogueManager;    
     private DialogueInvoker _invoker;
@@ -77,13 +78,13 @@ public class DeductionFrameScript : MonoBehaviour
 
         if (_currentNode.Evidence == string.Empty)
         {
-            Debug.Log("No Evidence Needed");
+            _devDebug.text = "Not a lie.";
             return;
         }
 
         if (_currentNode.Evidence == _clue.ClueName)
         {
-            Debug.Log("Correct");
+            _devDebug.text = "You chose the correct clue!";
 
             _clueChecker.Remove(_clue.ClueName);
             _dialogueManager.UpdateNode(_clue.DialogueNode);
@@ -97,7 +98,7 @@ public class DeductionFrameScript : MonoBehaviour
         }
         else
         {
-            Debug.Log("Wrong Clue");
+            _devDebug.text = "That's the wrong clue.";
         }
 
         OnResetSelection();
@@ -112,7 +113,6 @@ public class DeductionFrameScript : MonoBehaviour
 
     private void FinishInterrogation()
     {
-        Debug.Log("Finish Interrogation");
         _invoker.SendDialogueBranch(_quest.ContinuingDialogue, true);
         PlayerStates.ChangeState?.Invoke(GameState.TALKING);
     }

@@ -98,9 +98,8 @@ public class CardGameState : MonoBehaviour
 
         yield return new WaitForSeconds(_pauseTime);
 
-        PlayerStates.ChangeState?.Invoke(GameState.SITTING);
         CardCanvas.ToggleStatusWindows(false);
-        _deck.gameObject.SetActive(false);
+        PlayerStates.ChangeState?.Invoke(GameState.SITTING);
     }
 
     public IEnumerator WinGameCoroutine()
@@ -115,10 +114,10 @@ public class CardGameState : MonoBehaviour
 
         yield return new WaitForSeconds(_pauseTime);
 
+        CardCanvas.ToggleStatusWindows(false);
         QuestManager.CompleteQuest?.Invoke();
         PlayerStates.ChangeState?.Invoke(GameState.SITTING);
 
-        CardCanvas.ToggleStatusWindows(true);
     }
 
     public void TickState()

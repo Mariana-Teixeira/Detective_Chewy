@@ -61,6 +61,8 @@ public class CoinScript : MonoBehaviour
 
     public void MoveToTable(int number)
     {
+        if (number >= _tables.Length) return;
+
         this.transform.SetParent(_tables[number].gameObject.transform, false);
         this.transform.rotation = _tables[number].transform.rotation;
     }
