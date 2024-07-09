@@ -16387,7 +16387,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Character: Servy
-  nonQuestDialogue: {fileID: 11400000, guid: 2c6405427ac928640ab83e7e3a445e40, type: 2}
+  nonQuestDialogue: {fileID: 11400000, guid: ffc941f629f3b0c4996e5d4afca8b063, type: 2}
   QuestMarker: {fileID: 1219877230}
 --- !u!114 &1133021307
 MonoBehaviour:
@@ -27238,7 +27238,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7643750939740746841, guid: 7eab2449db9594645bf0da54b8cb3692, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.006
+      value: 0.085
       objectReference: {fileID: 0}
     - target: {fileID: 7643750939740746841, guid: 7eab2449db9594645bf0da54b8cb3692, type: 3}
       propertyPath: m_LocalPosition.y
@@ -27246,7 +27246,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7643750939740746841, guid: 7eab2449db9594645bf0da54b8cb3692, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.013
+      value: 0.26
       objectReference: {fileID: 0}
     - target: {fileID: 7643750939740746841, guid: 7eab2449db9594645bf0da54b8cb3692, type: 3}
       propertyPath: m_LocalRotation.w
