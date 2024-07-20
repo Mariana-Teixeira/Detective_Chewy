@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e53cb7ddd640534459c7609da8774468, type: 3}
   m_Name: Quest_TalkTo_DemoOver
   m_EditorClassIdentifier: 
-  QuestDescription: Talk to the Bartender
-  Character: Squeaky
+  QuestDescription: Talk to the Developer
+  Character: Developer
   Dialogue: {fileID: 11400000, guid: fd8722e47f33ba14da02c3dd739181f0, type: 2}
   Interrogate: 0
   ContinuingDialogue: {fileID: 0}

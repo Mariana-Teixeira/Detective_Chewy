@@ -45,7 +45,7 @@ public class InteractWith : MonoBehaviour
                 else if (hit.collider.CompareTag("Object"))
                 {
                     ObjectScript thing = hit.collider.GetComponent<ObjectScript>();
-                    thing.ActivateAnimation();
+                    thing.TalkTo();
                 }
             }
         }

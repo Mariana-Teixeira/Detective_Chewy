@@ -33,13 +33,24 @@ public class QuestManager : MonoBehaviour
     private void OnCompleteQuest()
     {
         QuestsIndex++;
-        InformationCanvasScript.UpdateQuestInformation?.Invoke(CurrentQuest?.Invoke());
-        ClueManager.InitQueue?.Invoke();
+
+        if (QuestsIndex < Quests.Length)
+        {
+            InformationCanvasScript.UpdateQuestInformation?.Invoke(CurrentQuest?.Invoke());
+            ClueManager.InitQueue?.Invoke();
+        }
+        else
+        {
+            MenuCanvasScript.PlayTransition?.Invoke(TransitionState.FromGame);
+            PlayerStates.ChangeState?.Invoke(GameState.NULL);
+        }
     }
 
     // I'm not saying it's pretty, I'm saying it works for me.
     public Quest OnCurrentQuest()
     {
+        if (QuestsIndex >= Quests.Length) return null;
+
         var Q = Quests[QuestsIndex];
         return Q;
     }

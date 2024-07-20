@@ -96,7 +96,7 @@ public class DialogueCanvasScript : MonoBehaviour
             index++;
             yield return _typeWait;
         }
-
+        DialogueBox.text = text;
         IsTyping = false;
     }
 

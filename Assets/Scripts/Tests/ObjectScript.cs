@@ -1,16 +1,20 @@
 using UnityEngine;
 
+[SelectionBase]
+[RequireComponent(typeof(DialogueInvoker))]
 public class ObjectScript : MonoBehaviour
 {
-    private Animator animator;
+    private DialogueInvoker _invoker;
+    public DialogueBranch _dialogue;
 
     private void Start()
     {
-        animator = GetComponent<Animator>();
+        _invoker = GetComponent<DialogueInvoker>();
     }
 
-    public void ActivateAnimation()
+    public void TalkTo()
     {
-        animator.SetTrigger("interact");
+        PlayerStates.ChangeState?.Invoke(GameState.TALKING);
+        _invoker.SendDialogueBranch(_dialogue);
     }
 }

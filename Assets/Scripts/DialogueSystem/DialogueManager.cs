@@ -143,9 +143,11 @@ public class DialogueManager : MonoBehaviour
         }
         else
         {
-            if (DialogueForQuest) QuestManager.CompleteQuest?.Invoke();
             DialogueCanvas.EndSound();
             EndDialogue();
+
+            // Father, I do sin. I sin hard.
+            if (DialogueForQuest) { QuestManager.CompleteQuest?.Invoke(); DialogueForQuest = false; }
         }
     }
 
@@ -162,7 +164,6 @@ public class DialogueManager : MonoBehaviour
     {
         _isTalking = false;
         _currentBranch = null;
-        DialogueForQuest = false;
 
         PlayerStates.ChangeState?.Invoke(GameState.WALKING);
     }

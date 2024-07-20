@@ -1,0 +1,69 @@
+- Don't use pure white.
+
+- Voice Over seems a bit loud at times.
+
+- Take in account how buttons would fit in the game world.
+
+- Make it more clear how many clues are left.
+
+- Pixel the corners of the UI.
+
+- Finding a font that feels more L.A Noir for the UI.
+
+- Making UI Diegetic, that fits the theme (Detective, Poker, Cards, Gambling, Dice, Poker Chips, Coin)
+
+- Feedback for when you pick the wrong clue.
+- Feedback for when you pick the right clue.
+
+- The "hard-earned inherited wealth" doesn't fit the dialogue box.
+- Coin clips through the table after tutorial.
+
+- Some tutorial text doesn't fit the tutorial screen (noticed at the multiplier tutorial).
+
+- You can select more than one card in the discard phase.
+
+- Selecting wrong cards on play doesn't invoke error feedback.
+
+- More specific feedback errors would be nice.
+
+- Message saying why you lost.
+
+- Reset multiplier text when changing turns.
+
+- Compact UI towards the top of the screen.
+
+- Card Game UI.
+
+- You don't feel like you're not receiving points: it's be nice to have a visual or audio cue.
+
+- Change the winning screen for something a bit more visually appealing and easier on the eyes.
+
+- Confession tutorial makes you think that the multiplier is being applied to your points.
+
+- Add a "fake card" covering the deck/draw pile.
+
+- Players might think Ace is the highest worth value, when it is only worth 1.
+
+- Skipping the play phase doesn't punish the player. Maybe it should decrease the confession points. It gives the act of making the big play a bigger play, because you pay the sinner price to get there.
+
+- Slider doesn't update with the increasing score.
+
+- Adding a ticking sound to the clock, that increases the closer you are to run out of time.
+
+- Adding a visual change to the last, say, 10 seconds.
+
+- Something about the math... Flushy Bug with Multiplier.
+
+- Winning should display the board score.
+
+- Increase the line maximum characters for the dialogue box.
+
+- Não associei a poker chip ao Flushy.
+
+- First dialogue seems overly verbose.  I think the Film Noir vibes of the dialogue were getting in the way of making it sound good to read. There must be a middle-ground.
+
+- Multiplier is broken.
+
+- Coin flip error.
+
+- Associating a personality with the dialogue color. Adding the character name on the dialogue box.

@@ -75,7 +75,7 @@ public class PlayerStates : MonoBehaviour
                 _cameraLook.ToggleCursor(true);
                 break;
             default:
-                Debug.LogError("Player State not found.");
+                Debug.LogWarning("Player State null.");
                 break;
         }
     }

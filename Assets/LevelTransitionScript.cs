@@ -1,12 +1,13 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class LevelTransitionScript : MonoBehaviour
 {
-    public void StartLoading()
+    public void OnStartLoading(int i)
     {
-        StartCoroutine(LoadLevelAsync(1));
+        StartCoroutine(LoadLevelAsync(i));
     }
 
     IEnumerator LoadLevelAsync(int loadScene)
