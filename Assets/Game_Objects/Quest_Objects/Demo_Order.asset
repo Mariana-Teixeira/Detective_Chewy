@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b427a3a8984c0fb4abe2b7454f125aa0, type: 3}
+  m_Name: Demo_Order
+  m_EditorClassIdentifier: 
+  Quests:
+  - {fileID: 11400000, guid: 0f3bb1e54118c1e42b3c27af41039857, type: 2}
+  - {fileID: 11400000, guid: 62079b18214b6fa4d82eb92dbfbf7a70, type: 2}
+  - {fileID: 11400000, guid: 5ad25becd242f6b48a985bfa02e0d6f5, type: 2}
+  - {fileID: 11400000, guid: 98ffa56b59d91274f98742fa33b8b1cd, type: 2}
+  - {fileID: 11400000, guid: 314ca0fa96a4e664287252acaac5dc72, type: 2}
+  - {fileID: 11400000, guid: 43faefe784bd056428ced512e489619b, type: 2}
+  - {fileID: 11400000, guid: 8553c915d71581e4b9bdaf17561dd837, type: 2}
+  - {fileID: 11400000, guid: dbf3420ee0811384aa186371cc159ccc, type: 2}
+  - {fileID: 11400000, guid: 4e25fe3e3f82eb148ac45a476e6f8b1c, type: 2}

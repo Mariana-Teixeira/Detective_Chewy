@@ -14,7 +14,6 @@ public class ClueScript : MonoBehaviour
         Clue = this.gameObject.name;
     }
 
-    // I don't enjoy it either, let me live. I'm thinking!
     public void GatherClue()
     {
         var Q = QuestManager.CurrentQuest?.Invoke();
